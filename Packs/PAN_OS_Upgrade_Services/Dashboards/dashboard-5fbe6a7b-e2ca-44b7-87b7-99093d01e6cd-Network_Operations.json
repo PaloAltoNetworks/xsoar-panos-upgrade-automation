@@ -1,0 +1,849 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "5fbe6a7b-e2ca-44b7-87b7-99093d01e6cd",
+	"isCommon": false,
+	"itemVersion": "",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "96228d10-229d-11ed-b785-735b521b91d8",
+			"id": "96228d10-229d-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "6.2.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.858326289Z",
+				"name": "Total Devices",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#1DB846": {
+								"value": null
+							},
+							"#989898": {
+								"value": 0
+							}
+						},
+						"type": "above"
+					},
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Active Indicators by Verdict",
+				"propagationLabels": [],
+				"query": "type:\"Network Device\" or type:\"Panorama Device\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "af0f2a90-229d-11ed-b785-735b521b91d8",
+			"id": "af0f2a90-229d-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "6.2.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.858326289Z",
+				"name": "Firewall(s)",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#989898": {
+								"value": 0
+							}
+						},
+						"type": "above"
+					},
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Active Indicators by Verdict",
+				"propagationLabels": [],
+				"query": "type:\"Network Device\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "number"
+			},
+			"x": 2,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "c10a21f0-229d-11ed-b785-735b521b91d8",
+			"id": "c10a21f0-229d-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857738375Z",
+				"name": "Status of Active Upgrades",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#1DB846": {
+								"value": 0
+							}
+						},
+						"type": "above"
+					},
+					"groupBy": [
+						"description"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Active Incidents - Line chart",
+				"propagationLabels": [],
+				"query": "type:\"PAN-OS Network Operations - Device Upgrade\" -status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "column"
+			},
+			"x": 0,
+			"y": 2
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "e60090c0-229d-11ed-b785-735b521b91d8",
+			"id": "e60090c0-229d-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857738375Z",
+				"name": "Failed Upgrades",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#1DB846": {
+								"value": null
+							},
+							"#D13C3C": {
+								"value": 0
+							}
+						},
+						"type": "above"
+					},
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Active Incidents - Line chart",
+				"propagationLabels": [],
+				"query": "type:\"PAN-OS Network Operations - Device Upgrade\" -status:Closed runStatus:error",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "number"
+			},
+			"x": 2,
+			"y": 1
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "27710990-229e-11ed-b785-735b521b91d8",
+			"id": "27710990-229e-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "6.2.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.858326289Z",
+				"name": "Devices By Type",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"devicemodel"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Active Indicators by Verdict",
+				"propagationLabels": [],
+				"query": "(type:\"Network Device\" or type:\"Panorama Device\") connected:yes",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 6,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "3a107e50-229e-11ed-b785-735b521b91d8",
+			"id": "3a107e50-229e-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "6.2.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.858326289Z",
+				"name": "Devices by Tag",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"devicetags"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Active Indicators by Verdict",
+				"propagationLabels": [],
+				"query": "(type:\"Network Device\" or type:\"Panorama Device\")",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 6,
+			"y": 2
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "54862cd0-229e-11ed-b785-735b521b91d8",
+			"id": "54862cd0-229e-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "0001-01-01T00:00:00Z",
+				"name": "BPA Issues Fixed",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#1DB846": {
+								"value": 0
+							},
+							"#D13C3C": {
+								"value": null
+							},
+							"#EF9700": {
+								"value": null
+							}
+						},
+						"type": "above"
+					},
+					"keys": [
+						"sum|totalchangecount"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"PAN-OS Network Operations - Best Practice Remediation\" status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "trend"
+			},
+			"x": 10,
+			"y": 2
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "7d05c260-229e-11ed-b785-735b521b91d8",
+			"id": "7d05c260-229e-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "6.2.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.858326289Z",
+				"name": "Device Versions",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"softwareversion"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Active Indicators by Verdict",
+				"propagationLabels": [],
+				"query": "(type:\"Network Device\" or type:\"Panorama Device\") connected:yes",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 8,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "14270780-229f-11ed-b785-735b521b91d8",
+			"id": "14270780-229f-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857738375Z",
+				"name": "Running Upgrades",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#1DB846": {
+								"value": 0
+							},
+							"#D13C3C": {
+								"value": null
+							}
+						},
+						"type": "above"
+					},
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Active Incidents - Line chart",
+				"propagationLabels": [],
+				"query": "type:\"PAN-OS Network Operations - Device Upgrade\" -status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 1
+		},
+		{
+			"forceRange": false,
+			"h": 4,
+			"i": "51ab03e0-229f-11ed-b785-735b521b91d8",
+			"id": "51ab03e0-229f-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 12,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.859013418Z",
+				"name": "Connected Devices",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"enablePagination": true,
+					"tableColumns": [
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "indicator_type",
+							"width": 120
+						},
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "value",
+							"width": 300
+						},
+						{
+							"displayed": true,
+							"key": "Device Model",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Device Status",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "IP Address",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Device Tags",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Software Version",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Threat Version",
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Indicators Activity",
+				"propagationLabels": [],
+				"query": "(type:\"Network Device\" or type:\"Panorama Device\") and connected:yes",
+				"shouldCommit": false,
+				"size": 50,
+				"sort": [
+					{
+						"asc": false,
+						"field": "id",
+						"fieldType": ""
+					}
+				],
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "table"
+			},
+			"x": 0,
+			"y": 4
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "43967190-25d8-11ed-8074-c557f94a006f",
+			"id": "43967190-25d8-11ed-8074-c557f94a006f",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857738375Z",
+				"name": "Average Upgrade Time",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#1DB846": {
+								"value": 0
+							},
+							"#D13C3C": {
+								"value": 7200
+							},
+							"#EF9700": {
+								"value": 3600
+							}
+						},
+						"type": "above"
+					},
+					"keys": [
+						"avg|deviceupgradetimer.totalDuration"
+					]
+				},
+				"prevName": "Active Incidents - Line chart",
+				"propagationLabels": [],
+				"query": "type:\"PAN-OS Network Operations - Device Upgrade\" status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "duration"
+			},
+			"x": 4,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "aa0d5ec0-3960-11ed-853d-5f1c651c2865",
+			"id": "aa0d5ec0-3960-11ed-853d-5f1c651c2865",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "0001-01-01T00:00:00Z",
+				"name": "Open BPA Warnings",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#1DB846": {
+								"value": 0
+							},
+							"#D13C3C": {
+								"value": 1000
+							},
+							"#EF9700": {
+								"value": 100
+							}
+						},
+						"type": "above"
+					},
+					"keys": [
+						"max|totalfailedbpachecks"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "type:\"PAN-OS Network Operations - Best Practice Assessment\" -status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "trend"
+			},
+			"x": 10,
+			"y": 3
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "Network Operations",
+	"owner": "admin",
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 30,
+		"toValue": null
+	},
+	"system": false,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}

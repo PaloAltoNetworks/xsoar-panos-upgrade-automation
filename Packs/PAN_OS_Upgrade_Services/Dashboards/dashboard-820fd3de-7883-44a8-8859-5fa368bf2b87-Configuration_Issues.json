@@ -1,0 +1,529 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "820fd3de-7883-44a8-8859-5fa368bf2b87",
+	"isCommon": false,
+	"itemVersion": "",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "24c40010-22a0-11ed-b785-735b521b91d8",
+			"id": "24c40010-22a0-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857770815Z",
+				"name": "Open Configuration Issues",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {},
+				"prevName": "Manual Verdict Indicators",
+				"propagationLabels": [],
+				"query": "type:\"Network Configuration Issue\" expirationStatus:active issuestatus:unresolved",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "b5eed5b0-22a5-11ed-b785-735b521b91d8",
+			"id": "b5eed5b0-22a5-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 7,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857770815Z",
+				"name": "Configuration Issues Over Time",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"lastSeen(d)",
+						"expirationStatus"
+					],
+					"timeFrame": "days",
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Manual Verdict Indicators",
+				"propagationLabels": [],
+				"query": "type:\"Network Configuration Issue\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "line"
+			},
+			"x": 0,
+			"y": 2
+		},
+		{
+			"forceRange": false,
+			"h": 1,
+			"i": "0523c820-22a6-11ed-b785-735b521b91d8",
+			"id": "0523c820-22a6-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857770815Z",
+				"name": "Resolved Configuration Issues",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"colors": {
+						"isEnabled": true,
+						"items": {
+							"#1DB846": {
+								"value": 0
+							}
+						},
+						"type": "above"
+					},
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Manual Verdict Indicators",
+				"propagationLabels": [],
+				"query": "type:\"Network Configuration Issue\" expirationStatus:expired",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "number"
+			},
+			"x": 0,
+			"y": 1
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "1c25d3b0-22a6-11ed-b785-735b521b91d8",
+			"id": "1c25d3b0-22a6-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857770815Z",
+				"name": "Issues by Subtype",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"issuesubtype"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Manual Verdict Indicators",
+				"propagationLabels": [],
+				"query": "type:\"Network Configuration Issue\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 2,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "2d95c920-22a6-11ed-b785-735b521b91d8",
+			"id": "2d95c920-22a6-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 3,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857770815Z",
+				"name": "Issues By Affected Object Type",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"affectedobjecttype"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Manual Verdict Indicators",
+				"propagationLabels": [],
+				"query": "type:\"Network Configuration Issue\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 6,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "4d80b6f0-22a6-11ed-b785-735b521b91d8",
+			"id": "4d80b6f0-22a6-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 3,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857770815Z",
+				"name": "Issues By ID",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"issueid"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Manual Verdict Indicators",
+				"propagationLabels": [],
+				"query": "type:\"Network Configuration Issue\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 9,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "aecb7bc0-22a6-11ed-b785-735b521b91d8",
+			"id": "aecb7bc0-22a6-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 5,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.857770815Z",
+				"name": "Issues By Affected Device Group",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"issuedevicegroup"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Manual Verdict Indicators",
+				"propagationLabels": [],
+				"query": "type:\"Network Configuration Issue\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 7,
+			"y": 2
+		},
+		{
+			"forceRange": false,
+			"h": 4,
+			"i": "c9389ec0-22a6-11ed-b785-735b521b91d8",
+			"id": "c9389ec0-22a6-11ed-b785-735b521b91d8",
+			"reflectDimensions": true,
+			"w": 12,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 30,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "6.2.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.2.6",
+				"modified": "2022-07-23T23:45:04.859130279Z",
+				"name": "Open Configuration Issues",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"tableColumns": [
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "value",
+							"width": 300
+						},
+						{
+							"displayed": true,
+							"key": "Issue ID",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Issue Description",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Issue Remediation",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "relatedIncCount",
+							"width": 150
+						},
+						{
+							"displayed": true,
+							"key": "Issue Subtype",
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Indicators in Related Incidents",
+				"propagationLabels": [],
+				"query": "type:\"Network Configuration Issue\" expirationStatus:active issuestatus:unresolved",
+				"shouldCommit": false,
+				"size": 10,
+				"sort": [
+					{
+						"asc": false,
+						"field": "relatedIncCount",
+						"fieldType": ""
+					}
+				],
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "table"
+			},
+			"x": 0,
+			"y": 4
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "Configuration Issues",
+	"owner": "admin",
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 7,
+		"toValue": null
+	},
+	"system": false,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}

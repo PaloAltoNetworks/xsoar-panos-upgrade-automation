@@ -1,0 +1,43 @@
+args:
+- description: Entry ID of Left Snapshot to compare
+  name: left_entry_id
+  required: true
+- description: Entry ID of Left Snapshot to compare
+  name: right_entry_id
+  required: true
+comment: Given two snapshot files, compares and returns the resultant differences.
+commonfields:
+  id: CompareSnapshotFiles
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ''
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+name: CompareSnapshotFiles
+outputs:
+  - contextPath: CompareSnapshotFiles.TotalDifferences
+    description: Total number of differences between both data in each file
+    type: number
+  - contextPath: CompareSnapshotFiles.Differences.key
+    description: The different key
+    type: string
+  - contextPath: CompareSnapshotFiles.Differences.value
+    description: The different value
+    type: string
+  - contextPath: CompareSnapshotFiles.Differences.description
+    description: Description about what has changed
+    type: string
+  - contextPath: CompareSnapshotFiles.Differences.table_id
+    description: The type of data compared
+    type: string
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
+fromversion: 6.2.0
+tests:
+- No tests (auto formatted)

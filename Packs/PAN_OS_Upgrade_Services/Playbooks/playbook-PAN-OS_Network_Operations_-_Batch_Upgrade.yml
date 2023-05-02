@@ -1,0 +1,1705 @@
+description: Similar to the Platform Upgrade playbook, this playbook uses an alternate
+  method of retrieving the devices to upgrade by instead querying the open device
+  incidents for the information. This allows us to create upgrade incidents for only
+  specific devices or groups of devices as opposed to all devices.
+id: PAN-OS Network Operations - Domain Upgrade
+inputs:
+- description: Target upgrade batch by device tags.
+  key: upgrade_tags
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.devicetags}
+- description: 'Any additional incident query parameters for the device query - for
+    example, use "devicemodel:Panorama" to only upgrade Panorama devices. '
+  key: device_query
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationsdeviceupgradequery}
+name: PAN-OS Network Operations - Batch Upgrade
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e74ed2fa-8b49-4e9a-8068-104f6d1a05b5
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: e74ed2fa-8b49-4e9a-8068-104f6d1a05b5
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -760
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.upgrade_tags
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check for Domain to upgrade
+      id: b8277c23-9c46-431b-8063-4f625dc44578
+      iscommand: false
+      name: Did we get tags specified?
+      type: condition
+      version: -1
+    taskid: b8277c23-9c46-431b-8063-4f625dc44578
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -100
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: "(type:\"Network Device\" or type:\"Panorama Device\")  connected:yes
+          hastatus:active ${inputs.upgrade_tags=>x(val);function x(l) {\n\tvar r =
+          [];\n\tif (l) {\n  \tl.forEach(s => {\n    \tr.push(\"devicetags:\"+s);\n
+          \   })\n  } else {\n  \treturn '';\n  }\n  return r.join(' ');\n}} ${inputs.device_query}"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Searches the active PAN-OS devices in the topology - the device
+        incidents - by the given incident query. '
+      id: 778faf19-95e1-49b7-8570-044f01e61fc1
+      iscommand: false
+      name: Get Active Devices by query
+      script: GetDevicesByQuery
+      type: regular
+      version: -1
+    taskid: 778faf19-95e1-49b7-8570-044f01e61fc1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 70
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: hastatus:active  connected:yes ${inputs.device_query}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Searches the active PAN-OS devices in the topology - the device
+        incidents - by the given incident query. '
+      id: 830886db-544d-43e6-85ed-5e69a3875aed
+      iscommand: false
+      name: Get All Active Devices
+      script: GetDevicesByQuery
+      type: regular
+      version: -1
+    taskid: 830886db-544d-43e6-85ed-5e69a3875aed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 70
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0e0680b9-98e5-46c5-8253-dae43d3db392
+      iscommand: false
+      name: Get Available Software Images
+      type: title
+      version: -1
+    taskid: 0e0680b9-98e5-46c5-8253-dae43d3db392
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 615
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${GetDevicesByQuery.hostid}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check the devices for software that is available to be installed.
+      id: 3e30225c-cdca-4ceb-8ea7-507b54158053
+      iscommand: true
+      name: Get Software Images
+      script: '|||pan-os-platform-get-available-software'
+      type: regular
+      version: -1
+    taskid: 3e30225c-cdca-4ceb-8ea7-507b54158053
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 740
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: GetDevicesByQuery.hostid
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check for device.
+      id: e15b30f1-a250-45a1-8525-ddccb6e9f98a
+      iscommand: false
+      name: Did we get at least one device?
+      type: condition
+      version: -1
+    taskid: e15b30f1-a250-45a1-8525-ddccb6e9f98a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 250
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: The device query for only Active devices with domain ${inputs.domain}
+          returned no results. Have you run a System Information incident?
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: ae23b74c-64bf-423c-8609-d8d562af4ec2
+      iscommand: false
+      name: Error on no devices returned.
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: ae23b74c-64bf-423c-8609-d8d562af4ec2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 880,
+          "y": 600
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: PAN-OS Network Operations - Upgrade Panorama Version
+      output:
+        complex:
+          accessor: version
+          root: FilteredSoftwareVersions.Result
+          transformers:
+          - args:
+              separator:
+                value:
+                  simple: ', '
+            operator: join
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      available_images:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.filename
+              operator: containsGeneral
+              right:
+                value:
+                  simple: Panorama
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.current
+              operator: isFalse
+          root: PANOS.SoftwareVersions.Summary
+      installed_images:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.filename
+              operator: containsGeneral
+              right:
+                value:
+                  simple: Panorama
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.current
+              operator: isTrue
+          root: PANOS.SoftwareVersions.Summary
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
+      id: 5bcf891d-2fef-4cb2-85ae-4f244a826ef9
+      iscommand: false
+      name: Filter available Panorama Images
+      script: FilterAvailableSoftwareImages
+      type: regular
+      version: -1
+    taskid: 5bcf891d-2fef-4cb2-85ae-4f244a826ef9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 1260
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: hostid
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.ShowSystemInfo.Summary.model
+                    operator: containsGeneral
+                    right:
+                      value:
+                        simple: Panorama
+                root: PANOS.ShowSystemInfo.Summary
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "13"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check for Panorama devices.
+      id: 3b26652e-3cd7-4ddf-8284-651641da0ccd
+      iscommand: false
+      name: Did we return Panorama devices?
+      type: condition
+      version: -1
+    taskid: 3b26652e-3cd7-4ddf-8284-651641da0ccd
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1070
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    form:
+      description: |-
+        ## Overview
+        Please specify the target image versions for Panorama and the Firewalls.
+
+        ## Image Upgrade Restrictions
+        Note that the associated image list is based on the following limitations and is NOT the complete list of available PAN-OS software;
+
+         * Image must not be > 1 Major release ahead
+         * Image must not be > 1 Minor release ahead
+         * Image must not be a combination of the two above
+
+        **In the event of a large gap between firewall versions within the environment, the upgrade process will require a manual selection for each firewall that can't be directly upgraded to the target version.**
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          complex:
+            accessor: version
+            filters:
+            - - left:
+                  iscontext: true
+                  value:
+                    simple: PANOS.SoftwareVersions.Summary.current
+                operator: isTrue
+            - - left:
+                  iscontext: true
+                  value:
+                    simple: PANOS.SoftwareVersions.Summary.filename
+                operator: containsGeneral
+                right:
+                  value:
+                    simple: Panorama
+            root: PANOS.SoftwareVersions.Summary
+            transformers:
+            - args:
+                prefix:
+                  value:
+                    simple: Select Target Panorama Software Version. Current is  **
+                suffix:
+                  value:
+                    simple: '**'
+              operator: concat
+        options: []
+        optionsarg:
+        - complex:
+            accessor: version
+            filters:
+            - - left:
+                  iscontext: true
+                  value:
+                    simple: FilteredSoftwareVersions.Result.filename
+                operator: containsGeneral
+                right:
+                  value:
+                    simple: Panorama
+            root: FilteredSoftwareVersions.Result
+            transformers:
+            - args:
+                descending: {}
+              operator: sort
+        - {}
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: The possible versions to upgrade Panorama to.
+        type: singleSelect
+      sender: Your SOC team
+      title: Panorama Upgrade Questions
+      totalanswers: 0
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Please complete the following survey to proceed with the platform
+          upgrade process.
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Collects the upgrade details from the user.
+      id: dee3b0f1-9aa8-4160-8065-39a0777c4486
+      iscommand: false
+      name: Panorama Target Version and Upgrade information Questionairre
+      type: collection
+      version: -1
+    taskid: dee3b0f1-9aa8-4160-8065-39a0777c4486
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 1660
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      panosnetworkoperationsupgradetargetpanoramaversion:
+        simple: ${Panorama Upgrade Questions.Answers.0}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: b1c38b15-b4fe-4027-894d-22b1b6f6b609
+      iscommand: true
+      name: Set Target Panorama Version Field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: b1c38b15-b4fe-4027-894d-22b1b6f6b609
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 1820
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      name:
+        simple: PAN-OS Panorama Upgrade - ${PanoramaDevices}
+      panosnetworkoperationsparentincidentid:
+        simple: ${incident.id}
+      panosnetworkoperationstarget:
+        simple: ${PanoramaDevices}
+      panosnetworkoperationsupgradetargetdevice:
+        simple: ${PanoramaDevices}
+      panosnetworkoperationsupgradetargetversion:
+        simple: ${incident.panosnetworkoperationsupgradetargetpanoramaversion}
+      type:
+        simple: PAN-OS Network Operations - Device Upgrade
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.create.inc
+      id: a1302123-a0a1-4618-8e79-5e57b4858d41
+      iscommand: true
+      name: Create Panorama Incidents
+      script: Builtin|||createNewIncident
+      type: regular
+      version: -1
+    taskid: a1302123-a0a1-4618-8e79-5e57b4858d41
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 2410
+        }
+      }
+  "13":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.ShowSystemInfo.Summary.model
+                    operator: notContainsGeneral
+                    right:
+                      value:
+                        simple: Panorama
+                root: PANOS.ShowSystemInfo.Summary.model
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "25"
+      "yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check for Firewall devices.
+      id: d3c20cdd-a33f-495c-8107-7eb3a50424b9
+      iscommand: false
+      name: Did we get Firewall devices?
+      type: condition
+      version: -1
+    taskid: d3c20cdd-a33f-495c-8107-7eb3a50424b9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 2610
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "27"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      available_images:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.filename
+              operator: notContainsGeneral
+              right:
+                value:
+                  simple: Panorama
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.current
+              operator: isFalse
+          root: PANOS.SoftwareVersions.Summary
+      installed_images:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.filename
+              operator: notContainsGeneral
+              right:
+                value:
+                  simple: Panorama
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.current
+              operator: isTrue
+          root: PANOS.SoftwareVersions.Summary
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
+      id: cbb9ae5a-622e-4d0e-8e88-cf43b20f91fe
+      iscommand: false
+      name: Filter available Firewall Images
+      script: FilterAvailableSoftwareImages
+      type: regular
+      version: -1
+    taskid: cbb9ae5a-622e-4d0e-8e88-cf43b20f91fe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 2775
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    form:
+      description: |-
+        ## Overview
+        Please specify the target image versions for Panorama and the Firewalls.
+
+        ## Image Upgrade Restrictions
+        Note that the associated image list is based on the following limitations and is NOT the complete list of available PAN-OS software;
+
+         * Image must not be > 1 Major release ahead
+         * Image must not be > 1 Minor release ahead
+         * Image must not be a combination of the two above
+
+        **In the event of a large gap between firewall versions within the environment, the upgrade process will require a manual selection for each firewall that can't be directly upgraded to the target version.**
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          complex:
+            accessor: version
+            filters:
+            - - left:
+                  iscontext: true
+                  value:
+                    simple: PANOS.SoftwareVersions.Summary.filename
+                operator: notContainsGeneral
+                right:
+                  value:
+                    simple: Panorama
+            - - left:
+                  iscontext: true
+                  value:
+                    simple: PANOS.SoftwareVersions.Summary.current
+                operator: isTrue
+            root: PANOS.SoftwareVersions.Summary
+            transformers:
+            - operator: uniq
+            - args:
+                separator:
+                  value:
+                    simple: ', '
+              operator: join
+            - args:
+                prefix:
+                  value:
+                    simple: 'Select target firewall software version. Current versions
+                      are '
+                suffix: {}
+              operator: concat
+        options: []
+        optionsarg:
+        - complex:
+            accessor: version
+            filters:
+            - - left:
+                  iscontext: true
+                  value:
+                    simple: FilteredSoftwareVersions.Result.filename
+                operator: notContainsGeneral
+                right:
+                  value:
+                    simple: Panorama
+            root: FilteredSoftwareVersions.Result
+            transformers:
+            - args:
+                descending: {}
+              operator: sort
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: The possible versions to upgrade the firewall devices to.
+        type: singleSelect
+      sender: Your SOC team
+      title: Firewall Upgrade Questions
+      totalanswers: 0
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Please complete the following survey to proceed with the platform
+          upgrade process.
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Collectst the firewall version and further upgrade information
+      id: d5cf6dcc-7d53-4574-8120-edf136522973
+      iscommand: false
+      name: Firewall Target Version and Upgrade information Questionairre
+      type: collection
+      version: -1
+    taskid: d5cf6dcc-7d53-4574-8120-edf136522973
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 3150
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      panosnetworkoperationsupgradetargetfirewallversion:
+        simple: ${Firewall Upgrade Questions.Answers.0}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 1605aa03-def9-4bb1-88b2-c022be717301
+      iscommand: true
+      name: Set Answered target version
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 1605aa03-def9-4bb1-88b2-c022be717301
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 3305
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      name:
+        simple: PAN-OS Firewall Upgrade
+      panosnetworkoperationsparentincidentid:
+        simple: ${incident.id}
+      panosnetworkoperationstarget:
+        complex:
+          root: FirewallDevices
+      panosnetworkoperationsupgradetargetdevice:
+        complex:
+          root: FirewallDevices
+      panosnetworkoperationsupgradetargetversion:
+        simple: ${incident.panosnetworkoperationsupgradetargetfirewallversion}
+      type:
+        simple: PAN-OS Network Operations - Device Upgrade
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.create.inc
+      id: 6ffeacf6-82a1-4d93-8b0c-c8bd4947b650
+      iscommand: true
+      name: Create Firewall Incidents
+      script: Builtin|||createNewIncident
+      type: regular
+      version: -1
+    taskid: 6ffeacf6-82a1-4d93-8b0c-c8bd4947b650
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 3760
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: PanoramaDevices
+      value:
+        complex:
+          accessor: hostid
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FilteredSoftwareVersions.Result.filename
+              operator: containsString
+              right:
+                value:
+                  simple: Panorama
+          - - left:
+                iscontext: true
+                value:
+                  simple: FilteredSoftwareVersions.Result.version
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: incident.panosnetworkoperationsupgradetargetpanoramaversion
+          root: FilteredSoftwareVersions.Result
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 1ceb86c2-7171-47e8-8263-cea353d56be9
+      iscommand: false
+      name: Set Panorama Systems
+      script: Set
+      type: regular
+      version: -1
+    taskid: 1ceb86c2-7171-47e8-8263-cea353d56be9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 2000
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: FirewallDevices
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.filename
+              operator: notContainsGeneral
+              right:
+                value:
+                  simple: Panorama
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.hostid
+              operator: notIn
+              right:
+                iscontext: true
+                value:
+                  simple: PanoramaDevices
+          root: PANOS.SoftwareVersions.Summary.hostid
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: f04cf9a0-265f-498f-8571-8190b00019eb
+      iscommand: false
+      name: Set Firewall Systems
+      script: Set
+      type: regular
+      version: -1
+    taskid: f04cf9a0-265f-498f-8571-8190b00019eb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 3460
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 9a6a87a9-9eb6-4a0c-88ce-0d078f98a823
+      iscommand: false
+      name: Delete context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 9a6a87a9-9eb6-4a0c-88ce-0d078f98a823
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -610
+        }
+      }
+  "22":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsupgradetargetpanoramaversion
+          operator: isNotEmpty
+      label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsupgradetargetpanoramaversion
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsupgradetargetpanoramaversion
+          operator: notInList
+          right:
+            iscontext: true
+            value:
+              simple: FilteredSoftwareVersions.Result.version
+      label: yes - but not valid
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      "yes":
+      - "18"
+      yes - but not valid:
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check for target version.
+      id: c01ad91f-ad53-424e-8888-c19cfdb40bc8
+      iscommand: false
+      name: Do we have a target version already?
+      type: condition
+      version: -1
+    taskid: c01ad91f-ad53-424e-8888-c19cfdb40bc8
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 1410
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: "Panorama Upgrade cannot continue - the input panorama upgrade version
+          ${incident.panosnetworkoperationsupgradetargetpanoramaversion} is not a
+          valid target version. It may already be installed, too many releases ahead,
+          or behind the currently installed version. \n\nFirewall upgrade process
+          will continue."
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: b289439d-9067-403f-8aa1-e505dc0ac7cc
+      iscommand: true
+      name: Set Description
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: b289439d-9067-403f-8aa1-e505dc0ac7cc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -240,
+          "y": 2410
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${GetDevicesByQuery.hostid}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets information from all PAN-OS systems in the topology.
+      id: 2964ba8a-7607-48fe-80e9-b8e1b90a65bd
+      iscommand: true
+      name: Get system info for returned devices
+      script: '|||pan-os-platform-get-system-info'
+      type: regular
+      version: -1
+    taskid: 2964ba8a-7607-48fe-80e9-b8e1b90a65bd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 910
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5fc72372-0734-4383-8501-f732017ff290
+      iscommand: false
+      name: Start Upgrade Process Per Incident
+      type: title
+      version: -1
+    taskid: 5fc72372-0734-4383-8501-f732017ff290
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 3930
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      panosnetworkoperationspanoramaupgradelist:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.ShowSystemInfo.Summary.model
+              operator: isEqualString
+              right:
+                value:
+                  simple: Panorama
+          root: PANOS.ShowSystemInfo.Summary
+          transformers:
+          - operator: ConvertKeysToTableFieldFormat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 788a34fa-b9e9-42a5-80cd-27b47249915a
+      iscommand: true
+      name: Set Target List
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 788a34fa-b9e9-42a5-80cd-27b47249915a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 2185
+        }
+      }
+  "27":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsupgradetargetfirewallversion
+          operator: isNotEmpty
+      label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsupgradetargetfirewallversion
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsupgradetargetpanoramaversion
+          operator: notInList
+          right:
+            iscontext: true
+            value:
+              simple: FilteredSoftwareVersions.Result.version
+      label: yes - but not valid
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "15"
+      "yes":
+      - "19"
+      yes - but not valid:
+      - "29"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check for existing target version
+      id: ff774930-2ca8-49d5-88e3-002ce9525bc3
+      iscommand: false
+      name: Do we have a target version already?
+      type: condition
+      version: -1
+    taskid: ff774930-2ca8-49d5-88e3-002ce9525bc3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 2960
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      panosnetworkoperationsfirewallupgradelist:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.ShowSystemInfo.Summary.model
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: Panorama
+          root: PANOS.ShowSystemInfo.Summary
+          transformers:
+          - operator: ConvertKeysToTableFieldFormat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 4e450526-75db-4c51-8330-e25517e5c9ab
+      iscommand: true
+      name: Set target list
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 4e450526-75db-4c51-8330-e25517e5c9ab
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 3610
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: "Firewall Upgradse cannot continue - the input firewall upgrade version
+          ${incident.panosnetworkoperationsupgradetargetfirewallversion} is not a
+          valid target version. It may already be installed, too many releases ahead,
+          or behind the currently installed version. \n\nPanorama Upgrade process
+          may continue."
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 5d3e421b-dedc-461a-81a2-a049014e3baa
+      iscommand: true
+      name: Set Description
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 5d3e421b-dedc-461a-81a2-a049014e3baa
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 20,
+          "y": 3760
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        This playbook is used by the Domain Upgrade playbook to start (either manually or automatically) groups of Device Upgrade incidents.
+
+        It works by first retrieving the administrative domains/device-groups that have upgrades pending, then marking the pause tasks within them complete in batches.
+      id: 57f869a1-e978-45e0-831f-447bf09d5fb0
+      iscommand: false
+      name: PAN-OS Network Operations - Start Device Upgrades
+      playbookId: PAN-OS Network Operations - Start Device Upgrades
+      type: playbook
+      version: -1
+    taskid: 57f869a1-e978-45e0-831f-447bf09d5fb0
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 4070
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "32"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeNotes:
+        simple: This upgrade incident has been closed - all devices are now upgrading,
+          and can be monitored by looking either at the PAN-OS Network Operations
+          dashboard or the indiviudal incidents directly.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 03c83e0e-125e-4556-868f-3416cad6fc2d
+      iscommand: true
+      name: Close Incident
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 03c83e0e-125e-4556-868f-3416cad6fc2d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 4240
+        }
+      }
+  "32":
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1ef3f4cd-bc45-434a-8ca9-b86f6e1e0f5e
+      iscommand: false
+      name: Finish
+      type: title
+      version: -1
+    taskid: 1ef3f4cd-bc45-434a-8ca9-b86f6e1e0f5e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 4560
+        }
+      }
+  "33":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsparentincidentid
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "1"
+      "yes":
+      - "34"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if this incident has been created by another incident type.
+      id: 9d365281-2c41-4b1d-8a07-f4d71cf369b0
+      iscommand: false
+      name: Do we have a parent incident?
+      type: condition
+      version: -1
+    taskid: 9d365281-2c41-4b1d-8a07-f4d71cf369b0
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -450
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      linkedIncidentIDs:
+        simple: ${incident.panosnetworkoperationsparentincidentid}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.linkIncidents
+      id: 3b0846d8-3fa9-418e-81e2-dd0aa843962f
+      iscommand: true
+      name: Link to parent
+      script: Builtin|||linkIncidents
+      type: regular
+      version: -1
+    taskid: 3b0846d8-3fa9-418e-81e2-dd0aa843962f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -270
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentId:
+        simple: ${incident.id}
+      value:
+        simple: ${GetDevicesByQuery.value}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.associate.indicator
+      id: 624735ae-4f58-4792-859c-afbf6e41fd2b
+      iscommand: true
+      name: Relate Incident to device
+      script: Builtin|||associateIndicatorToIncident
+      type: regular
+      version: -1
+    taskid: 624735ae-4f58-4792-859c-afbf6e41fd2b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 440
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 5385,
+        "width": 1500,
+        "x": -240,
+        "y": -760
+      }
+    }
+  }

@@ -1,0 +1,55 @@
+args:
+  - description: Password to login to the firewall.
+    name: password
+    required: true
+  - description: The hostname of the firewall to configure.
+    name: hostname
+    required: true
+  - description: The IP Address of the primary Panorama server to confiugre
+    name: panorama_ip
+    required: true
+  - description: The IP Address of the backup Panorama server to confiugre
+    name: backup_panorama_ip
+    required: false
+  - description: (Default; true) Enables DHCP on the management interface of the firewall.
+    name: use_dhcp_for_management
+    required: false
+    auto: PREDEFINED
+    predefined:
+      - Yes
+      - No
+  - description: The new hostname for the firewall
+    name: new_hostname
+    required: false
+  - description: Device Auth key - required if version is > 10.1.2
+    name: device_auth_key
+    required: false
+comment: 'Configures the firewall to point to Panorama and commits the configuraiton.'
+commonfields:
+  id: SetupFirewallForOnboarding
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ''
+dockerimage: demisto/pan-os-python:1.0.0.30307
+enabled: true
+name: SetupFirewallForOnboarding
+outputs:
+  - contextPath: SetupFirewallForOnboarding.ip
+    description: The current IP of the firewall that has been setup.
+  - contextPath: SetupFirewallForOnboarding.new_hostname
+    description: The hostname of the new firewall
+  - contextPath: SetupFirewallForOnboarding.using_dhcp
+    description: True if the management interface of the new firewall is configured for DHCP.
+  - contextPath: SetupFirewallForOnboarding.serial
+    description: Serial Number of the configured FW
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags: [ ]
+type: python
+fromversion: 6.2.0
+tests:
+  - No tests (auto formatted)

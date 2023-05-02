@@ -1,0 +1,32 @@
+args:
+- description: A grid field containing issues.
+  name: issue_table
+  isArray: true
+  required: true
+comment: 'Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.'
+commonfields:
+  id: GroupIssuesByFields
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ''
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+name: GroupIssuesByFields
+outputs:
+- contextPath: GroupIssuesByFields.location
+  description: The parent of this object
+- contextPath: GroupIssuesByFields.rulebase
+  description: The rulebase storing the issue, if not the default
+- contextPath: GroupIssuesByFields.object_names
+  description: The type of object to be updated
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
+fromversion: 6.2.0
+tests:
+- No tests (auto formatted)

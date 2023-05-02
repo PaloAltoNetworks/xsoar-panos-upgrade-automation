@@ -1,0 +1,335 @@
+description: Determines which device in a HA pair is active or passive, and if the
+  pair is an active-passive or active-active mode.
+id: 7409a83d-eab4-4acd-8b93-a4abc6a038e4
+inputs:
+- description: Target firewall
+  key: target
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: PAN-OS Network Operations - Get HA Pair Status
+outputs:
+- contextPath: ActiveDevice
+  description: The active firewall
+  type: string
+- contextPath: PassiveDevice
+  description: The passive firewall - may be empty.
+  type: string
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2c209d70-d3d6-4f23-8add-7c5e6af919a9
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 2c209d70-d3d6-4f23-8add-7c5e6af919a9
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${inputs.target}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets the HA state and associated details from the given device
+        and any other details.
+      id: 9ae28c6d-f610-4f34-8162-999420da79b1
+      iscommand: true
+      name: Get HA state
+      script: '|||pan-os-platform-get-ha-state'
+      type: regular
+      version: -1
+    taskid: 9ae28c6d-f610-4f34-8162-999420da79b1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.HAState.peer
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6e6931e4-b9f9-4437-801c-f824ac851935
+      iscommand: false
+      name: Is there a peer?
+      type: condition
+      version: -1
+    taskid: 6e6931e4-b9f9-4437-801c-f824ac851935
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 350
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${PANOS.HAState.peer}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets the HA state and associated details from the given device
+        and any other details.
+      id: 41a89215-9a8a-47a5-8065-5543d38952a3
+      iscommand: true
+      name: Get Peer HA State
+      script: '|||pan-os-platform-get-ha-state'
+      type: regular
+      version: -1
+    taskid: 41a89215-9a8a-47a5-8065-5543d38952a3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 520
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 54145a21-4c80-46b1-83b2-50584fec04f3
+      iscommand: false
+      name: Finish - No HA
+      type: title
+      version: -1
+    taskid: 54145a21-4c80-46b1-83b2-50584fec04f3
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1070,
+          "y": 920
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: ActiveDevice
+      value:
+        complex:
+          accessor: hostid
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.HAState.active
+              operator: isTrue
+          root: PANOS.HAState
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 0dda9ef0-53f0-4f55-8032-29dac10f727d
+      iscommand: false
+      name: Set Active Peer
+      script: Set
+      type: regular
+      version: -1
+    taskid: 0dda9ef0-53f0-4f55-8032-29dac10f727d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 250,
+          "y": 700
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: PassiveDevice
+      value:
+        complex:
+          accessor: hostid
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.HAState.active
+              operator: isFalse
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.HAState.status
+              operator: isEqualString
+              right:
+                value:
+                  simple: passive
+          root: PANOS.HAState
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: fe625908-1bbd-47c5-889c-e21524d33e60
+      iscommand: false
+      name: Set Passive Peer
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: fe625908-1bbd-47c5-889c-e21524d33e60
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 700
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b6e71fc5-80b9-461b-84ec-fadda01487d7
+      iscommand: false
+      name: Finish HA Discovery
+      type: title
+      version: -1
+    taskid: b6e71fc5-80b9-461b-84ec-fadda01487d7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 880
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 935,
+        "width": 1200,
+        "x": 250,
+        "y": 50
+      }
+    }
+  }

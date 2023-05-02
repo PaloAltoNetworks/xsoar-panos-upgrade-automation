@@ -1,0 +1,17 @@
+[
+  {
+    "location": "INBOUND",
+    "rulebase": "pre-rulebase",
+    "object_names": [
+      "X103-PUBLIC-INBOUND",
+      "X105-PUBLIC-INBOUND"
+    ]
+  },
+  {
+    "location": "OUTBOUND",
+    "rulebase": "pre-rulebase",
+    "object_names": [
+      "X109-PUBLIC-OUTBOUND"
+    ]
+  }
+]

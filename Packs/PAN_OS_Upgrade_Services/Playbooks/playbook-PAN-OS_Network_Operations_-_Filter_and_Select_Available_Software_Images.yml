@@ -1,0 +1,363 @@
+description: Requests the available software images from a firewall, filters them,
+  then prompts the user to select the version.
+id: e68255ec-01a8-40a5-82d4-93b104eeb851
+inputs:
+- description: The target firewall.
+  key: target
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: PAN-OS Network Operations - Filter and Select Available Software Images
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0e3e89cd-9670-407d-8177-eefacfaabf22
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 0e3e89cd-9670-407d-8177-eefacfaabf22
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -10
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: |-
+            ### Choose the target version from the list of available versions.
+
+            **Important: Specifying a version more than one feature release ahead of the current release will result in multiple upgrades and device reboots to complete all intermediary update steps**
+        options: []
+        optionsarg:
+        - simple: ${FilteredSoftwareVersions.Result.version}
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: singleSelect
+      sender: ""
+      title: Specify Target Software Version
+      totalanswers: 0
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Specify the final target version of firewall software.
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: If a target version wasn't given, ask the user for the version
+        to upgrade to.
+      id: a7a132db-ace3-4b7f-8dad-49506132647c
+      iscommand: false
+      name: Collect Target Version
+      type: collection
+      version: -1
+    taskid: a7a132db-ace3-4b7f-8dad-49506132647c
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 650
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${inputs.target}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks the devices for software that is available to be installed.
+      id: c81ce5b8-0817-4b8e-8f8d-3534bd51b9de
+      iscommand: true
+      name: Get Available software Images
+      script: '|||pan-os-platform-get-available-software'
+      type: regular
+      version: -1
+    taskid: c81ce5b8-0817-4b8e-8f8d-3534bd51b9de
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 140
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      available_images:
+        simple: ${PANOS.SoftwareVersions.Summary}
+      installed_images:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.SoftwareVersions.Summary.current
+              operator: isEqualString
+              right:
+                value:
+                  simple: "true"
+          root: PANOS.SoftwareVersions.Summary
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
+      id: c3e48e67-fa06-4227-86fd-ec725e3bb6ab
+      iscommand: false
+      name: Filter the available software images
+      script: FilterAvailableSoftwareImages
+      type: regular
+      version: -1
+    taskid: c3e48e67-fa06-4227-86fd-ec725e3bb6ab
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 310
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      nextupgradeversion:
+        complex:
+          accessor: next_upgrade_version
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FilteredSoftwareVersions.Result.version
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: incident.panosnetworkoperationsupgradetargetversion
+          root: FilteredSoftwareVersions.Result
+      upgradepath:
+        complex:
+          accessor: upgrade_path
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FilteredSoftwareVersions.Result.version
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: incident.panosnetworkoperationsupgradetargetversion
+          root: FilteredSoftwareVersions.Result
+          transformers:
+          - args:
+              separator:
+                value:
+                  simple: ', '
+            operator: join
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: c72fccae-b23b-493b-8b0c-dc8d16114b5c
+      iscommand: true
+      name: Set the relevant incident fields
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: c72fccae-b23b-493b-8b0c-dc8d16114b5c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1000
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsupgradetargetversion
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "1"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a8026dc1-cb90-4a0a-867b-b3de1698c90e
+      iscommand: false
+      name: Do we have a Final target version already?
+      type: condition
+      version: -1
+    taskid: a8026dc1-cb90-4a0a-867b-b3de1698c90e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 480
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      panosnetworkoperationsupgradetargetversion:
+        simple: ${Specify Target Software Version.Answers.0}
+      releasenotes:
+        complex:
+          accessor: release_notes
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FilteredSoftwareVersions.Result.version
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: Specify Target Software Version.Answers.0
+          root: FilteredSoftwareVersions.Result
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 81330a24-01e0-4b97-88f0-04a02c1e95b3
+      iscommand: true
+      name: Set Target Version
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 81330a24-01e0-4b97-88f0-04a02c1e95b3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 810
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1105,
+        "width": 380,
+        "x": 450,
+        "y": -10
+      }
+    }
+  }

@@ -1,0 +1,65 @@
+{
+    "result": {
+        "system": {
+            "hostname": "vm-lab-fw02",
+            "ip_address": "192.168.1.141",
+            "public_ip_address": "unknown",
+            "netmask": "255.255.255.0",
+            "default_gateway": "192.168.1.1",
+            "is_dhcp": "no",
+            "ipv6_address": "unknown",
+            "ipv6_link_local_address": "fe80::20c:29ff:fe76:43bc/64",
+            "mac_address": "00:0c:29:76:43:bc",
+            "time": "Thu Aug 4 05:55:10 2022",
+            "uptime": "31 days, 3:25:27",
+            "devicename": "vm-lab-fw02",
+            "family": "vm",
+            "model": "PA-VM",
+            "serial": "111111111111111",
+            "vm_mac_base": "7C:89:C2:23:5E:00",
+            "vm_mac_count": "256",
+            "vm_uuid": "564DC7A1-AFF0-E437-CC50-38F1EA7643BC",
+            "vm_cpuid": "ESX:C3060300FFFBAB1F",
+            "vm_license": "VM-50",
+            "vm_cap_tier": "5.5 GB",
+            "vm_cores": "2",
+            "vm_mem": "5590336",
+            "vm_mode": "VMware ESXi",
+            "cloud_mode": "non-cloud",
+            "sw_version": "10.0.9",
+            "global_protect_client_package_version": "0.0.0",
+            "device_dictionary_version": "54-338",
+            "device_dictionary_release_date": "2022/07/21 18:47:34 PDT",
+            "app_version": "8596-7477",
+            "app_release_date": "2022/07/25 14:35:05 PDT",
+            "av_version": "0",
+            "threat_version": "8596-7477",
+            "threat_release_date": "2022/07/25 14:35:05 PDT",
+            "wf_private_version": "0",
+            "wf_private_release_date": "unknown",
+            "url_db": "paloaltonetworks",
+            "wildfire_version": "0",
+            "wildfire_rt": "Disabled",
+            "url_filtering_version": "20220804.20046",
+            "global_protect_datafile_version": "unknown",
+            "global_protect_datafile_release_date": "unknown",
+            "global_protect_clientless_vpn_version": "0",
+            "logdb_version": "10.0.3",
+            "plugin_versions": {
+                "entry": [
+                    {
+                        "pkginfo": "vm_series-2.1.4"
+                    },
+                    {
+                        "pkginfo": "dlp-1.0.3"
+                    }
+                ]
+            },
+            "platform_family": "vm",
+            "vpn_disable_mode": "off",
+            "multi_vsys": "off",
+            "operational_mode": "normal",
+            "device_certificate_status": "None"
+        }
+    }
+}

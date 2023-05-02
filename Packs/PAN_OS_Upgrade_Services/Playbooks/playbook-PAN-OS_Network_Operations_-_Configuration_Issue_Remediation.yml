@@ -1,0 +1,1612 @@
+description: Remediates configuration issues identified by the Device Management integration.
+id: 9baacc04-1011-47fa-821c-ac8b1842e968
+inputs:
+- description: The TIM query to filter for issues.
+  key: issue_query
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.issuequery}
+- description: If present, will be used whenever log forwarding needs to be enabled.
+  key: default_log_forwarding_profile
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.defaultlogforwardingprofile}
+- description: If present, will be used whenever a security profile group needs to
+    be set.
+  key: default_security_profile_group
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.defaultsecurityprofilegroup}
+name: PAN-OS Network Operations - Configuration Issue Remediation
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 49a45e31-adb1-4a65-8a70-f7d227f2d0ae
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 49a45e31-adb1-4a65-8a70-f7d227f2d0ae
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 20
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: ${inputs.issue_query} expirationStatus:active issuestatus:unresolved
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns indicator custom fields into the context by the given query.
+      id: 479168fc-74b1-4fe6-8e63-65702948084f
+      iscommand: false
+      name: Get Indicators By the query
+      script: GetIndicatorFieldsByQuery
+      type: regular
+      version: -1
+    taskid: 479168fc-74b1-4fe6-8e63-65702948084f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 150
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentId:
+        simple: ${incident.id}
+      value:
+        simple: ${GetIndicatorFieldsByQuery.value}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.associate.indicator
+      id: d640ce74-8b73-49c0-880b-6d91584afe50
+      iscommand: true
+      name: Associate Indicators to this Incident
+      script: Builtin|||associateIndicatorToIncident
+      type: regular
+      version: -1
+    taskid: d640ce74-8b73-49c0-880b-6d91584afe50
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 320
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+      - "31"
+      - "32"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6775b5bd-ae11-4bff-8e68-24693a5e3f61
+      iscommand: false
+      name: Visibility
+      type: title
+      version: -1
+    taskid: 6775b5bd-ae11-4bff-8e68-24693a5e3f61
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 500
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 73614345-d71e-4261-820d-934eaaffefda
+      iscommand: false
+      name: BP-V-8
+      type: title
+      version: -1
+    taskid: 73614345-d71e-4261-820d-934eaaffefda
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 640
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: GetIndicatorFieldsByQuery.issueid
+          operator: isEqualString
+          right:
+            value:
+              simple: BP-V-8
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "39"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3d9eaff9-6ad3-40a4-81b8-468f4fab97a1
+      iscommand: false
+      name: Do we have BP-V-8 issues?
+      type: condition
+      version: -1
+    taskid: 3d9eaff9-6ad3-40a4-81b8-468f4fab97a1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 780
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extend-context:
+        simple: bpv8fixes=.
+      indicator_fields_by_query:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: GetIndicatorFieldsByQuery.issueid
+              operator: isEqualString
+              right:
+                value:
+                  simple: BP-V-8
+          root: GetIndicatorFieldsByQuery
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
+      id: fa4377b7-ecb9-4cdc-8724-fcf3eddc75c3
+      iscommand: false
+      name: Group
+      script: GroupIssuesByFields
+      type: regular
+      version: -1
+    taskid: fa4377b7-ecb9-4cdc-8724-fcf3eddc75c3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 960
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      attribute_to_update:
+        simple: log_end
+      issue_to_fix:
+        simple: ${bpv8fixes}
+      new_value:
+        simple: "true"
+      object_type:
+        simple: SecurityRule
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
+      id: 6d08c051-2d82-4496-86be-d6b0d32f6d5b
+      iscommand: false
+      name: PAN-OS Network Operation - Run Bulk Change
+      playbookId: 6abaaf4d-6a84-4f35-8e60-2038625a349a
+      type: playbook
+      version: -1
+    taskid: 6d08c051-2d82-4496-86be-d6b0d32f6d5b
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1130
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: aaaa4e61-2bdf-40e7-8d98-1675b0cc1e3b
+      iscommand: false
+      name: Commit
+      type: title
+      version: -1
+    taskid: aaaa4e61-2bdf-40e7-8d98-1675b0cc1e3b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1990
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Commit the PAN-OS Panorama or Firewall configuration.\nIf specified
+        as Panorama, it also pushes the Policies to the specified Device Group in
+        the instance.
+      id: 1763fc88-c32f-4ae5-81e3-82c586726cb7
+      iscommand: false
+      name: PAN-OS Commit Configuration
+      playbookId: PAN-OS Commit Configuration
+      type: playbook
+      version: -1
+    taskid: 1763fc88-c32f-4ae5-81e3-82c586726cb7
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2570
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.autocommit
+          operator: isTrue
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "12"
+      "yes":
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ceab780d-8346-4e2e-868c-fb128168a396
+      iscommand: false
+      name: Automatically commit the fixes?
+      type: condition
+      version: -1
+    taskid: ceab780d-8346-4e2e-868c-fb128168a396
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2210
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Mark this task complete to commit the changes made to Panorama
+        and push them to the device groups. '
+      id: a4560fb4-3cc1-417d-8f3f-deb203efd2bb
+      iscommand: false
+      name: Mark Complete to Commit the changes
+      type: regular
+      version: -1
+    taskid: a4560fb4-3cc1-417d-8f3f-deb203efd2bb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 390,
+          "y": 2400
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 82c369fd-1b48-4caa-8632-dddf2d03c4e7
+      iscommand: true
+      name: Close the remediation
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 82c369fd-1b48-4caa-8632-dddf2d03c4e7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2730
+        }
+      }
+  "15":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: GetIndicatorFieldsByQuery.issueid
+          operator: isEqualString
+          right:
+            value:
+              simple: BP-V-9
+      label: "yes"
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "39"
+      "yes":
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 97c16c19-8a91-4e98-8bb7-8c49fdd65d36
+      iscommand: false
+      name: Do we have BP-V-9 issues?
+      type: condition
+      version: -1
+    taskid: 97c16c19-8a91-4e98-8bb7-8c49fdd65d36
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 780
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extend-context:
+        simple: bpv9fixes=.
+      indicator_fields_by_query:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: GetIndicatorFieldsByQuery.issueid
+              operator: isEqualString
+              right:
+                value:
+                  simple: BP-V-9
+          root: GetIndicatorFieldsByQuery
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
+      id: 6f8acd44-72b6-4597-8ae1-47d458995f52
+      iscommand: false
+      name: Group
+      script: GroupIssuesByFields
+      type: regular
+      version: -1
+    taskid: 6f8acd44-72b6-4597-8ae1-47d458995f52
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 960
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      attribute_to_update:
+        simple: log_setting
+      issue_to_fix:
+        simple: ${bpv9fixes}
+      new_value:
+        simple: ${inputs.default_log_forwarding_profile}
+      object_type:
+        simple: SecurityRule
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
+      id: 51fd37c3-f9a7-40c1-8f92-1574f864ce2e
+      iscommand: false
+      name: PAN-OS Network Operation - Run Bulk Change
+      playbookId: 6abaaf4d-6a84-4f35-8e60-2038625a349a
+      type: playbook
+      version: -1
+    taskid: 51fd37c3-f9a7-40c1-8f92-1574f864ce2e
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1630
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      issuestatus:
+        simple: resolved
+      value:
+        simple: ${GetIndicatorFieldsByQuery.value}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.indicator
+      id: e7ab2a40-bbd8-4eb3-8e48-a43bd4850ff4
+      iscommand: true
+      name: Set the indicator as Resolved
+      script: Builtin|||setIndicator
+      type: regular
+      version: -1
+    taskid: e7ab2a40-bbd8-4eb3-8e48-a43bd4850ff4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1810
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${GetIndicatorFieldsByQuery.issueaffecteddevice}
+      object_type:
+        simple: LogForwardingProfile
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
+      id: 33a8da37-c735-4cd0-88c8-f07898430179
+      iscommand: true
+      name: Get Log Forwarding Profiles
+      script: '|||pan-os-config-get-object'
+      type: regular
+      version: -1
+    taskid: 33a8da37-c735-4cd0-88c8-f07898430179
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 1300
+        }
+      }
+  "20":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.default_log_forwarding_profile
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      "yes":
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b94df66d-77c1-4287-85d6-02c856c93a37
+      iscommand: false
+      name: Do we have a default log forwarding profile?
+      type: condition
+      version: -1
+    taskid: b94df66d-77c1-4287-85d6-02c856c93a37
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1130
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    form:
+      description: |-
+        To rectify BP-V-9 issues - missing log forwarding setting - you must choose which log forwarding profile to set.
+
+        **A default  value can be provided in the playbook inputs to avoid this question in the future.**
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: defaultlogforwardingprofile
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          complex:
+            accessor: name
+            root: PANOS.PanosObject
+            transformers:
+            - args:
+                prefix:
+                  value:
+                    simple: |+
+                      #### Set the default log forwarding profile.
+
+                      *The Log Forwarding profiles configured in Panorama are listed below*
+
+
+
+                suffix: {}
+              operator: concat
+            - args:
+                separator:
+                  value:
+                    simple: ', '
+              operator: join
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: Your SOC team
+      title: Log Forwarding Profile Selection
+      totalanswers: 0
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: null
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3b964238-f05b-42f4-8475-099eed59527f
+      iscommand: false
+      name: Select the log Forwarding profile to use.
+      type: collection
+      version: -1
+    taskid: 3b964238-f05b-42f4-8475-099eed59527f
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 1460
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a5378906-a9fa-4ab7-8ede-6ff42add382a
+      iscommand: false
+      name: Threat
+      type: title
+      version: -1
+    taskid: a5378906-a9fa-4ab7-8ede-6ff42add382a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 500
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ca418d2d-cf63-4013-89a6-b1b1fdbcf74f
+      iscommand: false
+      name: BP-V-10
+      type: title
+      version: -1
+    taskid: ca418d2d-cf63-4013-89a6-b1b1fdbcf74f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 640
+        }
+      }
+  "24":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: GetIndicatorFieldsByQuery.issueid
+          operator: isEqualString
+          right:
+            value:
+              simple: BP-V-10
+      label: "yes"
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "39"
+      "yes":
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 75cd7f59-781b-4f44-83e4-1d3f8455e4e6
+      iscommand: false
+      name: Do we have BP-V-10 issues?
+      type: condition
+      version: -1
+    taskid: 75cd7f59-781b-4f44-83e4-1d3f8455e4e6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 780
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "29"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extend-context:
+        simple: bpv10fixes=.
+      indicator_fields_by_query:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: GetIndicatorFieldsByQuery.issueid
+              operator: isEqualString
+              right:
+                value:
+                  simple: BP-V-10
+          root: GetIndicatorFieldsByQuery
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
+      id: bd57f5de-ad6e-4cfd-8d87-8e2fd359431e
+      iscommand: false
+      name: Group
+      script: GroupIssuesByFields
+      type: regular
+      version: -1
+    taskid: bd57f5de-ad6e-4cfd-8d87-8e2fd359431e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 960
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      attribute_to_update:
+        simple: group
+      issue_to_fix:
+        simple: ${bpv10fixes}
+      new_value:
+        simple: ${inputs.default_security_profile_group}
+      object_type:
+        simple: SecurityRule
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
+      id: 8316226a-e6af-494c-8ba9-507e46461d6b
+      iscommand: false
+      name: PAN-OS Network Operation - Run Bulk Change
+      playbookId: 6abaaf4d-6a84-4f35-8e60-2038625a349a
+      type: playbook
+      version: -1
+    taskid: 8316226a-e6af-494c-8ba9-507e46461d6b
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 1630
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${GetIndicatorFieldsByQuery.issueaffecteddevice}
+      object_type:
+        simple: SecurityProfileGroup
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
+      id: f7f76fe1-23d8-4e39-885c-726ce9cb925e
+      iscommand: true
+      name: Get Security Profile Groups
+      script: '|||pan-os-config-get-object'
+      type: regular
+      version: -1
+    taskid: f7f76fe1-23d8-4e39-885c-726ce9cb925e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -710,
+          "y": 1300
+        }
+      }
+  "29":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.default_security_profile_group
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "28"
+      "yes":
+      - "26"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5e8d698f-915b-4939-8685-92866396fc22
+      iscommand: false
+      name: Do we have a default Security Profile Group
+      type: condition
+      version: -1
+    taskid: 5e8d698f-915b-4939-8685-92866396fc22
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -450,
+          "y": 1130
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    form:
+      description: |-
+        To rectify BP-V-10 issues - a missing security profile group - you must choose security profile group to set on the rule.
+
+        **A default  value can be provided in the playbook inputs to avoid this question in the future.**
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: defaultsecurityprofilegroup
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          complex:
+            accessor: name
+            root: PANOS.PanosObject
+            transformers:
+            - args:
+                prefix:
+                  value:
+                    simple: |+
+                      ### Enter the security profile group to use for the rules. The existing security profile groups are;
+
+                suffix: {}
+              operator: concat
+            - args:
+                separator:
+                  value:
+                    simple: ', '
+              operator: join
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: Log Forwarding Profile Selection
+      totalanswers: 0
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: null
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e39074df-aa60-4b7c-88a0-b9e339736e17
+      iscommand: false
+      name: Select the Security Profile Group to use.
+      type: collection
+      version: -1
+    taskid: e39074df-aa60-4b7c-88a0-b9e339736e17
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": -710,
+          "y": 1460
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2a462256-f401-459d-8be0-0d67e5e8ec7c
+      iscommand: false
+      name: BP-V-9
+      type: title
+      version: -1
+    taskid: 2a462256-f401-459d-8be0-0d67e5e8ec7c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 640
+        }
+      }
+  "32":
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: edd65d69-9638-449c-8d1e-08ae5b5c70d7
+      iscommand: false
+      name: BP-V-7
+      type: title
+      version: -1
+    taskid: edd65d69-9638-449c-8d1e-08ae5b5c70d7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": 640
+        }
+      }
+  "33":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: GetIndicatorFieldsByQuery.issueid
+          operator: isEqualString
+          right:
+            value:
+              simple: BP-V-7
+      label: "yes"
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "39"
+      "yes":
+      - "34"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2be54032-57dd-446b-8ba6-45ed2309e1a5
+      iscommand: false
+      name: Do we have BP-V-7 issues?
+      type: condition
+      version: -1
+    taskid: 2be54032-57dd-446b-8ba6-45ed2309e1a5
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": 780
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extend-context:
+        simple: bpv7fixes=.
+      indicator_fields_by_query:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: GetIndicatorFieldsByQuery.issueid
+              operator: isEqualString
+              right:
+                value:
+                  simple: BP-V-7
+          root: GetIndicatorFieldsByQuery
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
+      id: b0a15885-82a9-47e0-8522-9c724c639789
+      iscommand: false
+      name: Group
+      script: GroupIssuesByFields
+      type: regular
+      version: -1
+    taskid: b0a15885-82a9-47e0-8522-9c724c639789
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": 960
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${GetIndicatorFieldsByQuery.issueaffecteddevice}
+      object_type:
+        simple: LogForwardingProfile
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
+      id: 01589373-2488-48fe-8a27-701ca3747a54
+      iscommand: true
+      name: Get Log Forwarding Profiles
+      script: '|||pan-os-config-get-object'
+      type: regular
+      version: -1
+    taskid: 01589373-2488-48fe-8a27-701ca3747a54
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1450,
+          "y": 1300
+        }
+      }
+  "36":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.default_log_forwarding_profile
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "35"
+      "yes":
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fd63f4a4-7c33-4222-80a2-b524b05d4fda
+      iscommand: false
+      name: Do we have a default log forwarding profile?
+      type: condition
+      version: -1
+    taskid: fd63f4a4-7c33-4222-80a2-b524b05d4fda
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": 1120
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    form:
+      description: |-
+        To rectify BP-V-7 issues - missing log forwarding setting - you must choose which log forwarding profile to set.
+
+        **A default  value can be provided in the playbook inputs to avoid this question in the future.**
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: defaultlogforwardingprofile
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          complex:
+            accessor: name
+            root: PANOS.PanosObject
+            transformers:
+            - args:
+                prefix:
+                  value:
+                    simple: |+
+                      #### Set the default log forwarding profile.
+
+                      *The Log Forwarding profiles configured in Panorama are listed below*
+
+
+
+                suffix: {}
+              operator: concat
+            - args:
+                separator:
+                  value:
+                    simple: ', '
+              operator: join
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: Log Forwarding Profile Selection
+      totalanswers: 0
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: null
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: beb57b3a-5bdc-4e76-82c2-468c279a1968
+      iscommand: false
+      name: Select the log Forwarding profile to use.
+      type: collection
+      version: -1
+    taskid: beb57b3a-5bdc-4e76-82c2-468c279a1968
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 1450,
+          "y": 1460
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      attribute_to_update:
+        simple: log_setting
+      issue_to_fix:
+        simple: ${bpv7fixes}
+      new_value:
+        simple: ${inputs.default_log_forwarding_profile}
+      object_type:
+        simple: SecurityZone
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
+      id: 71226ad9-a871-4469-88a8-35ba080a1545
+      iscommand: false
+      name: PAN-OS Network Operation - Run Bulk Change
+      playbookId: 6abaaf4d-6a84-4f35-8e60-2038625a349a
+      type: playbook
+      version: -1
+    taskid: 71226ad9-a871-4469-88a8-35ba080a1545
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": 1630
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 33c02702-052c-45be-8b8a-15d24eea16d7
+      iscommand: false
+      name: No Issues.
+      type: title
+      version: -1
+    taskid: 33c02702-052c-45be-8b8a-15d24eea16d7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -870,
+          "y": 975
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 2805,
+        "width": 2700,
+        "x": -870,
+        "y": 20
+      }
+    }
+  }

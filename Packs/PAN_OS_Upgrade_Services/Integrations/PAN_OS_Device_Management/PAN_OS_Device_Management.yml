@@ -1,0 +1,71 @@
+commonfields:
+  id: PAN-OS Device Management
+  version: -1
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Device Management
+display: PAN-OS Device Management
+category: Network Security
+description: Ingests PAN-OS NGFW's connected to Panorama as XSOAR objects, and continously montior for best practice issues.
+configuration:
+- display: Server URL (e.g. https://panorama.corp.local)
+  name: url
+  defaultvalue: https://panorama.corp.local
+  type: 0
+  required: true
+- display: API Key
+  name: key
+  type: 4
+  required: true
+- display: Server Port
+  name: port
+  type: 4
+  required: false
+- display: Fetch Configuration  Issues from Panorama as Indicators
+  name: fetch_panorama_hygiene_issues
+  type: 8
+  required: false
+- display: Trust any certificate (not secure)
+  name: insecure
+  type: 8
+  required: false
+- display: Use system proxy settings
+  name: proxy
+  type: 8
+  required: false
+- display: Fetch indicators
+  name: feed
+  type: 8
+  required: false
+- display: ""
+  name: feedExpirationPolicy
+  defaultvalue: indicatorType
+  type: 17
+  required: false
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+- display: ""
+  name: feedExpirationInterval
+  defaultvalue: "20160"
+  type: 1
+  required: false
+- display: Feed Fetch Interval
+  name: feedFetchInterval
+  defaultvalue: "240"
+  type: 19
+  required: false
+- display: Bypass exclusion list
+  name: feedBypassExclusionList
+  type: 8
+  required: false
+  additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+script:
+  type: python
+  dockerimage: demisto/pan-os-python:1.0.0.30307
+  feed: true
+  runonce: false
+  subtype: python3

@@ -1,0 +1,30 @@
+args:
+- name: incident_type
+  required: true
+comment: Attaches to indicator layout buttons.
+commonfields:
+  id: CreateNetopsIncidentButton
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ''
+    fromServerVersion: ''
+    itemVersion: ''
+    packID: e6912dc5-03bc-4fe4-817f-d2465c535c0e
+    propagationLabels:
+    - all
+    toServerVersion: ''
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: CreateNetopsIncidentButton
+pswd: ''
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags:
+- indicator-action-button
+type: python

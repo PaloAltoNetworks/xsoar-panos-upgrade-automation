@@ -1,0 +1,31 @@
+{
+    "associatedToAll": true,
+    "caseInsensitive": true,
+    "cliName": "deviceupgradetimer",
+    "closeForm": false,
+    "content": true,
+    "description": "Tracks the time it takes to upgrade a single, or HA pair of devices.",
+    "editForm": false,
+    "group": 0,
+    "hidden": false,
+    "id": "incident_deviceupgradetimer",
+    "isReadOnly": true,
+    "locked": false,
+    "name": "Device Upgrade Timer",
+    "neverSetAsRequired": false,
+    "openEnded": false,
+    "ownerOnly": false,
+    "propagationLabels": [
+        "all"
+    ],
+    "required": false,
+    "sla": 60,
+    "system": false,
+    "threshold": 72,
+    "type": "timer",
+    "unmapped": false,
+    "unsearchable": true,
+    "useAsKpi": false,
+    "version": -1,
+    "fromVersion": "6.2.0"
+}

@@ -1,0 +1,86 @@
+description: This is a subplaybook that just restarts the device upgrade process if
+  required. It needs to be dedicated to a subplaybook or it will fail to loop if there
+  are multiple steps in the upgrade process.
+id: 6d1d456f-2edf-4cae-8c93-d38b87682c1d
+inputs: []
+name: PAN-OS Network Operations - Start Next Device Upgrade
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 627bdb47-9cd1-44ad-87b2-2df7e321ba35
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 627bdb47-9cd1-44ad-87b2-2df7e321ba35
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentId:
+        simple: ${incident.id}
+      name:
+        simple: PAN-OS Network Operations - Device Upgrade
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.playbook
+      id: 41713150-5db8-4672-8c21-26097f1ce35e
+      iscommand: true
+      name: Start Next Upgrade
+      script: Builtin|||setPlaybook
+      type: regular
+      version: -1
+    taskid: 41713150-5db8-4672-8c21-26097f1ce35e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 210
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 255,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }

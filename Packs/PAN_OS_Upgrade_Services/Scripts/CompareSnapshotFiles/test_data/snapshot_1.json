@@ -1,0 +1,98 @@
+{
+  "routes": [
+    {
+      "age": 0,
+      "destination": "0.0.0.0/0",
+      "flags": "A S   ",
+      "hostid": "111111111111111",
+      "interface": "ethernet1/1",
+      "metric": "10",
+      "nexthop": "192.168.1.1",
+      "route_table": "unicast",
+      "virtual_router": "default"
+    },
+    {
+      "age": 0,
+      "destination": "10.10.0.0/24",
+      "flags": "A C   ",
+      "hostid": "111111111111111",
+      "interface": "ethernet1/2",
+      "metric": "0",
+      "nexthop": "10.10.0.1",
+      "route_table": "unicast",
+      "virtual_router": "default"
+    },
+    {
+      "age": 0,
+      "destination": "10.10.0.1/32",
+      "flags": "A H   ",
+      "hostid": "111111111111111",
+      "interface": null,
+      "metric": "0",
+      "nexthop": "0.0.0.0",
+      "route_table": "unicast",
+      "virtual_router": "default"
+    },
+    {
+      "age": 0,
+      "destination": "192.168.1.0/24",
+      "flags": "A C   ",
+      "hostid": "111111111111111",
+      "interface": "ethernet1/1",
+      "metric": "0",
+      "nexthop": "192.168.1.139",
+      "route_table": "unicast",
+      "virtual_router": "default"
+    },
+    {
+      "age": 0,
+      "destination": "192.168.1.139/32",
+      "flags": "A H   ",
+      "hostid": "111111111111111",
+      "interface": null,
+      "metric": "0",
+      "nexthop": "0.0.0.0",
+      "route_table": "unicast",
+      "virtual_router": "default"
+    },
+    {
+      "age": 0,
+      "destination": "fc00:11::/64",
+      "flags": "A C   ",
+      "hostid": "111111111111111",
+      "interface": "ethernet1/2",
+      "metric": "0",
+      "nexthop": "fc00:11::1",
+      "route_table": "unicast",
+      "virtual_router": "default"
+    },
+    {
+      "age": 0,
+      "destination": "fc00:11::1/128",
+      "flags": "A H   ",
+      "hostid": "111111111111111",
+      "interface": null,
+      "metric": "0",
+      "nexthop": "::",
+      "route_table": "unicast",
+      "virtual_router": "default"
+    }
+  ],
+  "bgp_peers": [
+    {
+      "hostid": "111111111111111",
+      "incoming_accepted": 0,
+      "incoming_rejected": 0,
+      "incoming_total": 0,
+      "local_address": "10.10.0.1",
+      "outgoing_advertised": 0,
+      "outgoing_total": 0,
+      "peer": "testlab-server",
+      "peer_address": "10.10.0.12",
+      "policy_rejected": 0,
+      "remote_as": "64511",
+      "status": "Active",
+      "vr": "default"
+    }
+  ]
+}

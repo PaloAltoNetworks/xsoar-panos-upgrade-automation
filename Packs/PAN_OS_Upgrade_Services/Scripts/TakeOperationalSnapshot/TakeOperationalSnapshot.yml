@@ -1,0 +1,45 @@
+args:
+- description: The target device (hostid)
+  name: target
+comment: Takes a JSON Snapshot of the current operational state of the target device
+commonfields:
+  id: TakeOperationalSnapshot
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ''
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+name: TakeOperationalSnapshot
+outputs:
+  - contextPath: File.Size
+    description: File size.
+    type: number
+  - contextPath: File.Type
+    description: 'File type, for example: "PE", "txt"'
+    type: string
+  - contextPath: File.EntryID
+    description: The file entry ID.
+    type: string
+  - contextPath: File.Name
+    description: File name.
+    type: string
+  - contextPath: File.SHA1
+    description: File SHA1 hash.
+    type: string
+  - contextPath: File.SHA256
+    description: File SHA256 hash.
+    type: string
+  - contextPath: File.MD5
+    description: File MD5 hash.
+    type: string
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
+fromversion: 6.2.0
+tests:
+- No tests (auto formatted)
