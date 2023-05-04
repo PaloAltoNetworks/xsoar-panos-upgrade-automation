@@ -18,8 +18,9 @@ configuration:
   required: true
 - display: Server Port
   name: port
-  type: 4
+  type: 0
   required: false
+  default: 443
 - display: Fetch Configuration  Issues from Panorama as Indicators
   name: fetch_panorama_hygiene_issues
   type: 8

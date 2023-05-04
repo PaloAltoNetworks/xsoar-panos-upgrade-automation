@@ -1,20 +1,27 @@
 import os
-
+import demistomock as demisto
 import pytest
 
-
 @pytest.fixture
-def firewall_object():
+def panorama_object():
     ip = os.getenv("PANORAMA_IP")
     user = os.getenv("PANORAMA_USERNAME")
     password = os.getenv("PANORAMA_PASSWORD")
-    firewall_serial = os.getenv("FIREWALL_SERIAL")
-    if not ip or not user or not password or not firewall_serial:
+    if not ip or not user or not password:
         pytest.skip("Missing required environment variables.")
 
-    from PAN_OS_Upgrade_Assurance import get_panorama, get_firewall_object
-    panorama = get_panorama(ip, user, password)
+    from PAN_OS_Upgrade_Assurance import get_panorama
+    return get_panorama(ip, user, password)
+
+@pytest.fixture
+def firewall_object(panorama_object):
+    firewall_serial = os.getenv("FIREWALL_SERIAL")
+    if not firewall_serial:
+        pytest.skip("Missing required environment variables.")
+
+    from PAN_OS_Upgrade_Assurance import get_firewall_object
     return get_firewall_object(panorama, firewall_serial)
+
 
 
 def test_setup(firewall_object):
@@ -55,3 +62,13 @@ def test_run_readiness_checks(firewall_object):
         assert k in results
 
     print(convert_to_table(results))
+
+def test_run_command_readiness_checks(panorama_object):
+    from PAN_OS_Upgrade_Assurance import command_run_readiness_checks
+
+    def r_args():
+        return {"firewall_serial": os.getenv("FIREWALL_SERIAL")}
+    demisto.args = r_args
+    command_run_readiness_checks(panorama_object)
+
+

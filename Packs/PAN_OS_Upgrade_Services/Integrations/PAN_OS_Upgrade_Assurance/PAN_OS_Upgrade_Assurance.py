@@ -7,7 +7,7 @@ from panos_upgrade_assurance.firewall_proxy import FirewallProxy
 from panos_upgrade_assurance.check_firewall import CheckFirewall
 
 from panos.panorama import Panorama
-
+from panos.firewall import Firewall
 
 def get_firewall_object(panorama: Panorama, serial_number):
     """Create a FirewallProxy object and attach it to Panorama, so we can access it."""
@@ -139,7 +139,7 @@ def command_run_readiness_checks(panorama: Panorama):
 
 
 def main():
-    panorama_ip = demisto.params().get("panorama_ip")
+    panorama_ip = demisto.params().get("url")
     panorama_user = demisto.params().get("panorama_user")
     panorama_password = demisto.params().get("panorama_password")
     panorama = get_panorama(panorama_ip, panorama_user, panorama_password)
@@ -148,6 +148,9 @@ def main():
     if command == "pan-os-assurance-run-readiness-checks":
         return_results(command_run_readiness_checks(panorama))
     elif command == "test-module":
-        return_results("OK")
+        return_results("ok")
     else:
         return_error(f"{command} not implemented.")
+
+if __name__ == "__builtin__" or __name__ == "builtins":
+    main()
