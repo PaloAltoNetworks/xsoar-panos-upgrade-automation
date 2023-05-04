@@ -99,6 +99,7 @@ def run_readiness_checks(
             'ntp_sync',
             'candidate_config',
             'expired_licenses',
+            'ha'
         ]
     custom_checks = []
 
@@ -186,7 +187,7 @@ def convert_readiness_results_to_table(results: dict):
             **result
         })
 
-    return tableToMarkdown("Readiness Check Results", table, headers=["Test", "state", "reason"])
+    return table
 
 
 def convert_snapshot_result_to_table(results: dict):
@@ -198,8 +199,7 @@ def convert_snapshot_result_to_table(results: dict):
                 "passed": test_result.get("passed")
             })
 
-    return tableToMarkdown("Snapshot Comparison Results", table, headers=["test", "passed"])
-
+    return table
 
 def command_run_readiness_checks(panorama: Panorama):
     args = demisto.args()
@@ -212,7 +212,7 @@ def command_run_readiness_checks(panorama: Panorama):
             "ReadinessCheckResults": results,
             "Firewall": firewall.serial
         },
-        readable_output=convert_readiness_results_to_table(results),
+        readable_output=tableToMarkdown("Readiness Check Results", results, headers=["Test", "state", "reason"]),
         outputs_prefix="FirewallAssurance"
     )
 
@@ -242,7 +242,7 @@ def command_compare_snapshots():
         outputs={
             "SnapshotComparisonResult": result,
         },
-        readable_output=convert_snapshot_result_to_table(result),
+        readable_output=tableToMarkdown("Snapshot Comparison Results", result, headers=["test", "passed"]),
         outputs_prefix="FirewallAssurance"
     )
 

@@ -1,0 +1,462 @@
+{
+	"cacheVersn": 0,
+	"close": null,
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "summary",
+				"name": "Legacy Summary",
+				"type": "summary"
+			},
+			{
+				"id": "caseinfoid",
+				"name": "Upgrade Details",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "type",
+								"height": 22,
+								"id": "incident-type-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "severity",
+								"height": 22,
+								"id": "incident-severity-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "owner",
+								"height": 22,
+								"id": "incident-owner-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "deviceupgradetimer",
+								"height": 22,
+								"id": "303b9300-5298-11ec-946c-1f59ee118fec",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "description",
+								"height": 22,
+								"id": "867ef420-394f-11ed-b057-f7592006a9bc",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "details",
+								"height": 44,
+								"id": "7efb4730-394f-11ed-b057-f7592006a9bc",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Upgrade Details",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-6aabad20-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Work Plan",
+						"static": false,
+						"type": "workplan",
+						"w": 1,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"columns": [
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "value",
+								"width": 300
+							},
+							{
+								"displayed": true,
+								"key": "Hostname",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Software Version",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Device Tags",
+								"width": 200
+							}
+						],
+						"description": "",
+						"h": 2,
+						"i": "caseinfoid-0f880450-16b4-11ed-afe0-bdd7fdc69d28",
+						"items": [],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Target Device",
+						"query": "type:\"Panorama Device\" or type:\"Network Device\"",
+						"queryType": "input",
+						"static": false,
+						"type": "indicators",
+						"w": 2,
+						"x": 1,
+						"y": 2
+					},
+					{
+						"description": "",
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-46eb4140-1787-11ed-8d72-0d6d26ea3938",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "preupgradesnapshotfile",
+								"height": 22,
+								"id": "6abe3eb0-1787-11ed-8d72-0d6d26ea3938",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "preupgradesnapshot",
+								"height": 22,
+								"id": "5b7e72e0-178b-11ed-a4cb-7191b37b7171",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "postupgradesnapshot",
+								"height": 22,
+								"id": "5e2a8010-178b-11ed-a4cb-7191b37b7171",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "totalsnapshotdifferencecount",
+								"height": 22,
+								"id": "3423ad40-1796-11ed-b869-4359471711e3",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Operational Checks",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideItemTitleOnlyOne": true,
+						"hideName": false,
+						"i": "caseinfoid-41ff0a40-1796-11ed-b869-4359471711e3",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 4,
+								"fieldId": "snapshotdifferences",
+								"height": 106,
+								"id": "4d4d05a0-1796-11ed-b869-4359471711e3",
+								"index": 0,
+								"listId": "caseinfoid-41ff0a40-1796-11ed-b869-4359471711e3",
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Changes Between Snapshot Files",
+						"static": false,
+						"w": 2,
+						"x": 1,
+						"y": 6
+					},
+					{
+						"displayType": "CARD",
+						"h": 4,
+						"hideName": false,
+						"i": "caseinfoid-94a59370-2913-11ed-beb7-e7d1c9c3493b",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "releasenotes",
+								"height": 53,
+								"id": "aa317000-2b53-11ed-9983-57e28e0b15d1",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "panosnetworkoperationsupgradetargetversion",
+								"height": 53,
+								"id": "bea68c60-518c-11ec-8192-5b2617803d78",
+								"index": 1,
+								"listId": "caseinfoid-94a59370-2913-11ed-beb7-e7d1c9c3493b",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "upgradepath",
+								"height": 53,
+								"id": "aad66c50-2913-11ed-beb7-e7d1c9c3493b",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "nextupgradeversion",
+								"height": 53,
+								"id": "b722ebf0-2913-11ed-beb7-e7d1c9c3493b",
+								"index": 3,
+								"listId": "caseinfoid-94a59370-2913-11ed-beb7-e7d1c9c3493b",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "panosnetworkoperationsupgradepeerfirewall",
+								"height": 53,
+								"id": "5df9cdf0-179d-11ed-94d2-5958c8c003f6",
+								"index": 4,
+								"listId": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "panosnetworkoperationstarget",
+								"height": 53,
+								"id": "3fd34c70-179d-11ed-94d2-5958c8c003f6",
+								"index": 5,
+								"listId": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "completedupgradeversions",
+								"height": 53,
+								"id": "863d0bd0-297a-11ed-a5ba-67a09e091ca3",
+								"index": 6,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "upgradeconfirmed",
+								"height": 53,
+								"id": "e74f5180-29e8-11ed-a245-61eb5379ed45",
+								"index": 7,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Upgrade Details",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-2b196e40-2b48-11ed-9983-57e28e0b15d1",
+						"items": [
+							{
+								"args": {
+									"name": {
+										"simple": "PAN-OS Network Operations - Device Upgrade"
+									}
+								},
+								"buttonClass": "warning",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "3134b190-2b48-11ed-9983-57e28e0b15d1",
+								"index": 0,
+								"name": "Restart Upgrade",
+								"scriptId": "Builtin|||setPlaybook",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Actions",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 6
+					},
+					{
+						"description": "",
+						"h": 2,
+						"i": "caseinfoid-1c06ca00-394f-11ed-b057-f7592006a9bc",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Snapshot Files",
+						"query": {
+							"categories": [
+								"attachments"
+							],
+							"lastId": "",
+							"pageSize": 100,
+							"tags": [],
+							"users": []
+						},
+						"queryType": "warRoomFilter",
+						"static": false,
+						"type": "invTimeline",
+						"w": 2,
+						"x": 1,
+						"y": 4
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"id": "warRoom",
+				"name": "War Room",
+				"type": "warRoom"
+			},
+			{
+				"id": "workPlan",
+				"name": "Work Plan",
+				"type": "workPlan"
+			},
+			{
+				"hidden": true,
+				"id": "evidenceBoard",
+				"name": "Evidence Board",
+				"type": "evidenceBoard"
+			},
+			{
+				"hidden": true,
+				"id": "relatedIncidents",
+				"name": "Related Incidents",
+				"type": "relatedIncidents"
+			},
+			{
+				"hidden": true,
+				"id": "canvas",
+				"name": "Canvas",
+				"type": "canvas"
+			}
+		]
+	},
+	"edit": {
+		"sections": [
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_name",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_panosnetworkoperationsupgradetargetdevice",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_panosnetworkoperationsupgradetargetversion",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Basic Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			}
+		]
+	},
+	"fromServerVersion": "",
+	"group": "incident",
+	"id": "PAN-OS Network Operations - Device Upgrade",
+	"indicatorsDetails": null,
+	"indicatorsQuickView": null,
+	"itemVersion": "",
+	"locked": false,
+	"mobile": null,
+	"name": "PAN-OS Network Operations - Device Upgrade",
+	"packID": "",
+	"packName": "",
+	"quickView": null,
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}

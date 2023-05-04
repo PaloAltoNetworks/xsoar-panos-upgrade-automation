@@ -1,0 +1,293 @@
+{
+	"cacheVersn": 0,
+	"close": null,
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "summary",
+				"name": "Legacy Summary",
+				"type": "summary"
+			},
+			{
+				"id": "caseinfoid",
+				"name": "Incident Info",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "type",
+								"height": 22,
+								"id": "incident-type-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "severity",
+								"height": 22,
+								"id": "incident-severity-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "owner",
+								"height": 22,
+								"id": "incident-owner-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "playbookid",
+								"height": 22,
+								"id": "incident-playbookId-field",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Case Details",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-6aabad20-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Work Plan",
+						"static": false,
+						"type": "workplan",
+						"w": 1,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-7717e580-9bed-11e9-9a3f-8b4b2158e260",
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Team Members",
+						"static": false,
+						"type": "team",
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"columns": [
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "indicator_type",
+								"width": 120
+							},
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "value",
+								"width": 300
+							},
+							{
+								"displayed": true,
+								"key": "Issue Affected Device",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Issue Description",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Issue ID",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Issue Object Name",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Issue Status",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Issue Subtype",
+								"width": 200
+							}
+						],
+						"displayType": "ROW",
+						"h": 4,
+						"i": "caseinfoid-7ce69dd0-a07f-11e9-936c-5395a1acf11e",
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Issues to be Remediated",
+						"query": "type:\"Network Configuration Issue\"",
+						"queryType": "input",
+						"static": false,
+						"type": "indicators",
+						"w": 2,
+						"x": 1,
+						"y": 2
+					},
+					{
+						"displayType": "CARD",
+						"h": 4,
+						"i": "caseinfoid-e54b1770-a0b1-11e9-b27f-13ae1773d289",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "issuequery",
+								"height": 53,
+								"id": "c2510140-21d6-11ed-a665-f1234ef97b8d",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "autocommit",
+								"height": 53,
+								"id": "5cc1fae0-2209-11ed-8d67-55ce6a9af413",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "autofix",
+								"height": 53,
+								"id": "b8910990-227e-11ed-b8d4-b59fbeea5b6e",
+								"index": 2,
+								"listId": "caseinfoid-e54b1770-a0b1-11e9-b27f-13ae1773d289",
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Remediation Request Deails",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 2
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"id": "warRoom",
+				"name": "War Room",
+				"type": "warRoom"
+			},
+			{
+				"id": "workPlan",
+				"name": "Work Plan",
+				"type": "workPlan"
+			},
+			{
+				"hidden": true,
+				"id": "evidenceBoard",
+				"name": "Evidence Board",
+				"type": "evidenceBoard"
+			},
+			{
+				"hidden": true,
+				"id": "relatedIncidents",
+				"name": "Related Incidents",
+				"type": "relatedIncidents"
+			},
+			{
+				"hidden": true,
+				"id": "canvas",
+				"name": "Canvas",
+				"type": "canvas"
+			}
+		]
+	},
+	"edit": {
+		"sections": [
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_name",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_type",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Basic Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "The following fields are used to filter the issues to be remediated by this incident.",
+				"fields": [
+					{
+						"fieldId": "incident_issuequery",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Remediation Request Details",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			}
+		]
+	},
+	"fromServerVersion": "",
+	"group": "incident",
+	"id": "5821f0f0-495e-4528-8bc6-ea9af2dd7cee",
+	"indicatorsDetails": null,
+	"indicatorsQuickView": null,
+	"itemVersion": "",
+	"locked": false,
+	"mobile": null,
+	"name": "PAN-OS Network Operations - Configuration Issue Remediation",
+	"packID": "",
+	"packName": "",
+	"quickView": null,
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
