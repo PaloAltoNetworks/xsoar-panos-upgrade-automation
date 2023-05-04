@@ -1,0 +1,296 @@
+id: 91798901-7d40-4e34-8ecf-1f0119c30b6d
+version: 3
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Check if Device Onboarded
+description: Checks for the given serial number to validate if it's connected to Panorama.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: a41c2d5f-fa28-4a58-8f83-27f988ec47b5
+    type: start
+    task:
+      id: a41c2d5f-fa28-4a58-8f83-27f988ec47b5
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "1"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "1":
+    id: "1"
+    taskid: c9e0e0de-b9b8-4ea3-857a-45e863d06e8c
+    type: regular
+    task:
+      id: c9e0e0de-b9b8-4ea3-857a-45e863d06e8c
+      version: -1
+      name: Get Device By Serial
+      description: Returns indicator custom fields into the context by the given query.
+      scriptName: GetIndicatorFieldsByQuery
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "2"
+    scriptarguments:
+      query:
+        simple: value:${inputs.serial}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: 1f17a06f-300b-4ac7-88ed-b10f99a42ca0
+    type: condition
+    task:
+      id: 1f17a06f-300b-4ac7-88ed-b10f99a42ca0
+      version: -1
+      name: Did we get a firewall?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "5"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isNotEmpty
+          left:
+            value:
+              simple: GetIndicatorFieldsByQuery
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 360
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: a1ddc831-9a95-4c98-89db-8f1326399167
+    type: regular
+    task:
+      id: a1ddc831-9a95-4c98-89db-8f1326399167
+      version: -1
+      name: Onboarding Process Complete
+      description: commands.local.cmd.close.inv
+      script: Builtin|||closeInvestigation
+      type: regular
+      iscommand: true
+      brand: Builtin
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 950
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "4":
+    id: "4"
+    taskid: 96c63762-4fd9-4528-87e3-27caa2b3070d
+    type: regular
+    task:
+      id: 96c63762-4fd9-4528-87e3-27caa2b3070d
+      version: -1
+      name: Device not yet connected - reset the timer
+      description: commands.local.cmd.reset.timer
+      script: Builtin|||resetTimer
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "6"
+    scriptarguments:
+      timerField:
+        simple: pauseforpanorama
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 850,
+          "y": 580
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "5":
+    id: "5"
+    taskid: 2638327e-889f-435c-85b8-760d4231907b
+    type: regular
+    task:
+      id: 2638327e-889f-435c-85b8-760d4231907b
+      version: -1
+      name: Associate the device indicator with this onboarding incident.
+      description: commands.local.cmd.associate.indicators
+      script: Builtin|||associateIndicatorsToIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "7"
+    scriptarguments:
+      incidentId:
+        simple: ${incident.id}
+      indicatorsValues:
+        simple: ${inputs.serial}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 580
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "6":
+    id: "6"
+    taskid: 90d9ca68-f119-4341-8be5-aecc04f62253
+    type: title
+    task:
+      id: 90d9ca68-f119-4341-8be5-aecc04f62253
+      version: -1
+      name: Start the Timer
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 850,
+          "y": 785
+        }
+      }
+    note: false
+    timertriggers:
+    - fieldname: pauseforpanorama
+      action: start
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "7":
+    id: "7"
+    taskid: 251046f6-5115-4a0c-8390-fb9bffb61766
+    type: regular
+    task:
+      id: 251046f6-5115-4a0c-8390-fb9bffb61766
+      version: -1
+      name: Update Status
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "3"
+    scriptarguments:
+      onboardingstatus:
+        simple: Firewall Onboarded
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 770
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 995,
+        "width": 780,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
+inputs:
+- key: serial
+  value:
+    simple: ${incident.serialnumber}
+  required: true
+  description: Serial number of FW to check.
+  playbookInputQuery: null
+outputs: []

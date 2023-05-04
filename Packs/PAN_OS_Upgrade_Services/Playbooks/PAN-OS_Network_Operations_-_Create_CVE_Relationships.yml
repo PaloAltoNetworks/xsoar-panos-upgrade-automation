@@ -1,0 +1,489 @@
+id: 1e9d1015-078f-4ac0-8bf7-6a471404561d
+version: 3
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Create CVE Relationships
+description: Given a PAN-OS version, searches the security advisories website for
+  matching CVEs and relates them when seen.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: 11e6e08f-e7c0-4fff-8e11-6a4b0feb0008
+    type: start
+    task:
+      id: 11e6e08f-e7c0-4fff-8e11-6a4b0feb0008
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "3"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -640
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "1":
+    id: "1"
+    taskid: 11636929-dc1e-416e-826c-6db4b8ed8ab1
+    type: regular
+    task:
+      id: 11636929-dc1e-416e-826c-6db4b8ed8ab1
+      version: -1
+      name: Get the advisories for this Version
+      description: Gets all the advisories for the given product.
+      script: '|||pan-advisories-get-advisories'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "8"
+    scriptarguments:
+      product:
+        simple: PAN-OS
+      q:
+        simple: ${inputs.panos_version}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -310
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: 5d9a3570-ef51-44be-8b4f-cca14903760c
+    type: regular
+    task:
+      id: 5d9a3570-ef51-44be-8b4f-cca14903760c
+      version: -1
+      name: Check if this version is affected by any CVEs
+      description: Checks if the given PAN-OS version number is affected by the given
+        list of vulnerabilties from the pan-advisories-get-advisories command.
+      script: CheckPanosVersionAffected
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "10"
+    scriptarguments:
+      advisories:
+        simple: ${PANSecurityAdvisory.Advisory}
+      version:
+        simple: ${inputs.panos_version}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 30
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: a294710a-8cb2-40ac-8bc0-6ee686bb450d
+    type: regular
+    task:
+      id: a294710a-8cb2-40ac-8bc0-6ee686bb450d
+      version: -1
+      name: Find Existing Relationships
+      description: This automation outputs the indicator relationships to context
+        according to the provided query, using the entities, entityTypes, and relationships
+        arguments. All arguments will use the AND operator. For example, using the
+        following arguments entities=8.8.8.8 entities_types=Domain will provide only
+        relationships that the 8.8.8.8 indicator has with indicators of type domain.
+      scriptName: SearchIndicatorRelationships
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "1"
+    scriptarguments:
+      entities_types:
+        simple: CVE
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -490
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "4":
+    id: "4"
+    taskid: d08f3723-dfe3-4a95-8dd6-88ede5a74d25
+    type: regular
+    task:
+      id: d08f3723-dfe3-4a95-8dd6-88ede5a74d25
+      version: -1
+      name: Delete any CVE Relationships no longer applicable to this version.
+      description: This automation allows to delete a relationship between indicator
+        objects based on the relationship id.
+      scriptName: DeleteIndicatorRelationships
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "7"
+    scriptarguments:
+      ids:
+        complex:
+          root: Relationships
+          filters:
+          - - operator: notIn
+              left:
+                value:
+                  simple: Relationships.EntityB
+                iscontext: true
+              right:
+                value:
+                  simple: MatchingSecurityAdvisory.cve_id
+                iscontext: true
+          accessor: ID
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 790
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "5":
+    id: "5"
+    taskid: 5c13b795-0ac8-4b6c-8f27-eb0d5f4475ac
+    type: regular
+    task:
+      id: 5c13b795-0ac8-4b6c-8f27-eb0d5f4475ac
+      version: -1
+      name: Create Indicator Relationships
+      description: This automation creates a relationship between indicator objects.
+      scriptName: CreateIndicatorRelationship
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "6"
+    scriptarguments:
+      entity_a:
+        simple: ${inputs.panos_id}
+      entity_a_type:
+        simple: Network Device
+      entity_b:
+        simple: ${MatchingSecurityAdvisory.cve_id}
+      entity_b_type:
+        simple: CVE
+      relationship:
+        simple: related-to
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 450
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "6":
+    id: "6"
+    taskid: f0da3b47-854c-43fd-886d-a5caffeff2b6
+    type: condition
+    task:
+      id: f0da3b47-854c-43fd-886d-a5caffeff2b6
+      version: -1
+      name: Are there now redundant relationships?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "4"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isNotEmpty
+          left:
+            value:
+              complex:
+                root: Relationships
+                filters:
+                - - operator: notIn
+                    left:
+                      value:
+                        simple: Relationships.EntityB
+                      iscontext: true
+                    right:
+                      value:
+                        simple: MatchingSecurityAdvisory.cve_id
+                      iscontext: true
+                accessor: ID
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 615
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "7":
+    id: "7"
+    taskid: 71333d04-9098-45b3-8a46-30750c47c148
+    type: title
+    task:
+      id: 71333d04-9098-45b3-8a46-30750c47c148
+      version: -1
+      name: Finish
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 970
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "8":
+    id: "8"
+    taskid: a120d52a-a363-4793-8808-e9dd802e9e5e
+    type: condition
+    task:
+      id: a120d52a-a363-4793-8808-e9dd802e9e5e
+      version: -1
+      name: Did we get any advisories?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "9"
+      "yes":
+      - "2"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isNotEmpty
+          left:
+            value:
+              simple: PANSecurityAdvisory.Advisory.cve_id
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -150
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "9":
+    id: "9"
+    taskid: a0d677f9-6c92-4a41-84c4-9f347e3c9637
+    type: regular
+    task:
+      id: a0d677f9-6c92-4a41-84c4-9f347e3c9637
+      version: -1
+      name: Delete all CVE Relationships.
+      description: This automation allows to delete a relationship between indicator
+        objects based on the relationship id.
+      scriptName: DeleteIndicatorRelationships
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "7"
+    scriptarguments:
+      ids:
+        simple: ${Relationships.ID}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 800
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "10":
+    id: "10"
+    taskid: b7152617-9ce0-4e40-8e65-2e5009b6b2c8
+    type: condition
+    task:
+      id: b7152617-9ce0-4e40-8e65-2e5009b6b2c8
+      version: -1
+      name: Did we get any advisories?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "5"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isNotEmpty
+          left:
+            value:
+              simple: MatchingSecurityAdvisory.cve_id
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 220
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1675,
+        "width": 840,
+        "x": 450,
+        "y": -640
+      }
+    }
+  }
+inputs:
+- key: panos_version
+  value:
+    simple: 9.0.5
+  required: false
+  description: ""
+  playbookInputQuery: null
+- key: panos_id
+  value:
+    simple: 6F5A32602DF9260
+  required: false
+  description: ""
+  playbookInputQuery: null
+- key: device_type
+  value:
+    simple: Network Device
+  required: false
+  description: ""
+  playbookInputQuery: null
+- key: ""
+  value: {}
+  required: false
+  description: ""
+  playbookInputQuery:
+    query: type:"Panorama Device" or type:"Network Device"
+    queryEntity: indicators
+    results: null
+    daterange:
+      fromdate: 0001-01-01T00:00:00Z
+      todate: 0001-01-01T00:00:00Z
+      period:
+        by: ""
+        byto: ""
+        byfrom: ""
+        tovalue: null
+        fromvalue: null
+        field: ""
+      fromdatelicenseval: 0001-01-01T00:00:00Z
+    runFromLastJobTime: true
+outputs: []

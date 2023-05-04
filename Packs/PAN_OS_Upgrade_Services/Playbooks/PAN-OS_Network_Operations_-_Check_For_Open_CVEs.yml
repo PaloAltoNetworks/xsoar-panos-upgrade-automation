@@ -1,0 +1,220 @@
+id: PAN-OS Network Operations - Check For Open CVEs
+version: 3
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Check For Open CVEs
+description: This playbook uses the Palo Alto Networks Security Advisories integration,
+  if available, to compare all the running software versions in the environment with
+  the list of Open CVEs and either automatically begins the upgrade process or initiates
+  a case management process to do so.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: b02fb4fe-e789-4861-8cb0-3d659ee7e9f8
+    type: start
+    task:
+      id: b02fb4fe-e789-4861-8cb0-3d659ee7e9f8
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "2"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: 0b79eb8e-00cb-458a-8e9f-b36fdde4b18b
+    type: condition
+    task:
+      id: 0b79eb8e-00cb-458a-8e9f-b36fdde4b18b
+      version: -1
+      name: Is the Advisories integration enabled?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "5"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isExists
+          left:
+            value:
+              complex:
+                root: modules
+                filters:
+                - - operator: isEqualString
+                    left:
+                      value:
+                        simple: modules.brand
+                      iscontext: true
+                    right:
+                      value:
+                        simple: Palo_Alto_Networks_Security_Advisories
+                - - operator: isEqualString
+                    left:
+                      value:
+                        simple: modules.state
+                      iscontext: true
+                    right:
+                      value:
+                        simple: active
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 180
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: d71cb01d-b7ca-429d-8964-edd624b70548
+    type: playbook
+    task:
+      id: d71cb01d-b7ca-429d-8964-edd624b70548
+      version: -1
+      name: PAN-OS Network Operations - Check Version for CVEs
+      description: Checks a specific version of software for any open CVEs, and if
+        they exist, starts a domain upgrade for that system to a fixed version.
+      playbookName: PAN-OS Network Operations - Check Version for CVEs
+      type: playbook
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "4"
+    scriptarguments:
+      auto_upgrade:
+        simple: "false"
+      panos_version:
+        complex:
+          root: PANOS.ShowSystemInfo.Summary
+          accessor: sw_version
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    continueonerrortype: ""
+    loop:
+      iscommand: false
+      exitCondition: ""
+      wait: 1
+      max: 100
+      forEach: true
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 590
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "4":
+    id: "4"
+    taskid: be560443-e8e7-401e-8a3f-62cde4c42edb
+    type: title
+    task:
+      id: be560443-e8e7-401e-8a3f-62cde4c42edb
+      version: -1
+      name: Finish
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 740
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "5":
+    id: "5"
+    taskid: abf86d58-5c1a-42f0-8837-95d896913833
+    type: regular
+    task:
+      id: abf86d58-5c1a-42f0-8837-95d896913833
+      version: -1
+      name: Get System Info
+      description: Gets information from all PAN-OS systems in the topology.
+      script: '|||pan-os-platform-get-system-info'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "3"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 400
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {
+      "2_4_#default#": 0.55
+    },
+    "paper": {
+      "dimensions": {
+        "height": 755,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
+inputs: []
+outputs: []

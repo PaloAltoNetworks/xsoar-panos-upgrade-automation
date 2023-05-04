@@ -4,7 +4,8 @@
 	"associatedToAll": false,
 	"associatedTypes": [
 		"PAN-OS Network Operations - Device Upgrade",
-		"PAN-OS Network Operations - Batch Upgrade"
+		"PAN-OS Network Operations - Batch Upgrade",
+		"PAN-OS Network Operations - Upgrade Assurance"
 	],
 	"autoCompleteTags": null,
 	"breachScript": "",
@@ -38,7 +39,7 @@
 	"required": false,
 	"runScriptAfterUpdate": false,
 	"script": "",
-	"selectValues": null,
+	"selectValues": [],
 	"sla": 0,
 	"system": false,
 	"systemAssociatedTypes": null,
