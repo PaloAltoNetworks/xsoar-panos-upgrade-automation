@@ -97,9 +97,9 @@ script:
       - name: snapshot_name
         isArray: false
         description: The name of the snapshot to take. Defaults to "fw_snapshot"
-        required: true
+        required: false
         secret: false
-        default: fw_snapshot
+        default: true
       - name: check_list
         isArray: true
         description: List of tests to run. If not provided, a base set of tests will be run.
@@ -125,6 +125,26 @@ script:
       - contextPath: File.Type
         description: The type of the report file.
         type: String
+  - deprecated: false
+    description: "Takes a snapshot of the operational state of the system."
+    name: pan-os-assurance-compare-snapshots
+    arguments:
+      - name: left_snapshot_id
+        isArray: false
+        description: The Left (or "first") snapshot to compare.
+        required: true
+        secret: false
+        default: false
+      - name: right_snapshot_id
+        isArray: false
+        description: The right (or "second") snapshot to compare.
+        required: true
+        secret: false
+        default: false
+    outputs:
+      - contextPath: FirewallAssurance.SnapshotComparisonResult
+        description: Snapshot comparison results
+        type: Unknown
   script: '-'
   type: python
   subtype: python3

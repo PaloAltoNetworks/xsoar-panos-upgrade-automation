@@ -1,3 +1,4 @@
+import json
 import os
 import demistomock as demisto
 
@@ -40,8 +41,12 @@ def test_parse_session_str():
 
 
 def test_run_snapshot_report(firewall_object):
-    from PAN_OS_Upgrade_Assurance import run_snapshot, convert_readiness_results_to_table
-    print(run_snapshot(firewall_object))
+    from PAN_OS_Upgrade_Assurance import run_snapshot, compare_snapshots, convert_snapshot_result_to_table
+    left_snapshot = run_snapshot(firewall_object)
+    right_snapshot = run_snapshot(firewall_object)
+    result = compare_snapshots(left_snapshot, right_snapshot)
+    print(json.dumps(result, indent=4))
+    print(convert_snapshot_result_to_table(result))
 
 def test_run_readiness_checks(firewall_object):
     from PAN_OS_Upgrade_Assurance import run_readiness_checks, convert_readiness_results_to_table

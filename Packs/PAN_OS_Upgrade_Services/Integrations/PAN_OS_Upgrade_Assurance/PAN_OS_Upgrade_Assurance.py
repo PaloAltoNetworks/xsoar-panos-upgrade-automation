@@ -5,8 +5,22 @@ from CommonServerUserPython import *
 
 from panos_upgrade_assurance.firewall_proxy import FirewallProxy
 from panos_upgrade_assurance.check_firewall import CheckFirewall
+from panos_upgrade_assurance.snapshot_compare import SnapshotCompare
 
 from panos.panorama import Panorama
+
+
+def get_file_path(input_entry_id):
+    res = demisto.getFilePath(input_entry_id)
+    if not res:
+        return_error("Entry {} not found".format(input_entry_id))
+    file_path = res['path']
+    return file_path
+
+
+def read_file_by_id(input_entry_id):
+    fp = get_file_path(input_entry_id)
+    return json.load(open(fp))
 
 
 def get_firewall_object(panorama: Panorama, serial_number):
@@ -132,6 +146,38 @@ def run_readiness_checks(
     return results
 
 
+def compare_snapshots(left_snapshot, right_snapshot):
+    snapshot_compare = SnapshotCompare(left_snapshot, right_snapshot)
+
+    defaults = [
+        {'ip_sec_tunnels': {
+            'properties': ['state']
+        }},
+        {'arp_table': {
+            'properties': ['!ttl'],
+            'count_change_threshold': 10
+        }},
+        {'nics': {
+            'count_change_threshold': 10
+        }},
+        {'license': {
+            'properties': ['!serial']
+        }},
+        {'routes': {
+            'properties': ['!flags'],
+            'count_change_threshold': 10
+        }},
+        'content_version',
+        {'session_stats': {
+            'thresholds': [
+                {'num-max': 10},
+                {'num-tcp': 10},
+            ]
+        }}
+    ]
+    return snapshot_compare.compare_snapshots(defaults)
+
+
 def convert_readiness_results_to_table(results: dict):
     table = []
     for key, result in results.items():
@@ -141,6 +187,18 @@ def convert_readiness_results_to_table(results: dict):
         })
 
     return tableToMarkdown("Readiness Check Results", table, headers=["Test", "state", "reason"])
+
+
+def convert_snapshot_result_to_table(results: dict):
+    table = []
+    for key, test_result in results.items():
+        if type(test_result) is dict:
+            table.append({
+                "test": f"{key}",
+                "passed": test_result.get("passed")
+            })
+
+    return tableToMarkdown("Snapshot Comparison Results", table, headers=["test", "passed"])
 
 
 def command_run_readiness_checks(panorama: Panorama):
@@ -160,15 +218,33 @@ def command_run_readiness_checks(panorama: Panorama):
 
 
 def command_run_snapshot(panorama: Panorama):
+    """Runs a single snapshot and returns it as a file."""
     args = demisto.args()
     firewall = get_firewall_object(panorama, args.get("firewall_serial"))
-    snapshot_name = args.get("snapshot_name")
+    snapshot_name = args.get("snapshot_name", "fw_snapshot")
     del args["firewall_serial"]
+    if args.get("snapshot_name"):
+        del args["snapshot_name"]
     snapshot = run_snapshot(firewall, **args)
     fr = fileResult(
         snapshot_name, json.dumps(snapshot, indent=4)
     )
     return fr
+
+
+def command_compare_snapshots():
+    """Compare two snapshot files, accepting th left and right snapshots as arguments."""
+    args = demisto.args()
+    left_snapshot = read_file_by_id(args.get("left_snapshot_id"))
+    right_snapshot = read_file_by_id(args.get("right_snapshot_id"))
+    result = compare_snapshots(left_snapshot, right_snapshot)
+    return CommandResults(
+        outputs={
+            "SnapshotComparisonResult": result,
+        },
+        readable_output=convert_snapshot_result_to_table(result),
+        outputs_prefix="FirewallAssurance"
+    )
 
 
 def main():
@@ -180,8 +256,10 @@ def main():
     command = demisto.command()
     if command == "pan-os-assurance-run-readiness-checks":
         return_results(command_run_readiness_checks(panorama))
-    if command == "pan-os-assurance-run-snapshot":
+    elif command == "pan-os-assurance-run-snapshot":
         return_results(command_run_snapshot(panorama))
+    elif command == "pan-os-assurance-compare-snapshots":
+        return_results(command_compare_snapshots())
     elif command == "test-module":
         return_results("ok")
     else:
