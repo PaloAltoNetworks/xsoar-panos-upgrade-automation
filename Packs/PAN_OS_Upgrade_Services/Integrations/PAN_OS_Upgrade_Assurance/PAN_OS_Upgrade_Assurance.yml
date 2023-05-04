@@ -1,0 +1,67 @@
+category: Utilities
+description: This is the XSOAR wrapper for the Palo alto conversion application, PANser.
+commonfields:
+  id: PAN_OS_Upgrade_Assurance
+  version: -1
+name: PAN-OS Assurance Testing
+display: PAN-OS Assurance Testing
+configuration: []
+script:
+  commands:
+  - deprecated: false
+    description: "Runs checks to confirm a PAN-OS firewall is ready to be upgraded."
+    name: pan-os-assurance-run-readiness-checks
+    arguments:
+    - name: check_list
+      isArray: true
+      description: List of tests to run. If not provided, a base set of tests will be run.
+      required: false
+      secret: false
+      default: false
+    - name: min_content_version
+      isArray: true
+      description: The minimum content version to check for, enables "content_version" check
+      required: false
+      secret: false
+      default: false
+    - name: candidate_version
+      isArray: true
+      description: The candidate version to runchecks against. Enables "free_disk_space" check
+      required: false
+      secret: false
+      default: false
+    - name: dp_mp_clock_diff
+      isArray: true
+      description: The drift allowed between DP clock and MP clock. Enabled "planes_clock_sync" check.
+      required: false
+      secret: false
+      default: false
+    - name: ipsec_tunnel_status
+      isArray: true
+      description: Check a specific IPsec - by tunnel name. Tunnel must be up for this check to pass.
+      required: false
+      secret: false
+      default: false
+    - name: check_session_exists
+      isArray: true
+      description: |
+        Check for the presence of a specific connection. Session check format is <source>/destination/destination-port. example: 10.10.10.10/8.8.8.8/443
+      required: false
+      secret: false
+      default: false
+    outputs:
+      - contextPath: FirewallAssurance.ReadinessCheckResults
+        description: Readiness check results
+        type: Unknown
+  script: '-'
+  type: python
+  subtype: python3
+  dockerimage: docker-ps-xsoar.art.code.pan.run/pan-os-upgrade-assurance:0.0.1
+  feed: false
+  isfetch: false
+  runonce: false
+  longRunning: false
+  longRunningPort: false
+fromversion: 6.0.0
+tests:
+- No tests

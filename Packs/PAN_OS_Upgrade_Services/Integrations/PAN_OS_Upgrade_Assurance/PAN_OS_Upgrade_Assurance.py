@@ -1,4 +1,8 @@
 from typing import List, Optional
+import demistomock as demisto
+from CommonServerPython import *
+from CommonServerUserPython import *
+
 from panos_upgrade_assurance.firewall_proxy import FirewallProxy
 from panos_upgrade_assurance.check_firewall import CheckFirewall
 
@@ -107,7 +111,43 @@ def run_readiness_checks(
     return results
 
 
+def convert_to_table(results: dict):
+    table = []
+    for key, result in results.items():
+        table.append({
+            "Test": key,
+            **result
+        })
+
+    return tableToMarkdown("Readiness Check Results", table, headers=["Test", "state", "reason"])
+
+
+def command_run_readiness_checks(panorama: Panorama):
+    args = demisto.args()
+    firewall = get_firewall_object(panorama, args.get("firewall_serial"))
+    del args["firewall_serial"]
+    results = run_readiness_checks(firewall, **args)
+
+    return CommandResults(
+        outputs={
+            "ReadinessCheckResults": results,
+            "Firewall": firewall.serial
+        },
+        readable_output=convert_to_table(results),
+        outputs_prefix="FirewallAssurance"
+    )
+
+
 def main():
     panorama_ip = demisto.params().get("panorama_ip")
     panorama_user = demisto.params().get("panorama_user")
     panorama_password = demisto.params().get("panorama_password")
+    panorama = get_panorama(panorama_ip, panorama_user, panorama_password)
+
+    command = demisto.command()
+    if command == "pan-os-assurance-run-readiness-checks":
+        return_results(command_run_readiness_checks(panorama))
+    elif command == "test-module":
+        return_results("OK")
+    else:
+        return_error(f"{command} not implemented.")

@@ -20,6 +20,7 @@ def firewall_object():
 def test_setup(firewall_object):
     assert firewall_object
 
+
 def test_parse_session_str():
     from PAN_OS_Upgrade_Assurance import parse_session
     d = parse_session("1.1.1.1/8.8.8.8/443")
@@ -28,8 +29,9 @@ def test_parse_session_str():
     with pytest.raises(ValueError):
         parse_session("1.1.1.1/8.8.8.8")
 
+
 def test_run_readiness_checks(firewall_object):
-    from PAN_OS_Upgrade_Assurance import run_readiness_checks
+    from PAN_OS_Upgrade_Assurance import run_readiness_checks, convert_to_table
     bool_checks = [
         'panorama',
         'ntp_sync',
@@ -48,8 +50,8 @@ def test_run_readiness_checks(firewall_object):
     for k in bool_checks:
         assert k in results
 
-    custom_checks = ["free_disk_space", "content_version",]
+    custom_checks = ["free_disk_space", "content_version", ]
     for k in custom_checks:
         assert k in results
 
-    print(results)
+    print(convert_to_table(results))
