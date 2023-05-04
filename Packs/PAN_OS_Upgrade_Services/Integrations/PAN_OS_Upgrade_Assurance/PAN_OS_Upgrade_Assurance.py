@@ -201,6 +201,7 @@ def convert_snapshot_result_to_table(results: dict):
 
     return table
 
+
 def command_run_readiness_checks(panorama: Panorama):
     args = demisto.args()
     firewall = get_firewall_object(panorama, args.get("firewall_serial"))
@@ -209,10 +210,12 @@ def command_run_readiness_checks(panorama: Panorama):
 
     return CommandResults(
         outputs={
-            "ReadinessCheckResults": results,
+            "ReadinessCheckResults": convert_readiness_results_to_table(results),
             "Firewall": firewall.serial
         },
-        readable_output=tableToMarkdown("Readiness Check Results", results, headers=["Test", "state", "reason"]),
+        readable_output=tableToMarkdown("Readiness Check Results",
+                                        convert_readiness_results_to_table(results),
+                                        headers=["Test", "state", "reason"]),
         outputs_prefix="FirewallAssurance"
     )
 
@@ -240,9 +243,10 @@ def command_compare_snapshots():
     result = compare_snapshots(left_snapshot, right_snapshot)
     return CommandResults(
         outputs={
-            "SnapshotComparisonResult": result,
+            "SnapshotComparisonResult": convert_snapshot_result_to_table(result),
         },
-        readable_output=tableToMarkdown("Snapshot Comparison Results", result, headers=["test", "passed"]),
+        readable_output=tableToMarkdown(
+            "Snapshot Comparison Results", convert_snapshot_result_to_table(result), headers=["test", "passed"]),
         outputs_prefix="FirewallAssurance"
     )
 

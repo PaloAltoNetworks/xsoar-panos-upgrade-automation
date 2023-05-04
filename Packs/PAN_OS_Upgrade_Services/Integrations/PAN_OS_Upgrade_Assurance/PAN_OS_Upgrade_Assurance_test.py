@@ -82,4 +82,4 @@ def test_run_command_readiness_checks(panorama_object):
         return {"firewall_serial": os.getenv("FIREWALL_SERIAL")}
 
     demisto.args = r_args
-    command_run_readiness_checks(panorama_object)
+    print(command_run_readiness_checks(panorama_object).readable_output)
