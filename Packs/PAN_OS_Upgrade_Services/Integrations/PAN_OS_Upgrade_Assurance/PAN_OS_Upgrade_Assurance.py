@@ -7,7 +7,7 @@ from panos_upgrade_assurance.firewall_proxy import FirewallProxy
 from panos_upgrade_assurance.check_firewall import CheckFirewall
 
 from panos.panorama import Panorama
-from panos.firewall import Firewall
+
 
 def get_firewall_object(panorama: Panorama, serial_number):
     """Create a FirewallProxy object and attach it to Panorama, so we can access it."""
@@ -32,6 +32,27 @@ def parse_session(session_str: str):
         "destination": destination,
         "dest_port": port
     }
+
+
+def run_snapshot(
+        firewall: FirewallProxy, snapshot_list: Optional[List] = None):
+    checks = CheckFirewall(firewall)
+    """Runs a snapshot and saves it as a JSON file in the XSOAR system."""
+
+    if not snapshot_list:
+        snapshot_list = [
+            'nics',
+            'routes',
+            'license',
+            'arp_table',
+            'content_version',
+            'session_stats',
+            'ip_sec_tunnels',
+        ]
+
+    snapshot = checks.run_snapshots(snapshot_list)
+
+    return snapshot
 
 
 def run_readiness_checks(
@@ -111,7 +132,7 @@ def run_readiness_checks(
     return results
 
 
-def convert_to_table(results: dict):
+def convert_readiness_results_to_table(results: dict):
     table = []
     for key, result in results.items():
         table.append({
@@ -133,9 +154,21 @@ def command_run_readiness_checks(panorama: Panorama):
             "ReadinessCheckResults": results,
             "Firewall": firewall.serial
         },
-        readable_output=convert_to_table(results),
+        readable_output=convert_readiness_results_to_table(results),
         outputs_prefix="FirewallAssurance"
     )
+
+
+def command_run_snapshot(panorama: Panorama):
+    args = demisto.args()
+    firewall = get_firewall_object(panorama, args.get("firewall_serial"))
+    snapshot_name = args.get("snapshot_name")
+    del args["firewall_serial"]
+    snapshot = run_snapshot(firewall, **args)
+    fr = fileResult(
+        snapshot_name, json.dumps(snapshot, indent=4)
+    )
+    return fr
 
 
 def main():
@@ -147,10 +180,13 @@ def main():
     command = demisto.command()
     if command == "pan-os-assurance-run-readiness-checks":
         return_results(command_run_readiness_checks(panorama))
+    if command == "pan-os-assurance-run-snapshot":
+        return_results(command_run_snapshot(panorama))
     elif command == "test-module":
         return_results("ok")
     else:
         return_error(f"{command} not implemented.")
+
 
 if __name__ == "__builtin__" or __name__ == "builtins":
     main()

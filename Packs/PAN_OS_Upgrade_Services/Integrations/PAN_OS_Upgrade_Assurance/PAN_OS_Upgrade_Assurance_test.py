@@ -1,6 +1,8 @@
 import os
 import demistomock as demisto
+
 import pytest
+
 
 @pytest.fixture
 def panorama_object():
@@ -13,6 +15,7 @@ def panorama_object():
     from PAN_OS_Upgrade_Assurance import get_panorama
     return get_panorama(ip, user, password)
 
+
 @pytest.fixture
 def firewall_object(panorama_object):
     firewall_serial = os.getenv("FIREWALL_SERIAL")
@@ -20,8 +23,7 @@ def firewall_object(panorama_object):
         pytest.skip("Missing required environment variables.")
 
     from PAN_OS_Upgrade_Assurance import get_firewall_object
-    return get_firewall_object(panorama, firewall_serial)
-
+    return get_firewall_object(panorama_object, firewall_serial)
 
 
 def test_setup(firewall_object):
@@ -37,8 +39,12 @@ def test_parse_session_str():
         parse_session("1.1.1.1/8.8.8.8")
 
 
+def test_run_snapshot_report(firewall_object):
+    from PAN_OS_Upgrade_Assurance import run_snapshot, convert_readiness_results_to_table
+    print(run_snapshot(firewall_object))
+
 def test_run_readiness_checks(firewall_object):
-    from PAN_OS_Upgrade_Assurance import run_readiness_checks, convert_to_table
+    from PAN_OS_Upgrade_Assurance import run_readiness_checks, convert_readiness_results_to_table
     bool_checks = [
         'panorama',
         'ntp_sync',
@@ -61,14 +67,14 @@ def test_run_readiness_checks(firewall_object):
     for k in custom_checks:
         assert k in results
 
-    print(convert_to_table(results))
+    print(convert_readiness_results_to_table(results))
+
 
 def test_run_command_readiness_checks(panorama_object):
     from PAN_OS_Upgrade_Assurance import command_run_readiness_checks
 
     def r_args():
         return {"firewall_serial": os.getenv("FIREWALL_SERIAL")}
+
     demisto.args = r_args
     command_run_readiness_checks(panorama_object)
-
-

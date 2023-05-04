@@ -84,6 +84,47 @@ script:
       - contextPath: FirewallAssurance.ReadinessCheckResults
         description: Readiness check results
         type: Unknown
+  - deprecated: false
+    description: "Takes a snapshot of the operational state of the system."
+    name: pan-os-assurance-run-snapshot
+    arguments:
+      - name: firewall_serial
+        isArray: false
+        description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
+        required: true
+        secret: false
+        default: false
+      - name: snapshot_name
+        isArray: false
+        description: The name of the snapshot to take. Defaults to "fw_snapshot"
+        required: true
+        secret: false
+        default: fw_snapshot
+      - name: check_list
+        isArray: true
+        description: List of tests to run. If not provided, a base set of tests will be run.
+        required: false
+        secret: false
+        default: false
+    outputs:
+      - contextPath: File.EntryID
+        description: The EntryID of the report file.
+        type: Unknown
+      - contextPath: File.Extension
+        description: The extension of the report file.
+        type: String
+      - contextPath: File.Name
+        description: The name of the report file.
+        type: String
+      - contextPath: File.Info
+        description: The info of the report file.
+        type: String
+      - contextPath: File.Size
+        description: The size of the report file.
+        type: Number
+      - contextPath: File.Type
+        description: The type of the report file.
+        type: String
   script: '-'
   type: python
   subtype: python3
