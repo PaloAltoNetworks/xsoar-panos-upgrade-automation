@@ -1,17 +1,16 @@
 id: e68255ec-01a8-40a5-82d4-93b104eeb851
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Filter and Select Available Software Images
-description: Requests the available software images from a firewall, filters them,
-  then prompts the user to select the version.
+description: Requests the available software images from a firewall, filters them, then prompts the user to select the version.
 starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 4c1e5817-2bca-48a8-83b3-3bb5a2171b6b
+    taskid: 648f4e35-86d3-4e18-864f-e2eff10611f0
     type: start
     task:
-      id: 4c1e5817-2bca-48a8-83b3-3bb5a2171b6b
+      id: 648f4e35-86d3-4e18-864f-e2eff10611f0
       version: -1
       name: ""
       iscommand: false
@@ -37,14 +36,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: eb305cab-5596-434f-83bb-be9ff8e445b5
+    taskid: bf77e034-bc6b-4490-8737-79a982f91bcc
     type: collection
     task:
-      id: eb305cab-5596-434f-83bb-be9ff8e445b5
+      id: bf77e034-bc6b-4490-8737-79a982f91bcc
       version: -1
       name: Collect Target Version
-      description: If a target version wasn't given, ask the user for the version
-        to upgrade to.
+      description: If a target version wasn't given, ask the user for the version to upgrade to.
       type: collection
       iscommand: false
       brand: ""
@@ -64,14 +62,14 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to: null
-      subject: null
+      to:
+      subject:
       body:
         simple: Specify the final target version of firewall software.
       methods: []
       format: ""
-      bcc: null
-      cc: null
+      bcc:
+      cc:
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -109,10 +107,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: d518a581-545a-4642-8703-712f48f537cc
+    taskid: 6b46334e-6185-45f5-8949-c15ef73c0230
     type: regular
     task:
-      id: d518a581-545a-4642-8703-712f48f537cc
+      id: 6b46334e-6185-45f5-8949-c15ef73c0230
       version: -1
       name: Get Available software Images
       description: Checks the devices for software that is available to be installed.
@@ -144,14 +142,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: dd186ef0-bbfb-4ccc-8aeb-71e13bc317cd
+    taskid: 24e1a72d-a3f2-4c1a-856f-70c1ec206ba2
     type: regular
     task:
-      id: dd186ef0-bbfb-4ccc-8aeb-71e13bc317cd
+      id: 24e1a72d-a3f2-4c1a-856f-70c1ec206ba2
       version: -1
       name: Filter the available software images
-      description: Given a table containing installed ("current") PAN-OS Software
-        images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
       scriptName: FilterAvailableSoftwareImages
       type: regular
       iscommand: false
@@ -192,10 +189,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: e7eac86a-d537-46f2-8631-69f62085478f
+    taskid: 376683d7-57d8-47ee-88c5-9cdf352e2efb
     type: regular
     task:
-      id: e7eac86a-d537-46f2-8631-69f62085478f
+      id: 376683d7-57d8-47ee-88c5-9cdf352e2efb
       version: -1
       name: Set the relevant incident fields
       description: commands.local.cmd.set.incident
@@ -256,10 +253,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 1a53ee6c-4bd9-4ca5-89e5-a8bf21269a76
+    taskid: 0dfb1be3-f002-4c7b-8c40-89ebac225b7c
     type: condition
     task:
-      id: 1a53ee6c-4bd9-4ca5-89e5-a8bf21269a76
+      id: 0dfb1be3-f002-4c7b-8c40-89ebac225b7c
       version: -1
       name: Do we have a Final target version already?
       type: condition
@@ -296,10 +293,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: c51148bd-26d9-4042-805c-2d732305593e
+    taskid: 6c883ad1-7937-44cd-874b-b9bf8fa7b6db
     type: regular
     task:
-      id: c51148bd-26d9-4042-805c-2d732305593e
+      id: 6c883ad1-7937-44cd-874b-b9bf8fa7b6db
       version: -1
       name: Set Target Version
       description: commands.local.cmd.set.incident
@@ -360,5 +357,5 @@ inputs:
   value: {}
   required: true
   description: The target firewall.
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs: []

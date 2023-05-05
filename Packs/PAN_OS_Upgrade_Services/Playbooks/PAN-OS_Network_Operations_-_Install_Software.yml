@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Install Software
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Install Software
 description: Installs PAN-OS system software.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: e629e5fd-76e1-4486-8b88-932aa2b8d475
+    taskid: 1b13fb3c-8d44-4ecb-8442-7175bf61ba96
     type: start
     task:
-      id: e629e5fd-76e1-4486-8b88-932aa2b8d475
+      id: 1b13fb3c-8d44-4ecb-8442-7175bf61ba96
       version: -1
       name: ""
       iscommand: false
@@ -36,14 +36,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 08abe235-c20d-446b-8df8-bacc82bf72c1
+    taskid: 76c51054-e62a-4c52-8c0b-5d6da76dd5ca
     type: regular
     task:
-      id: 08abe235-c20d-446b-8df8-bacc82bf72c1
+      id: 76c51054-e62a-4c52-8c0b-5d6da76dd5ca
       version: -1
       name: Install the given software version
-      description: Install the given software version onto the device. Download the
-        software first with
+      description: Install the given software version onto the device. Download the software first with
       script: '|||pan-os-platform-install-software'
       type: regular
       iscommand: true
@@ -74,10 +73,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 6987c23f-45f1-4ce9-8af5-4572404f5314
+    taskid: 7120dbc6-713b-4670-8244-3088aa4bf3e4
     type: regular
     task:
-      id: 6987c23f-45f1-4ce9-8af5-4572404f5314
+      id: 7120dbc6-713b-4670-8244-3088aa4bf3e4
       version: -1
       name: Get Jobs
       description: Get all the jobs from the devices in the environment.
@@ -113,10 +112,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 2a8c883e-85f4-4ed4-8443-35672813b74b
+    taskid: d32c8bf4-9083-4d38-8223-7dbc44b958fa
     type: playbook
     task:
-      id: 2a8c883e-85f4-4ed4-8443-35672813b74b
+      id: d32c8bf4-9083-4d38-8223-7dbc44b958fa
       version: -1
       name: GenericPolling
       description: |-
@@ -195,10 +194,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: ebd82af9-d971-4081-82b2-f926b99d3bf2
+    taskid: 21c7830c-1ae6-4e8d-8a43-3f82b26b9f74
     type: condition
     task:
-      id: ebd82af9-d971-4081-82b2-f926b99d3bf2
+      id: 21c7830c-1ae6-4e8d-8a43-3f82b26b9f74
       version: -1
       name: Did it complete?
       description: Check if the software installation finished successfully.
@@ -269,14 +268,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: dc314b46-3b5f-451b-8892-6405a0d0d80d
+    taskid: 2b1a02c2-3552-444a-8362-a4335b06be38
     type: regular
     task:
-      id: dc314b46-3b5f-451b-8892-6405a0d0d80d
+      id: 2b1a02c2-3552-444a-8362-a4335b06be38
       version: -1
       name: Get jobs again to check status
-      description: Get all the jobs from the devices in the environment, or a single
-        job when ID is specified.
+      description: Get all the jobs from the devices in the environment, or a single job when ID is specified.
       script: '|||pan-os-platform-get-jobs'
       type: regular
       iscommand: true
@@ -311,14 +309,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: f556384c-afb3-4666-8b41-7c0b3f3c3412
+    taskid: 4bd8f885-e9ba-469c-81e3-5d5ff358f0ed
     type: condition
     task:
-      id: f556384c-afb3-4666-8b41-7c0b3f3c3412
+      id: 4bd8f885-e9ba-469c-81e3-5d5ff358f0ed
       version: -1
       name: Is the job active?
-      description: It's possible that, if software has already been installed, then
-        we don't get an active job for it.
+      description: It's possible that, if software has already been installed, then we don't get an active job for it.
       type: condition
       iscommand: false
       brand: ""
@@ -368,10 +365,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: a79fd588-fcfd-471a-838d-1dec35a44064
+    taskid: f0753ddc-d364-45c8-8056-7e216212d061
     type: title
     task:
-      id: a79fd588-fcfd-471a-838d-1dec35a44064
+      id: f0753ddc-d364-45c8-8056-7e216212d061
       version: -1
       name: Finish
       type: title
@@ -395,10 +392,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: 785283e7-edf5-4c46-8058-f918c52e7a0c
+    taskid: ee9364c0-0a14-46c5-8be5-667e3e38db50
     type: regular
     task:
-      id: 785283e7-edf5-4c46-8058-f918c52e7a0c
+      id: ee9364c0-0a14-46c5-8be5-667e3e38db50
       version: -1
       name: Fail message
       description: Prints an error entry with a given message
@@ -427,10 +424,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 8f28b166-81c2-4ed4-8cc0-ef0c2266e962
+    taskid: db33a60e-e449-46de-87fa-7c3f72442a88
     type: regular
     task:
-      id: 8f28b166-81c2-4ed4-8cc0-ef0c2266e962
+      id: db33a60e-e449-46de-87fa-7c3f72442a88
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -462,10 +459,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 118a26f8-007c-455a-81c6-34607b6bf53e
+    taskid: 75f27acc-e17d-454b-8608-912aeaaf5f5f
     type: regular
     task:
-      id: 118a26f8-007c-455a-81c6-34607b6bf53e
+      id: 75f27acc-e17d-454b-8608-912aeaaf5f5f
       version: -1
       name: Set Description
       description: commands.local.cmd.set.incident
@@ -512,10 +509,10 @@ inputs:
   value: {}
   required: false
   description: Target Version to INstall
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: target
   value: {}
   required: false
   description: Target Device
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs: []

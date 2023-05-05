@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Onboarding
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Onboarding
 description: Onboards the NGFW and Panorama devices as XSOAR incidents.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: a59a7917-066f-453d-85d3-ff9fd743cfb1
+    taskid: c86838c2-796b-4154-87fe-d0dc09754633
     type: start
     task:
-      id: a59a7917-066f-453d-85d3-ff9fd743cfb1
+      id: c86838c2-796b-4154-87fe-d0dc09754633
       version: -1
       name: ""
       iscommand: false
@@ -36,14 +36,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 7911b088-2f4d-4d05-8ab7-9aeade0bf2e5
+    taskid: a7a1f3af-e10f-410a-826d-7f78d886fa18
     type: regular
     task:
-      id: 7911b088-2f4d-4d05-8ab7-9aeade0bf2e5
+      id: a7a1f3af-e10f-410a-826d-7f78d886fa18
       version: -1
       name: Update device incidents
-      description: Given a target device, creates or updates an existing PAN-OS Network
-        Operations - Device incident.
+      description: Given a target device, creates or updates an existing PAN-OS Network Operations - Device incident.
       scriptName: CreateOrUpdateDeviceIncident
       type: regular
       iscommand: false
@@ -72,10 +71,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 03bf5750-11b7-4891-898a-9a3a3d4bd6eb
+    taskid: 5f20743d-7d44-46d2-832e-b3cf5deb5392
     type: regular
     task:
-      id: 03bf5750-11b7-4891-898a-9a3a3d4bd6eb
+      id: 5f20743d-7d44-46d2-832e-b3cf5deb5392
       version: -1
       name: Get system information
       description: Gets information from all PAN-OS systems in the topology.
@@ -104,10 +103,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 9b460d03-133b-4b4b-88ea-f6d823365fec
+    taskid: 145aa9a3-64dc-4556-89b2-1c4308a3ba8c
     type: regular
     task:
-      id: 9b460d03-133b-4b4b-88ea-f6d823365fec
+      id: 145aa9a3-64dc-4556-89b2-1c4308a3ba8c
       version: -1
       name: Link Incidents
       description: commands.local.cmd.linkIncidents
@@ -139,10 +138,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: d1b18b16-338d-4385-8713-051e7fc7d067
+    taskid: 594e471c-b4fb-4341-8213-36af2b080d6b
     type: title
     task:
-      id: d1b18b16-338d-4385-8713-051e7fc7d067
+      id: 594e471c-b4fb-4341-8213-36af2b080d6b
       version: -1
       name: Onboarding Finished
       type: title

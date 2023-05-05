@@ -1,515 +1,515 @@
 {
-	"cacheVersn": 0,
-	"close": null,
-	"definitionId": "",
-	"description": "",
-	"detached": false,
-	"details": null,
-	"detailsV2": null,
-	"edit": null,
-	"fromServerVersion": "0.0.0",
-	"group": "indicator",
-	"id": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7",
-	"indicatorsDetails": {
-		"TypeName": "",
-		"tabs": [
-			{
-				"id": "default-main",
-				"name": "Info",
-				"sections": [
-					{
-						"displayType": "ROW",
-						"h": 2,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
-						"items": [
-							{
-								"endCol": 2,
-								"fieldId": "indicatortype",
-								"height": 22,
-								"id": "indicator-type",
-								"index": 0,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "hostname",
-								"height": 22,
-								"id": "73c93620-0c8a-11ed-a0b8-eb2ebd0d1561",
-								"index": 1,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "ipaddress",
-								"height": 22,
-								"id": "7a73c120-0c8a-11ed-a0b8-eb2ebd0d1561",
-								"index": 2,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "devicemodel",
-								"height": 22,
-								"id": "7e844050-0c8a-11ed-a0b8-eb2ebd0d1561",
-								"index": 3,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "devicetags",
-								"height": 22,
-								"id": "3b4c9470-147f-11ed-894f-b3bcebf5403c",
-								"index": 4,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "panoramahostname",
-								"height": 22,
-								"id": "776d4420-179c-11ed-b869-4359471711e3",
-								"index": 5,
-								"sectionItemType": "field",
-								"startCol": 0
-							}
-						],
-						"maxH": null,
-						"maxW": 3,
-						"minH": 1,
-						"moved": false,
-						"name": "Device Information",
-						"static": false,
-						"w": 1,
-						"x": 0,
-						"y": 0
-					},
-					{
-						"displayType": "ROW",
-						"h": 2,
-						"hideName": false,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-actions",
-						"items": [
-							{
-								"args": {
-									"incident_type": {
-										"simple": "PAN-OS Network Operations - Best Practice Assessment"
-									}
-								},
-								"buttonClass": "success",
-								"endCol": 2,
-								"fieldId": "",
-								"height": 22,
-								"id": "203da2e0-33de-11ed-86af-df6657ac05be",
-								"index": 0,
-								"name": "Run BPA",
-								"scriptId": "CreateNetopsIncidentButton",
-								"sectionItemType": "button",
-								"startCol": 0
-							},
-							{
-								"args": {
-									"incident_type": {
-										"simple": "PAN-OS Network Operations - Device Upgrade"
-									}
-								},
-								"buttonClass": "warning",
-								"dropEffect": "move",
-								"endCol": 2,
-								"fieldId": "",
-								"height": 44,
-								"id": "dc989cd0-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 0,
-								"listId": "default-main-actions",
-								"name": "Upgrade Device Software",
-								"scriptId": "CreateNetopsIncidentButton",
-								"sectionItemType": "button",
-								"startCol": 0
-							},
-							{
-								"args": {
-									"incident_type": {
-										"simple": "PAN-OS Network Operations - Batch Upgrade"
-									}
-								},
-								"buttonClass": "warning",
-								"dropEffect": "move",
-								"endCol": 2,
-								"fieldId": "",
-								"height": 44,
-								"id": "969d44b0-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 1,
-								"listId": "default-main-actions",
-								"name": "Upgrade All Devices",
-								"scriptId": "CreateNetopsIncidentButton",
-								"sectionItemType": "button",
-								"startCol": 0
-							}
-						],
-						"maxH": null,
-						"maxW": 3,
-						"minH": 1,
-						"moved": false,
-						"name": "Actions",
-						"static": false,
-						"type": "actions",
-						"w": 1,
-						"x": 1,
-						"y": 2
-					},
-					{
-						"description": "",
-						"displayType": "ROW",
-						"h": 2,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
-						"items": [
-							{
-								"endCol": 2,
-								"fieldId": "devicestatus",
-								"height": 22,
-								"id": "4e5c1b40-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 0,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "connected",
-								"height": 22,
-								"id": "cb1e6690-1480-11ed-9166-c505ff0c6032",
-								"index": 1,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "hastatus",
-								"height": 22,
-								"id": "54418180-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 2,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "hapeerdevice",
-								"height": 22,
-								"id": "58e60350-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 3,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "lastrefreshedtime",
-								"height": 22,
-								"id": "86f0e310-0d4d-11ed-9937-aff5848b623e",
-								"index": 4,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "lastbestpracticeassesment",
-								"height": 22,
-								"id": "88cfdc40-0d4d-11ed-9937-aff5848b623e",
-								"index": 5,
-								"sectionItemType": "field",
-								"startCol": 0
-							}
-						],
-						"maxH": null,
-						"maxW": 3,
-						"minH": 1,
-						"moved": false,
-						"name": "Device Status",
-						"static": false,
-						"w": 1,
-						"x": 1,
-						"y": 0
-					},
-					{
-						"description": "",
-						"displayType": "ROW",
-						"h": 2,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-a3ff2160-0c8a-11ed-a0b8-eb2ebd0d1561",
-						"items": [
-							{
-								"endCol": 2,
-								"fieldId": "softwareversion",
-								"height": 22,
-								"id": "45a21130-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 0,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "threatversion",
-								"height": 22,
-								"id": "46da1c00-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 1,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "antivirusversion",
-								"height": 22,
-								"id": "44b714f0-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 2,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "wildfireversion",
-								"height": 22,
-								"id": "4822efb0-0c8b-11ed-a0b8-eb2ebd0d1561",
-								"index": 3,
-								"sectionItemType": "field",
-								"startCol": 0
-							}
-						],
-						"maxH": null,
-						"maxW": 3,
-						"minH": 1,
-						"moved": false,
-						"name": "Software Information",
-						"static": false,
-						"w": 1,
-						"x": 2,
-						"y": 0
-					},
-					{
-						"h": 2,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-42d9bc30-177d-11ed-8d72-0d6d26ea3938",
-						"items": [],
-						"maxH": null,
-						"maxW": 3,
-						"minH": 1,
-						"moved": false,
-						"name": "Managed Devices",
-						"query": "DisplayPanoramaDeviceTable",
-						"queryType": "script",
-						"static": false,
-						"type": "dynamicIndicator",
-						"w": 1,
-						"x": 0,
-						"y": 2
-					}
-				],
-				"type": "custom"
-			},
-			{
-				"hidden": false,
-				"id": "dpsdqi3e10",
-				"name": "Related CVEs",
-				"sections": [
-					{
-						"h": 8,
-						"hideName": true,
-						"i": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-dpsdqi3e10-c1793600-147c-11ed-894f-b3bcebf5403c",
-						"items": [],
-						"maxH": null,
-						"maxW": 3,
-						"minH": 1,
-						"minW": 3,
-						"moved": false,
-						"name": "CVEs",
-						"query": "DisplayCVERelationshipTable",
-						"queryType": "script",
-						"static": false,
-						"type": "dynamicIndicator",
-						"w": 3,
-						"x": 0,
-						"y": 0
-					}
-				],
-				"type": "custom"
-			},
-			{
-				"hidden": false,
-				"id": "ufqsnlztkj",
-				"name": "Device Upgrades",
-				"sections": [
-					{
-						"h": 8,
-						"hideName": true,
-						"i": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-ufqsnlztkj-445b49d0-1461-11ed-a884-436cba2c2bd8",
-						"items": [],
-						"maxH": null,
-						"maxW": 3,
-						"minH": 1,
-						"minW": 3,
-						"moved": false,
-						"name": "General Purpose Dynamic Section",
-						"query": "Display Upgrade Table",
-						"queryType": "script",
-						"static": false,
-						"type": "dynamicIndicator",
-						"w": 3,
-						"x": 0,
-						"y": 0
-					}
-				],
-				"type": "custom"
-			},
-			{
-				"hidden": false,
-				"id": "v5iuykqdid",
-				"name": "Best Practice Assessment",
-				"sections": [
-					{
-						"description": "",
-						"h": 8,
-						"hideName": true,
-						"i": "v5iuykqdid-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-v5iuykqdid-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-v5iuykqdid-f91792f0-1459-11ed-b365-d9c64d7a5ef8",
-						"items": [],
-						"maxH": null,
-						"maxW": 3,
-						"minH": 1,
-						"moved": false,
-						"name": "BPA Table",
-						"query": "DisplayBPATable",
-						"queryType": "script",
-						"static": false,
-						"type": "dynamicIndicator",
-						"w": 3,
-						"x": 0,
-						"y": 0
-					}
-				],
-				"type": "custom"
-			}
-		]
-	},
-	"indicatorsQuickView": {
-		"TypeName": "",
-		"tabs": [
-			{
-				"id": "indicator-quick-view-info",
-				"name": "Info",
-				"sections": [
-					{
-						"columns": [
-							{
-								"displayed": true,
-								"isDefault": true,
-								"key": "id",
-								"width": 110
-							},
-							{
-								"displayed": true,
-								"isDefault": true,
-								"key": "name",
-								"width": 300
-							},
-							{
-								"displayed": true,
-								"isDefault": true,
-								"key": "type",
-								"width": 200
-							},
-							{
-								"displayed": true,
-								"isDefault": true,
-								"key": "status",
-								"width": 80
-							}
-						],
-						"h": 2,
-						"i": "indicator-quick-view-info-relatedIncidents",
-						"maxW": 3,
-						"moved": false,
-						"name": "Related Incidents",
-						"static": false,
-						"type": "relatedIncidents",
-						"w": 1,
-						"x": 0,
-						"y": 2
-					},
-					{
-						"h": 2,
-						"i": "indicator-quick-view-info-comments",
-						"maxW": 3,
-						"moved": false,
-						"name": "Comments",
-						"static": false,
-						"type": "comments",
-						"w": 1,
-						"x": 0,
-						"y": 4
-					},
-					{
-						"displayType": "ROW",
-						"h": 2,
-						"hideName": false,
-						"i": "indicator-quick-view-info-abc1d4b0-16b2-11ed-aa42-c532c9d7d892",
-						"items": [
-							{
-								"endCol": 2,
-								"fieldId": "hostname",
-								"height": 22,
-								"id": "b47eec00-16b2-11ed-aa42-c532c9d7d892",
-								"index": 0,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "ipaddress",
-								"height": 22,
-								"id": "b75823b0-16b2-11ed-aa42-c532c9d7d892",
-								"index": 1,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "devicemodel",
-								"height": 22,
-								"id": "ba68e620-16b2-11ed-aa42-c532c9d7d892",
-								"index": 2,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "devicetags",
-								"height": 22,
-								"id": "c371ac70-16b2-11ed-aa42-c532c9d7d892",
-								"index": 3,
-								"sectionItemType": "field",
-								"startCol": 0
-							}
-						],
-						"maxW": 3,
-						"minH": 1,
-						"moved": false,
-						"name": "Device Details",
-						"static": false,
-						"w": 1,
-						"x": 0,
-						"y": 0
-					}
-				],
-				"type": "custom"
-			}
-		]
-	},
-	"itemVersion": "",
-	"locked": false,
-	"mobile": null,
-	"name": "Panorama Device Layout",
-	"packID": "",
-	"packName": "",
-	"quickView": null,
-	"quickViewV2": null,
-	"system": false,
-	"toServerVersion": "99.99.99",
-	"version": -1
+    "cacheVersn": 0,
+    "close": null,
+    "definitionId": "",
+    "description": "",
+    "detached": false,
+    "details": null,
+    "detailsV2": null,
+    "edit": null,
+    "fromServerVersion": "0.0.0",
+    "group": "indicator",
+    "id": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7",
+    "indicatorsDetails": {
+        "TypeName": "",
+        "tabs": [
+            {
+                "id": "default-main",
+                "name": "Info",
+                "sections": [
+                    {
+                        "displayType": "ROW",
+                        "h": 2,
+                        "i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
+                        "items": [
+                            {
+                                "endCol": 2,
+                                "fieldId": "indicatortype",
+                                "height": 22,
+                                "id": "indicator-type",
+                                "index": 0,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "hostname",
+                                "height": 22,
+                                "id": "73c93620-0c8a-11ed-a0b8-eb2ebd0d1561",
+                                "index": 1,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "ipaddress",
+                                "height": 22,
+                                "id": "7a73c120-0c8a-11ed-a0b8-eb2ebd0d1561",
+                                "index": 2,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "devicemodel",
+                                "height": 22,
+                                "id": "7e844050-0c8a-11ed-a0b8-eb2ebd0d1561",
+                                "index": 3,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "devicetags",
+                                "height": 22,
+                                "id": "3b4c9470-147f-11ed-894f-b3bcebf5403c",
+                                "index": 4,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "panoramahostname",
+                                "height": 22,
+                                "id": "776d4420-179c-11ed-b869-4359471711e3",
+                                "index": 5,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            }
+                        ],
+                        "maxH": null,
+                        "maxW": 3,
+                        "minH": 1,
+                        "moved": false,
+                        "name": "Device Information",
+                        "static": false,
+                        "w": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    {
+                        "displayType": "ROW",
+                        "h": 2,
+                        "hideName": false,
+                        "i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-actions",
+                        "items": [
+                            {
+                                "args": {
+                                    "incident_type": {
+                                        "simple": "PAN-OS Network Operations - Best Practice Assessment"
+                                    }
+                                },
+                                "buttonClass": "success",
+                                "endCol": 2,
+                                "fieldId": "",
+                                "height": 22,
+                                "id": "203da2e0-33de-11ed-86af-df6657ac05be",
+                                "index": 0,
+                                "name": "Run BPA",
+                                "scriptId": "CreateNetopsIncidentButton",
+                                "sectionItemType": "button",
+                                "startCol": 0
+                            },
+                            {
+                                "args": {
+                                    "incident_type": {
+                                        "simple": "PAN-OS Network Operations - Device Upgrade"
+                                    }
+                                },
+                                "buttonClass": "warning",
+                                "dropEffect": "move",
+                                "endCol": 2,
+                                "fieldId": "",
+                                "height": 44,
+                                "id": "dc989cd0-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 0,
+                                "listId": "default-main-actions",
+                                "name": "Upgrade Device Software",
+                                "scriptId": "CreateNetopsIncidentButton",
+                                "sectionItemType": "button",
+                                "startCol": 0
+                            },
+                            {
+                                "args": {
+                                    "incident_type": {
+                                        "simple": "PAN-OS Network Operations - Batch Upgrade"
+                                    }
+                                },
+                                "buttonClass": "warning",
+                                "dropEffect": "move",
+                                "endCol": 2,
+                                "fieldId": "",
+                                "height": 44,
+                                "id": "969d44b0-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 1,
+                                "listId": "default-main-actions",
+                                "name": "Upgrade All Devices",
+                                "scriptId": "CreateNetopsIncidentButton",
+                                "sectionItemType": "button",
+                                "startCol": 0
+                            }
+                        ],
+                        "maxH": null,
+                        "maxW": 3,
+                        "minH": 1,
+                        "moved": false,
+                        "name": "Actions",
+                        "static": false,
+                        "type": "actions",
+                        "w": 1,
+                        "x": 1,
+                        "y": 2
+                    },
+                    {
+                        "description": "",
+                        "displayType": "ROW",
+                        "h": 2,
+                        "i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
+                        "items": [
+                            {
+                                "endCol": 2,
+                                "fieldId": "devicestatus",
+                                "height": 22,
+                                "id": "4e5c1b40-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 0,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "connected",
+                                "height": 22,
+                                "id": "cb1e6690-1480-11ed-9166-c505ff0c6032",
+                                "index": 1,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "hastatus",
+                                "height": 22,
+                                "id": "54418180-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 2,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "hapeerdevice",
+                                "height": 22,
+                                "id": "58e60350-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 3,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "lastrefreshedtime",
+                                "height": 22,
+                                "id": "86f0e310-0d4d-11ed-9937-aff5848b623e",
+                                "index": 4,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "lastbestpracticeassesment",
+                                "height": 22,
+                                "id": "88cfdc40-0d4d-11ed-9937-aff5848b623e",
+                                "index": 5,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            }
+                        ],
+                        "maxH": null,
+                        "maxW": 3,
+                        "minH": 1,
+                        "moved": false,
+                        "name": "Device Status",
+                        "static": false,
+                        "w": 1,
+                        "x": 1,
+                        "y": 0
+                    },
+                    {
+                        "description": "",
+                        "displayType": "ROW",
+                        "h": 2,
+                        "i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-a3ff2160-0c8a-11ed-a0b8-eb2ebd0d1561",
+                        "items": [
+                            {
+                                "endCol": 2,
+                                "fieldId": "softwareversion",
+                                "height": 22,
+                                "id": "45a21130-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 0,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "threatversion",
+                                "height": 22,
+                                "id": "46da1c00-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 1,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "antivirusversion",
+                                "height": 22,
+                                "id": "44b714f0-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 2,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "wildfireversion",
+                                "height": 22,
+                                "id": "4822efb0-0c8b-11ed-a0b8-eb2ebd0d1561",
+                                "index": 3,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            }
+                        ],
+                        "maxH": null,
+                        "maxW": 3,
+                        "minH": 1,
+                        "moved": false,
+                        "name": "Software Information",
+                        "static": false,
+                        "w": 1,
+                        "x": 2,
+                        "y": 0
+                    },
+                    {
+                        "h": 2,
+                        "i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-42d9bc30-177d-11ed-8d72-0d6d26ea3938",
+                        "items": [],
+                        "maxH": null,
+                        "maxW": 3,
+                        "minH": 1,
+                        "moved": false,
+                        "name": "Managed Devices",
+                        "query": "DisplayPanoramaDeviceTable",
+                        "queryType": "script",
+                        "static": false,
+                        "type": "dynamicIndicator",
+                        "w": 1,
+                        "x": 0,
+                        "y": 2
+                    }
+                ],
+                "type": "custom"
+            },
+            {
+                "hidden": false,
+                "id": "dpsdqi3e10",
+                "name": "Related CVEs",
+                "sections": [
+                    {
+                        "h": 8,
+                        "hideName": true,
+                        "i": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-dpsdqi3e10-c1793600-147c-11ed-894f-b3bcebf5403c",
+                        "items": [],
+                        "maxH": null,
+                        "maxW": 3,
+                        "minH": 1,
+                        "minW": 3,
+                        "moved": false,
+                        "name": "CVEs",
+                        "query": "DisplayCVERelationshipTable",
+                        "queryType": "script",
+                        "static": false,
+                        "type": "dynamicIndicator",
+                        "w": 3,
+                        "x": 0,
+                        "y": 0
+                    }
+                ],
+                "type": "custom"
+            },
+            {
+                "hidden": false,
+                "id": "ufqsnlztkj",
+                "name": "Device Upgrades",
+                "sections": [
+                    {
+                        "h": 8,
+                        "hideName": true,
+                        "i": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-ufqsnlztkj-445b49d0-1461-11ed-a884-436cba2c2bd8",
+                        "items": [],
+                        "maxH": null,
+                        "maxW": 3,
+                        "minH": 1,
+                        "minW": 3,
+                        "moved": false,
+                        "name": "General Purpose Dynamic Section",
+                        "query": "Display Upgrade Table",
+                        "queryType": "script",
+                        "static": false,
+                        "type": "dynamicIndicator",
+                        "w": 3,
+                        "x": 0,
+                        "y": 0
+                    }
+                ],
+                "type": "custom"
+            },
+            {
+                "hidden": false,
+                "id": "v5iuykqdid",
+                "name": "Best Practice Assessment",
+                "sections": [
+                    {
+                        "description": "",
+                        "h": 8,
+                        "hideName": true,
+                        "i": "v5iuykqdid-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-v5iuykqdid-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-v5iuykqdid-f91792f0-1459-11ed-b365-d9c64d7a5ef8",
+                        "items": [],
+                        "maxH": null,
+                        "maxW": 3,
+                        "minH": 1,
+                        "moved": false,
+                        "name": "BPA Table",
+                        "query": "DisplayBPATable",
+                        "queryType": "script",
+                        "static": false,
+                        "type": "dynamicIndicator",
+                        "w": 3,
+                        "x": 0,
+                        "y": 0
+                    }
+                ],
+                "type": "custom"
+            }
+        ]
+    },
+    "indicatorsQuickView": {
+        "TypeName": "",
+        "tabs": [
+            {
+                "id": "indicator-quick-view-info",
+                "name": "Info",
+                "sections": [
+                    {
+                        "columns": [
+                            {
+                                "displayed": true,
+                                "isDefault": true,
+                                "key": "id",
+                                "width": 110
+                            },
+                            {
+                                "displayed": true,
+                                "isDefault": true,
+                                "key": "name",
+                                "width": 300
+                            },
+                            {
+                                "displayed": true,
+                                "isDefault": true,
+                                "key": "type",
+                                "width": 200
+                            },
+                            {
+                                "displayed": true,
+                                "isDefault": true,
+                                "key": "status",
+                                "width": 80
+                            }
+                        ],
+                        "h": 2,
+                        "i": "indicator-quick-view-info-relatedIncidents",
+                        "maxW": 3,
+                        "moved": false,
+                        "name": "Related Incidents",
+                        "static": false,
+                        "type": "relatedIncidents",
+                        "w": 1,
+                        "x": 0,
+                        "y": 2
+                    },
+                    {
+                        "h": 2,
+                        "i": "indicator-quick-view-info-comments",
+                        "maxW": 3,
+                        "moved": false,
+                        "name": "Comments",
+                        "static": false,
+                        "type": "comments",
+                        "w": 1,
+                        "x": 0,
+                        "y": 4
+                    },
+                    {
+                        "displayType": "ROW",
+                        "h": 2,
+                        "hideName": false,
+                        "i": "indicator-quick-view-info-abc1d4b0-16b2-11ed-aa42-c532c9d7d892",
+                        "items": [
+                            {
+                                "endCol": 2,
+                                "fieldId": "hostname",
+                                "height": 22,
+                                "id": "b47eec00-16b2-11ed-aa42-c532c9d7d892",
+                                "index": 0,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "ipaddress",
+                                "height": 22,
+                                "id": "b75823b0-16b2-11ed-aa42-c532c9d7d892",
+                                "index": 1,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "devicemodel",
+                                "height": 22,
+                                "id": "ba68e620-16b2-11ed-aa42-c532c9d7d892",
+                                "index": 2,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            },
+                            {
+                                "endCol": 2,
+                                "fieldId": "devicetags",
+                                "height": 22,
+                                "id": "c371ac70-16b2-11ed-aa42-c532c9d7d892",
+                                "index": 3,
+                                "sectionItemType": "field",
+                                "startCol": 0
+                            }
+                        ],
+                        "maxW": 3,
+                        "minH": 1,
+                        "moved": false,
+                        "name": "Device Details",
+                        "static": false,
+                        "w": 1,
+                        "x": 0,
+                        "y": 0
+                    }
+                ],
+                "type": "custom"
+            }
+        ]
+    },
+    "itemVersion": "",
+    "locked": false,
+    "mobile": null,
+    "name": "Panorama Device Layout",
+    "packID": "",
+    "packName": "",
+    "quickView": null,
+    "quickViewV2": null,
+    "system": false,
+    "toServerVersion": "99.99.99",
+    "version": -1
 }

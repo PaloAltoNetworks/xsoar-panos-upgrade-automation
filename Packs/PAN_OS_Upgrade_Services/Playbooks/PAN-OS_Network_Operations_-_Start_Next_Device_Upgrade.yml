@@ -1,18 +1,16 @@
 id: 6d1d456f-2edf-4cae-8c93-d38b87682c1d
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Start Next Device Upgrade
-description: This is a subplaybook that just restarts the device upgrade process if
-  required. It needs to be dedicated to a subplaybook or it will fail to loop if there
-  are multiple steps in the upgrade process.
+description: This is a subplaybook that just restarts the device upgrade process if required. It needs to be dedicated to a subplaybook or it will fail to loop if there are multiple steps in the upgrade process.
 starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 53ac4d67-ae8e-458f-8186-d99565e93c11
+    taskid: 4000e907-45a7-4fb9-8210-702d454bfb9a
     type: start
     task:
-      id: 53ac4d67-ae8e-458f-8186-d99565e93c11
+      id: 4000e907-45a7-4fb9-8210-702d454bfb9a
       version: -1
       name: ""
       iscommand: false
@@ -38,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 6c7974b0-2216-465e-8599-1ee138891f7d
+    taskid: 096834f4-6058-43ba-88ae-c648e5dc8979
     type: regular
     task:
-      id: 6c7974b0-2216-465e-8599-1ee138891f7d
+      id: 096834f4-6058-43ba-88ae-c648e5dc8979
       version: -1
       name: Start Next Upgrade
       description: commands.local.cmd.set.playbook

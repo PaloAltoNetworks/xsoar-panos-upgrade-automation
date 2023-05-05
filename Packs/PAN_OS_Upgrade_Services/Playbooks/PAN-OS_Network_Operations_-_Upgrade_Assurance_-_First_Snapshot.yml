@@ -165,14 +165,12 @@ tasks:
       subject:
         simple: Upgrade Readiness Checks failed on ${incident.panosnetworkoperationsupgradetargetfirewall}
       body:
-        simple: "The assurance process failed on the device ${incident.panosnetworkoperationsupgradetargetfirewall}.\n\nPlease
-          validate the test result and choose whether to proceed or abort the assurance
-          process. "
+        simple: "The assurance process failed on the device ${incident.panosnetworkoperationsupgradetargetfirewall}.\n\nPlease validate the test result and choose whether to proceed or abort the assurance process. "
       methods:
       - email
       format: ""
-      bcc: null
-      cc: null
+      bcc:
+      cc:
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -200,9 +198,7 @@ tasks:
         tooltip: ""
         readonly: false
       title: Failed Readiness Test Confirmation
-      description: The assurance process identified issues that might prevent the
-        software upgrade from starting. Please confirm whether to proceed or abort
-        the assurance process.
+      description: The assurance process identified issues that might prevent the software upgrade from starting. Please confirm whether to proceed or abort the assurance process.
       sender: Your SOC team
       expired: false
       totalanswers: 0
@@ -308,8 +304,7 @@ tasks:
       id: 0802dd9a-97e5-4173-8601-a37e39286a7b
       version: -1
       name: Save First Snapshot
-      description: Copies a file from this incident to the specified incident. The
-        file is recorded as an entry in the specified incident’s War Room.
+      description: Copies a file from this incident to the specified incident. The file is recorded as an entry in the specified incident’s War Room.
       scriptName: UploadFile
       type: regular
       iscommand: false
@@ -456,6 +451,6 @@ inputs:
     simple: ${incident.panosnetworkoperationstarget}
   required: false
   description: ""
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs: []
 quiet: true

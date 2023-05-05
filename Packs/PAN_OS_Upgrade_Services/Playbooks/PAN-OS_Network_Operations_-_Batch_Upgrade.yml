@@ -1,19 +1,16 @@
 id: PAN-OS Network Operations - Domain Upgrade
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Batch Upgrade
-description: Similar to the Platform Upgrade playbook, this playbook uses an alternate
-  method of retrieving the devices to upgrade by instead querying the open device
-  incidents for the information. This allows us to create upgrade incidents for only
-  specific devices or groups of devices as opposed to all devices.
+description: Similar to the Platform Upgrade playbook, this playbook uses an alternate method of retrieving the devices to upgrade by instead querying the open device incidents for the information. This allows us to create upgrade incidents for only specific devices or groups of devices as opposed to all devices.
 starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: f54ea6a6-04e8-4f06-8015-22d815a10aa8
+    taskid: af98fd31-15cb-43bf-859b-8cbc4325d9c5
     type: start
     task:
-      id: f54ea6a6-04e8-4f06-8015-22d815a10aa8
+      id: af98fd31-15cb-43bf-859b-8cbc4325d9c5
       version: -1
       name: ""
       iscommand: false
@@ -39,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 668a1194-b7e5-4511-8f92-2e822ee0f23b
+    taskid: f5937303-b60d-4189-8433-dd2820f71718
     type: condition
     task:
-      id: 668a1194-b7e5-4511-8f92-2e822ee0f23b
+      id: f5937303-b60d-4189-8433-dd2820f71718
       version: -1
       name: Did we get tags specified?
       description: Check for Domain to upgrade
@@ -82,14 +79,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: f3942ada-9c51-45d9-8aee-f4e4435f4fb3
+    taskid: e87b1f80-e2fb-49d0-82b7-bf4db88a5ce3
     type: regular
     task:
-      id: f3942ada-9c51-45d9-8aee-f4e4435f4fb3
+      id: e87b1f80-e2fb-49d0-82b7-bf4db88a5ce3
       version: -1
       name: Get Active Devices by query
-      description: 'Searches the active PAN-OS devices in the topology - the device
-        incidents - by the given incident query. '
+      description: 'Searches the active PAN-OS devices in the topology - the device incidents - by the given incident query. '
       scriptName: GetDevicesByQuery
       type: regular
       iscommand: false
@@ -99,10 +95,7 @@ tasks:
       - "6"
     scriptarguments:
       query:
-        simple: "(type:\"Network Device\" or type:\"Panorama Device\")  connected:yes
-          hastatus:active ${inputs.upgrade_tags=>x(val);function x(l) {\n\tvar r =
-          [];\n\tif (l) {\n  \tl.forEach(s => {\n    \tr.push(\"devicetags:\"+s);\n
-          \   })\n  } else {\n  \treturn '';\n  }\n  return r.join(' ');\n}} ${inputs.device_query}"
+        simple: "(type:\"Network Device\" or type:\"Panorama Device\")  connected:yes hastatus:active ${inputs.upgrade_tags=>x(val);function x(l) {\n\tvar r = [];\n\tif (l) {\n  \tl.forEach(s => {\n    \tr.push(\"devicetags:\"+s);\n    })\n  } else {\n  \treturn '';\n  }\n  return r.join(' ');\n}} ${inputs.device_query}"
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -121,14 +114,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 07432900-02bb-4d28-8a81-2b1e1505f5b2
+    taskid: ecba878e-530d-45cd-89ae-2ae1b4ff867a
     type: regular
     task:
-      id: 07432900-02bb-4d28-8a81-2b1e1505f5b2
+      id: ecba878e-530d-45cd-89ae-2ae1b4ff867a
       version: -1
       name: Get All Active Devices
-      description: 'Searches the active PAN-OS devices in the topology - the device
-        incidents - by the given incident query. '
+      description: 'Searches the active PAN-OS devices in the topology - the device incidents - by the given incident query. '
       scriptName: GetDevicesByQuery
       type: regular
       iscommand: false
@@ -157,10 +149,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 05f84c9d-6399-4819-8bb2-81d6915b86dc
+    taskid: cb25859b-a783-4bb5-88ce-38b2542395f3
     type: title
     task:
-      id: 05f84c9d-6399-4819-8bb2-81d6915b86dc
+      id: cb25859b-a783-4bb5-88ce-38b2542395f3
       version: -1
       name: Get Available Software Images
       type: title
@@ -187,10 +179,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: d316c120-42c4-4cd4-8fd7-0f210d6cb7db
+    taskid: eed600bc-6185-4ce6-880d-56d7c598ef35
     type: regular
     task:
-      id: d316c120-42c4-4cd4-8fd7-0f210d6cb7db
+      id: eed600bc-6185-4ce6-880d-56d7c598ef35
       version: -1
       name: Get Software Images
       description: Check the devices for software that is available to be installed.
@@ -222,10 +214,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 0320f732-7adb-4ebd-89e7-74eab9229d43
+    taskid: 9aade8fa-8360-4597-8448-6b575e854ea0
     type: condition
     task:
-      id: 0320f732-7adb-4ebd-89e7-74eab9229d43
+      id: 9aade8fa-8360-4597-8448-6b575e854ea0
       version: -1
       name: Did we get at least one device?
       description: Check for device.
@@ -263,10 +255,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 13ea1062-eb71-4c42-80f1-867afcf1ac8c
+    taskid: 5c0772b7-48c2-44e1-8f7c-c5cb385caa48
     type: regular
     task:
-      id: 13ea1062-eb71-4c42-80f1-867afcf1ac8c
+      id: 5c0772b7-48c2-44e1-8f7c-c5cb385caa48
       version: -1
       name: Error on no devices returned.
       description: Prints an error entry with a given message
@@ -276,8 +268,7 @@ tasks:
       brand: ""
     scriptarguments:
       message:
-        simple: The device query for only Active devices with domain ${inputs.domain}
-          returned no results. Have you run a System Information incident?
+        simple: The device query for only Active devices with domain ${inputs.domain} returned no results. Have you run a System Information incident?
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -296,14 +287,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: b35186e6-7d4e-4508-8cd1-929a1ba26953
+    taskid: 24e50287-68ec-4f25-895d-cdf60af1da83
     type: regular
     task:
-      id: b35186e6-7d4e-4508-8cd1-929a1ba26953
+      id: 24e50287-68ec-4f25-895d-cdf60af1da83
       version: -1
       name: Filter available Panorama Images
-      description: Given a table containing installed ("current") PAN-OS Software
-        images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
       scriptName: FilterAvailableSoftwareImages
       type: regular
       iscommand: false
@@ -376,10 +366,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 997ed159-2376-4427-8627-9b8a9add2a3f
+    taskid: 46e9a766-ed9d-4512-8958-b52e3a6af320
     type: condition
     task:
-      id: 997ed159-2376-4427-8627-9b8a9add2a3f
+      id: 46e9a766-ed9d-4512-8958-b52e3a6af320
       version: -1
       name: Did we return Panorama devices?
       description: Check for Panorama devices.
@@ -428,10 +418,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: fb762397-70f1-40cf-8db3-eac93aae2eaf
+    taskid: 5b9287e6-4bd7-44ed-8589-d1251bdb62b5
     type: collection
     task:
-      id: fb762397-70f1-40cf-8db3-eac93aae2eaf
+      id: 5b9287e6-4bd7-44ed-8589-d1251bdb62b5
       version: -1
       name: Panorama Target Version and Upgrade information Questionairre
       description: Collects the upgrade details from the user.
@@ -454,15 +444,14 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to: null
-      subject: null
+      to:
+      subject:
       body:
-        simple: Please complete the following survey to proceed with the platform
-          upgrade process.
+        simple: Please complete the following survey to proceed with the platform upgrade process.
       methods: []
       format: ""
-      bcc: null
-      cc: null
+      bcc:
+      cc:
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -549,10 +538,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: 25f9a2d3-e98f-4156-8ae5-ae10e1c72745
+    taskid: 8e7ac6a9-2940-4133-8c67-3bc80aa4e780
     type: regular
     task:
-      id: 25f9a2d3-e98f-4156-8ae5-ae10e1c72745
+      id: 8e7ac6a9-2940-4133-8c67-3bc80aa4e780
       version: -1
       name: Set Target Panorama Version Field
       description: commands.local.cmd.set.incident
@@ -584,10 +573,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: 34190ac9-f242-4025-8326-a61d338c1524
+    taskid: 2ffffacc-29ab-4930-8c8c-00463258d19b
     type: regular
     task:
-      id: 34190ac9-f242-4025-8326-a61d338c1524
+      id: 2ffffacc-29ab-4930-8c8c-00463258d19b
       version: -1
       name: Create Panorama Incidents
       description: commands.local.cmd.create.inc
@@ -629,10 +618,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "13":
     id: "13"
-    taskid: 787da074-8398-4308-818f-dbb9b34650d4
+    taskid: a0fa2f43-8590-4f13-87db-05f4a7000b7e
     type: condition
     task:
-      id: 787da074-8398-4308-818f-dbb9b34650d4
+      id: a0fa2f43-8590-4f13-87db-05f4a7000b7e
       version: -1
       name: Did we get Firewall devices?
       description: Check for Firewall devices.
@@ -680,14 +669,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "14":
     id: "14"
-    taskid: 1e8b8e8c-10bf-41d2-8968-3fc43cf541bc
+    taskid: 98cd8629-35fe-4831-8a0a-6cafe08c62d8
     type: regular
     task:
-      id: 1e8b8e8c-10bf-41d2-8968-3fc43cf541bc
+      id: 98cd8629-35fe-4831-8a0a-6cafe08c62d8
       version: -1
       name: Filter available Firewall Images
-      description: Given a table containing installed ("current") PAN-OS Software
-        images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
       scriptName: FilterAvailableSoftwareImages
       type: regular
       iscommand: false
@@ -748,10 +736,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "15":
     id: "15"
-    taskid: 6b672a2d-bd97-48bb-8d7f-08c6f416ec73
+    taskid: 3705a1a9-1f9b-4f99-8745-fd72967c5fa3
     type: collection
     task:
-      id: 6b672a2d-bd97-48bb-8d7f-08c6f416ec73
+      id: 3705a1a9-1f9b-4f99-8745-fd72967c5fa3
       version: -1
       name: Firewall Target Version and Upgrade information Questionairre
       description: Collectst the firewall version and further upgrade information
@@ -774,15 +762,14 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to: null
-      subject: null
+      to:
+      subject:
       body:
-        simple: Please complete the following survey to proceed with the platform
-          upgrade process.
+        simple: Please complete the following survey to proceed with the platform upgrade process.
       methods: []
       format: ""
-      bcc: null
-      cc: null
+      bcc:
+      cc:
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -822,8 +809,7 @@ tasks:
               args:
                 prefix:
                   value:
-                    simple: 'Select target firewall software version. Current versions
-                      are '
+                    simple: 'Select target firewall software version. Current versions are '
                 suffix: {}
         required: false
         gridcolumns: []
@@ -873,10 +859,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "16":
     id: "16"
-    taskid: 2d367824-f97d-447f-8876-3ffd0efe6be2
+    taskid: f2b9ecb7-9f11-4202-8450-bbfa6f6b138b
     type: regular
     task:
-      id: 2d367824-f97d-447f-8876-3ffd0efe6be2
+      id: f2b9ecb7-9f11-4202-8450-bbfa6f6b138b
       version: -1
       name: Set Answered target version
       description: commands.local.cmd.set.incident
@@ -908,10 +894,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "17":
     id: "17"
-    taskid: 3ff22a87-55a5-4a07-8163-fe22dfab39c7
+    taskid: 6f3e7c9f-3e72-4ad8-862e-8cba4c6bf238
     type: regular
     task:
-      id: 3ff22a87-55a5-4a07-8163-fe22dfab39c7
+      id: 6f3e7c9f-3e72-4ad8-862e-8cba4c6bf238
       version: -1
       name: Create Firewall Incidents
       description: commands.local.cmd.create.inc
@@ -955,10 +941,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "18":
     id: "18"
-    taskid: d1bb0e2d-d7fb-4505-8a01-f43db605d07c
+    taskid: 0f424e42-283d-450d-853f-075a9cabfce8
     type: regular
     task:
-      id: d1bb0e2d-d7fb-4505-8a01-f43db605d07c
+      id: 0f424e42-283d-450d-853f-075a9cabfce8
       version: -1
       name: Set Panorama Systems
       description: Set a value in context under the key you entered.
@@ -1014,10 +1000,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "19":
     id: "19"
-    taskid: 0fb8019f-fd43-4097-8052-02526e9905e6
+    taskid: 0bc54130-ca25-4c83-8c6b-ff63e174d043
     type: regular
     task:
-      id: 0fb8019f-fd43-4097-8052-02526e9905e6
+      id: 0bc54130-ca25-4c83-8c6b-ff63e174d043
       version: -1
       name: Set Firewall Systems
       description: Set a value in context under the key you entered.
@@ -1072,10 +1058,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "20":
     id: "20"
-    taskid: 2b820075-30b5-4a2f-8425-7d2ca6d5b731
+    taskid: 98929224-a392-4a2f-8f28-4225c8e1c0e5
     type: regular
     task:
-      id: 2b820075-30b5-4a2f-8425-7d2ca6d5b731
+      id: 98929224-a392-4a2f-8f28-4225c8e1c0e5
       version: -1
       name: Delete context
       description: |-
@@ -1112,10 +1098,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "22":
     id: "22"
-    taskid: f053c93d-d400-4f33-80b6-c22b0141819b
+    taskid: 2c594ff1-ef06-4599-8e95-c5e803a4922a
     type: condition
     task:
-      id: f053c93d-d400-4f33-80b6-c22b0141819b
+      id: 2c594ff1-ef06-4599-8e95-c5e803a4922a
       version: -1
       name: Do we have a target version already?
       description: Check for target version.
@@ -1171,10 +1157,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "23":
     id: "23"
-    taskid: 2d64df42-60ad-4bcf-8fb7-42e27f9f33d7
+    taskid: 7f8083d8-98bf-4e57-824c-92f1e0d7f7dc
     type: regular
     task:
-      id: 2d64df42-60ad-4bcf-8fb7-42e27f9f33d7
+      id: 7f8083d8-98bf-4e57-824c-92f1e0d7f7dc
       version: -1
       name: Set Description
       description: commands.local.cmd.set.incident
@@ -1187,11 +1173,7 @@ tasks:
       - "13"
     scriptarguments:
       description:
-        simple: "Panorama Upgrade cannot continue - the input panorama upgrade version
-          ${incident.panosnetworkoperationsupgradetargetpanoramaversion} is not a
-          valid target version. It may already be installed, too many releases ahead,
-          or behind the currently installed version. \n\nFirewall upgrade process
-          will continue."
+        simple: "Panorama Upgrade cannot continue - the input panorama upgrade version ${incident.panosnetworkoperationsupgradetargetpanoramaversion} is not a valid target version. It may already be installed, too many releases ahead, or behind the currently installed version. \n\nFirewall upgrade process will continue."
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -1210,10 +1192,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "24":
     id: "24"
-    taskid: 9df58903-0125-405c-84f1-8e045d79e266
+    taskid: c2aa8cf2-4acb-4178-88b7-ea55dab48fe9
     type: regular
     task:
-      id: 9df58903-0125-405c-84f1-8e045d79e266
+      id: c2aa8cf2-4acb-4178-88b7-ea55dab48fe9
       version: -1
       name: Get system info for returned devices
       description: Gets information from all PAN-OS systems in the topology.
@@ -1245,10 +1227,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "25":
     id: "25"
-    taskid: 7ae070ca-31ab-442d-818f-065bb9f9dd6e
+    taskid: b9b9ff5d-ba35-427c-894b-a285be0a208b
     type: title
     task:
-      id: 7ae070ca-31ab-442d-818f-065bb9f9dd6e
+      id: b9b9ff5d-ba35-427c-894b-a285be0a208b
       version: -1
       name: Start Upgrade Process Per Incident
       type: title
@@ -1275,10 +1257,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "26":
     id: "26"
-    taskid: 492f9279-0d7f-4e35-8dc1-26700ddf1a62
+    taskid: 619d88db-7337-49a0-8156-815207d18823
     type: regular
     task:
-      id: 492f9279-0d7f-4e35-8dc1-26700ddf1a62
+      id: 619d88db-7337-49a0-8156-815207d18823
       version: -1
       name: Set Target List
       description: commands.local.cmd.set.incident
@@ -1322,10 +1304,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "27":
     id: "27"
-    taskid: 38fee49e-ae27-4fe6-81ed-cb3638a7ca17
+    taskid: c3951621-d160-413c-8e1f-c75692761728
     type: condition
     task:
-      id: 38fee49e-ae27-4fe6-81ed-cb3638a7ca17
+      id: c3951621-d160-413c-8e1f-c75692761728
       version: -1
       name: Do we have a target version already?
       description: Check for existing target version
@@ -1381,10 +1363,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "28":
     id: "28"
-    taskid: df8719b9-6252-4301-889e-a7ca575124c9
+    taskid: 77bf9fc3-dabf-40d4-80db-82ae069f01dd
     type: regular
     task:
-      id: df8719b9-6252-4301-889e-a7ca575124c9
+      id: 77bf9fc3-dabf-40d4-80db-82ae069f01dd
       version: -1
       name: Set target list
       description: commands.local.cmd.set.incident
@@ -1428,10 +1410,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "29":
     id: "29"
-    taskid: 17c1e88d-96bb-4d8f-8235-147141f49bdd
+    taskid: e24715e0-0a5e-482c-8f14-40be3385949a
     type: regular
     task:
-      id: 17c1e88d-96bb-4d8f-8235-147141f49bdd
+      id: e24715e0-0a5e-482c-8f14-40be3385949a
       version: -1
       name: Set Description
       description: commands.local.cmd.set.incident
@@ -1444,11 +1426,7 @@ tasks:
       - "25"
     scriptarguments:
       description:
-        simple: "Firewall Upgradse cannot continue - the input firewall upgrade version
-          ${incident.panosnetworkoperationsupgradetargetfirewallversion} is not a
-          valid target version. It may already be installed, too many releases ahead,
-          or behind the currently installed version. \n\nPanorama Upgrade process
-          may continue."
+        simple: "Firewall Upgradse cannot continue - the input firewall upgrade version ${incident.panosnetworkoperationsupgradetargetfirewallversion} is not a valid target version. It may already be installed, too many releases ahead, or behind the currently installed version. \n\nPanorama Upgrade process may continue."
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -1467,10 +1445,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "30":
     id: "30"
-    taskid: 23fb6550-9c7b-4770-806e-d343b4efab5c
+    taskid: 363ce935-c60c-4828-8547-fd2f36ecc554
     type: playbook
     task:
-      id: 23fb6550-9c7b-4770-806e-d343b4efab5c
+      id: 363ce935-c60c-4828-8547-fd2f36ecc554
       version: -1
       name: PAN-OS Network Operations - Start Device Upgrades
       description: |-
@@ -1502,10 +1480,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "31":
     id: "31"
-    taskid: 333f7b11-c3e8-4774-8c88-afc95cd1b6eb
+    taskid: 77902093-127b-4bca-8f79-c0669549b965
     type: regular
     task:
-      id: 333f7b11-c3e8-4774-8c88-afc95cd1b6eb
+      id: 77902093-127b-4bca-8f79-c0669549b965
       version: -1
       name: Close Incident
       description: commands.local.cmd.close.inv
@@ -1518,9 +1496,7 @@ tasks:
       - "32"
     scriptarguments:
       closeNotes:
-        simple: This upgrade incident has been closed - all devices are now upgrading,
-          and can be monitored by looking either at the PAN-OS Network Operations
-          dashboard or the indiviudal incidents directly.
+        simple: This upgrade incident has been closed - all devices are now upgrading, and can be monitored by looking either at the PAN-OS Network Operations dashboard or the indiviudal incidents directly.
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -1539,10 +1515,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "32":
     id: "32"
-    taskid: b9b45808-1650-4d85-8c41-beb3c700f67a
+    taskid: eed17e1c-3e9f-45a1-86c3-62b49dc0a7f2
     type: title
     task:
-      id: b9b45808-1650-4d85-8c41-beb3c700f67a
+      id: eed17e1c-3e9f-45a1-86c3-62b49dc0a7f2
       version: -1
       name: Finish
       type: title
@@ -1566,10 +1542,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "33":
     id: "33"
-    taskid: d18460fb-7fb6-4227-8ddf-c20a8badcd44
+    taskid: d05ad149-bd28-4789-887c-394aaef4481f
     type: condition
     task:
-      id: d18460fb-7fb6-4227-8ddf-c20a8badcd44
+      id: d05ad149-bd28-4789-887c-394aaef4481f
       version: -1
       name: Do we have a parent incident?
       description: Checks if this incident has been created by another incident type.
@@ -1607,10 +1583,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "34":
     id: "34"
-    taskid: 2d627909-e3f6-454e-8771-ce0b68f48937
+    taskid: df30bfed-0cdf-42e5-806f-8f7cd1034b6f
     type: regular
     task:
-      id: 2d627909-e3f6-454e-8771-ce0b68f48937
+      id: df30bfed-0cdf-42e5-806f-8f7cd1034b6f
       version: -1
       name: Link to parent
       description: commands.local.cmd.linkIncidents
@@ -1642,10 +1618,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "35":
     id: "35"
-    taskid: 69271576-3172-4109-85a8-2b3b1363fe91
+    taskid: 6d5a91be-8635-4bea-813b-5f5aa2e77e8b
     type: regular
     task:
-      id: 69271576-3172-4109-85a8-2b3b1363fe91
+      id: 6d5a91be-8635-4bea-813b-5f5aa2e77e8b
       version: -1
       name: Relate Incident to device
       description: commands.local.cmd.associate.indicator
@@ -1695,12 +1671,11 @@ inputs:
     simple: ${incident.devicetags}
   required: false
   description: Target upgrade batch by device tags.
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: device_query
   value:
     simple: ${incident.panosnetworkoperationsdeviceupgradequery}
   required: false
-  description: 'Any additional incident query parameters for the device query - for
-    example, use "devicemodel:Panorama" to only upgrade Panorama devices. '
-  playbookInputQuery: null
+  description: 'Any additional incident query parameters for the device query - for example, use "devicemodel:Panorama" to only upgrade Panorama devices. '
+  playbookInputQuery:
 outputs: []

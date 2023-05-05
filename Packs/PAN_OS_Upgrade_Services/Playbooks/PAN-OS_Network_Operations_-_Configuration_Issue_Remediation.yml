@@ -1,5 +1,5 @@
 id: 9baacc04-1011-47fa-821c-ac8b1842e968
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Configuration Issue Remediation
 description: Remediates configuration issues identified by the Device Management integration.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 97a9fce5-6c7a-439d-80a1-fe410d03c0bd
+    taskid: cf97b70d-5d2c-4007-83cd-2db73b9d487c
     type: start
     task:
-      id: 97a9fce5-6c7a-439d-80a1-fe410d03c0bd
+      id: cf97b70d-5d2c-4007-83cd-2db73b9d487c
       version: -1
       name: ""
       iscommand: false
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: e72f9bbb-bc80-4bab-821e-7b849f16dc1d
+    taskid: 7f1bb77b-9b36-446e-88ab-5a7664facf95
     type: regular
     task:
-      id: e72f9bbb-bc80-4bab-821e-7b849f16dc1d
+      id: 7f1bb77b-9b36-446e-88ab-5a7664facf95
       version: -1
       name: Get Indicators By the query
       description: Returns indicator custom fields into the context by the given query.
@@ -71,10 +71,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 599a4195-61c2-4029-87df-1438bf3eb2f6
+    taskid: 3055ebc1-4072-4da7-81bb-74bed884a59c
     type: regular
     task:
-      id: 599a4195-61c2-4029-87df-1438bf3eb2f6
+      id: 3055ebc1-4072-4da7-81bb-74bed884a59c
       version: -1
       name: Associate Indicators to this Incident
       description: commands.local.cmd.associate.indicator
@@ -109,10 +109,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 805ea62e-0fdd-48b5-8a09-0ed2561413b2
+    taskid: c1440137-c5a0-4fa6-8c02-e7731753b65e
     type: title
     task:
-      id: 805ea62e-0fdd-48b5-8a09-0ed2561413b2
+      id: c1440137-c5a0-4fa6-8c02-e7731753b65e
       version: -1
       name: Visibility
       type: title
@@ -141,10 +141,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: f0658c95-7818-44ae-824c-799cf68ce71a
+    taskid: 1f3d9b42-5dd8-443d-8680-1c74d5ff0613
     type: title
     task:
-      id: f0658c95-7818-44ae-824c-799cf68ce71a
+      id: 1f3d9b42-5dd8-443d-8680-1c74d5ff0613
       version: -1
       name: BP-V-8
       type: title
@@ -171,10 +171,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: b92b43cf-25c2-44c6-89f1-20a85992154d
+    taskid: 4a0a6c2e-4911-456d-87bb-e0c9967d1b4b
     type: condition
     task:
-      id: b92b43cf-25c2-44c6-89f1-20a85992154d
+      id: 4a0a6c2e-4911-456d-87bb-e0c9967d1b4b
       version: -1
       name: Do we have BP-V-8 issues?
       type: condition
@@ -214,14 +214,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 243c17a5-d569-457a-86f0-3e842e3cc040
+    taskid: 1225df01-0e2c-45bb-81ce-3501b91e2d60
     type: regular
     task:
-      id: 243c17a5-d569-457a-86f0-3e842e3cc040
+      id: 1225df01-0e2c-45bb-81ce-3501b91e2d60
       version: -1
       name: Group
-      description: Groups configuration issues into actionable items so they can be
-        passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
       scriptName: GroupIssuesByFields
       type: regular
       iscommand: false
@@ -262,14 +261,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: 435a034c-6060-464c-8620-7399bd35fb48
+    taskid: 0dcc98cf-7de0-4450-8a78-7cde30c0248a
     type: playbook
     task:
-      id: 435a034c-6060-464c-8620-7399bd35fb48
+      id: 0dcc98cf-7de0-4450-8a78-7cde30c0248a
       version: -1
       name: PAN-OS Network Operation - Run Bulk Change
-      description: This playbook runs the fixes identified by GroupIssuesByFields
-        as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
       playbookName: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       iscommand: false
@@ -310,10 +308,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: d572a1dc-b589-4243-8ef5-043ca59a89a7
+    taskid: a2be60a0-3430-471d-865a-966f6367bacd
     type: title
     task:
-      id: d572a1dc-b589-4243-8ef5-043ca59a89a7
+      id: a2be60a0-3430-471d-865a-966f6367bacd
       version: -1
       name: Commit
       type: title
@@ -340,15 +338,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 19e55f6c-fb48-4ddf-8559-c08faee60244
+    taskid: 333bc30a-30d8-4109-8f8e-fc1a46ae5b54
     type: playbook
     task:
-      id: 19e55f6c-fb48-4ddf-8559-c08faee60244
+      id: 333bc30a-30d8-4109-8f8e-fc1a46ae5b54
       version: -1
       name: PAN-OS Commit Configuration
-      description: Commit the PAN-OS Panorama or Firewall configuration.\nIf specified
-        as Panorama, it also pushes the Policies to the specified Device Group in
-        the instance.
+      description: Commit the PAN-OS Panorama or Firewall configuration.\nIf specified as Panorama, it also pushes the Policies to the specified Device Group in the instance.
       playbookName: PAN-OS Commit Configuration
       type: playbook
       iscommand: false
@@ -374,10 +370,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: 1bde3d87-96a1-4e61-83ea-bc47ffa90d57
+    taskid: 74d04b7f-341f-4ddc-84c3-b8e2d89d0f8f
     type: condition
     task:
-      id: 1bde3d87-96a1-4e61-83ea-bc47ffa90d57
+      id: 74d04b7f-341f-4ddc-84c3-b8e2d89d0f8f
       version: -1
       name: Automatically commit the fixes?
       type: condition
@@ -416,14 +412,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: 90b0390d-3e3f-4580-88be-25756f98a4fd
+    taskid: 386547cd-a609-4e8e-86e9-fbe18c9f818a
     type: regular
     task:
-      id: 90b0390d-3e3f-4580-88be-25756f98a4fd
+      id: 386547cd-a609-4e8e-86e9-fbe18c9f818a
       version: -1
       name: Mark Complete to Commit the changes
-      description: 'Mark this task complete to commit the changes made to Panorama
-        and push them to the device groups. '
+      description: 'Mark this task complete to commit the changes made to Panorama and push them to the device groups. '
       type: regular
       iscommand: false
       brand: ""
@@ -448,10 +443,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "14":
     id: "14"
-    taskid: a004d6b5-ec3d-4c9d-85a4-eb0200050a66
+    taskid: 7f8b5a01-97f4-4afd-8333-447dfe4480c7
     type: regular
     task:
-      id: a004d6b5-ec3d-4c9d-85a4-eb0200050a66
+      id: 7f8b5a01-97f4-4afd-8333-447dfe4480c7
       version: -1
       name: Close the remediation
       description: commands.local.cmd.close.inv
@@ -477,10 +472,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "15":
     id: "15"
-    taskid: a992eb26-5659-4197-87ca-6c5afc4edaf0
+    taskid: 05e4a3ee-5dc3-4dfb-86cd-824b95e07e1b
     type: condition
     task:
-      id: a992eb26-5659-4197-87ca-6c5afc4edaf0
+      id: 05e4a3ee-5dc3-4dfb-86cd-824b95e07e1b
       version: -1
       name: Do we have BP-V-9 issues?
       type: condition
@@ -520,14 +515,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "16":
     id: "16"
-    taskid: fb6a0550-a458-4413-8e6f-82fd9043c43e
+    taskid: b469f8a5-fcbf-4329-8307-6679a60d7153
     type: regular
     task:
-      id: fb6a0550-a458-4413-8e6f-82fd9043c43e
+      id: b469f8a5-fcbf-4329-8307-6679a60d7153
       version: -1
       name: Group
-      description: Groups configuration issues into actionable items so they can be
-        passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
       scriptName: GroupIssuesByFields
       type: regular
       iscommand: false
@@ -568,14 +562,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "17":
     id: "17"
-    taskid: 9a87ef4d-5707-4288-8034-2f4fba0e12a4
+    taskid: b719d918-f762-44ec-8ddb-48894b3ad5a9
     type: playbook
     task:
-      id: 9a87ef4d-5707-4288-8034-2f4fba0e12a4
+      id: b719d918-f762-44ec-8ddb-48894b3ad5a9
       version: -1
       name: PAN-OS Network Operation - Run Bulk Change
-      description: This playbook runs the fixes identified by GroupIssuesByFields
-        as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
       playbookName: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       iscommand: false
@@ -616,10 +609,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "18":
     id: "18"
-    taskid: b3c0e1d7-f6c3-4790-8c09-f2fdd6c9159f
+    taskid: 9c8f5d7f-dfa2-4bc9-876b-cd6845fe1916
     type: regular
     task:
-      id: b3c0e1d7-f6c3-4790-8c09-f2fdd6c9159f
+      id: 9c8f5d7f-dfa2-4bc9-876b-cd6845fe1916
       version: -1
       name: Set the indicator as Resolved
       description: commands.local.cmd.set.indicator
@@ -653,16 +646,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "19":
     id: "19"
-    taskid: b6ebecf3-63f6-4616-82cd-1c08dcaebda7
+    taskid: 2c87d773-dcef-46d7-8f4e-8ef5feb32280
     type: regular
     task:
-      id: b6ebecf3-63f6-4616-82cd-1c08dcaebda7
+      id: 2c87d773-dcef-46d7-8f4e-8ef5feb32280
       version: -1
       name: Get Log Forwarding Profiles
-      description: Searches and returns a reference for the given object type and
-        name. If no name is provided, all objects of the given type will be returned.
-        Note this ONLY returns the object name and its location in the configuration
-        hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
       script: '|||pan-os-config-get-object'
       type: regular
       iscommand: true
@@ -693,10 +683,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "20":
     id: "20"
-    taskid: 7167f0d2-a55f-44c6-823a-b9ec5b2ba8d0
+    taskid: 528bb739-bce2-495c-8b6b-528252fe1454
     type: condition
     task:
-      id: 7167f0d2-a55f-44c6-823a-b9ec5b2ba8d0
+      id: 528bb739-bce2-495c-8b6b-528252fe1454
       version: -1
       name: Do we have a default log forwarding profile?
       type: condition
@@ -733,10 +723,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "21":
     id: "21"
-    taskid: 40abbeb5-d9bb-4f1f-8786-950726bd9ad1
+    taskid: d61600cc-7a49-4379-8807-e88c9449748e
     type: collection
     task:
-      id: 40abbeb5-d9bb-4f1f-8786-950726bd9ad1
+      id: d61600cc-7a49-4379-8807-e88c9449748e
       version: -1
       name: Select the log Forwarding profile to use.
       type: collection
@@ -758,13 +748,13 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to: null
-      subject: null
-      body: null
+      to:
+      subject:
+      body:
       methods: []
       format: ""
-      bcc: null
-      cc: null
+      bcc:
+      cc:
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -821,10 +811,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "22":
     id: "22"
-    taskid: 2c11ec4a-8945-4966-8150-ff4a6604225c
+    taskid: 4d54a966-d011-48ed-80b5-6a4a343efa08
     type: title
     task:
-      id: 2c11ec4a-8945-4966-8150-ff4a6604225c
+      id: 4d54a966-d011-48ed-80b5-6a4a343efa08
       version: -1
       name: Threat
       type: title
@@ -851,10 +841,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "23":
     id: "23"
-    taskid: 8ff5465e-98d2-47a5-80af-5069376bb293
+    taskid: 96cff264-eb86-4f72-8ee6-1c88748f8701
     type: title
     task:
-      id: 8ff5465e-98d2-47a5-80af-5069376bb293
+      id: 96cff264-eb86-4f72-8ee6-1c88748f8701
       version: -1
       name: BP-V-10
       type: title
@@ -881,10 +871,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "24":
     id: "24"
-    taskid: ee7bc94d-12a9-4646-8cab-1d1895640423
+    taskid: b98bdfcc-72cc-4d2a-8550-eed76209235a
     type: condition
     task:
-      id: ee7bc94d-12a9-4646-8cab-1d1895640423
+      id: b98bdfcc-72cc-4d2a-8550-eed76209235a
       version: -1
       name: Do we have BP-V-10 issues?
       type: condition
@@ -924,14 +914,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "25":
     id: "25"
-    taskid: da507c74-f624-41bb-86d3-26dda90bf795
+    taskid: f0873b83-138a-4762-87f9-8fedb7da548d
     type: regular
     task:
-      id: da507c74-f624-41bb-86d3-26dda90bf795
+      id: f0873b83-138a-4762-87f9-8fedb7da548d
       version: -1
       name: Group
-      description: Groups configuration issues into actionable items so they can be
-        passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
       scriptName: GroupIssuesByFields
       type: regular
       iscommand: false
@@ -972,14 +961,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "26":
     id: "26"
-    taskid: 1ca5f361-fa07-47f7-8043-e2697567b836
+    taskid: 9b7a0027-fb01-4ec2-8e08-01d4ea79a4c1
     type: playbook
     task:
-      id: 1ca5f361-fa07-47f7-8043-e2697567b836
+      id: 9b7a0027-fb01-4ec2-8e08-01d4ea79a4c1
       version: -1
       name: PAN-OS Network Operation - Run Bulk Change
-      description: This playbook runs the fixes identified by GroupIssuesByFields
-        as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
       playbookName: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       iscommand: false
@@ -1020,16 +1008,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "28":
     id: "28"
-    taskid: b8978320-5a75-4c80-898a-5259d1cc6579
+    taskid: df421c62-91e5-4424-82ec-f108081dd223
     type: regular
     task:
-      id: b8978320-5a75-4c80-898a-5259d1cc6579
+      id: df421c62-91e5-4424-82ec-f108081dd223
       version: -1
       name: Get Security Profile Groups
-      description: Searches and returns a reference for the given object type and
-        name. If no name is provided, all objects of the given type will be returned.
-        Note this ONLY returns the object name and its location in the configuration
-        hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
       script: '|||pan-os-config-get-object'
       type: regular
       iscommand: true
@@ -1060,10 +1045,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "29":
     id: "29"
-    taskid: 61ff708e-0685-4702-8191-0957f657bb71
+    taskid: a856436e-4a8e-4804-8e89-23baf51e4bac
     type: condition
     task:
-      id: 61ff708e-0685-4702-8191-0957f657bb71
+      id: a856436e-4a8e-4804-8e89-23baf51e4bac
       version: -1
       name: Do we have a default Security Profile Group
       type: condition
@@ -1102,10 +1087,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "30":
     id: "30"
-    taskid: 1251405e-0cb5-4181-8ab9-7e1657758ae8
+    taskid: 6b5629be-9b56-485b-816e-646dce97dc0c
     type: collection
     task:
-      id: 1251405e-0cb5-4181-8ab9-7e1657758ae8
+      id: 6b5629be-9b56-485b-816e-646dce97dc0c
       version: -1
       name: Select the Security Profile Group to use.
       type: collection
@@ -1127,13 +1112,13 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to: null
-      subject: null
-      body: null
+      to:
+      subject:
+      body:
       methods: []
       format: ""
-      bcc: null
-      cc: null
+      bcc:
+      cc:
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -1186,10 +1171,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "31":
     id: "31"
-    taskid: 8615b4ed-a78c-4738-80e8-0c69178f98f2
+    taskid: c1724e92-29ce-4248-8e21-5ee8c60e113b
     type: title
     task:
-      id: 8615b4ed-a78c-4738-80e8-0c69178f98f2
+      id: c1724e92-29ce-4248-8e21-5ee8c60e113b
       version: -1
       name: BP-V-9
       type: title
@@ -1216,10 +1201,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "32":
     id: "32"
-    taskid: a6c9d640-a141-4e18-8205-5cdffdfa8baa
+    taskid: bf71a9f6-8b10-4514-8e9b-91fca191bd75
     type: title
     task:
-      id: a6c9d640-a141-4e18-8205-5cdffdfa8baa
+      id: bf71a9f6-8b10-4514-8e9b-91fca191bd75
       version: -1
       name: BP-V-7
       type: title
@@ -1246,10 +1231,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "33":
     id: "33"
-    taskid: 55441c10-d778-4fbc-8297-62d242c9bc2b
+    taskid: d61cbe04-bdd0-4bf3-8c61-ac6ba8d3e974
     type: condition
     task:
-      id: 55441c10-d778-4fbc-8297-62d242c9bc2b
+      id: d61cbe04-bdd0-4bf3-8c61-ac6ba8d3e974
       version: -1
       name: Do we have BP-V-7 issues?
       type: condition
@@ -1289,14 +1274,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "34":
     id: "34"
-    taskid: 44be604b-12aa-47ba-8c78-3ddcc08fa8bf
+    taskid: ec555b06-cc0a-4188-8810-44ee448f5fc1
     type: regular
     task:
-      id: 44be604b-12aa-47ba-8c78-3ddcc08fa8bf
+      id: ec555b06-cc0a-4188-8810-44ee448f5fc1
       version: -1
       name: Group
-      description: Groups configuration issues into actionable items so they can be
-        passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
       scriptName: GroupIssuesByFields
       type: regular
       iscommand: false
@@ -1337,16 +1321,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "35":
     id: "35"
-    taskid: b7d5ecde-8a90-4876-8bfb-e72e24b1f47e
+    taskid: 2a40c656-9d14-44ca-8066-d5648519e77a
     type: regular
     task:
-      id: b7d5ecde-8a90-4876-8bfb-e72e24b1f47e
+      id: 2a40c656-9d14-44ca-8066-d5648519e77a
       version: -1
       name: Get Log Forwarding Profiles
-      description: Searches and returns a reference for the given object type and
-        name. If no name is provided, all objects of the given type will be returned.
-        Note this ONLY returns the object name and its location in the configuration
-        hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
       script: '|||pan-os-config-get-object'
       type: regular
       iscommand: true
@@ -1377,10 +1358,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "36":
     id: "36"
-    taskid: d7f5796d-53f4-4df3-80ce-c3457a0d1a80
+    taskid: bf8aecca-bc0e-44fe-8aaa-074d24422370
     type: condition
     task:
-      id: d7f5796d-53f4-4df3-80ce-c3457a0d1a80
+      id: bf8aecca-bc0e-44fe-8aaa-074d24422370
       version: -1
       name: Do we have a default log forwarding profile?
       type: condition
@@ -1417,10 +1398,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "37":
     id: "37"
-    taskid: 072228bb-a190-41b3-87c3-2b4778765874
+    taskid: d4bb6c77-e603-4c3e-828d-43ce57730444
     type: collection
     task:
-      id: 072228bb-a190-41b3-87c3-2b4778765874
+      id: d4bb6c77-e603-4c3e-828d-43ce57730444
       version: -1
       name: Select the log Forwarding profile to use.
       type: collection
@@ -1442,13 +1423,13 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to: null
-      subject: null
-      body: null
+      to:
+      subject:
+      body:
       methods: []
       format: ""
-      bcc: null
-      cc: null
+      bcc:
+      cc:
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -1505,14 +1486,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "38":
     id: "38"
-    taskid: 67ed9f9c-5ba6-4142-8cfd-8917201bbecc
+    taskid: 5631f83e-8b48-48b1-87ca-db249f9f4453
     type: playbook
     task:
-      id: 67ed9f9c-5ba6-4142-8cfd-8917201bbecc
+      id: 5631f83e-8b48-48b1-87ca-db249f9f4453
       version: -1
       name: PAN-OS Network Operation - Run Bulk Change
-      description: This playbook runs the fixes identified by GroupIssuesByFields
-        as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
       playbookName: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       iscommand: false
@@ -1553,10 +1533,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "39":
     id: "39"
-    taskid: 64346bb3-d04d-47ed-89ac-6ca200a78b4b
+    taskid: 76156221-6199-4647-8e1c-3c3ff5ba6d62
     type: title
     task:
-      id: 64346bb3-d04d-47ed-89ac-6ca200a78b4b
+      id: 76156221-6199-4647-8e1c-3c3ff5ba6d62
       version: -1
       name: No Issues.
       type: title
@@ -1596,18 +1576,17 @@ inputs:
     simple: ${incident.issuequery}
   required: true
   description: The TIM query to filter for issues.
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: default_log_forwarding_profile
   value:
     simple: ${incident.defaultlogforwardingprofile}
   required: false
   description: If present, will be used whenever log forwarding needs to be enabled.
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: default_security_profile_group
   value:
     simple: ${incident.defaultsecurityprofilegroup}
   required: false
-  description: If present, will be used whenever a security profile group needs to
-    be set.
-  playbookInputQuery: null
+  description: If present, will be used whenever a security profile group needs to be set.
+  playbookInputQuery:
 outputs: []

@@ -1,5 +1,5 @@
 id: be9dfaa4-a371-4b46-8088-67679944a38b
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Take Snapshot
 description: Takes a JSON snapshot of the current operational state of the device.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 3c099c56-a0a8-4b34-8db4-2fc5651f59f2
+    taskid: abb26fe5-2510-4b23-8645-c2bdc3e8025f
     type: start
     task:
-      id: 3c099c56-a0a8-4b34-8db4-2fc5651f59f2
+      id: abb26fe5-2510-4b23-8645-c2bdc3e8025f
       version: -1
       name: ""
       iscommand: false
@@ -36,14 +36,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: e4bc6635-26d1-44b0-86ca-0397cf9f00c8
+    taskid: 3e26aea4-6945-4ff5-8fb7-cfcf0a775cbe
     type: regular
     task:
-      id: e4bc6635-26d1-44b0-86ca-0397cf9f00c8
+      id: 3e26aea4-6945-4ff5-8fb7-cfcf0a775cbe
       version: -1
       name: Take Snapshot
-      description: Takes a JSON Snapshot of the current operational state of the target
-        device
+      description: Takes a JSON Snapshot of the current operational state of the target device
       tags:
       - snapshot-file
       scriptName: TakeOperationalSnapshot
@@ -75,10 +74,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 528d4ffe-bece-4be5-89ee-fcc26e9e62f2
+    taskid: 306c936a-6af0-45f6-89c1-59dbb1362b0b
     type: title
     task:
-      id: 528d4ffe-bece-4be5-89ee-fcc26e9e62f2
+      id: 306c936a-6af0-45f6-89c1-59dbb1362b0b
       version: -1
       name: Finish
       type: title
@@ -102,10 +101,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 78c2ac0a-c996-42e2-87b3-c65000ca72a5
+    taskid: eef401d5-e286-4c13-8176-7699a6217773
     type: regular
     task:
-      id: 78c2ac0a-c996-42e2-87b3-c65000ca72a5
+      id: eef401d5-e286-4c13-8176-7699a6217773
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -153,7 +152,7 @@ inputs:
     simple: ${incident.panosnetworkoperationstarget}
   required: true
   description: The target to take the snapshot of
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs:
 - contextPath: File.EntryID
   description: The file entry ID.

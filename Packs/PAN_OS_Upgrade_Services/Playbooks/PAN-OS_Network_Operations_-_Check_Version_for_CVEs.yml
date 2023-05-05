@@ -1,17 +1,16 @@
 id: PAN-OS Network Operations - Check Version for CVEs
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Check Version for CVEs
-description: Checks a specific version of software for any open CVEs, and if they
-  exist, starts a domain upgrade for that system to a fixed version.
+description: Checks a specific version of software for any open CVEs, and if they exist, starts a domain upgrade for that system to a fixed version.
 starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 5bdd8584-edc0-4bb2-8207-d185a2be1c0f
+    taskid: 17ce2801-2459-47ba-8c79-7581f4757e80
     type: start
     task:
-      id: 5bdd8584-edc0-4bb2-8207-d185a2be1c0f
+      id: 17ce2801-2459-47ba-8c79-7581f4757e80
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: ba0176ff-0a62-4be2-826f-66db0a408ad5
+    taskid: e1fff97a-aa69-40af-80bb-8e90acfa1aa7
     type: regular
     task:
-      id: ba0176ff-0a62-4be2-826f-66db0a408ad5
+      id: e1fff97a-aa69-40af-80bb-8e90acfa1aa7
       version: -1
       name: Get the advisories for this Version
       description: Gets all the advisories for the given product.
@@ -74,14 +73,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: cd3a7629-8340-4270-875b-ddd6759d9986
+    taskid: b8ea1cf8-bc73-49a2-8e08-1cc3a04b74cd
     type: regular
     task:
-      id: cd3a7629-8340-4270-875b-ddd6759d9986
+      id: b8ea1cf8-bc73-49a2-8e08-1cc3a04b74cd
       version: -1
       name: Check if this version is affected by any CVEs
-      description: 'Checks if the given PAN-OS version number is affected by the given
-        list of vulnerabilties. '
+      description: 'Checks if the given PAN-OS version number is affected by the given list of vulnerabilties. '
       script: CheckPanosVersionAffected
       type: regular
       iscommand: false
@@ -112,10 +110,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 845026fc-4c11-4369-8f43-dfa86cf51d33
+    taskid: e2d959ff-4573-4de2-84cb-2a8b690c0ed5
     type: condition
     task:
-      id: 845026fc-4c11-4369-8f43-dfa86cf51d33
+      id: e2d959ff-4573-4de2-84cb-2a8b690c0ed5
       version: -1
       name: Any matches?
       type: condition
@@ -166,10 +164,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 1cbf68e8-38af-4e80-87a5-ae000e2fb98e
+    taskid: 74d70798-6142-404e-86a6-ab50784a6fc3
     type: title
     task:
-      id: 1cbf68e8-38af-4e80-87a5-ae000e2fb98e
+      id: 74d70798-6142-404e-86a6-ab50784a6fc3
       version: -1
       name: Finish
       type: title
@@ -193,10 +191,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 74d350e2-ed8c-4705-8bc6-e855582f1400
+    taskid: c2438446-af2e-4d58-81cd-6216388b0b6c
     type: regular
     task:
-      id: 74d350e2-ed8c-4705-8bc6-e855582f1400
+      id: c2438446-af2e-4d58-81cd-6216388b0b6c
       version: -1
       name: Create Platform Upgrade Incident
       description: commands.local.cmd.create.inc
@@ -282,11 +280,11 @@ inputs:
   value: {}
   required: true
   description: Software version to check.
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: minimum_cvss_score
   value:
     simple: "7.0"
   required: false
   description: Minimum CVSS score to initiate the upgrade process.
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs: []

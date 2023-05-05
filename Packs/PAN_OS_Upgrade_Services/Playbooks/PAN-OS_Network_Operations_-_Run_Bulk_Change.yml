@@ -1,17 +1,16 @@
 id: 6abaaf4d-6a84-4f35-8e60-2038625a349a
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Run Bulk Change
-description: This playbook runs the fixes identified by GroupIssuesByFields as a looped
-  playbook to ensure the correct objects are updated at all times.
+description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
 starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 214a39bd-721d-4a22-8a37-fa70f6cc05bf
+    taskid: f5a56610-94ca-4a62-86d4-605717bc0a90
     type: start
     task:
-      id: 214a39bd-721d-4a22-8a37-fa70f6cc05bf
+      id: f5a56610-94ca-4a62-86d4-605717bc0a90
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 9e8678e6-98c0-4bf8-8d40-83874ed96f5a
+    taskid: 9cb1acc4-1272-4f3a-8856-cdf83688f7e8
     type: regular
     task:
-      id: 9e8678e6-98c0-4bf8-8d40-83874ed96f5a
+      id: 9cb1acc4-1272-4f3a-8856-cdf83688f7e8
       version: -1
       name: Execute The Change
       description: |
@@ -84,10 +83,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 125feb99-e825-4f62-8f14-caeb02254cb7
+    taskid: 0ab4e5e7-5437-49c3-8fe1-2e19cd3159fa
     type: title
     task:
-      id: 125feb99-e825-4f62-8f14-caeb02254cb7
+      id: 0ab4e5e7-5437-49c3-8fe1-2e19cd3159fa
       version: -1
       name: Done
       type: title
@@ -126,28 +125,28 @@ inputs:
   value: {}
   required: false
   description: ""
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: new_value
   value: {}
   required: false
   description: ""
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: object_type
   value: {}
   required: false
   description: ""
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: attribute_to_update
   value: {}
   required: false
   description: ""
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: device
   value:
     simple: ${incident.panosnetworkoperationstarget}
   required: false
   description: ""
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs:
 - contextPath: PANOS.PanosUpdatedObject
   description: Updated Objects.

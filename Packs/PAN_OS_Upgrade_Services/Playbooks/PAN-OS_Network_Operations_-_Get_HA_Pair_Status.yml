@@ -1,17 +1,16 @@
 id: 7409a83d-eab4-4acd-8b93-a4abc6a038e4
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Get HA Pair Status
-description: Determines which device in a HA pair is active or passive, and if the
-  pair is an active-passive or active-active mode.
+description: Determines which device in a HA pair is active or passive, and if the pair is an active-passive or active-active mode.
 starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 576e115a-7ebb-46a1-8988-7a6c46aa4699
+    taskid: f26cbc58-60a2-4730-80f2-e205fa840672
     type: start
     task:
-      id: 576e115a-7ebb-46a1-8988-7a6c46aa4699
+      id: f26cbc58-60a2-4730-80f2-e205fa840672
       version: -1
       name: ""
       iscommand: false
@@ -37,14 +36,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 1d831232-ec80-440d-87b5-46e9ab1c2dfe
+    taskid: 3027c8f3-621a-483f-8598-a8e2b1975c1a
     type: regular
     task:
-      id: 1d831232-ec80-440d-87b5-46e9ab1c2dfe
+      id: 3027c8f3-621a-483f-8598-a8e2b1975c1a
       version: -1
       name: Get HA state
-      description: Gets the HA state and associated details from the given device
-        and any other details.
+      description: Gets the HA state and associated details from the given device and any other details.
       script: '|||pan-os-platform-get-ha-state'
       type: regular
       iscommand: true
@@ -73,10 +71,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 763ac777-54b0-4f46-8136-135e62b9d2d3
+    taskid: 784f87f3-d556-426d-846e-3d3b128cad61
     type: condition
     task:
-      id: 763ac777-54b0-4f46-8136-135e62b9d2d3
+      id: 784f87f3-d556-426d-846e-3d3b128cad61
       version: -1
       name: Is there a peer?
       type: condition
@@ -113,14 +111,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: d562120f-db73-4fe8-8646-0eeebd75116e
+    taskid: 1d913ab2-1a77-4664-84df-19f2a3ea35aa
     type: regular
     task:
-      id: d562120f-db73-4fe8-8646-0eeebd75116e
+      id: 1d913ab2-1a77-4664-84df-19f2a3ea35aa
       version: -1
       name: Get Peer HA State
-      description: Gets the HA state and associated details from the given device
-        and any other details.
+      description: Gets the HA state and associated details from the given device and any other details.
       script: '|||pan-os-platform-get-ha-state'
       type: regular
       iscommand: true
@@ -150,10 +147,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: f0a1c3fa-f775-480c-8800-db3f9b1f9448
+    taskid: c0251ee7-8d3b-4d99-8414-319b3c9993bc
     type: title
     task:
-      id: f0a1c3fa-f775-480c-8800-db3f9b1f9448
+      id: c0251ee7-8d3b-4d99-8414-319b3c9993bc
       version: -1
       name: Finish - No HA
       type: title
@@ -177,10 +174,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 8060a5af-4145-4b8c-8226-65d297aa66c7
+    taskid: e8cf049d-d51b-4713-8213-12108479d60c
     type: regular
     task:
-      id: 8060a5af-4145-4b8c-8226-65d297aa66c7
+      id: e8cf049d-d51b-4713-8213-12108479d60c
       version: -1
       name: Set Active Peer
       description: Set a value in context under the key you entered.
@@ -224,10 +221,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 9f53d36a-3d77-4af1-8573-9ddfcc0e18b0
+    taskid: 92f4a105-7b90-4eac-899a-7b717fc621bf
     type: regular
     task:
-      id: 9f53d36a-3d77-4af1-8573-9ddfcc0e18b0
+      id: 92f4a105-7b90-4eac-899a-7b717fc621bf
       version: -1
       name: Set Passive Peer
       description: |-
@@ -284,10 +281,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 1df7d26b-d437-43e4-8903-9d3e12cadbca
+    taskid: b8b3a487-e17a-42ef-8678-1d754343bcc7
     type: title
     task:
-      id: 1df7d26b-d437-43e4-8903-9d3e12cadbca
+      id: b8b3a487-e17a-42ef-8678-1d754343bcc7
       version: -1
       name: Finish HA Discovery
       type: title
@@ -326,7 +323,7 @@ inputs:
   value: {}
   required: false
   description: Target firewall
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs:
 - contextPath: ActiveDevice
   description: The active firewall

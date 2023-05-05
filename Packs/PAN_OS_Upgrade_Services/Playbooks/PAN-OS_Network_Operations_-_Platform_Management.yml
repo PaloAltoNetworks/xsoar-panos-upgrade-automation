@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Platform Management
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Platform Management
 description: Retrieves all the details of the PAN-OS Platform and topology.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 8ae1c400-d022-457d-8a07-e82346889383
+    taskid: da38aae5-1227-4049-824a-2d835081a8f3
     type: start
     task:
-      id: 8ae1c400-d022-457d-8a07-e82346889383
+      id: da38aae5-1227-4049-824a-2d835081a8f3
       version: -1
       name: ""
       iscommand: false
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 707a60a8-0bce-4ccb-88b6-2dbde570e0ac
+    taskid: 055a0965-794f-4a2b-8ae9-d0df7470fe56
     type: regular
     task:
-      id: 707a60a8-0bce-4ccb-88b6-2dbde570e0ac
+      id: 055a0965-794f-4a2b-8ae9-d0df7470fe56
       version: -1
       name: Get System Information
       description: Gets information from all PAN-OS systems in the topology.
@@ -83,10 +83,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: e1b59f97-3507-4659-8953-89c282f4ab0c
+    taskid: 7ff123bb-ed3d-464f-842c-0f3c571858ad
     type: regular
     task:
-      id: e1b59f97-3507-4659-8953-89c282f4ab0c
+      id: 7ff123bb-ed3d-464f-842c-0f3c571858ad
       version: -1
       name: Delete Context
       description: Delete field from context
@@ -122,10 +122,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 6c38fc34-a1c6-4be5-8ca6-e93759f33e4c
+    taskid: a90db5fb-5ce4-4a88-8df5-81d152c36ba9
     type: regular
     task:
-      id: 6c38fc34-a1c6-4be5-8ca6-e93759f33e4c
+      id: a90db5fb-5ce4-4a88-8df5-81d152c36ba9
       version: -1
       name: Get ARP Summary
       description: Gets all arp tables from all firewalls in the topology.
@@ -161,10 +161,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 26c3dd39-965d-4e1c-897c-3c7d5335612b
+    taskid: 2d5cf890-b8a5-4e06-82c4-8a4ce334bb42
     type: regular
     task:
-      id: 26c3dd39-965d-4e1c-897c-3c7d5335612b
+      id: 2d5cf890-b8a5-4e06-82c4-8a4ce334bb42
       version: -1
       name: Get Route Summary
       description: Pulls all route summary information from the topology
@@ -197,14 +197,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 938698ed-6ffb-429c-87be-d829ccffb141
+    taskid: ce4c897f-574e-4239-8ebd-451daf94e07d
     type: regular
     task:
-      id: 938698ed-6ffb-429c-87be-d829ccffb141
+      id: ce4c897f-574e-4239-8ebd-451daf94e07d
       version: -1
       name: Get Global Counters
-      description: Gets global counter information from all the PAN-OS firewalls in
-        the topology
+      description: Gets global counter information from all the PAN-OS firewalls in the topology
       script: '|||pan-os-platform-get-global-counters'
       type: regular
       iscommand: true
@@ -237,10 +236,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 42be0516-2636-45cd-8b16-e42472172be7
+    taskid: 7efa7313-9f98-4ce5-8bc1-b0189b402a1f
     type: title
     task:
-      id: 42be0516-2636-45cd-8b16-e42472172be7
+      id: 7efa7313-9f98-4ce5-8bc1-b0189b402a1f
       version: -1
       name: Finish Information Gathering
       type: title
@@ -267,10 +266,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 9cda5d9a-5f0e-4a74-8cc5-f6666acca866
+    taskid: d06d510c-3720-4e06-80b5-e8ea2c640ac9
     type: regular
     task:
-      id: 9cda5d9a-5f0e-4a74-8cc5-f6666acca866
+      id: d06d510c-3720-4e06-80b5-e8ea2c640ac9
       version: -1
       name: Get All Routes
       description: Pulls all route summary information from the topology
@@ -314,10 +313,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 5780eef1-da64-4b94-8bdf-cd890ae6e787
+    taskid: 0220bb88-c62f-488c-8e0e-b70558a9a109
     type: playbook
     task:
-      id: 5780eef1-da64-4b94-8bdf-cd890ae6e787
+      id: 0220bb88-c62f-488c-8e0e-b70558a9a109
       version: -1
       name: PAN-OS Network Operations - Incident Callback
       playbookName: PAN-OS Network Operations - Incident Callback
@@ -350,10 +349,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: d4b534ee-5596-4c34-8bea-d0d9922bdd44
+    taskid: 6426e193-ee9a-4fcf-895b-ffb7b112abec
     type: title
     task:
-      id: d4b534ee-5596-4c34-8bea-d0d9922bdd44
+      id: 6426e193-ee9a-4fcf-895b-ffb7b112abec
       version: -1
       name: Create Device Specific Incidents
       type: title
@@ -380,10 +379,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: 573b5c11-604a-4556-83f1-bcd0b2906886
+    taskid: 0eab2b6b-a639-4517-8365-22a763c38c5f
     type: regular
     task:
-      id: 573b5c11-604a-4556-83f1-bcd0b2906886
+      id: 0eab2b6b-a639-4517-8365-22a763c38c5f
       version: -1
       name: Set Incident Type HTML
       description: commands.local.cmd.set.incident
@@ -420,14 +419,13 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: 03800630-124c-4e86-8e4b-14d468d502e2
+    taskid: e6a5d53e-d551-4b4b-8c1b-fe4eaa4fbae3
     type: regular
     task:
-      id: 03800630-124c-4e86-8e4b-14d468d502e2
+      id: e6a5d53e-d551-4b4b-8c1b-fe4eaa4fbae3
       version: -1
       name: Get BGP Peers
-      description: Retrieves all BGP peer information from the PAN-OS firewalls in
-        the topology.
+      description: Retrieves all BGP peer information from the PAN-OS firewalls in the topology.
       script: '|||pan-os-platform-get-bgp-peers'
       type: regular
       iscommand: true
@@ -468,10 +466,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "13":
     id: "13"
-    taskid: 9e26e85a-0e5b-4d98-82ca-32bbba951c8d
+    taskid: aa624548-bbbb-4f4a-883e-07c0ad70f2d1
     type: regular
     task:
-      id: 9e26e85a-0e5b-4d98-82ca-32bbba951c8d
+      id: aa624548-bbbb-4f4a-883e-07c0ad70f2d1
       version: -1
       name: Sleep to ensure everything is caught up
       description: Sleep for X seconds
@@ -503,10 +501,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "14":
     id: "14"
-    taskid: 8fb93d5f-d6b6-4f43-8423-fee73d069f1c
+    taskid: 0556f73d-73a7-49f4-8a33-0e74e5b118bc
     type: title
     task:
-      id: 8fb93d5f-d6b6-4f43-8423-fee73d069f1c
+      id: 0556f73d-73a7-49f4-8a33-0e74e5b118bc
       version: -1
       name: Get More data...
       type: title
@@ -535,10 +533,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "15":
     id: "15"
-    taskid: 85343fdc-0019-46cb-8c50-6079316add2d
+    taskid: 16586911-a79e-49f3-8ab8-73094271e14a
     type: regular
     task:
-      id: 85343fdc-0019-46cb-8c50-6079316add2d
+      id: 16586911-a79e-49f3-8ab8-73094271e14a
       version: -1
       name: Create Or Update Incidents
       description: Creates, or updates existing device incidents.
@@ -570,10 +568,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "16":
     id: "16"
-    taskid: ebccfb32-2bf8-4a5c-8619-b56e5076912c
+    taskid: ac5ccdef-e824-46f7-8e11-d24ccbea66c9
     type: title
     task:
-      id: ebccfb32-2bf8-4a5c-8619-b56e5076912c
+      id: ac5ccdef-e824-46f7-8e11-d24ccbea66c9
       version: -1
       name: Finish
       type: title
@@ -597,10 +595,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "17":
     id: "17"
-    taskid: 3c192925-b41a-4bed-827e-263ac4451b29
+    taskid: 12e4fed5-b070-4e32-836c-2d030454fda9
     type: playbook
     task:
-      id: 3c192925-b41a-4bed-827e-263ac4451b29
+      id: 12e4fed5-b070-4e32-836c-2d030454fda9
       version: -1
       name: Update Occurred Time
       playbookId: Update Occurred Time
@@ -642,14 +640,13 @@ inputs:
 - key: close_task_id
   value: {}
   required: false
-  description: If set, completes the given task in the parent playbook. Used to ensure
-    that the parent does not continue until this incident is finished processing.
-  playbookInputQuery: null
+  description: If set, completes the given task in the parent playbook. Used to ensure that the parent does not continue until this incident is finished processing.
+  playbookInputQuery:
 - key: parent_incident_id
   value: {}
   required: false
   description: Incident that initiated this subplaybook, if any.
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs:
 - contextPath: PANOS.ShowSystemInfo.Result
   description: PANOS System Information

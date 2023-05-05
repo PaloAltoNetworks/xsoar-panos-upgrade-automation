@@ -1,615 +1,615 @@
 {
-	"cacheVersn": 0,
-	"definitionId": "",
-	"fromDate": "0001-01-01T00:00:00Z",
-	"fromDateLicense": "0001-01-01T00:00:00Z",
-	"fromServerVersion": "",
-	"hidePivot": false,
-	"hideSearch": false,
-	"id": "583e285c-b9f3-4650-8c43-d22c06249472",
-	"isCommon": false,
-	"itemVersion": "",
-	"layout": [
-		{
-			"forceRange": false,
-			"h": 1,
-			"i": "aecf3170-2729-11ed-b43c-fb0953857fe9",
-			"id": "aecf3170-2729-11ed-b43c-fb0953857fe9",
-			"reflectDimensions": true,
-			"w": 2,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "5.0.0",
-				"id": "",
-				"isPredefined": false,
-				"itemVersion": "1.2.6",
-				"modified": "2022-07-23T23:45:04.858623897Z",
-				"name": "Firewalls being onboarded",
-				"packID": "CommonWidgets",
-				"packName": "Common Widgets",
-				"packPropagationLabels": [
-					"all"
-				],
-				"params": {
-					"colors": {
-						"isEnabled": true,
-						"items": {
-							"#1DB846": {
-								"value": null
-							},
-							"#EF9700": {
-								"value": 0
-							}
-						},
-						"type": "above"
-					}
-				},
-				"prevName": "Incidents in Error Run Status",
-				"propagationLabels": [],
-				"query": "type:\"PAN-OS Network Operations - Onboarding\" -status:Closed",
-				"shouldCommit": false,
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 0,
-				"widgetType": "number"
-			},
-			"x": 0,
-			"y": 0
-		},
-		{
-			"forceRange": false,
-			"h": 1,
-			"i": "e43c68a0-2729-11ed-b43c-fb0953857fe9",
-			"id": "e43c68a0-2729-11ed-b43c-fb0953857fe9",
-			"reflectDimensions": true,
-			"w": 2,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "5.0.0",
-				"id": "",
-				"isPredefined": false,
-				"itemVersion": "1.2.6",
-				"modified": "2022-07-23T23:45:04.858623897Z",
-				"name": "Firewalls Failed to Onboard",
-				"packID": "CommonWidgets",
-				"packName": "Common Widgets",
-				"packPropagationLabels": [
-					"all"
-				],
-				"params": {
-					"colors": {
-						"isEnabled": true,
-						"items": {
-							"#1DB846": {
-								"value": null
-							},
-							"#D13C3C": {
-								"value": 0
-							}
-						},
-						"type": "above"
-					}
-				},
-				"prevName": "Incidents in Error Run Status",
-				"propagationLabels": [],
-				"query": "type:\"PAN-OS Network Operations - Onboarding\" runStatus:error -status:Closed",
-				"shouldCommit": false,
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 0,
-				"widgetType": "number"
-			},
-			"x": 2,
-			"y": 0
-		},
-		{
-			"forceRange": false,
-			"h": 2,
-			"i": "aae60b30-273b-11ed-bcff-d1dea57f5b48",
-			"id": "aae60b30-273b-11ed-bcff-d1dea57f5b48",
-			"reflectDimensions": true,
-			"w": 7,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "5.0.0",
-				"id": "",
-				"isPredefined": false,
-				"itemVersion": "1.2.6",
-				"modified": "2022-07-23T23:45:04.857738375Z",
-				"name": "Onboarded Firewalls over Time",
-				"packID": "CommonWidgets",
-				"packName": "Common Widgets",
-				"packPropagationLabels": [
-					"all"
-				],
-				"params": {
-					"groupBy": [
-						"occurred(d)",
-						"dbotStatus"
-					]
-				},
-				"prevName": "Active Incidents - Line chart",
-				"propagationLabels": [],
-				"query": "-category:job and -status:archived type:\"PAN-OS Network Operations - Onboarding\"",
-				"shouldCommit": false,
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 0,
-				"widgetType": "line"
-			},
-			"x": 0,
-			"y": 2
-		},
-		{
-			"forceRange": false,
-			"h": 1,
-			"i": "f26a9b60-273b-11ed-bcff-d1dea57f5b48",
-			"id": "f26a9b60-273b-11ed-bcff-d1dea57f5b48",
-			"reflectDimensions": true,
-			"w": 2,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "5.0.0",
-				"id": "",
-				"isPredefined": false,
-				"itemVersion": "1.2.6",
-				"modified": "2022-07-23T23:45:04.858623897Z",
-				"name": "Average time to Connect to Panorama",
-				"packID": "CommonWidgets",
-				"packName": "Common Widgets",
-				"packPropagationLabels": [
-					"all"
-				],
-				"params": {
-					"colors": {
-						"isEnabled": true,
-						"items": {
-							"#1DB846": {
-								"value": 0
-							},
-							"#EF9700": {
-								"value": 1800
-							}
-						},
-						"type": "above"
-					},
-					"keys": [
-						"avg|onboardingtime.totalDuration"
-					]
-				},
-				"prevName": "Incidents in Error Run Status",
-				"propagationLabels": [],
-				"query": "type:\"PAN-OS Network Operations - Onboarding\" status:Closed",
-				"shouldCommit": false,
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 0,
-				"widgetType": "duration"
-			},
-			"x": 2,
-			"y": 1
-		},
-		{
-			"forceRange": false,
-			"h": 1,
-			"i": "61d2f650-273c-11ed-bcff-d1dea57f5b48",
-			"id": "61d2f650-273c-11ed-bcff-d1dea57f5b48",
-			"reflectDimensions": true,
-			"w": 2,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "5.0.0",
-				"id": "",
-				"isPredefined": false,
-				"itemVersion": "1.2.6",
-				"modified": "2022-07-23T23:45:04.858623897Z",
-				"name": "Total Onboarded Firewalls",
-				"packID": "CommonWidgets",
-				"packName": "Common Widgets",
-				"packPropagationLabels": [
-					"all"
-				],
-				"params": {
-					"colors": {
-						"isEnabled": true,
-						"items": {
-							"#1DB846": {
-								"value": 0
-							}
-						},
-						"type": "above"
-					}
-				},
-				"prevName": "Incidents in Error Run Status",
-				"propagationLabels": [],
-				"query": "type:\"PAN-OS Network Operations - Onboarding\" status:Closed runStatus:completed",
-				"shouldCommit": false,
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 0,
-				"widgetType": "number"
-			},
-			"x": 0,
-			"y": 1
-		},
-		{
-			"forceRange": false,
-			"h": 3,
-			"i": "edcbc970-273c-11ed-bcff-d1dea57f5b48",
-			"id": "edcbc970-273c-11ed-bcff-d1dea57f5b48",
-			"reflectDimensions": true,
-			"w": 12,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "",
-				"id": "b7ca7af9-d57f-4b09-840d-1d2af5f6d179",
-				"isPredefined": false,
-				"itemVersion": "",
-				"modified": "2022-08-29T01:50:14.714560274Z",
-				"name": "Onboarding Tasks",
-				"packID": "",
-				"packName": "",
-				"params": {
-					"enablePagination": true,
-					"tableColumns": [
-						{
-							"displayed": true,
-							"isDefault": true,
-							"key": "id",
-							"width": 110
-						},
-						{
-							"displayed": true,
-							"isDefault": true,
-							"key": "name",
-							"width": 300
-						},
-						{
-							"displayed": true,
-							"isDefault": true,
-							"key": "status",
-							"width": 80
-						},
-						{
-							"displayed": true,
-							"key": "Onboarding Status",
-							"width": 200
-						},
-						{
-							"displayed": true,
-							"key": "New Hostname",
-							"width": 200
-						},
-						{
-							"displayed": true,
-							"key": "Serial Number",
-							"width": 200
-						}
-					]
-				},
-				"prevName": "Pending Onboard",
-				"propagationLabels": [
-					"all"
-				],
-				"query": "type:\"PAN-OS Network Operations - Onboarding\" status:Active",
-				"shouldCommit": false,
-				"sort": [
-					{
-						"asc": false,
-						"field": "id",
-						"fieldType": ""
-					}
-				],
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 1,
-				"widgetType": "table"
-			},
-			"x": 0,
-			"y": 4
-		},
-		{
-			"forceRange": false,
-			"h": 2,
-			"i": "fb23c5a0-273c-11ed-bcff-d1dea57f5b48",
-			"id": "fb23c5a0-273c-11ed-bcff-d1dea57f5b48",
-			"reflectDimensions": true,
-			"w": 3,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "5.0.0",
-				"id": "",
-				"isPredefined": false,
-				"itemVersion": "1.2.6",
-				"modified": "2022-07-23T23:45:04.857738375Z",
-				"name": "Onboarded Firewalls By Device Group",
-				"packID": "CommonWidgets",
-				"packName": "Common Widgets",
-				"packPropagationLabels": [
-					"all"
-				],
-				"params": {
-					"groupBy": [
-						"onboardtodevicegroup"
-					],
-					"valuesFormat": "abbreviated"
-				},
-				"prevName": "Active Incidents - Line chart",
-				"propagationLabels": [],
-				"query": "-category:job and -status:archived type:\"PAN-OS Network Operations - Onboarding\"",
-				"shouldCommit": false,
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 0,
-				"widgetType": "pie"
-			},
-			"x": 4,
-			"y": 0
-		},
-		{
-			"forceRange": false,
-			"h": 2,
-			"i": "63eb80a0-273d-11ed-bcff-d1dea57f5b48",
-			"id": "63eb80a0-273d-11ed-bcff-d1dea57f5b48",
-			"reflectDimensions": true,
-			"w": 5,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "5.0.0",
-				"id": "",
-				"isPredefined": false,
-				"itemVersion": "1.2.6",
-				"modified": "2022-07-23T23:45:04.857738375Z",
-				"name": "Onboarding Tasks by Status",
-				"packID": "CommonWidgets",
-				"packName": "Common Widgets",
-				"packPropagationLabels": [
-					"all"
-				],
-				"params": {
-					"groupBy": [
-						"onboardingstatus"
-					],
-					"valuesFormat": "abbreviated"
-				},
-				"prevName": "Active Incidents - Line chart",
-				"propagationLabels": [],
-				"query": "-status:Closed -category:job and -status:archived type:\"PAN-OS Network Operations - Onboarding\"",
-				"shouldCommit": false,
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 0,
-				"widgetType": "column"
-			},
-			"x": 7,
-			"y": 2
-		},
-		{
-			"forceRange": false,
-			"h": 2,
-			"i": "17ee0d50-274f-11ed-bcff-d1dea57f5b48",
-			"id": "17ee0d50-274f-11ed-bcff-d1dea57f5b48",
-			"reflectDimensions": true,
-			"w": 5,
-			"widget": {
-				"Cache": null,
-				"cacheVersn": 0,
-				"category": "",
-				"commitMessage": "",
-				"dataType": "incidents",
-				"dateRange": {
-					"fromDate": "0001-01-01T00:00:00Z",
-					"fromDateLicense": "0001-01-01T00:00:00Z",
-					"period": {
-						"by": "",
-						"byFrom": "days",
-						"byTo": "",
-						"field": "",
-						"fromValue": 7,
-						"toValue": null
-					},
-					"toDate": "0001-01-01T00:00:00Z"
-				},
-				"definitionId": "",
-				"fromServerVersion": "5.0.0",
-				"id": "",
-				"isPredefined": false,
-				"itemVersion": "1.2.6",
-				"modified": "2022-07-23T23:45:04.857738375Z",
-				"name": "Onboarded Firewalls By Template Stack",
-				"packID": "CommonWidgets",
-				"packName": "Common Widgets",
-				"packPropagationLabels": [
-					"all"
-				],
-				"params": {
-					"groupBy": [
-						"onboardtotemplatestack"
-					],
-					"valuesFormat": "abbreviated"
-				},
-				"prevName": "Active Incidents - Line chart",
-				"propagationLabels": [],
-				"query": "-category:job and -status:archived type:\"PAN-OS Network Operations - Onboarding\"",
-				"shouldCommit": false,
-				"toServerVersion": "",
-				"vcShouldIgnore": false,
-				"vcShouldKeepItemLegacyProdMachine": false,
-				"version": 0,
-				"widgetType": "pie"
-			},
-			"x": 7,
-			"y": 0
-		}
-	],
-	"locked": false,
-	"modulePage": false,
-	"name": "Firewall Onboarding",
-	"owner": "admin",
-	"packID": "",
-	"packName": "",
-	"period": {
-		"by": "",
-		"byFrom": "days",
-		"byTo": "",
-		"field": "",
-		"fromValue": 7,
-		"toValue": null
-	},
-	"system": false,
-	"toDate": "0001-01-01T00:00:00Z",
-	"toServerVersion": "",
-	"version": -1
+    "cacheVersn": 0,
+    "definitionId": "",
+    "fromDate": "0001-01-01T00:00:00Z",
+    "fromDateLicense": "0001-01-01T00:00:00Z",
+    "fromServerVersion": "",
+    "hidePivot": false,
+    "hideSearch": false,
+    "id": "583e285c-b9f3-4650-8c43-d22c06249472",
+    "isCommon": false,
+    "itemVersion": "",
+    "layout": [
+        {
+            "forceRange": false,
+            "h": 1,
+            "i": "aecf3170-2729-11ed-b43c-fb0953857fe9",
+            "id": "aecf3170-2729-11ed-b43c-fb0953857fe9",
+            "reflectDimensions": true,
+            "w": 2,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "5.0.0",
+                "id": "",
+                "isPredefined": false,
+                "itemVersion": "1.2.6",
+                "modified": "2022-07-23T23:45:04.858623897Z",
+                "name": "Firewalls being onboarded",
+                "packID": "CommonWidgets",
+                "packName": "Common Widgets",
+                "packPropagationLabels": [
+                    "all"
+                ],
+                "params": {
+                    "colors": {
+                        "isEnabled": true,
+                        "items": {
+                            "#1DB846": {
+                                "value": null
+                            },
+                            "#EF9700": {
+                                "value": 0
+                            }
+                        },
+                        "type": "above"
+                    }
+                },
+                "prevName": "Incidents in Error Run Status",
+                "propagationLabels": [],
+                "query": "type:\"PAN-OS Network Operations - Onboarding\" -status:Closed",
+                "shouldCommit": false,
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 0,
+                "widgetType": "number"
+            },
+            "x": 0,
+            "y": 0
+        },
+        {
+            "forceRange": false,
+            "h": 1,
+            "i": "e43c68a0-2729-11ed-b43c-fb0953857fe9",
+            "id": "e43c68a0-2729-11ed-b43c-fb0953857fe9",
+            "reflectDimensions": true,
+            "w": 2,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "5.0.0",
+                "id": "",
+                "isPredefined": false,
+                "itemVersion": "1.2.6",
+                "modified": "2022-07-23T23:45:04.858623897Z",
+                "name": "Firewalls Failed to Onboard",
+                "packID": "CommonWidgets",
+                "packName": "Common Widgets",
+                "packPropagationLabels": [
+                    "all"
+                ],
+                "params": {
+                    "colors": {
+                        "isEnabled": true,
+                        "items": {
+                            "#1DB846": {
+                                "value": null
+                            },
+                            "#D13C3C": {
+                                "value": 0
+                            }
+                        },
+                        "type": "above"
+                    }
+                },
+                "prevName": "Incidents in Error Run Status",
+                "propagationLabels": [],
+                "query": "type:\"PAN-OS Network Operations - Onboarding\" runStatus:error -status:Closed",
+                "shouldCommit": false,
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 0,
+                "widgetType": "number"
+            },
+            "x": 2,
+            "y": 0
+        },
+        {
+            "forceRange": false,
+            "h": 2,
+            "i": "aae60b30-273b-11ed-bcff-d1dea57f5b48",
+            "id": "aae60b30-273b-11ed-bcff-d1dea57f5b48",
+            "reflectDimensions": true,
+            "w": 7,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "5.0.0",
+                "id": "",
+                "isPredefined": false,
+                "itemVersion": "1.2.6",
+                "modified": "2022-07-23T23:45:04.857738375Z",
+                "name": "Onboarded Firewalls over Time",
+                "packID": "CommonWidgets",
+                "packName": "Common Widgets",
+                "packPropagationLabels": [
+                    "all"
+                ],
+                "params": {
+                    "groupBy": [
+                        "occurred(d)",
+                        "dbotStatus"
+                    ]
+                },
+                "prevName": "Active Incidents - Line chart",
+                "propagationLabels": [],
+                "query": "-category:job and -status:archived type:\"PAN-OS Network Operations - Onboarding\"",
+                "shouldCommit": false,
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 0,
+                "widgetType": "line"
+            },
+            "x": 0,
+            "y": 2
+        },
+        {
+            "forceRange": false,
+            "h": 1,
+            "i": "f26a9b60-273b-11ed-bcff-d1dea57f5b48",
+            "id": "f26a9b60-273b-11ed-bcff-d1dea57f5b48",
+            "reflectDimensions": true,
+            "w": 2,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "5.0.0",
+                "id": "",
+                "isPredefined": false,
+                "itemVersion": "1.2.6",
+                "modified": "2022-07-23T23:45:04.858623897Z",
+                "name": "Average time to Connect to Panorama",
+                "packID": "CommonWidgets",
+                "packName": "Common Widgets",
+                "packPropagationLabels": [
+                    "all"
+                ],
+                "params": {
+                    "colors": {
+                        "isEnabled": true,
+                        "items": {
+                            "#1DB846": {
+                                "value": 0
+                            },
+                            "#EF9700": {
+                                "value": 1800
+                            }
+                        },
+                        "type": "above"
+                    },
+                    "keys": [
+                        "avg|onboardingtime.totalDuration"
+                    ]
+                },
+                "prevName": "Incidents in Error Run Status",
+                "propagationLabels": [],
+                "query": "type:\"PAN-OS Network Operations - Onboarding\" status:Closed",
+                "shouldCommit": false,
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 0,
+                "widgetType": "duration"
+            },
+            "x": 2,
+            "y": 1
+        },
+        {
+            "forceRange": false,
+            "h": 1,
+            "i": "61d2f650-273c-11ed-bcff-d1dea57f5b48",
+            "id": "61d2f650-273c-11ed-bcff-d1dea57f5b48",
+            "reflectDimensions": true,
+            "w": 2,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "5.0.0",
+                "id": "",
+                "isPredefined": false,
+                "itemVersion": "1.2.6",
+                "modified": "2022-07-23T23:45:04.858623897Z",
+                "name": "Total Onboarded Firewalls",
+                "packID": "CommonWidgets",
+                "packName": "Common Widgets",
+                "packPropagationLabels": [
+                    "all"
+                ],
+                "params": {
+                    "colors": {
+                        "isEnabled": true,
+                        "items": {
+                            "#1DB846": {
+                                "value": 0
+                            }
+                        },
+                        "type": "above"
+                    }
+                },
+                "prevName": "Incidents in Error Run Status",
+                "propagationLabels": [],
+                "query": "type:\"PAN-OS Network Operations - Onboarding\" status:Closed runStatus:completed",
+                "shouldCommit": false,
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 0,
+                "widgetType": "number"
+            },
+            "x": 0,
+            "y": 1
+        },
+        {
+            "forceRange": false,
+            "h": 3,
+            "i": "edcbc970-273c-11ed-bcff-d1dea57f5b48",
+            "id": "edcbc970-273c-11ed-bcff-d1dea57f5b48",
+            "reflectDimensions": true,
+            "w": 12,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "",
+                "id": "b7ca7af9-d57f-4b09-840d-1d2af5f6d179",
+                "isPredefined": false,
+                "itemVersion": "",
+                "modified": "2022-08-29T01:50:14.714560274Z",
+                "name": "Onboarding Tasks",
+                "packID": "",
+                "packName": "",
+                "params": {
+                    "enablePagination": true,
+                    "tableColumns": [
+                        {
+                            "displayed": true,
+                            "isDefault": true,
+                            "key": "id",
+                            "width": 110
+                        },
+                        {
+                            "displayed": true,
+                            "isDefault": true,
+                            "key": "name",
+                            "width": 300
+                        },
+                        {
+                            "displayed": true,
+                            "isDefault": true,
+                            "key": "status",
+                            "width": 80
+                        },
+                        {
+                            "displayed": true,
+                            "key": "Onboarding Status",
+                            "width": 200
+                        },
+                        {
+                            "displayed": true,
+                            "key": "New Hostname",
+                            "width": 200
+                        },
+                        {
+                            "displayed": true,
+                            "key": "Serial Number",
+                            "width": 200
+                        }
+                    ]
+                },
+                "prevName": "Pending Onboard",
+                "propagationLabels": [
+                    "all"
+                ],
+                "query": "type:\"PAN-OS Network Operations - Onboarding\" status:Active",
+                "shouldCommit": false,
+                "sort": [
+                    {
+                        "asc": false,
+                        "field": "id",
+                        "fieldType": ""
+                    }
+                ],
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 1,
+                "widgetType": "table"
+            },
+            "x": 0,
+            "y": 4
+        },
+        {
+            "forceRange": false,
+            "h": 2,
+            "i": "fb23c5a0-273c-11ed-bcff-d1dea57f5b48",
+            "id": "fb23c5a0-273c-11ed-bcff-d1dea57f5b48",
+            "reflectDimensions": true,
+            "w": 3,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "5.0.0",
+                "id": "",
+                "isPredefined": false,
+                "itemVersion": "1.2.6",
+                "modified": "2022-07-23T23:45:04.857738375Z",
+                "name": "Onboarded Firewalls By Device Group",
+                "packID": "CommonWidgets",
+                "packName": "Common Widgets",
+                "packPropagationLabels": [
+                    "all"
+                ],
+                "params": {
+                    "groupBy": [
+                        "onboardtodevicegroup"
+                    ],
+                    "valuesFormat": "abbreviated"
+                },
+                "prevName": "Active Incidents - Line chart",
+                "propagationLabels": [],
+                "query": "-category:job and -status:archived type:\"PAN-OS Network Operations - Onboarding\"",
+                "shouldCommit": false,
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 0,
+                "widgetType": "pie"
+            },
+            "x": 4,
+            "y": 0
+        },
+        {
+            "forceRange": false,
+            "h": 2,
+            "i": "63eb80a0-273d-11ed-bcff-d1dea57f5b48",
+            "id": "63eb80a0-273d-11ed-bcff-d1dea57f5b48",
+            "reflectDimensions": true,
+            "w": 5,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "5.0.0",
+                "id": "",
+                "isPredefined": false,
+                "itemVersion": "1.2.6",
+                "modified": "2022-07-23T23:45:04.857738375Z",
+                "name": "Onboarding Tasks by Status",
+                "packID": "CommonWidgets",
+                "packName": "Common Widgets",
+                "packPropagationLabels": [
+                    "all"
+                ],
+                "params": {
+                    "groupBy": [
+                        "onboardingstatus"
+                    ],
+                    "valuesFormat": "abbreviated"
+                },
+                "prevName": "Active Incidents - Line chart",
+                "propagationLabels": [],
+                "query": "-status:Closed -category:job and -status:archived type:\"PAN-OS Network Operations - Onboarding\"",
+                "shouldCommit": false,
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 0,
+                "widgetType": "column"
+            },
+            "x": 7,
+            "y": 2
+        },
+        {
+            "forceRange": false,
+            "h": 2,
+            "i": "17ee0d50-274f-11ed-bcff-d1dea57f5b48",
+            "id": "17ee0d50-274f-11ed-bcff-d1dea57f5b48",
+            "reflectDimensions": true,
+            "w": 5,
+            "widget": {
+                "Cache": null,
+                "cacheVersn": 0,
+                "category": "",
+                "commitMessage": "",
+                "dataType": "incidents",
+                "dateRange": {
+                    "fromDate": "0001-01-01T00:00:00Z",
+                    "fromDateLicense": "0001-01-01T00:00:00Z",
+                    "period": {
+                        "by": "",
+                        "byFrom": "days",
+                        "byTo": "",
+                        "field": "",
+                        "fromValue": 7,
+                        "toValue": null
+                    },
+                    "toDate": "0001-01-01T00:00:00Z"
+                },
+                "definitionId": "",
+                "fromServerVersion": "5.0.0",
+                "id": "",
+                "isPredefined": false,
+                "itemVersion": "1.2.6",
+                "modified": "2022-07-23T23:45:04.857738375Z",
+                "name": "Onboarded Firewalls By Template Stack",
+                "packID": "CommonWidgets",
+                "packName": "Common Widgets",
+                "packPropagationLabels": [
+                    "all"
+                ],
+                "params": {
+                    "groupBy": [
+                        "onboardtotemplatestack"
+                    ],
+                    "valuesFormat": "abbreviated"
+                },
+                "prevName": "Active Incidents - Line chart",
+                "propagationLabels": [],
+                "query": "-category:job and -status:archived type:\"PAN-OS Network Operations - Onboarding\"",
+                "shouldCommit": false,
+                "toServerVersion": "",
+                "vcShouldIgnore": false,
+                "vcShouldKeepItemLegacyProdMachine": false,
+                "version": 0,
+                "widgetType": "pie"
+            },
+            "x": 7,
+            "y": 0
+        }
+    ],
+    "locked": false,
+    "modulePage": false,
+    "name": "Firewall Onboarding",
+    "owner": "admin",
+    "packID": "",
+    "packName": "",
+    "period": {
+        "by": "",
+        "byFrom": "days",
+        "byTo": "",
+        "field": "",
+        "fromValue": 7,
+        "toValue": null
+    },
+    "system": false,
+    "toDate": "0001-01-01T00:00:00Z",
+    "toServerVersion": "",
+    "version": -1
 }

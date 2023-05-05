@@ -1,5 +1,5 @@
 id: 91798901-7d40-4e34-8ecf-1f0119c30b6d
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Check if Device Onboarded
 description: Checks for the given serial number to validate if it's connected to Panorama.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: a41c2d5f-fa28-4a58-8f83-27f988ec47b5
+    taskid: 5b25245c-9306-44ca-8f6e-2293820c8348
     type: start
     task:
-      id: a41c2d5f-fa28-4a58-8f83-27f988ec47b5
+      id: 5b25245c-9306-44ca-8f6e-2293820c8348
       version: -1
       name: ""
       iscommand: false
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: c9e0e0de-b9b8-4ea3-857a-45e863d06e8c
+    taskid: 26f06e9a-4d2b-48fe-83c5-a8ff1d31cbba
     type: regular
     task:
-      id: c9e0e0de-b9b8-4ea3-857a-45e863d06e8c
+      id: 26f06e9a-4d2b-48fe-83c5-a8ff1d31cbba
       version: -1
       name: Get Device By Serial
       description: Returns indicator custom fields into the context by the given query.
@@ -71,10 +71,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 1f17a06f-300b-4ac7-88ed-b10f99a42ca0
+    taskid: 61fdc324-e754-430f-8ecf-ca15456b2b8c
     type: condition
     task:
-      id: 1f17a06f-300b-4ac7-88ed-b10f99a42ca0
+      id: 61fdc324-e754-430f-8ecf-ca15456b2b8c
       version: -1
       name: Did we get a firewall?
       type: condition
@@ -111,10 +111,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: a1ddc831-9a95-4c98-89db-8f1326399167
+    taskid: 9e62a45d-558d-44fc-84c2-232bbe782c58
     type: regular
     task:
-      id: a1ddc831-9a95-4c98-89db-8f1326399167
+      id: 9e62a45d-558d-44fc-84c2-232bbe782c58
       version: -1
       name: Onboarding Process Complete
       description: commands.local.cmd.close.inv
@@ -140,10 +140,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 96c63762-4fd9-4528-87e3-27caa2b3070d
+    taskid: 71092c1c-8265-4a1e-8558-c64c1f42b0bd
     type: regular
     task:
-      id: 96c63762-4fd9-4528-87e3-27caa2b3070d
+      id: 71092c1c-8265-4a1e-8558-c64c1f42b0bd
       version: -1
       name: Device not yet connected - reset the timer
       description: commands.local.cmd.reset.timer
@@ -175,10 +175,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 2638327e-889f-435c-85b8-760d4231907b
+    taskid: 58ed74bc-3fcc-492a-8e01-3022bba82853
     type: regular
     task:
-      id: 2638327e-889f-435c-85b8-760d4231907b
+      id: 58ed74bc-3fcc-492a-8e01-3022bba82853
       version: -1
       name: Associate the device indicator with this onboarding incident.
       description: commands.local.cmd.associate.indicators
@@ -212,10 +212,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 90d9ca68-f119-4341-8be5-aecc04f62253
+    taskid: bd0216d2-13aa-461a-899e-e2ec648b2c95
     type: title
     task:
-      id: 90d9ca68-f119-4341-8be5-aecc04f62253
+      id: bd0216d2-13aa-461a-899e-e2ec648b2c95
       version: -1
       name: Start the Timer
       type: title
@@ -241,10 +241,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 251046f6-5115-4a0c-8390-fb9bffb61766
+    taskid: 8668ad3d-46a8-44c6-87b4-a2b216a0a009
     type: regular
     task:
-      id: 251046f6-5115-4a0c-8390-fb9bffb61766
+      id: 8668ad3d-46a8-44c6-87b4-a2b216a0a009
       version: -1
       name: Update Status
       description: commands.local.cmd.set.incident
@@ -292,5 +292,5 @@ inputs:
     simple: ${incident.serialnumber}
   required: true
   description: Serial number of FW to check.
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs: []

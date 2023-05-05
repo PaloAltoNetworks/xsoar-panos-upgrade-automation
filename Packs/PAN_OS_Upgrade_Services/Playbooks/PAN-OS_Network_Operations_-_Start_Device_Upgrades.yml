@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Start Device Upgrades
-version: 3
+version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Start Device Upgrades
 description: |-
@@ -10,10 +10,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 1dc3342b-ef56-42f5-8373-9b0e68a44cf8
+    taskid: 49ac7c43-0a58-4236-85e0-fef066ca2088
     type: start
     task:
-      id: 1dc3342b-ef56-42f5-8373-9b0e68a44cf8
+      id: 49ac7c43-0a58-4236-85e0-fef066ca2088
       version: -1
       name: ""
       iscommand: false
@@ -39,10 +39,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: ceb31d59-77c9-4666-8770-f0e9461466fe
+    taskid: d18856a7-fa54-410e-8a38-810cd4b2b5d2
     type: condition
     task:
-      id: ceb31d59-77c9-4666-8770-f0e9461466fe
+      id: d18856a7-fa54-410e-8a38-810cd4b2b5d2
       version: -1
       name: Is auto-upgrade enabled?
       description: Check for automatic upgrade switch
@@ -80,10 +80,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 2394bb87-2894-4b93-82e4-d8dee99db956
+    taskid: 598503f8-205c-48ba-857f-57a450ef6208
     type: regular
     task:
-      id: 2394bb87-2894-4b93-82e4-d8dee99db956
+      id: 598503f8-205c-48ba-857f-57a450ef6208
       version: -1
       name: Start device upgrades
       description: commands.local.cmd.task.complete
@@ -118,10 +118,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: c32fa420-5b2d-4849-8fc8-0caee986a376
+    taskid: c4836136-5b56-4be9-8eb6-93bd2fe0d992
     type: condition
     task:
-      id: c32fa420-5b2d-4849-8fc8-0caee986a376
+      id: c4836136-5b56-4be9-8eb6-93bd2fe0d992
       version: -1
       name: Begin Upgrades
       description: |-
@@ -149,8 +149,8 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to: null
-      subject: null
+      to:
+      subject:
       body:
         simple: |-
           Do you want to start all device upgrades?
@@ -162,8 +162,8 @@ tasks:
           ${incident.panosnetworkoperationsfirewallupgradelist}
       methods: []
       format: ""
-      bcc: null
-      cc: null
+      bcc:
+      cc:
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -179,10 +179,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 72ed54d5-46c2-4a15-8612-05edbae8f54c
+    taskid: 2dddd656-4044-4c0b-8479-9c537c411bf6
     type: title
     task:
-      id: 72ed54d5-46c2-4a15-8612-05edbae8f54c
+      id: 2dddd656-4044-4c0b-8479-9c537c411bf6
       version: -1
       name: Finish
       type: title
@@ -222,11 +222,11 @@ inputs:
     simple: ${incident.panosnetworkoperationsautomaticupgradeswitch}
   required: false
   description: If set to true, will automatically start all device ugprades.
-  playbookInputQuery: null
+  playbookInputQuery:
 - key: incident_ids
   value:
     simple: ${CreatedIncidentID}
   required: false
   description: List of incident IDs corresponding to device upgrade incidents to start.
-  playbookInputQuery: null
+  playbookInputQuery:
 outputs: []
