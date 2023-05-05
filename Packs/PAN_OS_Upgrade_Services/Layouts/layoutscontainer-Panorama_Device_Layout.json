@@ -7,7 +7,7 @@
 	"details": null,
 	"detailsV2": null,
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "0.0.0",
 	"group": "indicator",
 	"id": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7",
 	"indicatorsDetails": {
@@ -510,6 +510,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": false,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }

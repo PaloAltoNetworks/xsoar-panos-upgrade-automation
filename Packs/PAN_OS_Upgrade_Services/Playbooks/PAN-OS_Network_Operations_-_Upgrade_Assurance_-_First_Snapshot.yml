@@ -1,0 +1,461 @@
+id: 281f55fa-ba0c-4a98-8a36-3bc0c35c8472
+version: 11
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: 6a4717c1-4522-4f22-874f-56273f0afe7a
+    type: start
+    task:
+      id: 6a4717c1-4522-4f22-874f-56273f0afe7a
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "1"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "1":
+    id: "1"
+    taskid: 71a084cd-362f-456b-8635-11cad56d7c51
+    type: regular
+    task:
+      id: 71a084cd-362f-456b-8635-11cad56d7c51
+      version: -1
+      name: Run Readiness Tests
+      description: Runs checks to confirm a PAN-OS firewall is ready to be upgraded.
+      script: '|||pan-os-assurance-run-readiness-checks'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "2"
+      - "9"
+    scriptarguments:
+      candidate_version:
+        simple: ${incident.panosnetworkoperationsupgradetargetfirewallversion}
+      check_list:
+        simple: ${incident.readinesschecklist}
+      firewall_serial:
+        simple: ${inputs.target}
+      min_content_version:
+        simple: ${incident.minimumcontentversion}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 210
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    fieldMapping:
+    - incidentfield: Readiness Check Result
+      output:
+        complex:
+          root: FirewallAssurance
+          accessor: ReadinessCheckResults
+          transformers:
+          - operator: ConvertKeysToTableFieldFormat
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: e5bf8912-9f63-4db4-8da6-7e659ed2b495
+    type: condition
+    task:
+      id: e5bf8912-9f63-4db4-8da6-7e659ed2b495
+      version: -1
+      name: Did we get failed tests?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "3"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isExists
+          left:
+            value:
+              complex:
+                root: incident.readinesscheckresult.state
+                filters:
+                - - operator: isEqualString
+                    left:
+                      value:
+                        simple: incident.readinesscheckresult.state
+                      iscontext: true
+                    right:
+                      value:
+                        simple: "false"
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 380
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: 49edb18e-7a20-4d9f-8fd6-3a547a84bbe0
+    type: collection
+    task:
+      id: 49edb18e-7a20-4d9f-8fd6-3a547a84bbe0
+      version: -1
+      name: Failed Readiness Test Confirmation
+      type: collection
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "4"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 560
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    message:
+      to:
+        simple: ${incident.owner}
+      subject:
+        simple: Upgrade Readiness Checks failed on ${incident.panosnetworkoperationsupgradetargetfirewall}
+      body:
+        simple: "The assurance process failed on the device ${incident.panosnetworkoperationsupgradetargetfirewall}.\n\nPlease
+          validate the test result and choose whether to proceed or abort the assurance
+          process. "
+      methods:
+      - email
+      format: ""
+      bcc: null
+      cc: null
+      timings:
+        retriescount: 2
+        retriesinterval: 360
+        completeafterreplies: 1
+        completeafterv2: true
+        completeaftersla: false
+    form:
+      questions:
+      - id: "0"
+        label: ""
+        labelarg:
+          simple: |-
+            ### Do you want to continue?
+            *Choosing Yes will continue with the upgrade assurance process, and if no other issues are present, the upgrade process itself.*
+        required: true
+        gridcolumns: []
+        defaultrows: []
+        type: singleSelect
+        options: []
+        optionsarg:
+        - simple: "Yes"
+        - simple: "No"
+        fieldassociated: ""
+        placeholder: ""
+        tooltip: ""
+        readonly: false
+      title: Failed Readiness Test Confirmation
+      description: The assurance process identified issues that might prevent the
+        software upgrade from starting. Please confirm whether to proceed or abort
+        the assurance process.
+      sender: Your SOC team
+      expired: false
+      totalanswers: 0
+    formDisplay:
+      headerbackgroundcolor: '#ff0000'
+      headerfontcolor: ""
+      sender: ""
+      bodybackgroundcolor: ""
+      bodyfontcolor: ""
+      submitbuttonbackgroundcolor: '#f50057'
+      submitbuttonfontcolor: ""
+      submittext: ""
+      isexternalrtl: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "4":
+    id: "4"
+    taskid: 35d72677-6055-4e03-8324-9106feb203a8
+    type: condition
+    task:
+      id: 35d72677-6055-4e03-8324-9106feb203a8
+      version: -1
+      name: Continue?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "5"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isEqualString
+          left:
+            value:
+              simple: Failed Readiness Test Confirmation.Answers.0
+            iscontext: true
+          right:
+            value:
+              simple: "Yes"
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 750
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "5":
+    id: "5"
+    taskid: f00bc965-44b7-47f1-848a-4a1b7b827d52
+    type: regular
+    task:
+      id: f00bc965-44b7-47f1-848a-4a1b7b827d52
+      version: -1
+      name: Take the first device snapshot
+      description: Takes a snapshot of the operational state of the system.
+      script: '|||pan-os-assurance-run-snapshot'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "7"
+    scriptarguments:
+      firewall_serial:
+        simple: ${inputs.target}
+      snapshot_name:
+        simple: first_snapshot
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 920
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "7":
+    id: "7"
+    taskid: 0802dd9a-97e5-4173-8601-a37e39286a7b
+    type: regular
+    task:
+      id: 0802dd9a-97e5-4173-8601-a37e39286a7b
+      version: -1
+      name: Save First Snapshot
+      description: Copies a file from this incident to the specified incident. The
+        file is recorded as an entry in the specified incident’s War Room.
+      scriptName: UploadFile
+      type: regular
+      iscommand: false
+      brand: ""
+    scriptarguments:
+      body:
+        simple: '{"field": "firstsnapshot"}'
+      entryID:
+        complex:
+          root: File
+          accessor: EntryID
+          transformers:
+          - operator: LastArrayElement
+      incID:
+        simple: ${incident.id}
+      target:
+        simple: incident attachment
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1110
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "8":
+    id: "8"
+    taskid: de22e934-8801-4a52-88f7-5d43581d874f
+    type: regular
+    task:
+      id: de22e934-8801-4a52-88f7-5d43581d874f
+      version: -1
+      name: Aborted process.
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    scriptarguments:
+      description:
+        simple: Assurance testing aborted.
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 1100
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "9":
+    id: "9"
+    taskid: 8d2d6a2c-eb7f-4339-8db9-5df999fd8aa5
+    type: regular
+    task:
+      id: 8d2d6a2c-eb7f-4339-8db9-5df999fd8aa5
+      version: -1
+      name: Update Report
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    scriptarguments:
+      upgradeassurancereport:
+        simple: |
+          # Upgrade Assurance Report
+
+          ## Readiness checks FAILED
+
+          ${incident.readinesscheckresult(val.state=='false')=>x(val);
+              function x(v) {
+                  s = ""
+                  if (v.length == 0) {
+                      return "✅ All Tests Passing! ✅";
+                  }
+                  v.forEach(function(item){
+                      s = s + " * ❌ " + item.test + "\n";
+                  })
+                  return s;
+              };
+          }
+
+          ## Readiness checks PASSED
+
+          ${incident.readinesscheckresult(val.state=='true')=>x(val);
+              function x(v) {
+                  s = ""
+                  if (v.length == 0) {
+                      return "❌ All tests failing! ❌";
+                  }
+                  v.forEach(function(item){
+                      s = s + " * " + item.test + "\n";
+                  })
+                  return s;
+              };
+          }
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 30,
+          "y": 380
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1155,
+        "width": 1210,
+        "x": 30,
+        "y": 50
+      }
+    }
+  }
+inputs:
+- key: target
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+  required: false
+  description: ""
+  playbookInputQuery: null
+outputs: []
+quiet: true

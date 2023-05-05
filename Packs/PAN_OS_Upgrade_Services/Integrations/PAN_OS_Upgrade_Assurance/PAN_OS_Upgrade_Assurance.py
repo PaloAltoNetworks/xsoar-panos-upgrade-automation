@@ -244,6 +244,7 @@ def command_compare_snapshots():
     return CommandResults(
         outputs={
             "SnapshotComparisonResult": convert_snapshot_result_to_table(result),
+            "SnapshotComparisonRawResult": result
         },
         readable_output=tableToMarkdown(
             "Snapshot Comparison Results", convert_snapshot_result_to_table(result), headers=["test", "passed"]),

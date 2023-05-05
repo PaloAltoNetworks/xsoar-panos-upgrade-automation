@@ -416,7 +416,7 @@
 			}
 		]
 	},
-	"fromServerVersion": "",
+	"fromServerVersion": "0.0.0",
 	"group": "incident",
 	"id": "5e8e9499-efd8-4bbc-8095-b1ac6dfba6ec",
 	"indicatorsDetails": null,
@@ -430,6 +430,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": false,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }

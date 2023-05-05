@@ -145,6 +145,9 @@ script:
       - contextPath: FirewallAssurance.SnapshotComparisonResult
         description: Snapshot comparison results
         type: Unknown
+      - contextPath: FirewallAssurance.SnapshotComparisonRawResult
+        description: The complete snapshot comparison results
+        type: Unknown
   script: '-'
   type: python
   subtype: python3
