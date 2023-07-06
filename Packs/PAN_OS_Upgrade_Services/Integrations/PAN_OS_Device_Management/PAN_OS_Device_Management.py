@@ -90,8 +90,8 @@ def system_to_indicator(data: dict) -> dict:
     Convert a dictionary representation of the PAN-OS system xml, turn it into an indicator.
     """
     indicator_type = "Network Device"
-    family = data.get("family").lower()
-    model = data.get("model").lower()
+    family = data.get("family", "unknown").lower()
+    model = data.get("model", "unknown").lower()
     if family == "pc" or model == "panorama":
         indicator_type = "Panorama Device"
 
@@ -484,8 +484,8 @@ def test_module(panorama: Panorama) -> str:
     connecting to Panorama, as this is required for this integration to work."""
     result = panorama.op(PANOSCommands.SHOW_SYSTEM_INFO)
     result_dict = flatten_xml_to_dict(result.find("./result/system"), {})
-    family = result_dict.get("family").lower()
-    model = result_dict.get("model").lower()
+    family = result_dict.get("family", "unknown").lower()
+    model = result_dict.get("model", "unknown").lower()
     if family == "pc" or model == "panorama":
         return "ok"
 
