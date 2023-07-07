@@ -2,7 +2,8 @@ id: 7409a83d-eab4-4acd-8b93-a4abc6a038e4
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Get HA Pair Status
-description: Determines which device in a HA pair is active or passive, and if the pair is an active-passive or active-active mode.
+description: Determines which device in a HA pair is active or passive, and if the
+  pair is an active-passive or active-active mode.
 starttaskid: "0"
 tasks:
   "0":
@@ -42,7 +43,8 @@ tasks:
       id: 3027c8f3-621a-483f-8598-a8e2b1975c1a
       version: -1
       name: Get HA state
-      description: Gets the HA state and associated details from the given device and any other details.
+      description: Gets the HA state and associated details from the given device
+        and any other details.
       script: '|||pan-os-platform-get-ha-state'
       type: regular
       iscommand: true
@@ -117,7 +119,8 @@ tasks:
       id: 1d913ab2-1a77-4664-84df-19f2a3ea35aa
       version: -1
       name: Get Peer HA State
-      description: Gets the HA state and associated details from the given device and any other details.
+      description: Gets the HA state and associated details from the given device
+        and any other details.
       script: '|||pan-os-platform-get-ha-state'
       type: regular
       iscommand: true
@@ -323,7 +326,7 @@ inputs:
   value: {}
   required: false
   description: Target firewall
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs:
 - contextPath: ActiveDevice
   description: The active firewall

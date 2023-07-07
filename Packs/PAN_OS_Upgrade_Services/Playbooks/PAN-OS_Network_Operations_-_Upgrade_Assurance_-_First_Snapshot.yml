@@ -1,5 +1,5 @@
 id: 281f55fa-ba0c-4a98-8a36-3bc0c35c8472
-version: 11
+version: 14
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
 starttaskid: "0"
@@ -96,9 +96,9 @@ tasks:
       brand: ""
     nexttasks:
       '#default#':
-      - "5"
+      - "12"
       "yes":
-      - "3"
+      - "10"
     separatecontext: false
     conditions:
     - label: "yes"
@@ -153,7 +153,7 @@ tasks:
       {
         "position": {
           "x": 860,
-          "y": 560
+          "y": 750
         }
       }
     note: false
@@ -165,12 +165,14 @@ tasks:
       subject:
         simple: Upgrade Readiness Checks failed on ${incident.panosnetworkoperationsupgradetargetfirewall}
       body:
-        simple: "The assurance process failed on the device ${incident.panosnetworkoperationsupgradetargetfirewall}.\n\nPlease validate the test result and choose whether to proceed or abort the assurance process. "
+        simple: "The assurance process failed on the device ${incident.panosnetworkoperationsupgradetargetfirewall}.\n\nPlease
+          validate the test result and choose whether to proceed or abort the assurance
+          process. "
       methods:
       - email
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -198,7 +200,9 @@ tasks:
         tooltip: ""
         readonly: false
       title: Failed Readiness Test Confirmation
-      description: The assurance process identified issues that might prevent the software upgrade from starting. Please confirm whether to proceed or abort the assurance process.
+      description: The assurance process identified issues that might prevent the
+        software upgrade from starting. Please confirm whether to proceed or abort
+        the assurance process.
       sender: Your SOC team
       expired: false
       totalanswers: 0
@@ -249,7 +253,7 @@ tasks:
       {
         "position": {
           "x": 860,
-          "y": 750
+          "y": 940
         }
       }
     note: false
@@ -286,7 +290,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 920
+          "y": 1110
         }
       }
     note: false
@@ -304,7 +308,8 @@ tasks:
       id: 0802dd9a-97e5-4173-8601-a37e39286a7b
       version: -1
       name: Save First Snapshot
-      description: Copies a file from this incident to the specified incident. The file is recorded as an entry in the specified incident’s War Room.
+      description: Copies a file from this incident to the specified incident. The
+        file is recorded as an entry in the specified incident’s War Room.
       scriptName: UploadFile
       type: regular
       iscommand: false
@@ -328,7 +333,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 1110
+          "y": 1300
         }
       }
     note: false
@@ -360,7 +365,7 @@ tasks:
       {
         "position": {
           "x": 860,
-          "y": 1100
+          "y": 1290
         }
       }
     note: false
@@ -433,13 +438,144 @@ tasks:
     quietmode: 0
     isoversize: false
     isautoswitchedtoquietmode: false
+  "10":
+    id: "10"
+    taskid: 43e0c372-31e2-437c-89a7-b6b5a1666bfd
+    type: title
+    task:
+      id: 43e0c372-31e2-437c-89a7-b6b5a1666bfd
+      version: -1
+      name: "YES"
+      type: title
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "3"
+      - "11"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 600
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "11":
+    id: "11"
+    taskid: 53c5f2a6-1e86-40a8-8b43-c408c8df17c5
+    type: regular
+    task:
+      id: 53c5f2a6-1e86-40a8-8b43-c408c8df17c5
+      version: -1
+      name: Set Failed State
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "4"
+    scriptarguments:
+      readinesstestresult:
+        simple: Failed ❌
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 1270,
+          "y": 750
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "12":
+    id: "12"
+    taskid: 228d4d4e-ef79-4ccb-8cf6-d78bf50208e0
+    type: title
+    task:
+      id: 228d4d4e-ef79-4ccb-8cf6-d78bf50208e0
+      version: -1
+      name: "No"
+      type: title
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "13"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 600
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "13":
+    id: "13"
+    taskid: e5eb2b5d-b0fe-4362-87ab-8abdfedf4be4
+    type: regular
+    task:
+      id: e5eb2b5d-b0fe-4362-87ab-8abdfedf4be4
+      version: -1
+      name: Set Passed State
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "5"
+    scriptarguments:
+      readinesstestresult:
+        simple: Passed ✅
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 750
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 1155,
-        "width": 1210,
+        "height": 1345,
+        "width": 1620,
         "x": 30,
         "y": 50
       }
@@ -451,6 +587,6 @@ inputs:
     simple: ${incident.panosnetworkoperationstarget}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []
 quiet: true

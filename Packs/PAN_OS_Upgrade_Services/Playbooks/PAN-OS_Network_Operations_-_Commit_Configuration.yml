@@ -2,7 +2,9 @@ id: PAN-OS Network Operations - Commit Configuration
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Commit Configuration
-description: Commits to either a single device, or across all devices in the topology. PAN-OS integration will attempt to only commit to devices that require it, not blanket to all possible devices.
+description: Commits to either a single device, or across all devices in the topology.
+  PAN-OS integration will attempt to only commit to devices that require it, not blanket
+  to all possible devices.
 starttaskid: "0"
 tasks:
   "0":
@@ -42,7 +44,8 @@ tasks:
       id: d709e4c4-3bd7-4bd2-8cae-fc5a2cef9254
       version: -1
       name: Commit on all devices
-      description: Commit the configuration for the entire topology. Note this only commits the configuration - it does
+      description: Commit the configuration for the entire topology. Note this only
+        commits the configuration - it does
       script: '|||pan-os-config-commit'
       type: regular
       iscommand: true
@@ -145,7 +148,8 @@ tasks:
       id: 072274c5-2877-43b7-87db-74ed92eccdcc
       version: -1
       name: Get commit job status
-      description: Returns the status of the commit operation on all devices. If an ID is given, only that id will be
+      description: Returns the status of the commit operation on all devices. If an
+        ID is given, only that id will be
       script: '|||pan-os-config-get-commit-status'
       type: regular
       iscommand: true
@@ -228,7 +232,8 @@ tasks:
       id: 3243f5c0-85bf-4a96-81b6-f3e86a963e67
       version: -1
       name: Push all device groups and templates
-      description: Push the configuration to all the device groups and template-stacks in the environment.
+      description: Push the configuration to all the device groups and template-stacks
+        in the environment.
       script: '|||pan-os-config-push-all'
       type: regular
       iscommand: true
@@ -401,7 +406,8 @@ tasks:
       id: 0e30f560-1c8b-4c36-83ad-cb318328e7d4
       version: -1
       name: Was a  push required?
-      description: Checks if the Panorama configuration needs to be pushed to any device-group or template.
+      description: Checks if the Panorama configuration needs to be pushed to any
+        device-group or template.
       type: condition
       iscommand: false
       brand: ""
@@ -515,7 +521,8 @@ tasks:
       id: 15b24be0-ee96-4d97-8857-a35cabf39d99
       version: -1
       name: Auto-Commit?
-      description: Checks if the playbook input is set to automatically commit the config.
+      description: Checks if the playbook input is set to automatically commit the
+        config.
       type: condition
       iscommand: false
       brand: ""
@@ -594,7 +601,8 @@ tasks:
       id: 076ff77b-db84-469c-8f99-93520bdddc59
       version: -1
       name: Get Template Stacks
-      description: Gets the operational information of the template-stacks in the topology.
+      description: Gets the operational information of the template-stacks in the
+        topology.
       script: '|||pan-os-platform-get-template-stacks'
       type: regular
       iscommand: true
@@ -690,13 +698,13 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to:
-      subject:
-      body:
+      to: null
+      subject: null
+      body: null
       methods: []
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -752,7 +760,8 @@ tasks:
       id: 3dca0c06-f228-4644-872c-0ffb1a74a078
       version: -1
       name: Push all device groups and templates
-      description: Push the configuration to all the device groups and template-stacks in the environment.
+      description: Push the configuration to all the device groups and template-stacks
+        in the environment.
       script: '|||pan-os-config-push-all'
       type: regular
       iscommand: true
@@ -834,28 +843,33 @@ inputs:
   value:
     simple: ${incident.panosnetworkoperationstarget}
   required: false
-  description: Commit only on specific devices. Note this does not affect Panorama push operation - to limit the scope of the push, use device_group_filter and template_stack_filter.
-  playbookInputQuery:
+  description: Commit only on specific devices. Note this does not affect Panorama
+    push operation - to limit the scope of the push, use device_group_filter and template_stack_filter.
+  playbookInputQuery: null
 - key: device_group_filter
   value: {}
   required: false
-  description: 'Panorama Only: If required, a csv list of device-groups to push. If not specified, all device groups will be pushed after a commit.'
-  playbookInputQuery:
+  description: 'Panorama Only: If required, a csv list of device-groups to push. If
+    not specified, all device groups will be pushed after a commit.'
+  playbookInputQuery: null
 - key: template_stack_filter
   value: {}
   required: false
-  description: 'Panorama Only: If required, a csv list of template-stacks to push. If not specified, all template stacks will be pushed after a commit.'
-  playbookInputQuery:
+  description: 'Panorama Only: If required, a csv list of template-stacks to push.
+    If not specified, all template stacks will be pushed after a commit.'
+  playbookInputQuery: null
 - key: auto_commit
   value:
     simple: "No"
   required: false
-  description: If set to Yes, the configuration will be committed to all firewalls and panorama. If no, a data collection task will prompt for the scope first.
-  playbookInputQuery:
+  description: If set to Yes, the configuration will be committed to all firewalls
+    and panorama. If no, a data collection task will prompt for the scope first.
+  playbookInputQuery: null
 - key: auto_push
   value:
     simple: "No"
   required: false
-  description: If set to Yes, the configuration will be automatically pushed to all device groups and template stacks.
-  playbookInputQuery:
+  description: If set to Yes, the configuration will be automatically pushed to all
+    device groups and template stacks.
+  playbookInputQuery: null
 outputs: []

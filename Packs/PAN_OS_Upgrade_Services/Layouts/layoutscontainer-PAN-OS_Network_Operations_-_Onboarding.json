@@ -1,435 +1,435 @@
 {
-    "cacheVersn": 0,
-    "close": null,
-    "definitionId": "",
-    "description": "",
-    "detached": false,
-    "details": null,
-    "detailsV2": {
-        "TypeName": "",
-        "tabs": [
-            {
-                "id": "summary",
-                "name": "Legacy Summary",
-                "type": "summary"
-            },
-            {
-                "id": "caseinfoid",
-                "name": "Onboarding",
-                "sections": [
-                    {
-                        "displayType": "ROW",
-                        "h": 2,
-                        "i": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
-                        "isVisible": true,
-                        "items": [
-                            {
-                                "endCol": 2,
-                                "fieldId": "type",
-                                "height": 22,
-                                "id": "incident-type-field",
-                                "index": 0,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "severity",
-                                "height": 22,
-                                "id": "incident-severity-field",
-                                "index": 1,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "owner",
-                                "height": 22,
-                                "id": "incident-owner-field",
-                                "index": 2,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "playbookid",
-                                "height": 22,
-                                "id": "incident-playbookId-field",
-                                "index": 3,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            }
-                        ],
-                        "maxH": null,
-                        "maxW": 3,
-                        "minH": 1,
-                        "moved": false,
-                        "name": "Case Details",
-                        "static": false,
-                        "w": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    {
-                        "displayType": "ROW",
-                        "h": 2,
-                        "i": "caseinfoid-6aabad20-98b1-11e9-97d7-ed26ef9e46c8",
-                        "maxH": null,
-                        "maxW": 3,
-                        "minH": 1,
-                        "moved": false,
-                        "name": "Work Plan",
-                        "static": false,
-                        "type": "workplan",
-                        "w": 1,
-                        "x": 1,
-                        "y": 0
-                    },
-                    {
-                        "displayType": "ROW",
-                        "h": 2,
-                        "hideName": false,
-                        "i": "caseinfoid-cd798aa0-2605-11ed-ae0a-4bf062e31218",
-                        "items": [
-                            {
-                                "endCol": 2,
-                                "fieldId": "newhostname",
-                                "height": 22,
-                                "id": "197e6370-2661-11ed-b6fc-3f0a24478659",
-                                "index": 0,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "serialnumber",
-                                "height": 22,
-                                "id": "1e9bf060-2662-11ed-b6fc-3f0a24478659",
-                                "index": 1,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "currentipaddress",
-                                "height": 22,
-                                "id": "34c96de0-2662-11ed-b6fc-3f0a24478659",
-                                "index": 2,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            }
-                        ],
-                        "maxH": null,
-                        "maxW": 3,
-                        "minH": 1,
-                        "moved": false,
-                        "name": "Firewall Settings",
-                        "static": false,
-                        "w": 1,
-                        "x": 2,
-                        "y": 0
-                    },
-                    {
-                        "displayType": "ROW",
-                        "h": 2,
-                        "hideName": false,
-                        "i": "caseinfoid-1c37b710-2661-11ed-b6fc-3f0a24478659",
-                        "items": [
-                            {
-                                "endCol": 2,
-                                "fieldId": "onboardingstatus",
-                                "height": 22,
-                                "id": "a56af530-269b-11ed-bbd6-8926e186faca",
-                                "index": 0,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "panoramaserveradded",
-                                "height": 22,
-                                "id": "23f6bf50-2661-11ed-b6fc-3f0a24478659",
-                                "index": 1,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "pauseforpanorama",
-                                "height": 22,
-                                "id": "a6a14550-272a-11ed-8ec0-b15f088be261",
-                                "index": 2,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "onboardingtime",
-                                "height": 22,
-                                "id": "0696e750-2760-11ed-bcff-d1dea57f5b48",
-                                "index": 3,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            }
-                        ],
-                        "maxH": null,
-                        "maxW": 3,
-                        "minH": 1,
-                        "moved": false,
-                        "name": "Onboarding Status",
-                        "static": false,
-                        "w": 1,
-                        "x": 1,
-                        "y": 2
-                    },
-                    {
-                        "displayType": "CARD",
-                        "h": 4,
-                        "hideName": false,
-                        "i": "caseinfoid-4b3f5b80-2661-11ed-b6fc-3f0a24478659",
-                        "items": [
-                            {
-                                "endCol": 2,
-                                "fieldId": "iptarget",
-                                "height": 22,
-                                "id": "2a4d9460-2606-11ed-ae0a-4bf062e31218",
-                                "index": 0,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "hostnameprefix",
-                                "height": 22,
-                                "id": "ad3135c0-2661-11ed-b6fc-3f0a24478659",
-                                "index": 1,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "onboardtodevicegroup",
-                                "height": 22,
-                                "id": "dc0d0f40-2661-11ed-b6fc-3f0a24478659",
-                                "index": 2,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "onboardtotemplatestack",
-                                "height": 22,
-                                "id": "dce2aec0-2661-11ed-b6fc-3f0a24478659",
-                                "index": 3,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "targetpanoramaserver",
-                                "height": 22,
-                                "id": "0db0c840-2697-11ed-bbd6-8926e186faca",
-                                "index": 4,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            },
-                            {
-                                "endCol": 2,
-                                "fieldId": "targetbackuppanoramaserver",
-                                "height": 22,
-                                "id": "0ea07f70-2697-11ed-bbd6-8926e186faca",
-                                "index": 5,
-                                "sectionItemType": "field",
-                                "startCol": 0
-                            }
-                        ],
-                        "maxH": null,
-                        "maxW": 3,
-                        "minH": 1,
-                        "moved": false,
-                        "name": "Onboarding Settings",
-                        "static": false,
-                        "w": 1,
-                        "x": 0,
-                        "y": 2
-                    },
-                    {
-                        "columns": [
-                            {
-                                "displayed": true,
-                                "isDefault": true,
-                                "key": "value",
-                                "width": 100
-                            },
-                            {
-                                "displayed": true,
-                                "key": "Hostname",
-                                "width": 200
-                            },
-                            {
-                                "displayed": true,
-                                "key": "IP Address",
-                                "width": 200
-                            }
-                        ],
-                        "h": 2,
-                        "i": "caseinfoid-b3190490-2733-11ed-8ec0-b15f088be261",
-                        "items": [],
-                        "maxH": null,
-                        "maxW": 3,
-                        "minH": 1,
-                        "moved": false,
-                        "name": "Onboarded Device",
-                        "query": "type:\"Network Device\"",
-                        "queryType": "input",
-                        "static": false,
-                        "type": "indicators",
-                        "w": 2,
-                        "x": 1,
-                        "y": 4
-                    },
-                    {
-                        "displayType": "ROW",
-                        "h": 2,
-                        "hideName": false,
-                        "i": "caseinfoid-b9c46930-274f-11ed-b43c-fb0953857fe9",
-                        "items": [
-                            {
-                                "args": {
-                                    "name": {
-                                        "simple": "PAN-OS Network Operations - Check if Device Onboarded"
-                                    }
-                                },
-                                "buttonClass": "success",
-                                "endCol": 2,
-                                "fieldId": "",
-                                "height": 22,
-                                "id": "c434d5d0-274f-11ed-b43c-fb0953857fe9",
-                                "index": 0,
-                                "name": "Check if Firewall Connected to Panorama (closes incident if so)",
-                                "scriptId": "Builtin|||setPlaybook",
-                                "sectionItemType": "button",
-                                "startCol": 0
-                            }
-                        ],
-                        "maxH": null,
-                        "maxW": 3,
-                        "minH": 1,
-                        "moved": false,
-                        "name": "Actions",
-                        "static": false,
-                        "w": 1,
-                        "x": 2,
-                        "y": 2
-                    }
-                ],
-                "type": "custom"
-            },
-            {
-                "id": "warRoom",
-                "name": "War Room",
-                "type": "warRoom"
-            },
-            {
-                "id": "workPlan",
-                "name": "Work Plan",
-                "type": "workPlan"
-            },
-            {
-                "hidden": true,
-                "id": "evidenceBoard",
-                "name": "Evidence Board",
-                "type": "evidenceBoard"
-            },
-            {
-                "hidden": true,
-                "id": "relatedIncidents",
-                "name": "Related Incidents",
-                "type": "relatedIncidents"
-            },
-            {
-                "hidden": true,
-                "id": "canvas",
-                "name": "Canvas",
-                "type": "canvas"
-            }
-        ]
-    },
-    "edit": {
-        "sections": [
-            {
-                "description": "",
-                "fields": [
-                    {
-                        "fieldId": "incident_name",
-                        "isVisible": true
-                    },
-                    {
-                        "fieldId": "incident_type",
-                        "isVisible": true
-                    }
-                ],
-                "isVisible": true,
-                "name": "Basic Information",
-                "query": null,
-                "queryType": "",
-                "readOnly": false,
-                "type": ""
-            },
-            {
-                "description": "The IP address specified below must be a reachable PAN-OS firewall. \n\nBy default, all physical NGFWs use the management address 192.168.1.1.",
-                "fields": [
-                    {
-                        "fieldId": "incident_currentipaddress",
-                        "isVisible": true
-                    }
-                ],
-                "isVisible": true,
-                "name": "Target Information",
-                "query": null,
-                "queryType": "",
-                "readOnly": false,
-                "type": ""
-            },
-            {
-                "description": "Optional settings for this specific device. Can be overridden or defaults provided by configured playbook inputs.",
-                "fields": [
-                    {
-                        "fieldId": "incident_onboardtodevicegroup",
-                        "isVisible": true
-                    },
-                    {
-                        "fieldId": "incident_onboardtotemplatestack",
-                        "isVisible": true
-                    },
-                    {
-                        "fieldId": "incident_newhostname",
-                        "isVisible": true
-                    }
-                ],
-                "isVisible": true,
-                "name": "Onboarding Settings",
-                "query": null,
-                "queryType": "",
-                "readOnly": false,
-                "type": ""
-            }
-        ]
-    },
-    "fromServerVersion": "0.0.0",
-    "group": "incident",
-    "id": "5e8e9499-efd8-4bbc-8095-b1ac6dfba6ec",
-    "indicatorsDetails": null,
-    "indicatorsQuickView": null,
-    "itemVersion": "",
-    "locked": false,
-    "mobile": null,
-    "name": "PAN-OS Network Operations - Onboarding",
-    "packID": "",
-    "packName": "",
-    "quickView": null,
-    "quickViewV2": null,
-    "system": false,
-    "toServerVersion": "99.99.99",
-    "version": -1
+	"cacheVersn": 0,
+	"close": null,
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "summary",
+				"name": "Legacy Summary",
+				"type": "summary"
+			},
+			{
+				"id": "caseinfoid",
+				"name": "Onboarding",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "type",
+								"height": 22,
+								"id": "incident-type-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "severity",
+								"height": 22,
+								"id": "incident-severity-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "owner",
+								"height": 22,
+								"id": "incident-owner-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "playbookid",
+								"height": 22,
+								"id": "incident-playbookId-field",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Case Details",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-6aabad20-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Work Plan",
+						"static": false,
+						"type": "workplan",
+						"w": 1,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-cd798aa0-2605-11ed-ae0a-4bf062e31218",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "newhostname",
+								"height": 22,
+								"id": "197e6370-2661-11ed-b6fc-3f0a24478659",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "serialnumber",
+								"height": 22,
+								"id": "1e9bf060-2662-11ed-b6fc-3f0a24478659",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "currentipaddress",
+								"height": 22,
+								"id": "34c96de0-2662-11ed-b6fc-3f0a24478659",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Firewall Settings",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-1c37b710-2661-11ed-b6fc-3f0a24478659",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "onboardingstatus",
+								"height": 22,
+								"id": "a56af530-269b-11ed-bbd6-8926e186faca",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "panoramaserveradded",
+								"height": 22,
+								"id": "23f6bf50-2661-11ed-b6fc-3f0a24478659",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "pauseforpanorama",
+								"height": 22,
+								"id": "a6a14550-272a-11ed-8ec0-b15f088be261",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "onboardingtime",
+								"height": 22,
+								"id": "0696e750-2760-11ed-bcff-d1dea57f5b48",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Onboarding Status",
+						"static": false,
+						"w": 1,
+						"x": 1,
+						"y": 2
+					},
+					{
+						"displayType": "CARD",
+						"h": 4,
+						"hideName": false,
+						"i": "caseinfoid-4b3f5b80-2661-11ed-b6fc-3f0a24478659",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "iptarget",
+								"height": 22,
+								"id": "2a4d9460-2606-11ed-ae0a-4bf062e31218",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "hostnameprefix",
+								"height": 22,
+								"id": "ad3135c0-2661-11ed-b6fc-3f0a24478659",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "onboardtodevicegroup",
+								"height": 22,
+								"id": "dc0d0f40-2661-11ed-b6fc-3f0a24478659",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "onboardtotemplatestack",
+								"height": 22,
+								"id": "dce2aec0-2661-11ed-b6fc-3f0a24478659",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "targetpanoramaserver",
+								"height": 22,
+								"id": "0db0c840-2697-11ed-bbd6-8926e186faca",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "targetbackuppanoramaserver",
+								"height": 22,
+								"id": "0ea07f70-2697-11ed-bbd6-8926e186faca",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Onboarding Settings",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 2
+					},
+					{
+						"columns": [
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "value",
+								"width": 100
+							},
+							{
+								"displayed": true,
+								"key": "Hostname",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "IP Address",
+								"width": 200
+							}
+						],
+						"h": 2,
+						"i": "caseinfoid-b3190490-2733-11ed-8ec0-b15f088be261",
+						"items": [],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Onboarded Device",
+						"query": "type:\"Network Device\"",
+						"queryType": "input",
+						"static": false,
+						"type": "indicators",
+						"w": 2,
+						"x": 1,
+						"y": 4
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-b9c46930-274f-11ed-b43c-fb0953857fe9",
+						"items": [
+							{
+								"args": {
+									"name": {
+										"simple": "PAN-OS Network Operations - Check if Device Onboarded"
+									}
+								},
+								"buttonClass": "success",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 22,
+								"id": "c434d5d0-274f-11ed-b43c-fb0953857fe9",
+								"index": 0,
+								"name": "Check if Firewall Connected to Panorama (closes incident if so)",
+								"scriptId": "Builtin|||setPlaybook",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Actions",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 2
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"id": "warRoom",
+				"name": "War Room",
+				"type": "warRoom"
+			},
+			{
+				"id": "workPlan",
+				"name": "Work Plan",
+				"type": "workPlan"
+			},
+			{
+				"hidden": true,
+				"id": "evidenceBoard",
+				"name": "Evidence Board",
+				"type": "evidenceBoard"
+			},
+			{
+				"hidden": true,
+				"id": "relatedIncidents",
+				"name": "Related Incidents",
+				"type": "relatedIncidents"
+			},
+			{
+				"hidden": true,
+				"id": "canvas",
+				"name": "Canvas",
+				"type": "canvas"
+			}
+		]
+	},
+	"edit": {
+		"sections": [
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_name",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_type",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Basic Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "The IP address specified below must be a reachable PAN-OS firewall. \n\nBy default, all physical NGFWs use the management address 192.168.1.1.",
+				"fields": [
+					{
+						"fieldId": "incident_currentipaddress",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Target Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "Optional settings for this specific device. Can be overridden or defaults provided by configured playbook inputs.",
+				"fields": [
+					{
+						"fieldId": "incident_onboardtodevicegroup",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_onboardtotemplatestack",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_newhostname",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Onboarding Settings",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			}
+		]
+	},
+	"fromServerVersion": "0.0.0",
+	"group": "incident",
+	"id": "5e8e9499-efd8-4bbc-8095-b1ac6dfba6ec",
+	"indicatorsDetails": null,
+	"indicatorsQuickView": null,
+	"itemVersion": "",
+	"locked": false,
+	"mobile": null,
+	"name": "PAN-OS Network Operations - Onboarding",
+	"packID": "",
+	"packName": "",
+	"quickView": null,
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "99.99.99",
+	"version": -1
 }

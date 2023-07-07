@@ -157,7 +157,8 @@ tasks:
       id: 991f798b-99a4-4e8f-85f6-c8cc67285f45
       version: -1
       name: Associate Device Indicator to this Incident
-      description: Associates the device indicator to this incident; required when this is run as part of a batch upgrade
+      description: Associates the device indicator to this incident; required when
+        this is run as part of a batch upgrade
       script: Builtin|||associateIndicatorToIncident
       type: regular
       iscommand: true
@@ -194,8 +195,10 @@ tasks:
       id: 57f88177-d5ea-44ad-866c-2916646c3d31
       version: -1
       name: PAN-OS Network Operations - Filter and Select Available Software Images
-      description: Requests the available software images from a firewall, filters them, then prompts the user to select the version.
-      playbookName: PAN-OS Network Operations - Filter and Select Available Software Images
+      description: Requests the available software images from a firewall, filters
+        them, then prompts the user to select the version.
+      playbookName: PAN-OS Network Operations - Filter and Select Available Software
+        Images
       type: playbook
       iscommand: false
       brand: ""
@@ -315,17 +318,17 @@ inputs:
     simple: ${incident.panosnetworkoperationstarget}
   required: false
   description: Target Firewall for upgrade
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: peer_device
   value:
     simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
   required: false
   description: Peer firewall (if any)
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: target_version
   value:
     simple: ${incident.panosnetworkoperationsupgradetargetversion}
   required: false
   description: Target version of upgrade
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

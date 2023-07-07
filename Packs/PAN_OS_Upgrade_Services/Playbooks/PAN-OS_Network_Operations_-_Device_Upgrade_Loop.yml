@@ -2,7 +2,8 @@ id: bdf72993-9e2c-424d-855a-ab69079b1d3a
 version: 6
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Device Upgrade Loop
-description: Upgrades a single or HA pair of PAN-OS firewalls, supports running as a subplaybook and be looped over to complete an entire upgrade path.
+description: Upgrades a single or HA pair of PAN-OS firewalls, supports running as
+  a subplaybook and be looped over to complete an entire upgrade path.
 starttaskid: "0"
 tasks:
   "0":
@@ -286,7 +287,8 @@ tasks:
       id: 9fbb64e6-470f-4563-89f8-1105c09c506f
       version: -1
       name: Get HA State
-      description: Get the HA state and assocaited details from the given device and any other details.
+      description: Get the HA state and assocaited details from the given device and
+        any other details.
       script: '|||pan-os-platform-get-ha-state'
       type: regular
       iscommand: true
@@ -321,7 +323,8 @@ tasks:
       id: 5549c6d3-38c7-4206-8ea5-a3940d284c1f
       version: -1
       name: Is device passive after upgrade?
-      description: True if the device is correctly Passive after the upgrade process has concluded.
+      description: True if the device is correctly Passive after the upgrade process
+        has concluded.
       type: condition
       iscommand: false
       brand: ""
@@ -377,7 +380,11 @@ tasks:
       id: 6ae30c6c-8d85-48d0-822f-bb01263d4aea
       version: -1
       name: Suspend Active firewall
-      description: "Suspends the active firewall, causing the pair to failover to the secondary. \n\nThis task can error in the event that the suspension breaks the connectivity between XSOAR and the firewall - in this case, we continue, as a subsequent task will error if the firewalls are truly unreachable (which would, of course, be very bad)"
+      description: "Suspends the active firewall, causing the pair to failover to
+        the secondary. \n\nThis task can error in the event that the suspension breaks
+        the connectivity between XSOAR and the firewall - in this case, we continue,
+        as a subsequent task will error if the firewalls are truly unreachable (which
+        would, of course, be very bad)"
       script: '|||pan-os-platform-update-ha-state'
       type: regular
       iscommand: true
@@ -528,7 +535,8 @@ tasks:
       id: 93473791-e75d-436a-834a-ca62ea0dfcf2
       version: -1
       name: Get HA State
-      description: Get the HA state and assocaited details from the given device and any other details.
+      description: Get the HA state and assocaited details from the given device and
+        any other details.
       script: '|||pan-os-platform-get-ha-state'
       type: regular
       iscommand: true
@@ -563,7 +571,8 @@ tasks:
       id: ccb7a68c-cfcf-465d-830f-9d5e9d0397f0
       version: -1
       name: Is device passive after upgrade?
-      description: True if the device is correctly Passive after the upgrade process has concluded.
+      description: True if the device is correctly Passive after the upgrade process
+        has concluded.
       type: condition
       iscommand: false
       brand: ""
@@ -619,7 +628,11 @@ tasks:
       id: 6b1b611b-dbd9-42db-8641-2475e43c1760
       version: -1
       name: Suspend Passive firewall
-      description: "Suspends the active firewall, causing the pair to failover to the passive. \n\nThis task can error in the event that the suspension breaks the connectivity between XSOAR and the firewall - in this case, we continue, as a subsequent task will error if the firewalls are truly unreachable (which would, of course, be very bad)"
+      description: "Suspends the active firewall, causing the pair to failover to
+        the passive. \n\nThis task can error in the event that the suspension breaks
+        the connectivity between XSOAR and the firewall - in this case, we continue,
+        as a subsequent task will error if the firewalls are truly unreachable (which
+        would, of course, be very bad)"
       script: '|||pan-os-platform-update-ha-state'
       type: regular
       iscommand: true
@@ -769,7 +782,8 @@ tasks:
       id: 38b1b7ae-4312-4a40-8996-9d012e43c2d1
       version: -1
       name: Unsuspend Passive Firewall
-      description: Checks the status of the given device, checking whether it's up or down and the operational mode normal
+      description: Checks the status of the given device, checking whether it's up
+        or down and the operational mode normal
       script: '|||pan-os-platform-update-ha-state'
       type: regular
       iscommand: true
@@ -897,7 +911,8 @@ tasks:
       description:
         simple: Upgrade failed.
       details:
-        simple: Upgrade for device pair failed - ${OriginalPassive} failed to return to functional state after reboot.
+        simple: Upgrade for device pair failed - ${OriginalPassive} failed to return
+          to functional state after reboot.
       severity:
         simple: "4"
     separatecontext: false
@@ -936,7 +951,8 @@ tasks:
       description:
         simple: Upgrade failed.
       details:
-        simple: Upgrade for device pair failed - ${OriginalActive} failed to return to functional state after reboot.
+        simple: Upgrade for device pair failed - ${OriginalActive} failed to return
+          to functional state after reboot.
       severity:
         simple: "4"
     separatecontext: false
@@ -1043,7 +1059,8 @@ tasks:
       id: ba3a172e-53ea-438d-863c-d4ee8df4ff13
       version: -1
       name: 'Get System Status of HA Peer '
-      description: Checks the status of the given device, checking whether it's up or down and the operational mode normal
+      description: Checks the status of the given device, checking whether it's up
+        or down and the operational mode normal
       script: '|||pan-os-platform-get-system-status'
       type: regular
       iscommand: true
@@ -1143,14 +1160,15 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to:
-      subject:
+      to: null
+      subject: null
       body:
-        simple: HA Peer ${PANOS.SystemStatus.hostid} is not up. Do you want to proceed with the upgrade anyway?
+        simple: HA Peer ${PANOS.SystemStatus.hostid} is not up. Do you want to proceed
+          with the upgrade anyway?
       methods: []
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -1816,24 +1834,25 @@ inputs:
     simple: ${incident.panosnetworkoperationstarget}
   required: false
   description: Target Firewall for upgrade
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: peer_device
   value:
     simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
   required: false
   description: Peer firewall (if any)
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: target_version
   value:
     simple: ${incident.panosnetworkoperationsupgradetargetversion}
   required: false
   description: Target version of upgrade
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: reset_ha_topology
   value:
     simple: "false"
   required: false
-  description: If "true", HA topology will be reverted to the original active and passive devices after upgrade.
-  playbookInputQuery:
+  description: If "true", HA topology will be reverted to the original active and
+    passive devices after upgrade.
+  playbookInputQuery: null
 outputs: []
 sourceplaybookid: PAN-OS Network Operations - Device Upgrade

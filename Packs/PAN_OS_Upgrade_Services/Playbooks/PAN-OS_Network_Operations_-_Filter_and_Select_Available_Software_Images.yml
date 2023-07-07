@@ -2,7 +2,8 @@ id: e68255ec-01a8-40a5-82d4-93b104eeb851
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Filter and Select Available Software Images
-description: Requests the available software images from a firewall, filters them, then prompts the user to select the version.
+description: Requests the available software images from a firewall, filters them,
+  then prompts the user to select the version.
 starttaskid: "0"
 tasks:
   "0":
@@ -42,7 +43,8 @@ tasks:
       id: bf77e034-bc6b-4490-8737-79a982f91bcc
       version: -1
       name: Collect Target Version
-      description: If a target version wasn't given, ask the user for the version to upgrade to.
+      description: If a target version wasn't given, ask the user for the version
+        to upgrade to.
       type: collection
       iscommand: false
       brand: ""
@@ -62,14 +64,14 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to:
-      subject:
+      to: null
+      subject: null
       body:
         simple: Specify the final target version of firewall software.
       methods: []
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -148,7 +150,8 @@ tasks:
       id: 24e1a72d-a3f2-4c1a-856f-70c1ec206ba2
       version: -1
       name: Filter the available software images
-      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
       scriptName: FilterAvailableSoftwareImages
       type: regular
       iscommand: false
@@ -357,5 +360,5 @@ inputs:
   value: {}
   required: true
   description: The target firewall.
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

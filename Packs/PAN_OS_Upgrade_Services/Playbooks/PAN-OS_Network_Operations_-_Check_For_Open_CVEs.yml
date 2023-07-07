@@ -2,7 +2,10 @@ id: PAN-OS Network Operations - Check For Open CVEs
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Check For Open CVEs
-description: This playbook uses the Palo Alto Networks Security Advisories integration, if available, to compare all the running software versions in the environment with the list of Open CVEs and either automatically begins the upgrade process or initiates a case management process to do so.
+description: This playbook uses the Palo Alto Networks Security Advisories integration,
+  if available, to compare all the running software versions in the environment with
+  the list of Open CVEs and either automatically begins the upgrade process or initiates
+  a case management process to do so.
 starttaskid: "0"
 tasks:
   "0":
@@ -100,7 +103,8 @@ tasks:
       id: 71914914-d6d3-4b17-8752-a4b4fe1f2013
       version: -1
       name: PAN-OS Network Operations - Check Version for CVEs
-      description: Checks a specific version of software for any open CVEs, and if they exist, starts a domain upgrade for that system to a fixed version.
+      description: Checks a specific version of software for any open CVEs, and if
+        they exist, starts a domain upgrade for that system to a fixed version.
       playbookName: PAN-OS Network Operations - Check Version for CVEs
       type: playbook
       iscommand: false

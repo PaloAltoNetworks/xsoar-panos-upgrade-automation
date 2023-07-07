@@ -277,7 +277,8 @@ tasks:
       brand: ""
     scriptarguments:
       message:
-        simple: Installation completed, reboot completed, but device still on old software version.
+        simple: Installation completed, reboot completed, but device still on old
+          software version.
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -372,7 +373,8 @@ tasks:
       id: 997cb59d-c743-43db-871d-819f35093568
       version: -1
       name: Has the software already been downloaded?
-      description: Checks if the upgrade software version is already downloaded onto the PAN-OS system.
+      description: Checks if the upgrade software version is already downloaded onto
+        the PAN-OS system.
       type: condition
       iscommand: false
       brand: ""
@@ -828,10 +830,10 @@ inputs:
   value: {}
   required: true
   description: Target firewall to upgrade
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: target_version
   value: {}
   required: true
   description: Target version to upgrade to.
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

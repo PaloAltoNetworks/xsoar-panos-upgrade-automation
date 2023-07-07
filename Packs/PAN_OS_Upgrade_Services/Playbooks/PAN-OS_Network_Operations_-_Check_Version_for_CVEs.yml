@@ -2,7 +2,8 @@ id: PAN-OS Network Operations - Check Version for CVEs
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Check Version for CVEs
-description: Checks a specific version of software for any open CVEs, and if they exist, starts a domain upgrade for that system to a fixed version.
+description: Checks a specific version of software for any open CVEs, and if they
+  exist, starts a domain upgrade for that system to a fixed version.
 starttaskid: "0"
 tasks:
   "0":
@@ -79,7 +80,8 @@ tasks:
       id: b8ea1cf8-bc73-49a2-8e08-1cc3a04b74cd
       version: -1
       name: Check if this version is affected by any CVEs
-      description: 'Checks if the given PAN-OS version number is affected by the given list of vulnerabilties. '
+      description: 'Checks if the given PAN-OS version number is affected by the given
+        list of vulnerabilties. '
       script: CheckPanosVersionAffected
       type: regular
       iscommand: false
@@ -280,11 +282,11 @@ inputs:
   value: {}
   required: true
   description: Software version to check.
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: minimum_cvss_score
   value:
     simple: "7.0"
   required: false
   description: Minimum CVSS score to initiate the upgrade process.
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

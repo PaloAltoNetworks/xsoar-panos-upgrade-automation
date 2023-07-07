@@ -206,7 +206,8 @@ tasks:
       id: 957f2d08-9f72-40a7-8bca-be0c4caa748c
       version: -1
       name: Get jobs again to check status
-      description: Get all the jobs from the devices in the environment, or a single job when ID is specified.
+      description: Get all the jobs from the devices in the environment, or a single
+        job when ID is specified.
       script: '|||pan-os-platform-get-jobs'
       type: regular
       iscommand: true
@@ -518,16 +519,16 @@ inputs:
   value: {}
   required: false
   description: Target Firewall - Serial or IP address
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: target_version
   value: {}
   required: false
   description: Target Software Version to Download
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: timeout
   value:
     simple: "45"
   required: false
   description: Default max timeout value
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

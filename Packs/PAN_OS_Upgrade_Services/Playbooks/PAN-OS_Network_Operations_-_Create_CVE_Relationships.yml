@@ -2,7 +2,8 @@ id: 1e9d1015-078f-4ac0-8bf7-6a471404561d
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Create CVE Relationships
-description: Given a PAN-OS version, searches the security advisories website for matching CVEs and relates them when seen.
+description: Given a PAN-OS version, searches the security advisories website for
+  matching CVEs and relates them when seen.
 starttaskid: "0"
 tasks:
   "0":
@@ -79,7 +80,8 @@ tasks:
       id: 1a746530-923a-4d55-8af6-ac0f36a6b3ba
       version: -1
       name: Check if this version is affected by any CVEs
-      description: Checks if the given PAN-OS version number is affected by the given list of vulnerabilties from the pan-advisories-get-advisories command.
+      description: Checks if the given PAN-OS version number is affected by the given
+        list of vulnerabilties from the pan-advisories-get-advisories command.
       script: CheckPanosVersionAffected
       type: regular
       iscommand: false
@@ -116,7 +118,11 @@ tasks:
       id: 5757f299-49d4-4f58-86b4-3cdb26a3d136
       version: -1
       name: Find Existing Relationships
-      description: This automation outputs the indicator relationships to context according to the provided query, using the entities, entityTypes, and relationships arguments. All arguments will use the AND operator. For example, using the following arguments entities=8.8.8.8 entities_types=Domain will provide only relationships that the 8.8.8.8 indicator has with indicators of type domain.
+      description: This automation outputs the indicator relationships to context
+        according to the provided query, using the entities, entityTypes, and relationships
+        arguments. All arguments will use the AND operator. For example, using the
+        following arguments entities=8.8.8.8 entities_types=Domain will provide only
+        relationships that the 8.8.8.8 indicator has with indicators of type domain.
       scriptName: SearchIndicatorRelationships
       type: regular
       iscommand: false
@@ -151,7 +157,8 @@ tasks:
       id: 462d535d-efe1-45f2-8476-cf24f86e939e
       version: -1
       name: Delete any CVE Relationships no longer applicable to this version.
-      description: This automation allows to delete a relationship between indicator objects based on the relationship id.
+      description: This automation allows to delete a relationship between indicator
+        objects based on the relationship id.
       scriptName: DeleteIndicatorRelationships
       type: regular
       iscommand: false
@@ -360,7 +367,8 @@ tasks:
       id: 709a64cf-8bb2-4f6d-8b52-2d3a36f207cd
       version: -1
       name: Delete all CVE Relationships.
-      description: This automation allows to delete a relationship between indicator objects based on the relationship id.
+      description: This automation allows to delete a relationship between indicator
+        objects based on the relationship id.
       scriptName: DeleteIndicatorRelationships
       type: regular
       iscommand: false
@@ -445,19 +453,19 @@ inputs:
     simple: 9.0.5
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: panos_id
   value:
     simple: 6F5A32602DF9260
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: device_type
   value:
     simple: Network Device
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: ""
   value: {}
   required: false
@@ -465,7 +473,7 @@ inputs:
   playbookInputQuery:
     query: type:"Panorama Device" or type:"Network Device"
     queryEntity: indicators
-    results:
+    results: null
     daterange:
       fromdate: 0001-01-01T00:00:00Z
       todate: 0001-01-01T00:00:00Z
@@ -473,8 +481,8 @@ inputs:
         by: ""
         byto: ""
         byfrom: ""
-        tovalue:
-        fromvalue:
+        tovalue: null
+        fromvalue: null
         field: ""
       fromdatelicenseval: 0001-01-01T00:00:00Z
     runFromLastJobTime: true

@@ -2,7 +2,9 @@ id: 82aae2be-6e47-4aa7-8eb8-47508990e6ae
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Onboard Firewall
-description: 'This playbook registers a firewall - based on a provided target IP - in Panorama. It adds the firewall to the support portal, ensures the licenses are retrieved and finally configures it so it can talk to Panorama. '
+description: 'This playbook registers a firewall - based on a provided target IP -
+  in Panorama. It adds the firewall to the support portal, ensures the licenses are
+  retrieved and finally configures it so it can talk to Panorama. '
 starttaskid: "0"
 tasks:
   "0":
@@ -42,7 +44,8 @@ tasks:
       id: dae2a350-44f5-4304-82be-c922545be285
       version: -1
       name: Setup the Firewall over SSH
-      description: Performs the very first login to PAN-OS NGFW that is currently expecting the username and password to be changed.
+      description: Performs the very first login to PAN-OS NGFW that is currently
+        expecting the username and password to be changed.
       scriptName: SetupFirewallFirstLogin
       type: regular
       iscommand: false
@@ -293,7 +296,8 @@ tasks:
       id: 75d61309-356e-45c5-8aaa-7975fd37c1d4
       version: -1
       name: Add the firewall serial number to the deployment key list of serials
-      description: Adds the auth key to the firewall. Skipped if Running < 10.1.2 software.
+      description: Adds the auth key to the firewall. Skipped if Running < 10.1.2
+        software.
       script: '|||pan-os'
       type: regular
       iscommand: true
@@ -534,7 +538,11 @@ tasks:
       id: 3c6656aa-3fb4-4f37-8ca3-92d6bde1f51c
       version: -1
       name: Commit to Panorama
-      description: Commits a configuration to the Palo Alto firewall or Panorama, validates if a commit was successful if using polling="true" otherwise does not validate if the commit was successful. Committing to Panorama does not push the configuration to the firewalls. To push the configuration, run the panorama-push-to-device-group command.
+      description: Commits a configuration to the Palo Alto firewall or Panorama,
+        validates if a commit was successful if using polling="true" otherwise does
+        not validate if the commit was successful. Committing to Panorama does not
+        push the configuration to the firewalls. To push the configuration, run the
+        panorama-push-to-device-group command.
       script: '|||pan-os-commit'
       type: regular
       iscommand: true
@@ -675,41 +683,43 @@ inputs:
     simple: ${incident.currentipaddress}
   required: true
   description: The IP address of the firewall to be onboarded.
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: new_admin_password
   value:
     simple: TestPassword!
   required: true
-  description: This is the admin password that will be set as the first changed password. The admin password can - and should - be changed after onboarding by pushing the actual password via a Panorama template.
-  playbookInputQuery:
+  description: This is the admin password that will be set as the first changed password.
+    The admin password can - and should - be changed after onboarding by pushing the
+    actual password via a Panorama template.
+  playbookInputQuery: null
 - key: panorama_ip
   value:
     simple: 192.168.1.145
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: backup_panorama_ip
   value:
     simple: ${incident.targetbackuppanoramaserver}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: device_group
   value:
     simple: ${incident.onboardtodevicegroup}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: template_stack
   value:
     simple: ${incident.onboardtotemplatestack}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: deployment_key_name
   value:
     simple: depoyment_key
   required: false
   description: The name of the Deployment key to use for all onboarded devices (10.1+)
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

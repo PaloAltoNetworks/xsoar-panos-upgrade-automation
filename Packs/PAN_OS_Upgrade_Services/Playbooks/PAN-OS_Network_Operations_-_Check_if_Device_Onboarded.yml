@@ -292,5 +292,5 @@ inputs:
     simple: ${incident.serialnumber}
   required: true
   description: Serial number of FW to check.
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

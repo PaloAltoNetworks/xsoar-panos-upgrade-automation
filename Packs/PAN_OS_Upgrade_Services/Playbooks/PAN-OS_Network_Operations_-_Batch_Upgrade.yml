@@ -2,7 +2,10 @@ id: PAN-OS Network Operations - Domain Upgrade
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Batch Upgrade
-description: Similar to the Platform Upgrade playbook, this playbook uses an alternate method of retrieving the devices to upgrade by instead querying the open device incidents for the information. This allows us to create upgrade incidents for only specific devices or groups of devices as opposed to all devices.
+description: Similar to the Platform Upgrade playbook, this playbook uses an alternate
+  method of retrieving the devices to upgrade by instead querying the open device
+  incidents for the information. This allows us to create upgrade incidents for only
+  specific devices or groups of devices as opposed to all devices.
 starttaskid: "0"
 tasks:
   "0":
@@ -85,7 +88,8 @@ tasks:
       id: e87b1f80-e2fb-49d0-82b7-bf4db88a5ce3
       version: -1
       name: Get Active Devices by query
-      description: 'Searches the active PAN-OS devices in the topology - the device incidents - by the given incident query. '
+      description: 'Searches the active PAN-OS devices in the topology - the device
+        incidents - by the given incident query. '
       scriptName: GetDevicesByQuery
       type: regular
       iscommand: false
@@ -95,7 +99,10 @@ tasks:
       - "6"
     scriptarguments:
       query:
-        simple: "(type:\"Network Device\" or type:\"Panorama Device\")  connected:yes hastatus:active ${inputs.upgrade_tags=>x(val);function x(l) {\n\tvar r = [];\n\tif (l) {\n  \tl.forEach(s => {\n    \tr.push(\"devicetags:\"+s);\n    })\n  } else {\n  \treturn '';\n  }\n  return r.join(' ');\n}} ${inputs.device_query}"
+        simple: "(type:\"Network Device\" or type:\"Panorama Device\")  connected:yes
+          hastatus:active ${inputs.upgrade_tags=>x(val);function x(l) {\n\tvar r =
+          [];\n\tif (l) {\n  \tl.forEach(s => {\n    \tr.push(\"devicetags:\"+s);\n
+          \   })\n  } else {\n  \treturn '';\n  }\n  return r.join(' ');\n}} ${inputs.device_query}"
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -120,7 +127,8 @@ tasks:
       id: ecba878e-530d-45cd-89ae-2ae1b4ff867a
       version: -1
       name: Get All Active Devices
-      description: 'Searches the active PAN-OS devices in the topology - the device incidents - by the given incident query. '
+      description: 'Searches the active PAN-OS devices in the topology - the device
+        incidents - by the given incident query. '
       scriptName: GetDevicesByQuery
       type: regular
       iscommand: false
@@ -268,7 +276,8 @@ tasks:
       brand: ""
     scriptarguments:
       message:
-        simple: The device query for only Active devices with domain ${inputs.domain} returned no results. Have you run a System Information incident?
+        simple: The device query for only Active devices with domain ${inputs.domain}
+          returned no results. Have you run a System Information incident?
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -293,7 +302,8 @@ tasks:
       id: 24e50287-68ec-4f25-895d-cdf60af1da83
       version: -1
       name: Filter available Panorama Images
-      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
       scriptName: FilterAvailableSoftwareImages
       type: regular
       iscommand: false
@@ -444,14 +454,15 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to:
-      subject:
+      to: null
+      subject: null
       body:
-        simple: Please complete the following survey to proceed with the platform upgrade process.
+        simple: Please complete the following survey to proceed with the platform
+          upgrade process.
       methods: []
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -675,7 +686,8 @@ tasks:
       id: 98cd8629-35fe-4831-8a0a-6cafe08c62d8
       version: -1
       name: Filter available Firewall Images
-      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
       scriptName: FilterAvailableSoftwareImages
       type: regular
       iscommand: false
@@ -762,14 +774,15 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to:
-      subject:
+      to: null
+      subject: null
       body:
-        simple: Please complete the following survey to proceed with the platform upgrade process.
+        simple: Please complete the following survey to proceed with the platform
+          upgrade process.
       methods: []
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -809,7 +822,8 @@ tasks:
               args:
                 prefix:
                   value:
-                    simple: 'Select target firewall software version. Current versions are '
+                    simple: 'Select target firewall software version. Current versions
+                      are '
                 suffix: {}
         required: false
         gridcolumns: []
@@ -1173,7 +1187,11 @@ tasks:
       - "13"
     scriptarguments:
       description:
-        simple: "Panorama Upgrade cannot continue - the input panorama upgrade version ${incident.panosnetworkoperationsupgradetargetpanoramaversion} is not a valid target version. It may already be installed, too many releases ahead, or behind the currently installed version. \n\nFirewall upgrade process will continue."
+        simple: "Panorama Upgrade cannot continue - the input panorama upgrade version
+          ${incident.panosnetworkoperationsupgradetargetpanoramaversion} is not a
+          valid target version. It may already be installed, too many releases ahead,
+          or behind the currently installed version. \n\nFirewall upgrade process
+          will continue."
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -1426,7 +1444,11 @@ tasks:
       - "25"
     scriptarguments:
       description:
-        simple: "Firewall Upgradse cannot continue - the input firewall upgrade version ${incident.panosnetworkoperationsupgradetargetfirewallversion} is not a valid target version. It may already be installed, too many releases ahead, or behind the currently installed version. \n\nPanorama Upgrade process may continue."
+        simple: "Firewall Upgradse cannot continue - the input firewall upgrade version
+          ${incident.panosnetworkoperationsupgradetargetfirewallversion} is not a
+          valid target version. It may already be installed, too many releases ahead,
+          or behind the currently installed version. \n\nPanorama Upgrade process
+          may continue."
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -1496,7 +1518,9 @@ tasks:
       - "32"
     scriptarguments:
       closeNotes:
-        simple: This upgrade incident has been closed - all devices are now upgrading, and can be monitored by looking either at the PAN-OS Network Operations dashboard or the indiviudal incidents directly.
+        simple: This upgrade incident has been closed - all devices are now upgrading,
+          and can be monitored by looking either at the PAN-OS Network Operations
+          dashboard or the indiviudal incidents directly.
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -1671,11 +1695,12 @@ inputs:
     simple: ${incident.devicetags}
   required: false
   description: Target upgrade batch by device tags.
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: device_query
   value:
     simple: ${incident.panosnetworkoperationsdeviceupgradequery}
   required: false
-  description: 'Any additional incident query parameters for the device query - for example, use "devicemodel:Panorama" to only upgrade Panorama devices. '
-  playbookInputQuery:
+  description: 'Any additional incident query parameters for the device query - for
+    example, use "devicemodel:Panorama" to only upgrade Panorama devices. '
+  playbookInputQuery: null
 outputs: []

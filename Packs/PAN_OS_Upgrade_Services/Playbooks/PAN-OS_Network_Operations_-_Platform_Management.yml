@@ -203,7 +203,8 @@ tasks:
       id: ce4c897f-574e-4239-8ebd-451daf94e07d
       version: -1
       name: Get Global Counters
-      description: Gets global counter information from all the PAN-OS firewalls in the topology
+      description: Gets global counter information from all the PAN-OS firewalls in
+        the topology
       script: '|||pan-os-platform-get-global-counters'
       type: regular
       iscommand: true
@@ -425,7 +426,8 @@ tasks:
       id: e6a5d53e-d551-4b4b-8c1b-fe4eaa4fbae3
       version: -1
       name: Get BGP Peers
-      description: Retrieves all BGP peer information from the PAN-OS firewalls in the topology.
+      description: Retrieves all BGP peer information from the PAN-OS firewalls in
+        the topology.
       script: '|||pan-os-platform-get-bgp-peers'
       type: regular
       iscommand: true
@@ -640,13 +642,14 @@ inputs:
 - key: close_task_id
   value: {}
   required: false
-  description: If set, completes the given task in the parent playbook. Used to ensure that the parent does not continue until this incident is finished processing.
-  playbookInputQuery:
+  description: If set, completes the given task in the parent playbook. Used to ensure
+    that the parent does not continue until this incident is finished processing.
+  playbookInputQuery: null
 - key: parent_incident_id
   value: {}
   required: false
   description: Incident that initiated this subplaybook, if any.
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs:
 - contextPath: PANOS.ShowSystemInfo.Result
   description: PANOS System Information

@@ -42,7 +42,8 @@ tasks:
       id: a7a1f3af-e10f-410a-826d-7f78d886fa18
       version: -1
       name: Update device incidents
-      description: Given a target device, creates or updates an existing PAN-OS Network Operations - Device incident.
+      description: Given a target device, creates or updates an existing PAN-OS Network
+        Operations - Device incident.
       scriptName: CreateOrUpdateDeviceIncident
       type: regular
       iscommand: false

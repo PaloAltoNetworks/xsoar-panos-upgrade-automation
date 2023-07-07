@@ -42,7 +42,8 @@ tasks:
       id: 76c51054-e62a-4c52-8c0b-5d6da76dd5ca
       version: -1
       name: Install the given software version
-      description: Install the given software version onto the device. Download the software first with
+      description: Install the given software version onto the device. Download the
+        software first with
       script: '|||pan-os-platform-install-software'
       type: regular
       iscommand: true
@@ -274,7 +275,8 @@ tasks:
       id: 2b1a02c2-3552-444a-8362-a4335b06be38
       version: -1
       name: Get jobs again to check status
-      description: Get all the jobs from the devices in the environment, or a single job when ID is specified.
+      description: Get all the jobs from the devices in the environment, or a single
+        job when ID is specified.
       script: '|||pan-os-platform-get-jobs'
       type: regular
       iscommand: true
@@ -315,7 +317,8 @@ tasks:
       id: 4bd8f885-e9ba-469c-81e3-5d5ff358f0ed
       version: -1
       name: Is the job active?
-      description: It's possible that, if software has already been installed, then we don't get an active job for it.
+      description: It's possible that, if software has already been installed, then
+        we don't get an active job for it.
       type: condition
       iscommand: false
       brand: ""
@@ -509,10 +512,10 @@ inputs:
   value: {}
   required: false
   description: Target Version to INstall
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: target
   value: {}
   required: false
   description: Target Device
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

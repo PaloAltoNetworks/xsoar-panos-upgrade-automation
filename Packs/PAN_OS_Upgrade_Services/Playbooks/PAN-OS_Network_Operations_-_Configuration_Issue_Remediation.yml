@@ -220,7 +220,8 @@ tasks:
       id: 1225df01-0e2c-45bb-81ce-3501b91e2d60
       version: -1
       name: Group
-      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
       scriptName: GroupIssuesByFields
       type: regular
       iscommand: false
@@ -267,7 +268,8 @@ tasks:
       id: 0dcc98cf-7de0-4450-8a78-7cde30c0248a
       version: -1
       name: PAN-OS Network Operation - Run Bulk Change
-      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
       playbookName: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       iscommand: false
@@ -344,7 +346,9 @@ tasks:
       id: 333bc30a-30d8-4109-8f8e-fc1a46ae5b54
       version: -1
       name: PAN-OS Commit Configuration
-      description: Commit the PAN-OS Panorama or Firewall configuration.\nIf specified as Panorama, it also pushes the Policies to the specified Device Group in the instance.
+      description: Commit the PAN-OS Panorama or Firewall configuration.\nIf specified
+        as Panorama, it also pushes the Policies to the specified Device Group in
+        the instance.
       playbookName: PAN-OS Commit Configuration
       type: playbook
       iscommand: false
@@ -418,7 +422,8 @@ tasks:
       id: 386547cd-a609-4e8e-86e9-fbe18c9f818a
       version: -1
       name: Mark Complete to Commit the changes
-      description: 'Mark this task complete to commit the changes made to Panorama and push them to the device groups. '
+      description: 'Mark this task complete to commit the changes made to Panorama
+        and push them to the device groups. '
       type: regular
       iscommand: false
       brand: ""
@@ -521,7 +526,8 @@ tasks:
       id: b469f8a5-fcbf-4329-8307-6679a60d7153
       version: -1
       name: Group
-      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
       scriptName: GroupIssuesByFields
       type: regular
       iscommand: false
@@ -568,7 +574,8 @@ tasks:
       id: b719d918-f762-44ec-8ddb-48894b3ad5a9
       version: -1
       name: PAN-OS Network Operation - Run Bulk Change
-      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
       playbookName: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       iscommand: false
@@ -652,7 +659,10 @@ tasks:
       id: 2c87d773-dcef-46d7-8f4e-8ef5feb32280
       version: -1
       name: Get Log Forwarding Profiles
-      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
       script: '|||pan-os-config-get-object'
       type: regular
       iscommand: true
@@ -748,13 +758,13 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to:
-      subject:
-      body:
+      to: null
+      subject: null
+      body: null
       methods: []
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -920,7 +930,8 @@ tasks:
       id: f0873b83-138a-4762-87f9-8fedb7da548d
       version: -1
       name: Group
-      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
       scriptName: GroupIssuesByFields
       type: regular
       iscommand: false
@@ -967,7 +978,8 @@ tasks:
       id: 9b7a0027-fb01-4ec2-8e08-01d4ea79a4c1
       version: -1
       name: PAN-OS Network Operation - Run Bulk Change
-      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
       playbookName: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       iscommand: false
@@ -1014,7 +1026,10 @@ tasks:
       id: df421c62-91e5-4424-82ec-f108081dd223
       version: -1
       name: Get Security Profile Groups
-      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
       script: '|||pan-os-config-get-object'
       type: regular
       iscommand: true
@@ -1112,13 +1127,13 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to:
-      subject:
-      body:
+      to: null
+      subject: null
+      body: null
       methods: []
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -1280,7 +1295,8 @@ tasks:
       id: ec555b06-cc0a-4188-8810-44ee448f5fc1
       version: -1
       name: Group
-      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
       scriptName: GroupIssuesByFields
       type: regular
       iscommand: false
@@ -1327,7 +1343,10 @@ tasks:
       id: 2a40c656-9d14-44ca-8066-d5648519e77a
       version: -1
       name: Get Log Forwarding Profiles
-      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
       script: '|||pan-os-config-get-object'
       type: regular
       iscommand: true
@@ -1423,13 +1442,13 @@ tasks:
     timertriggers: []
     ignoreworker: false
     message:
-      to:
-      subject:
-      body:
+      to: null
+      subject: null
+      body: null
       methods: []
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -1492,7 +1511,8 @@ tasks:
       id: 5631f83e-8b48-48b1-87ca-db249f9f4453
       version: -1
       name: PAN-OS Network Operation - Run Bulk Change
-      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
       playbookName: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       iscommand: false
@@ -1576,17 +1596,18 @@ inputs:
     simple: ${incident.issuequery}
   required: true
   description: The TIM query to filter for issues.
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: default_log_forwarding_profile
   value:
     simple: ${incident.defaultlogforwardingprofile}
   required: false
   description: If present, will be used whenever log forwarding needs to be enabled.
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: default_security_profile_group
   value:
     simple: ${incident.defaultsecurityprofilegroup}
   required: false
-  description: If present, will be used whenever a security profile group needs to be set.
-  playbookInputQuery:
+  description: If present, will be used whenever a security profile group needs to
+    be set.
+  playbookInputQuery: null
 outputs: []

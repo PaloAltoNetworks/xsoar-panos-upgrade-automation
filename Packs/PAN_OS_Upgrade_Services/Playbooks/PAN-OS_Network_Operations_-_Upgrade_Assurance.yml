@@ -2,7 +2,9 @@ id: f36e3d36-e5d7-480c-80ce-2db848e1eebd
 version: 26
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Upgrade Assurance
-description: Runs a series of tests based on the upgrade assurance commands and prompts if any fail - also generates reports and other information that is useful in the assurance process.
+description: Runs a series of tests based on the upgrade assurance commands and prompts
+  if any fail - also generates reports and other information that is useful in the
+  assurance process.
 starttaskid: "0"
 tasks:
   "0":
@@ -98,12 +100,13 @@ tasks:
       subject:
         simple: Waiting for trigger for Snapshot on ${incident.panosnetworkoperationsupgradetargetfirewall}
       body:
-        simple: 'The assurance process is paused, waiting for manual confirmation to take the second snapshot and run the comparsion on firewall ${incident.panosnetworkoperationsupgradetargetfirewall}. '
+        simple: 'The assurance process is paused, waiting for manual confirmation
+          to take the second snapshot and run the comparsion on firewall ${incident.panosnetworkoperationsupgradetargetfirewall}. '
       methods:
       - email
       format: ""
-      bcc:
-      cc:
+      bcc: null
+      cc: null
       timings:
         retriescount: 2
         retriesinterval: 360
@@ -131,7 +134,8 @@ tasks:
         tooltip: ""
         readonly: false
       title: Second Snapshot Confirmation
-      description: Mark complete when you're ready to take the second snapshot and run the comparsion between the two.
+      description: Mark complete when you're ready to take the second snapshot and
+        run the comparsion between the two.
       sender: Your SOC team
       expired: false
       totalanswers: 0
@@ -269,5 +273,5 @@ inputs:
     simple: ${incident.panosnetworkoperationstarget}
   required: true
   description: Target firewall - helpful if running this playbook in a loop.
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs: []

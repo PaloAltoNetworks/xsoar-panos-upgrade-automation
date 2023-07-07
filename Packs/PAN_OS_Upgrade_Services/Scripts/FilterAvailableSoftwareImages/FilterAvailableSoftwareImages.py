@@ -76,6 +76,7 @@ def check_if_feature_version_update(left_image_version: str, right_image_version
 
 def get_minor_version_as_float(minor_version_str: str):
     minor_version_str = minor_version_str.replace("-h", ".")
+    minor_version_str = minor_version_str.replace("-b", ".")
     return float(minor_version_str)
 
 

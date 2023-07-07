@@ -2,7 +2,8 @@ id: 6abaaf4d-6a84-4f35-8e60-2038625a349a
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Run Bulk Change
-description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+description: This playbook runs the fixes identified by GroupIssuesByFields as a looped
+  playbook to ensure the correct objects are updated at all times.
 starttaskid: "0"
 tasks:
   "0":
@@ -125,28 +126,28 @@ inputs:
   value: {}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: new_value
   value: {}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: object_type
   value: {}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: attribute_to_update
   value: {}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 - key: device
   value:
     simple: ${incident.panosnetworkoperationstarget}
   required: false
   description: ""
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs:
 - contextPath: PANOS.PanosUpdatedObject
   description: Updated Objects.

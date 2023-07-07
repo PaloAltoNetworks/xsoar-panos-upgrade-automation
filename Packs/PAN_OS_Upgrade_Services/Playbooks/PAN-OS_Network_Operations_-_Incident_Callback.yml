@@ -2,7 +2,8 @@ id: PAN-OS Network Operations - Incident Callback
 version: 4
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Incident Callback
-description: Checks to see if this incident has a parent incident and if so, links the two incidents.
+description: Checks to see if this incident has a parent incident and if so, links
+  the two incidents.
 starttaskid: "0"
 tasks:
   "0":

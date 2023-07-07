@@ -42,7 +42,8 @@ tasks:
       id: 3e26aea4-6945-4ff5-8fb7-cfcf0a775cbe
       version: -1
       name: Take Snapshot
-      description: Takes a JSON Snapshot of the current operational state of the target device
+      description: Takes a JSON Snapshot of the current operational state of the target
+        device
       tags:
       - snapshot-file
       scriptName: TakeOperationalSnapshot
@@ -152,7 +153,7 @@ inputs:
     simple: ${incident.panosnetworkoperationstarget}
   required: true
   description: The target to take the snapshot of
-  playbookInputQuery:
+  playbookInputQuery: null
 outputs:
 - contextPath: File.EntryID
   description: The file entry ID.
