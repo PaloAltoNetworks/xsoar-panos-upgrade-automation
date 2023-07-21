@@ -1,0 +1,7 @@
+pyyaml
+pydantic
+pan-os-python
+pan-python
+xmltodict
+pytest
+panos_upgrade_assurance
