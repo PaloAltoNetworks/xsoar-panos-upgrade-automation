@@ -4,6 +4,17 @@ import demistomock as demisto
 
 import pytest
 
+"""
+Upgrade Assurance Python Tests
+This test suite only tests the XSOAR integration components and functions.
+
+To run integration tests, you need to specifiy the following environment variables;
+
+    * PANORAMA_IP
+    * PANORAMA_USERNAME
+    * PANORAMA_PASSWORD
+"""
+
 
 @pytest.fixture
 def panorama_object():
@@ -47,6 +58,7 @@ def test_run_snapshot_report(firewall_object):
     result = compare_snapshots(left_snapshot, right_snapshot)
     print(json.dumps(result, indent=4))
     print(convert_snapshot_result_to_table(result))
+
 
 def test_run_readiness_checks(firewall_object):
     from PAN_OS_Upgrade_Assurance import run_readiness_checks, convert_readiness_results_to_table

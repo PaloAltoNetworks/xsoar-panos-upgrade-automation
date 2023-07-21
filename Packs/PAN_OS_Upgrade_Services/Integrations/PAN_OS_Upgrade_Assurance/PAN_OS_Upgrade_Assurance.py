@@ -14,6 +14,7 @@ SETTINGS = {
     "skip_force_locale": True
 }
 
+
 def get_file_path(input_entry_id):
     res = demisto.getFilePath(input_entry_id)
     if not res:
@@ -276,6 +277,7 @@ def main():
             return_error(f"{command} not implemented.")
     except PanDeviceXapiError as e:
         return_error(f"{e}")
+
 
 if __name__ == "__builtin__" or __name__ == "builtins":
     main()
