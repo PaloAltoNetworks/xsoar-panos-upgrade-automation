@@ -1,5 +1,5 @@
 category: Utilities
-description: This is the XSOAR wrapper for the Palo alto conversion application, PANser.
+description: Operational testing for PAN-OS for PAN-OS upgrades.
 commonfields:
   id: PAN_OS_Upgrade_Assurance
   version: -1
@@ -151,7 +151,7 @@ script:
   script: '-'
   type: python
   subtype: python3
-  dockerimage: docker-ps-xsoar.art.code.pan.run/pan-os-upgrade-assurance:0.0.1
+  dockerimage: ghcr.io/paloaltonetworks/panos_upgrade_assurance:latest
   feed: false
   isfetch: false
   runonce: false

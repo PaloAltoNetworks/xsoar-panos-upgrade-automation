@@ -8,7 +8,11 @@ from panos_upgrade_assurance.check_firewall import CheckFirewall
 from panos_upgrade_assurance.snapshot_compare import SnapshotCompare
 
 from panos.panorama import Panorama
+from panos.errors import PanDeviceXapiError
 
+SETTINGS = {
+    "skip_force_locale": True
+}
 
 def get_file_path(input_entry_id):
     res = demisto.getFilePath(input_entry_id)
@@ -50,7 +54,7 @@ def parse_session(session_str: str):
 
 def run_snapshot(
         firewall: FirewallProxy, snapshot_list: Optional[List] = None):
-    checks = CheckFirewall(firewall)
+    checks = CheckFirewall(firewall, **SETTINGS)
     """Runs a snapshot and saves it as a JSON file in the XSOAR system."""
 
     if not snapshot_list:
@@ -141,7 +145,7 @@ def run_readiness_checks(
 
     check_config = check_list + custom_checks
 
-    checks = CheckFirewall(firewall)
+    checks = CheckFirewall(firewall, **SETTINGS)
     results = checks.run_readiness_checks(check_config)
 
     return results
@@ -259,17 +263,19 @@ def main():
     panorama = get_panorama(panorama_ip, panorama_user, panorama_password)
 
     command = demisto.command()
-    if command == "pan-os-assurance-run-readiness-checks":
-        return_results(command_run_readiness_checks(panorama))
-    elif command == "pan-os-assurance-run-snapshot":
-        return_results(command_run_snapshot(panorama))
-    elif command == "pan-os-assurance-compare-snapshots":
-        return_results(command_compare_snapshots())
-    elif command == "test-module":
-        return_results("ok")
-    else:
-        return_error(f"{command} not implemented.")
-
+    try:
+        if command == "pan-os-assurance-run-readiness-checks":
+            return_results(command_run_readiness_checks(panorama))
+        elif command == "pan-os-assurance-run-snapshot":
+            return_results(command_run_snapshot(panorama))
+        elif command == "pan-os-assurance-compare-snapshots":
+            return_results(command_compare_snapshots())
+        elif command == "test-module":
+            return_results("ok")
+        else:
+            return_error(f"{command} not implemented.")
+    except PanDeviceXapiError as e:
+        return_error(f"{e}")
 
 if __name__ == "__builtin__" or __name__ == "builtins":
     main()
