@@ -6,3 +6,5 @@ xmltodict
 pytest
 panos_upgrade_assurance
 lxml
+requests
+pytest-mock

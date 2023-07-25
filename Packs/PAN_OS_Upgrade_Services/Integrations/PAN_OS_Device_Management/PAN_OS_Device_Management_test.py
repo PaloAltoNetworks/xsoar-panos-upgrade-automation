@@ -5,10 +5,29 @@ import pytest
 from panos.panorama import Panorama
 from lxml import etree
 
+TEST_LOCATION_FROM_ROOT = "Packs/PAN_OS_Upgrade_Services/Integrations/PAN_OS_Device_Management/"
+
 
 def load_xml_root_from_test_file(xml_file: str):
     """Given an XML file, loads it and returns the root element XML object."""
-    return etree.parse(xml_file).getroot()
+    try:
+        data = etree.parse(xml_file).getroot()
+    except OSError:
+        data = etree.parse(TEST_LOCATION_FROM_ROOT + xml_file).getroot()
+
+    return data
+
+
+def load_json_from_test_file(file_name):
+    """Given a JSON file, returns the contents"""
+    try:
+        data = json.load(open(file_name))
+    except FileNotFoundError:
+        # Handle test being run outside of test directory (i.e from content root dir)
+        data = json.load(
+            open(TEST_LOCATION_FROM_ROOT + file_name))
+
+    return data
 
 
 @pytest.fixture
@@ -93,11 +112,14 @@ def test_get_devicegroups(integration_test_fixture):
     assert len(result_dgs) > 0
 
 
-@pytest.mark.parametrize("xml_file,expected_dict", [
-    ("test_data/show_system_info.xml", json.load(open("test_data/show_system_info_expected.json")))
+@pytest.mark.parametrize("xml_file,expected_data_file", [
+    ("test_data/show_system_info.xml", "test_data/show_system_info_expected.json")
 ])
-def test_flatten_xml_to_dict(xml_file, expected_dict):
+def test_flatten_xml_to_dict(xml_file, expected_data_file):
     from PAN_OS_Device_Management import flatten_xml_to_dict
+
+    expected_dict = load_json_from_test_file(expected_data_file)
+
     xml_element = load_xml_root_from_test_file(xml_file)
     result_dict = {}
     result_dict = flatten_xml_to_dict(xml_element, result_dict)

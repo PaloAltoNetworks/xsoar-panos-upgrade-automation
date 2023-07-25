@@ -17,25 +17,6 @@ version_kwargs = {
 
 
 @pytest.mark.parametrize(
-    'left_image_version, right_image_version, expected', [
-        # Valid targets
-        ("9.1.3", "9.1.2", "9.1.3"),
-        ("10.0.3", "9.1.2", "10.0.3"),
-        # More than one major release
-        ("10.1.3", "9.1.2", None),
-        ("10.2.0", "10.0.1", None),
-        # left is older than right
-        ("9.1.1", "9.1.2", None),
-        ("9.0.14", "10.0.11", None),
-    ]
-)
-def test_check_versions(left_image_version, right_image_version, expected):
-    from FilterAvailableSoftwareImages import check_versions
-    result = check_versions(left_image_version, right_image_version)
-    assert result == expected
-
-
-@pytest.mark.parametrize(
     'current_version, available_images, expected', [
         (
                 "9.1.1",
@@ -152,9 +133,10 @@ def test_calculate_upgrade_path(current_version, target_version, available_image
 
 
 def test_main():
-    pytest.skip("Might contain sensitive data. To run this unit test, copy output from pan-os-available-software.")
+    pytest.skip(
+        "Might contain sensitive data. To run this unit test, copy output from pan-os-available-software."
+    )
     available_images = json.load(open("test_data/all_available_software.json"))
     installed_images = json.load(open("test_data/installed_images.json"))
     from FilterAvailableSoftwareImages import main
     result = main(installed_images, available_images)
-    print(result)

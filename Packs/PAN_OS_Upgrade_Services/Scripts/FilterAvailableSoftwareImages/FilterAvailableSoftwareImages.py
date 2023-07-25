@@ -1,4 +1,4 @@
-import demistomock as demisto  # noqa: F401
+import demistomock as demisto
 from CommonServerPython import *  # noqa: F401
 
 """
@@ -53,7 +53,8 @@ class ScriptResult:
     _result_cls = SoftwareVersion
 
 
-def check_if_feature_version_update(left_image_version: str, right_image_version: str, any_version_jump: Optional[bool] = False):
+def check_if_feature_version_update(left_image_version: str, right_image_version: str,
+                                    any_version_jump: Optional[bool] = False):
     """Checks if the right version is newer but not more than 1 minor release away from the previous"""
 
     if left_image_version == right_image_version:

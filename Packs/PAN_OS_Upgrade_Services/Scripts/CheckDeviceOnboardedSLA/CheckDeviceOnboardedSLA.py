@@ -1,4 +1,4 @@
-import demistomock as demisto  # noqa: F401
+
 from CommonServerPython import *  # noqa: F401
 
 CHECK_PLAYBOOK_NAME = "PAN-OS Network Operations - Check if Device Onboarded"

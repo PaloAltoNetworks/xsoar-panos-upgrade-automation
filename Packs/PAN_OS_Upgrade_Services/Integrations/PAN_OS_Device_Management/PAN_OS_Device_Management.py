@@ -1,15 +1,15 @@
 import demistomock as demisto
 from CommonServerPython import *
-from CommonServerUserPython import *
 
-from typing import Callable
-from dataclasses import fields, dataclass
+import requests
+from typing import List, Union, Optional
+
+from dataclasses import dataclass
 from panos.panorama import Panorama, DeviceGroup, Template
 from panos.policies import Rulebase, PreRulebase, PostRulebase, SecurityRule, NatRule
 from panos.firewall import Firewall
 from panos.network import Zone
 from panos.device import Vsys
-from xml.etree.ElementTree import tostring
 from urllib.parse import urlparse
 
 # Disable insecure warnings

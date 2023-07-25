@@ -1,7 +1,7 @@
-from typing import List, Optional
 import demistomock as demisto
 from CommonServerPython import *
-from CommonServerUserPython import *
+
+from typing import Optional, List
 
 from panos_upgrade_assurance.firewall_proxy import FirewallProxy
 from panos_upgrade_assurance.check_firewall import CheckFirewall
