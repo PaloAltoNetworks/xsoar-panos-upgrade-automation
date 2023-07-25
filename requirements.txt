@@ -5,3 +5,4 @@ pan-python
 xmltodict
 pytest
 panos_upgrade_assurance
+lxml
