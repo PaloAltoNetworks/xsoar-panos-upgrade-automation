@@ -26,4 +26,4 @@ jobs:
           pytest
       - name: Check for Secrets
         run: |
-          demisto-sdk secrets secrets_ignore_whitelist.json
+          demisto-sdk secrets -wl secrets_ignore_whitelist.json
