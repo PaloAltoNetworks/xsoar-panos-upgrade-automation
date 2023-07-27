@@ -1,0 +1,527 @@
+id: PAN-OS Network Operations - Set Device Domain
+version: 4
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Set Device Domain
+description: Enables the grouping of devices into administrative domains. Domains
+  may refer to a physical location or logical administrative boundry.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: 62c737fa-7e70-4169-823b-c360719f0cff
+    type: start
+    task:
+      id: 62c737fa-7e70-4169-823b-c360719f0cff
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "4"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -240
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: c5653e4a-2dc7-4127-89a8-ef24ff740ffb
+    type: regular
+    task:
+      id: c5653e4a-2dc7-4127-89a8-ef24ff740ffb
+      version: -1
+      name: Set Group via Regex
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "12"
+    scriptarguments:
+      panosnetworkoperationsdeviceadministrativedomain:
+        complex:
+          root: incident
+          accessor: panosnetworkoperationshostname
+          transformers:
+          - operator: RegexGroups
+            args:
+              flags: {}
+              groups:
+                value:
+                  simple: "0"
+              keys: {}
+              regex:
+                value:
+                  simple: inputs.domain_regex_hostname
+                iscontext: true
+    separatecontext: false
+    continueonerror: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 80
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: ee5454fb-badc-44bf-894a-429132a39061
+    type: regular
+    task:
+      id: ee5454fb-badc-44bf-894a-429132a39061
+      version: -1
+      name: Set device-group as domain
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "8"
+    scriptarguments:
+      panosnetworkoperationsdeviceadministrativedomain:
+        complex:
+          root: PANOS.DeviceGroupOp
+          filters:
+          - - operator: isEqualString
+              left:
+                value:
+                  simple: PANOS.DeviceGroupOp.hostname
+                iscontext: true
+              right:
+                value:
+                  simple: incident.panosnetworkoperationshostname
+                iscontext: true
+          accessor: name
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 790
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "4":
+    id: "4"
+    taskid: 7faee5f0-1370-43e3-8b1e-9c81bac1676e
+    type: condition
+    task:
+      id: 7faee5f0-1370-43e3-8b1e-9c81bac1676e
+      version: -1
+      name: Is Regex Grouping Enabled?
+      description: Look for regex based grouping
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      "yes":
+      - "2"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isNotEmpty
+          left:
+            value:
+              simple: inputs.domain_regex_hostname
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -90
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "6":
+    id: "6"
+    taskid: 4f47fd4a-025c-428b-803f-72a7c0a7f712
+    type: condition
+    task:
+      id: 4f47fd4a-025c-428b-803f-72a7c0a7f712
+      version: -1
+      name: Is Device-group Grouping enabled?
+      description: Is DG grouping enabled
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "7"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isEqualString
+          left:
+            value:
+              simple: inputs.domain_panorama
+            iscontext: true
+          right:
+            value:
+              simple: device-group
+        - operator: isEqualString
+          left:
+            value:
+              simple: inputs.domain_panorama
+            iscontext: true
+          right:
+            value:
+              simple: both
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 430
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "7":
+    id: "7"
+    taskid: 21377a99-14c0-4481-8300-f25d7525ea5e
+    type: regular
+    task:
+      id: 21377a99-14c0-4481-8300-f25d7525ea5e
+      version: -1
+      name: Get Device-groups
+      description: Gets the operational information of the device groups in the topology.
+      script: '|||pan-os-platform-get-device-groups'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "3"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 610
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "8":
+    id: "8"
+    taskid: 35d168fc-e823-4a11-8f98-4e5bcbe471b8
+    type: condition
+    task:
+      id: 35d168fc-e823-4a11-8f98-4e5bcbe471b8
+      version: -1
+      name: Is template-stack grouping enabled?
+      description: Is TS grouping enabled
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "9"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isEqualString
+          left:
+            value:
+              simple: inputs.domain_panorama
+            iscontext: true
+          right:
+            value:
+              simple: template-stack
+        - operator: isEqualString
+          left:
+            value:
+              simple: inputs.domain_panorama
+            iscontext: true
+          right:
+            value:
+              simple: both
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 960
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "9":
+    id: "9"
+    taskid: 1778265e-27dd-4793-864a-35090036a3c3
+    type: regular
+    task:
+      id: 1778265e-27dd-4793-864a-35090036a3c3
+      version: -1
+      name: Get Template-stacks
+      description: Gets the operational information of the template-stacks in the
+        topology.
+      script: '|||pan-os-platform-get-template-stacks'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "10"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1160
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "10":
+    id: "10"
+    taskid: 1233172f-8673-4e9e-85ff-8c80608b6ce5
+    type: regular
+    task:
+      id: 1233172f-8673-4e9e-85ff-8c80608b6ce5
+      version: -1
+      name: Set template-stack as domain
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "11"
+    scriptarguments:
+      panosnetworkoperationsdeviceadministrativedomain:
+        complex:
+          root: PANOS.TemplateStackOp
+          filters:
+          - - operator: isEqualString
+              left:
+                value:
+                  simple: PANOS.TemplateStackOp.hostname
+                iscontext: true
+              right:
+                value:
+                  simple: incident.panosnetworkoperationshostname
+                iscontext: true
+          accessor: name
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1320
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "11":
+    id: "11"
+    taskid: 892aa978-20e0-41cb-86ff-dc08cf326bcb
+    type: title
+    task:
+      id: 892aa978-20e0-41cb-86ff-dc08cf326bcb
+      version: -1
+      name: Finish
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1500
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "12":
+    id: "12"
+    taskid: 3c8cd3b3-bb10-4cf4-8f10-769876dfb1b3
+    type: condition
+    task:
+      id: 3c8cd3b3-bb10-4cf4-8f10-769876dfb1b3
+      version: -1
+      name: Is this a Panorama Device?
+      description: Checks if panorama
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "13"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isEqualString
+          left:
+            value:
+              simple: incident.devicemodel
+            iscontext: true
+          right:
+            value:
+              simple: Panorama
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 240
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "13":
+    id: "13"
+    taskid: 30fd3d61-4d8d-4e93-8295-5360b05df9b3
+    type: regular
+    task:
+      id: 30fd3d61-4d8d-4e93-8295-5360b05df9b3
+      version: -1
+      name: Set domain tag to Panorama
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "11"
+    scriptarguments:
+      panosnetworkoperationsdeviceadministrativedomain:
+        simple: panorama
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 430
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1805,
+        "width": 840,
+        "x": -10,
+        "y": -240
+      }
+    }
+  }
+inputs:
+- key: domain_regex_hostname
+  value:
+    simple: (\S+)\-
+  required: false
+  description: If set, will assign this group to the first group retrieved via the
+    regex string. Example; regex of (\S+)\-\S and hostname "nsw-fw01" would set the
+    device domain to "nsw".
+  playbookInputQuery: null
+- key: domain_panorama
+  value:
+    simple: both
+  required: false
+  description: If set to "device-group", device will be automatically put in a Domain
+    group based on the device group it's a member of in Panorama. If set to "template-stack",
+    will set the domain to the template-stack this device is a member of. If unset,
+    no grouping is done. Can also be set to both to add both the template-stack and
+    DG as a domain tag.
+  playbookInputQuery: null
+outputs: []

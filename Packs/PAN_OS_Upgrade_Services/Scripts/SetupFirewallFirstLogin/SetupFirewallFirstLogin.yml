@@ -1,0 +1,30 @@
+args:
+  - description: The new administrative password.
+    name: new_admin_password
+    required: true
+  - description: The hostname of the firewall to configure.
+    name: hostname
+    required: true
+comment: 'Performs the very first login to PAN-OS NGFW that is currently expecting the username and password to be changed.'
+commonfields:
+  id: SetupFirewallFirstLogin
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    fromServerVersion: ''
+dockerimage: demisto/netmiko:1.0.0.24037
+enabled: true
+name: SetupFirewallFirstLogin
+outputs:
+  - contextPath: SetupFirewallFirstLogin.ip
+    description: The current IP of the firewall that has been setup.
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags: [ ]
+type: python
+fromversion: 6.2.0
+tests:
+  - No tests (auto formatted)

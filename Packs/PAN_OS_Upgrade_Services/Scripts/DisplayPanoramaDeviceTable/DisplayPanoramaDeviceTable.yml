@@ -1,0 +1,23 @@
+commonfields:
+  id: DisplayPanoramaDeviceTable
+  version: -1
+vcShouldKeepItemLegacyProdMachine: false
+name: DisplayPanoramaDeviceTable
+script: ''
+type: python
+tags:
+- dynamic-section
+- dynamic-indicator-section
+comment: Displays all the related Network Device objects that are connected to this Panorama instance.
+enabled: true
+args:
+- name: custom_field
+  description: The custom grid field to count.
+scripttarget: 0
+subtype: python3
+pswd: ''
+runonce: false
+dockerimage: demisto/python3:3.10.5.31928
+runas: DBotWeakRole
+engineinfo: {}
+mainengineinfo: {}

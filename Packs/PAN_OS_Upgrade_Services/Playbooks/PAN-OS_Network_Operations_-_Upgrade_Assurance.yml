@@ -1,0 +1,277 @@
+id: f36e3d36-e5d7-480c-80ce-2db848e1eebd
+version: 26
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Upgrade Assurance
+description: Runs a series of tests based on the upgrade assurance commands and prompts
+  if any fail - also generates reports and other information that is useful in the
+  assurance process.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: 573f431c-fe28-499d-8fd5-10abd16e6985
+    type: start
+    task:
+      id: 573f431c-fe28-499d-8fd5-10abd16e6985
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "9"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "6":
+    id: "6"
+    taskid: e0ee1d48-5482-4daf-8bd3-e572267a421e
+    type: regular
+    task:
+      id: e0ee1d48-5482-4daf-8bd3-e572267a421e
+      version: -1
+      name: Aborted process.
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    scriptarguments:
+      description:
+        simple: Assurance testing aborted.
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 880
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "7":
+    id: "7"
+    taskid: 8c678297-72fa-4c1a-856a-2abf7c377f50
+    type: collection
+    task:
+      id: 8c678297-72fa-4c1a-856a-2abf7c377f50
+      version: -1
+      name: Second Snapshot Trigger
+      type: collection
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "8"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 350
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    message:
+      to:
+        simple: ${incident.owner}
+      subject:
+        simple: Waiting for trigger for Snapshot on ${incident.panosnetworkoperationsupgradetargetfirewall}
+      body:
+        simple: 'The assurance process is paused, waiting for manual confirmation
+          to take the second snapshot and run the comparsion on firewall ${incident.panosnetworkoperationsupgradetargetfirewall}. '
+      methods:
+      - email
+      format: ""
+      bcc: null
+      cc: null
+      timings:
+        retriescount: 2
+        retriesinterval: 360
+        completeafterreplies: 1
+        completeafterv2: true
+        completeaftersla: false
+    form:
+      questions:
+      - id: "0"
+        label: ""
+        labelarg:
+          simple: |-
+            ### Do you want to continue?
+            *Choosing Yes will run the second snapshot, and proceed with the comparsion*
+        required: true
+        gridcolumns: []
+        defaultrows: []
+        type: singleSelect
+        options: []
+        optionsarg:
+        - simple: "Yes"
+        - simple: "No"
+        fieldassociated: ""
+        placeholder: ""
+        tooltip: ""
+        readonly: false
+      title: Second Snapshot Confirmation
+      description: Mark complete when you're ready to take the second snapshot and
+        run the comparsion between the two.
+      sender: Your SOC team
+      expired: false
+      totalanswers: 0
+    formDisplay:
+      headerbackgroundcolor: '#ff0000'
+      headerfontcolor: ""
+      sender: ""
+      bodybackgroundcolor: ""
+      bodyfontcolor: ""
+      submitbuttonbackgroundcolor: '#f50057'
+      submitbuttonfontcolor: ""
+      submittext: ""
+      isexternalrtl: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "8":
+    id: "8"
+    taskid: 57290cc6-c08e-4bc6-8a8f-2600ecb7897d
+    type: condition
+    task:
+      id: 57290cc6-c08e-4bc6-8a8f-2600ecb7897d
+      version: -1
+      name: Continue?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "10"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isEqualString
+          left:
+            value:
+              simple: Second Snapshot Confirmation.Answers.0
+            iscontext: true
+          right:
+            value:
+              simple: "Yes"
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 520
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "9":
+    id: "9"
+    taskid: cb7e29c7-8068-4902-8aff-e8870bc9ddff
+    type: playbook
+    task:
+      id: cb7e29c7-8068-4902-8aff-e8870bc9ddff
+      version: -1
+      name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
+      playbookName: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
+      type: playbook
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "7"
+    separatecontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "10":
+    id: "10"
+    taskid: 561ad79e-e162-468e-8126-2480fb2914bc
+    type: playbook
+    task:
+      id: 561ad79e-e162-468e-8126-2480fb2914bc
+      version: -1
+      name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
+      playbookName: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
+      type: playbook
+      iscommand: false
+      brand: ""
+    separatecontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 880
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 925,
+        "width": 790,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
+inputs:
+- key: target
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+  required: true
+  description: Target firewall - helpful if running this playbook in a loop.
+  playbookInputQuery: null
+outputs: []

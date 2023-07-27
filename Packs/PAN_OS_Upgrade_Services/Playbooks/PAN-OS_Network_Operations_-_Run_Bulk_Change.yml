@@ -1,0 +1,155 @@
+id: 6abaaf4d-6a84-4f35-8e60-2038625a349a
+version: 4
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Run Bulk Change
+description: This playbook runs the fixes identified by GroupIssuesByFields as a looped
+  playbook to ensure the correct objects are updated at all times.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: f5a56610-94ca-4a62-86d4-605717bc0a90
+    type: start
+    task:
+      id: f5a56610-94ca-4a62-86d4-605717bc0a90
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "1"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "1":
+    id: "1"
+    taskid: 9cb1acc4-1272-4f3a-8856-cdf83688f7e8
+    type: regular
+    task:
+      id: 9cb1acc4-1272-4f3a-8856-cdf83688f7e8
+      version: -1
+      name: Execute The Change
+      description: |
+        Updates a single attribute for all the given PAN-OS objects or rules by name. This is a potentially disruptive command
+        as it will replace all objects of the same type and parent in the XML tree.
+      script: '|||pan-os-config-bulk-update-objects'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "2"
+    scriptarguments:
+      attribute_to_update:
+        simple: ${inputs.attribute_to_update}
+      device_filter_string:
+        simple: ${inputs.device}
+      new_values:
+        simple: ${inputs.new_value}
+      object_names:
+        simple: ${inputs.issue_to_fix.object_names}
+      object_type:
+        simple: ${inputs.object_type}
+      parent:
+        simple: ${inputs.issue_to_fix.location}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 200
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: 0ab4e5e7-5437-49c3-8fe1-2e19cd3159fa
+    type: title
+    task:
+      id: 0ab4e5e7-5437-49c3-8fe1-2e19cd3159fa
+      version: -1
+      name: Done
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 380
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 395,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
+inputs:
+- key: issue_to_fix
+  value: {}
+  required: false
+  description: ""
+  playbookInputQuery: null
+- key: new_value
+  value: {}
+  required: false
+  description: ""
+  playbookInputQuery: null
+- key: object_type
+  value: {}
+  required: false
+  description: ""
+  playbookInputQuery: null
+- key: attribute_to_update
+  value: {}
+  required: false
+  description: ""
+  playbookInputQuery: null
+- key: device
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+  required: false
+  description: ""
+  playbookInputQuery: null
+outputs:
+- contextPath: PANOS.PanosUpdatedObject
+  description: Updated Objects.
+  type: unknown
+quiet: true

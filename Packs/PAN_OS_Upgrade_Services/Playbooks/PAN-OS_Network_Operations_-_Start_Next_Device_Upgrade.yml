@@ -1,0 +1,87 @@
+id: 6d1d456f-2edf-4cae-8c93-d38b87682c1d
+version: 4
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Start Next Device Upgrade
+description: This is a subplaybook that just restarts the device upgrade process if
+  required. It needs to be dedicated to a subplaybook or it will fail to loop if there
+  are multiple steps in the upgrade process.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: 4000e907-45a7-4fb9-8210-702d454bfb9a
+    type: start
+    task:
+      id: 4000e907-45a7-4fb9-8210-702d454bfb9a
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "1"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "1":
+    id: "1"
+    taskid: 096834f4-6058-43ba-88ae-c648e5dc8979
+    type: regular
+    task:
+      id: 096834f4-6058-43ba-88ae-c648e5dc8979
+      version: -1
+      name: Start Next Upgrade
+      description: commands.local.cmd.set.playbook
+      script: Builtin|||setPlaybook
+      type: regular
+      iscommand: true
+      brand: Builtin
+    scriptarguments:
+      incidentId:
+        simple: ${incident.id}
+      name:
+        simple: PAN-OS Network Operations - Device Upgrade
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 210
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 255,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
+inputs: []
+outputs: []
+quiet: true

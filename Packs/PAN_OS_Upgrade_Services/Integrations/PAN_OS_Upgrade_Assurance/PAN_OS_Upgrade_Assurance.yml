@@ -1,0 +1,162 @@
+category: Utilities
+description: Operational testing for PAN-OS for PAN-OS upgrades.
+commonfields:
+  id: PAN_OS_Upgrade_Assurance
+  version: -1
+name: PAN_OS_Upgrade_Assurance
+display: PAN-OS Assurance Testing
+configuration:
+- display: Panorama IP or Hostname
+  name: url
+  defaultvalue: 192.168.1.1
+  type: 0
+  required: true
+- display: Panorama Username
+  name: panorama_user
+  type: 0
+  required: true
+- display: Panorama Password
+  name: panorama_password
+  type: 4
+  required: true
+- display: Server Port
+  name: port
+  type: 4
+  required: false
+- display: Trust any certificate (not secure)
+  name: insecure
+  type: 8
+  required: false
+- display: Use system proxy settings
+  name: proxy
+  type: 8
+  required: false
+script:
+  commands:
+  - deprecated: false
+    description: "Runs checks to confirm a PAN-OS firewall is ready to be upgraded."
+    name: pan-os-assurance-run-readiness-checks
+    arguments:
+    - name: firewall_serial
+      isArray: false
+      description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
+      required: true
+      secret: false
+      default: false
+    - name: check_list
+      isArray: true
+      description: List of tests to run. If not provided, a base set of tests will be run.
+      required: false
+      secret: false
+      default: false
+    - name: min_content_version
+      isArray: false
+      description: The minimum content version to check for, enables "content_version" check
+      required: false
+      secret: false
+      default: false
+    - name: candidate_version
+      isArray: false
+      description: The candidate version to runchecks against. Enables "free_disk_space" check
+      required: false
+      secret: false
+      default: false
+    - name: dp_mp_clock_diff
+      isArray: false
+      description: The drift allowed between DP clock and MP clock. Enabled "planes_clock_sync" check.
+      required: false
+      secret: false
+      default: false
+    - name: ipsec_tunnel_status
+      isArray: false
+      description: Check a specific IPsec - by tunnel name. Tunnel must be up for this check to pass.
+      required: false
+      secret: false
+      default: false
+    - name: check_session_exists
+      isArray: false
+      description: |
+        Check for the presence of a specific connection. Session check format is <source>/destination/destination-port. example: 10.10.10.10/8.8.8.8/443
+      required: false
+      secret: false
+      default: false
+    outputs:
+      - contextPath: FirewallAssurance.ReadinessCheckResults
+        description: Readiness check results
+        type: Unknown
+  - deprecated: false
+    description: "Takes a snapshot of the operational state of the system."
+    name: pan-os-assurance-run-snapshot
+    arguments:
+      - name: firewall_serial
+        isArray: false
+        description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
+        required: true
+        secret: false
+        default: false
+      - name: snapshot_name
+        isArray: false
+        description: The name of the snapshot to take. Defaults to "fw_snapshot"
+        required: false
+        secret: false
+        default: true
+      - name: check_list
+        isArray: true
+        description: List of tests to run. If not provided, a base set of tests will be run.
+        required: false
+        secret: false
+        default: false
+    outputs:
+      - contextPath: File.EntryID
+        description: The EntryID of the report file.
+        type: Unknown
+      - contextPath: File.Extension
+        description: The extension of the report file.
+        type: String
+      - contextPath: File.Name
+        description: The name of the report file.
+        type: String
+      - contextPath: File.Info
+        description: The info of the report file.
+        type: String
+      - contextPath: File.Size
+        description: The size of the report file.
+        type: Number
+      - contextPath: File.Type
+        description: The type of the report file.
+        type: String
+  - deprecated: false
+    description: "Takes a snapshot of the operational state of the system."
+    name: pan-os-assurance-compare-snapshots
+    arguments:
+      - name: left_snapshot_id
+        isArray: false
+        description: The Left (or "first") snapshot to compare.
+        required: true
+        secret: false
+        default: false
+      - name: right_snapshot_id
+        isArray: false
+        description: The right (or "second") snapshot to compare.
+        required: true
+        secret: false
+        default: false
+    outputs:
+      - contextPath: FirewallAssurance.SnapshotComparisonResult
+        description: Snapshot comparison results
+        type: Unknown
+      - contextPath: FirewallAssurance.SnapshotComparisonRawResult
+        description: The complete snapshot comparison results
+        type: Unknown
+  script: '-'
+  type: python
+  subtype: python3
+  dockerimage: ghcr.io/paloaltonetworks/panos_upgrade_assurance:latest
+  feed: false
+  isfetch: false
+  runonce: false
+  longRunning: false
+  longRunningPort: false
+fromversion: 6.0.0
+tests:
+- No tests

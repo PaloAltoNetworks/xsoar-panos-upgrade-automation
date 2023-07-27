@@ -1,0 +1,180 @@
+id: PAN-OS Network Operations - Onboarding
+version: 4
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Onboarding
+description: Onboards the NGFW and Panorama devices as XSOAR incidents.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: c86838c2-796b-4154-87fe-d0dc09754633
+    type: start
+    task:
+      id: c86838c2-796b-4154-87fe-d0dc09754633
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "2"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "1":
+    id: "1"
+    taskid: a7a1f3af-e10f-410a-826d-7f78d886fa18
+    type: regular
+    task:
+      id: a7a1f3af-e10f-410a-826d-7f78d886fa18
+      version: -1
+      name: Update device incidents
+      description: Given a target device, creates or updates an existing PAN-OS Network
+        Operations - Device incident.
+      scriptName: CreateOrUpdateDeviceIncident
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "3"
+    scriptarguments:
+      target:
+        simple: ${PANOS.ShowSystemInfo.Summary.hostid}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 360
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: 5f20743d-7d44-46d2-832e-b3cf5deb5392
+    type: regular
+    task:
+      id: 5f20743d-7d44-46d2-832e-b3cf5deb5392
+      version: -1
+      name: Get system information
+      description: Gets information from all PAN-OS systems in the topology.
+      script: '|||pan-os-platform-get-system-info'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "1"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 200
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: 145aa9a3-64dc-4556-89b2-1c4308a3ba8c
+    type: regular
+    task:
+      id: 145aa9a3-64dc-4556-89b2-1c4308a3ba8c
+      version: -1
+      name: Link Incidents
+      description: commands.local.cmd.linkIncidents
+      script: Builtin|||linkIncidents
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "4"
+    scriptarguments:
+      linkedIncidentIDs:
+        simple: ${DeviceIncidents.device_incident_id}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 530
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "4":
+    id: "4"
+    taskid: 594e471c-b4fb-4341-8213-36af2b080d6b
+    type: title
+    task:
+      id: 594e471c-b4fb-4341-8213-36af2b080d6b
+      version: -1
+      name: Onboarding Finished
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 710
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 725,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
+inputs: []
+outputs: []

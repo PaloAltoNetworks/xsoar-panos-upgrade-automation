@@ -1,0 +1,483 @@
+{
+	"cacheVersn": 0,
+	"close": null,
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": null,
+	"edit": null,
+	"fromServerVersion": "",
+	"group": "indicator",
+	"id": "aa803354-9b51-4851-8be8-04acbae0efc2",
+	"indicatorsDetails": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "default-main",
+				"name": "Issue Details",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "indicatortype",
+								"height": 22,
+								"id": "indicator-type",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "modified",
+								"height": 22,
+								"id": "indicator-modified",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "timestamp",
+								"height": 22,
+								"id": "indicator-timestamp",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "issueid",
+								"height": 22,
+								"id": "43552110-206d-11ed-a498-d5291fd61647",
+								"index": 3,
+								"listId": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuesubtype",
+								"height": 22,
+								"id": "e11ff190-1f82-11ed-8eec-ffed1c5fbcfa",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuestatus",
+								"height": 22,
+								"id": "e2313a80-1f82-11ed-8eec-ffed1c5fbcfa",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Basic Information",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 1
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-actions",
+						"items": [
+							{
+								"args": {
+									"auto_fix": {
+										"simple": "Yes"
+									},
+									"fix_type": {
+										"simple": "this"
+									}
+								},
+								"buttonClass": "success",
+								"endCol": 2,
+								"height": 44,
+								"id": "8aea64e0-1f82-11ed-8eec-ffed1c5fbcfa",
+								"index": 0,
+								"name": "Fix this Issue",
+								"scriptId": "CreateIssueFixIncident",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
+								"args": {
+									"auto_fix": {
+										"simple": "No"
+									},
+									"fix_type": {
+										"simple": "all"
+									}
+								},
+								"buttonClass": "warning",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 22,
+								"id": "a92337a0-227c-11ed-bf04-71dfb5daf0be",
+								"index": 1,
+								"name": "Fix All Similar Issues",
+								"scriptId": "CreateIssueFixIncident",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Actions",
+						"static": false,
+						"type": "actions",
+						"w": 1,
+						"x": 1,
+						"y": 3
+					},
+					{
+						"h": 1,
+						"hideName": true,
+						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-expirationStatus",
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Expiration Status",
+						"static": false,
+						"type": "expirationStatus",
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"description": "",
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-ca9d9d50-1f82-11ed-8eec-ffed1c5fbcfa",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "issueaffecteddevice",
+								"height": 22,
+								"id": "d7e17540-1f82-11ed-8eec-ffed1c5fbcfa",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuedevicegroup",
+								"height": 22,
+								"id": "db31b1b0-1f82-11ed-8eec-ffed1c5fbcfa",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuetemplate",
+								"height": 22,
+								"id": "dfc606e0-1f82-11ed-8eec-ffed1c5fbcfa",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issueobjectname",
+								"height": 22,
+								"id": "de4c5f30-1f82-11ed-8eec-ffed1c5fbcfa",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "affectedobjecttype",
+								"height": 22,
+								"id": "84bc35f0-206b-11ed-a498-d5291fd61647",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "affectedrulebase",
+								"height": 22,
+								"id": "5b0a6c80-206c-11ed-a498-d5291fd61647",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Issue Details",
+						"static": false,
+						"w": 1,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"displayType": "CARD",
+						"h": 3,
+						"hideName": false,
+						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-0536bc80-1f88-11ed-8eec-ffed1c5fbcfa",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "bestpracticelink",
+								"height": 53,
+								"id": "f470a750-2066-11ed-bfb2-396ab4d4fea1",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuedescription",
+								"height": 106,
+								"id": "317f8f10-1f88-11ed-8eec-ffed1c5fbcfa",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Issue Description and Link",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"displayType": "CARD",
+						"h": 2,
+						"hideName": false,
+						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-9fb67730-203e-11ed-bfb2-396ab4d4fea1",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "issueremediation",
+								"height": 106,
+								"id": "909d13a0-1f88-11ed-8eec-ffed1c5fbcfa",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Issue Remediation",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 3
+					},
+					{
+						"columns": [
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "id",
+								"width": 110
+							},
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "name",
+								"width": 300
+							},
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "status",
+								"width": 80
+							}
+						],
+						"h": 2,
+						"i": "default-main-9f739f60-233f-11ed-a438-b3a540936560",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Related Incidents",
+						"static": false,
+						"type": "relatedIncidents",
+						"w": 1,
+						"x": 2,
+						"y": 3
+					}
+				],
+				"type": "custom"
+			}
+		]
+	},
+	"indicatorsQuickView": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "indicator-quick-view-info",
+				"name": "Issue Quick View",
+				"sections": [
+					{
+						"h": 1,
+						"hideName": true,
+						"i": "indicator-quick-view-info-expirationStatus",
+						"maxW": 3,
+						"moved": false,
+						"name": "Expiration Status",
+						"static": false,
+						"type": "expirationStatus",
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"h": 2,
+						"i": "indicator-quick-view-info-relatedIncidents",
+						"maxW": 3,
+						"moved": false,
+						"name": "Related Incidents",
+						"static": false,
+						"type": "relatedIncidents",
+						"w": 1,
+						"x": 0,
+						"y": 4
+					},
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "indicator-quick-view-info-670b6430-206c-11ed-a498-d5291fd61647",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "issueid",
+								"height": 22,
+								"id": "73c74770-206c-11ed-a498-d5291fd61647",
+								"index": 0,
+								"listId": "indicator-quick-view-info-670b6430-206c-11ed-a498-d5291fd61647",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issueobjectname",
+								"height": 22,
+								"id": "76bb3310-206c-11ed-a498-d5291fd61647",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuestatus",
+								"height": 22,
+								"id": "78b7ed70-206c-11ed-a498-d5291fd61647",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuesubtype",
+								"height": 22,
+								"id": "79bdc4b0-206c-11ed-a498-d5291fd61647",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuedevicegroup",
+								"height": 22,
+								"id": "7c3c3230-206c-11ed-a498-d5291fd61647",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issuetemplate",
+								"height": 22,
+								"id": "7b480e30-206c-11ed-a498-d5291fd61647",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "affectedobjecttype",
+								"height": 22,
+								"id": "6dd5d340-206c-11ed-a498-d5291fd61647",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "affectedrulebase",
+								"height": 22,
+								"id": "6e6a9930-206c-11ed-a498-d5291fd61647",
+								"index": 7,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "issueaffecteddevice",
+								"height": 22,
+								"id": "6ede4290-206c-11ed-a498-d5291fd61647",
+								"index": 8,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Issue Details",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 1
+					}
+				],
+				"type": "custom"
+			}
+		]
+	},
+	"itemVersion": "",
+	"locked": false,
+	"mobile": null,
+	"name": "Network Configuration Issue Layout",
+	"packID": "",
+	"packName": "",
+	"quickView": null,
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}

@@ -1,0 +1,161 @@
+id: be9dfaa4-a371-4b46-8088-67679944a38b
+version: 4
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Take Snapshot
+description: Takes a JSON snapshot of the current operational state of the device.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: abb26fe5-2510-4b23-8645-c2bdc3e8025f
+    type: start
+    task:
+      id: abb26fe5-2510-4b23-8645-c2bdc3e8025f
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "3"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "1":
+    id: "1"
+    taskid: 3e26aea4-6945-4ff5-8fb7-cfcf0a775cbe
+    type: regular
+    task:
+      id: 3e26aea4-6945-4ff5-8fb7-cfcf0a775cbe
+      version: -1
+      name: Take Snapshot
+      description: Takes a JSON Snapshot of the current operational state of the target
+        device
+      tags:
+      - snapshot-file
+      scriptName: TakeOperationalSnapshot
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "2"
+    scriptarguments:
+      target:
+        simple: ${inputs.target}
+    separatecontext: false
+    continueonerror: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 380
+        }
+      }
+    note: true
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: 306c936a-6af0-45f6-89c1-59dbb1362b0b
+    type: title
+    task:
+      id: 306c936a-6af0-45f6-89c1-59dbb1362b0b
+      version: -1
+      name: Finish
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 570
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: eef401d5-e286-4c13-8176-7699a6217773
+    type: regular
+    task:
+      id: eef401d5-e286-4c13-8176-7699a6217773
+      version: -1
+      name: Set Status
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "1"
+    scriptarguments:
+      description:
+        simple: Taking System Snapshot
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 180
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 585,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
+inputs:
+- key: target
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+  required: true
+  description: The target to take the snapshot of
+  playbookInputQuery: null
+outputs:
+- contextPath: File.EntryID
+  description: The file entry ID.
+  type: string
+quiet: true

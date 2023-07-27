@@ -1,0 +1,156 @@
+id: PAN-OS Network Operations - Incident Callback
+version: 4
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Incident Callback
+description: Checks to see if this incident has a parent incident and if so, links
+  the two incidents.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: 26ad930e-6c90-4de6-8d4e-6856484bb397
+    type: start
+    task:
+      id: 26ad930e-6c90-4de6-8d4e-6856484bb397
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "4"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 20
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: 92d09a4e-23e9-494b-8631-096354ffb7e2
+    type: regular
+    task:
+      id: 92d09a4e-23e9-494b-8631-096354ffb7e2
+      version: -1
+      name: Mark Complete
+      description: commands.local.cmd.task.complete
+      script: Builtin|||taskComplete
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "3"
+    scriptarguments:
+      id:
+        simple: ${incident.panosnetworkoperationsclosetaskid}
+      incidentId:
+        simple: ${incident.panosnetworkoperationsparentincidentid}
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 330
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: 26786f10-2cfa-47a6-8acb-6c696fe6be24
+    type: title
+    task:
+      id: 26786f10-2cfa-47a6-8acb-6c696fe6be24
+      version: -1
+      name: Done
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 490
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "4":
+    id: "4"
+    taskid: 634ef331-716f-4160-8133-f62421da3d46
+    type: condition
+    task:
+      id: 634ef331-716f-4160-8133-f62421da3d46
+      version: -1
+      name: Do we have a parent task to mark complete?
+      description: Chefcks if the incident callback needs to run.
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "2"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isNotEmpty
+          left:
+            value:
+              simple: incident.panosnetworkoperationsclosetaskid
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 150
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 535,
+        "width": 380,
+        "x": 450,
+        "y": 20
+      }
+    }
+  }
+inputs: []
+outputs: []
