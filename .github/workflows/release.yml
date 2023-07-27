@@ -5,23 +5,23 @@ on:
     tags:
     - '*'
 
-env:
-  PYTHON_RELEASE_VERSION: 3.10
-  PACK_NAME: PAN_OS_Upgrade_Services
-
 jobs:
 
   zip_and_release:
+    env:
+      PYTHON_RELEASE_VERSION: 3.10
+      PACK_NAME: PAN_OS_Upgrade_Services
+
     name: "Package ZIP And upload as release."
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python $PYTHON_RELEASE_VERSION
+    - name: "Set up Python $PYTHON_RELEASE_VERSION"
       uses: actions/setup-python@v4
       with:
-        python-version: $PYTHON_RELEASE_VERSION
+        python-version: "$PYTHON_RELEASE_VERSION"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
