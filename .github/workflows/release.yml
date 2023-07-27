@@ -28,5 +28,5 @@ jobs:
           demisto-sdk zip-packs -i Packs/PAN_OS_Upgrade_Services/ -o /tmp
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "/tmp/uploadable_packs/PAN_OS_Upgrade_Services"
+          artifacts: "/tmp/uploadable_packs/PAN_OS_Upgrade_Services.zip"
           bodyFile: "release.md"
