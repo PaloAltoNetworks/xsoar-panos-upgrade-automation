@@ -456,7 +456,7 @@ inputs:
   playbookInputQuery: null
 - key: panos_id
   value:
-    simple: 6F5A32602DF9260
+    simple: serial_number_goes_here
   required: false
   description: ""
   playbookInputQuery: null
