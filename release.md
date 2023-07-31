@@ -1,1 +1,2 @@
-Initial release.
+Fixes: 
+ * Cleaned up some playbook inputs.
