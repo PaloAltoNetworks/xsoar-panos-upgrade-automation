@@ -1,0 +1,2 @@
+pan-os-assurance-run-readiness-checks firewall_serial=6DF15830EBE327F
+pan-os-assurance-run-snapshot firewall_serial=6DF15830EBE327F
