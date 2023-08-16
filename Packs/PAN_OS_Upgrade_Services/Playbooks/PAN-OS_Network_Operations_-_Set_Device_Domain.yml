@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Set Device Domain
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Set Device Domain
 description: Enables the grouping of devices into administrative domains. Domains
@@ -8,10 +8,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 62c737fa-7e70-4169-823b-c360719f0cff
+    taskid: 451b9167-e0df-43db-8a4d-cbd130dd6232
     type: start
     task:
-      id: 62c737fa-7e70-4169-823b-c360719f0cff
+      id: 451b9167-e0df-43db-8a4d-cbd130dd6232
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +37,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: c5653e4a-2dc7-4127-89a8-ef24ff740ffb
+    taskid: ac4248b0-63ae-4c67-80ef-755bb6773be4
     type: regular
     task:
-      id: c5653e4a-2dc7-4127-89a8-ef24ff740ffb
+      id: ac4248b0-63ae-4c67-80ef-755bb6773be4
       version: -1
       name: Set Group via Regex
       description: commands.local.cmd.set.incident
@@ -87,10 +87,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: ee5454fb-badc-44bf-894a-429132a39061
+    taskid: 6dae9024-c44a-4a05-872f-480c3efa5093
     type: regular
     task:
-      id: ee5454fb-badc-44bf-894a-429132a39061
+      id: 6dae9024-c44a-4a05-872f-480c3efa5093
       version: -1
       name: Set device-group as domain
       description: commands.local.cmd.set.incident
@@ -134,10 +134,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 7faee5f0-1370-43e3-8b1e-9c81bac1676e
+    taskid: a0963c6a-ca23-4bc8-8e7a-42b6e6fda267
     type: condition
     task:
-      id: 7faee5f0-1370-43e3-8b1e-9c81bac1676e
+      id: a0963c6a-ca23-4bc8-8e7a-42b6e6fda267
       version: -1
       name: Is Regex Grouping Enabled?
       description: Look for regex based grouping
@@ -173,10 +173,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 4f47fd4a-025c-428b-803f-72a7c0a7f712
+    taskid: 475981d4-fff6-4a4b-80ca-3edfb0a467e4
     type: condition
     task:
-      id: 4f47fd4a-025c-428b-803f-72a7c0a7f712
+      id: 475981d4-fff6-4a4b-80ca-3edfb0a467e4
       version: -1
       name: Is Device-group Grouping enabled?
       description: Is DG grouping enabled
@@ -225,10 +225,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 21377a99-14c0-4481-8300-f25d7525ea5e
+    taskid: ab4d845a-6d59-450b-88c5-daa57882ba82
     type: regular
     task:
-      id: 21377a99-14c0-4481-8300-f25d7525ea5e
+      id: ab4d845a-6d59-450b-88c5-daa57882ba82
       version: -1
       name: Get Device-groups
       description: Gets the operational information of the device groups in the topology.
@@ -257,10 +257,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: 35d168fc-e823-4a11-8f98-4e5bcbe471b8
+    taskid: 599f12d2-ffb2-470b-8cf0-6c927ecc502c
     type: condition
     task:
-      id: 35d168fc-e823-4a11-8f98-4e5bcbe471b8
+      id: 599f12d2-ffb2-470b-8cf0-6c927ecc502c
       version: -1
       name: Is template-stack grouping enabled?
       description: Is TS grouping enabled
@@ -309,10 +309,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 1778265e-27dd-4793-864a-35090036a3c3
+    taskid: 1dde2d9e-8897-4bc8-8528-7d34f3c04964
     type: regular
     task:
-      id: 1778265e-27dd-4793-864a-35090036a3c3
+      id: 1dde2d9e-8897-4bc8-8528-7d34f3c04964
       version: -1
       name: Get Template-stacks
       description: Gets the operational information of the template-stacks in the
@@ -342,10 +342,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 1233172f-8673-4e9e-85ff-8c80608b6ce5
+    taskid: 223b802d-ab5f-4d41-8568-18d61ae49009
     type: regular
     task:
-      id: 1233172f-8673-4e9e-85ff-8c80608b6ce5
+      id: 223b802d-ab5f-4d41-8568-18d61ae49009
       version: -1
       name: Set template-stack as domain
       description: commands.local.cmd.set.incident
@@ -389,10 +389,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: 892aa978-20e0-41cb-86ff-dc08cf326bcb
+    taskid: be05df75-5172-4583-8589-89eadf7b388b
     type: title
     task:
-      id: 892aa978-20e0-41cb-86ff-dc08cf326bcb
+      id: be05df75-5172-4583-8589-89eadf7b388b
       version: -1
       name: Finish
       type: title
@@ -416,10 +416,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: 3c8cd3b3-bb10-4cf4-8f10-769876dfb1b3
+    taskid: f34de1b3-afcf-4ca1-8726-c49204b8a443
     type: condition
     task:
-      id: 3c8cd3b3-bb10-4cf4-8f10-769876dfb1b3
+      id: f34de1b3-afcf-4ca1-8726-c49204b8a443
       version: -1
       name: Is this a Panorama Device?
       description: Checks if panorama
@@ -460,10 +460,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "13":
     id: "13"
-    taskid: 30fd3d61-4d8d-4e93-8295-5360b05df9b3
+    taskid: e043a579-15a0-4565-8552-9da7d0747700
     type: regular
     task:
-      id: 30fd3d61-4d8d-4e93-8295-5360b05df9b3
+      id: e043a579-15a0-4565-8552-9da7d0747700
       version: -1
       name: Set domain tag to Panorama
       description: commands.local.cmd.set.incident

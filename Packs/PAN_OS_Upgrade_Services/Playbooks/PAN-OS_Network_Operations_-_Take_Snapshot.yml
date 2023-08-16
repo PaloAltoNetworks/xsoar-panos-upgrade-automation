@@ -1,5 +1,5 @@
 id: be9dfaa4-a371-4b46-8088-67679944a38b
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Take Snapshot
 description: Takes a JSON snapshot of the current operational state of the device.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: abb26fe5-2510-4b23-8645-c2bdc3e8025f
+    taskid: cbdef3f2-f531-4a35-8f05-1e3c184ff55e
     type: start
     task:
-      id: abb26fe5-2510-4b23-8645-c2bdc3e8025f
+      id: cbdef3f2-f531-4a35-8f05-1e3c184ff55e
       version: -1
       name: ""
       iscommand: false
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 3e26aea4-6945-4ff5-8fb7-cfcf0a775cbe
+    taskid: edbb18e0-483b-496a-8c2c-f7b2e34985cf
     type: regular
     task:
-      id: 3e26aea4-6945-4ff5-8fb7-cfcf0a775cbe
+      id: edbb18e0-483b-496a-8c2c-f7b2e34985cf
       version: -1
       name: Take Snapshot
       description: Takes a JSON Snapshot of the current operational state of the target
@@ -75,10 +75,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 306c936a-6af0-45f6-89c1-59dbb1362b0b
+    taskid: 65eccdae-3d4a-4cc7-8fe5-b120327647dd
     type: title
     task:
-      id: 306c936a-6af0-45f6-89c1-59dbb1362b0b
+      id: 65eccdae-3d4a-4cc7-8fe5-b120327647dd
       version: -1
       name: Finish
       type: title
@@ -102,10 +102,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: eef401d5-e286-4c13-8176-7699a6217773
+    taskid: 69232190-02bd-40c0-84c9-0b50eb30485d
     type: regular
     task:
-      id: eef401d5-e286-4c13-8176-7699a6217773
+      id: 69232190-02bd-40c0-84c9-0b50eb30485d
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident

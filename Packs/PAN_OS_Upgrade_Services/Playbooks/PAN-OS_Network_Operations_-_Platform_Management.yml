@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Platform Management
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Platform Management
 description: Retrieves all the details of the PAN-OS Platform and topology.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: da38aae5-1227-4049-824a-2d835081a8f3
+    taskid: 04d40c29-61f4-4a5c-858b-cde10faf5a32
     type: start
     task:
-      id: da38aae5-1227-4049-824a-2d835081a8f3
+      id: 04d40c29-61f4-4a5c-858b-cde10faf5a32
       version: -1
       name: ""
       iscommand: false
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 055a0965-794f-4a2b-8ae9-d0df7470fe56
+    taskid: 7b82dc0e-fb2e-4b8a-8016-d59faa8fd845
     type: regular
     task:
-      id: 055a0965-794f-4a2b-8ae9-d0df7470fe56
+      id: 7b82dc0e-fb2e-4b8a-8016-d59faa8fd845
       version: -1
       name: Get System Information
       description: Gets information from all PAN-OS systems in the topology.
@@ -83,10 +83,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 7ff123bb-ed3d-464f-842c-0f3c571858ad
+    taskid: 3e089931-b790-4666-8c9b-3753c043f6c7
     type: regular
     task:
-      id: 7ff123bb-ed3d-464f-842c-0f3c571858ad
+      id: 3e089931-b790-4666-8c9b-3753c043f6c7
       version: -1
       name: Delete Context
       description: Delete field from context
@@ -122,10 +122,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: a90db5fb-5ce4-4a88-8df5-81d152c36ba9
+    taskid: 33b076e6-493f-4fb7-82b1-933ec3e757dc
     type: regular
     task:
-      id: a90db5fb-5ce4-4a88-8df5-81d152c36ba9
+      id: 33b076e6-493f-4fb7-82b1-933ec3e757dc
       version: -1
       name: Get ARP Summary
       description: Gets all arp tables from all firewalls in the topology.
@@ -161,10 +161,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 2d5cf890-b8a5-4e06-82c4-8a4ce334bb42
+    taskid: 3d6b3a59-7868-4112-83e4-9a483c653660
     type: regular
     task:
-      id: 2d5cf890-b8a5-4e06-82c4-8a4ce334bb42
+      id: 3d6b3a59-7868-4112-83e4-9a483c653660
       version: -1
       name: Get Route Summary
       description: Pulls all route summary information from the topology
@@ -197,10 +197,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: ce4c897f-574e-4239-8ebd-451daf94e07d
+    taskid: e18ba719-cea6-44f9-8bcc-c24858e31d7e
     type: regular
     task:
-      id: ce4c897f-574e-4239-8ebd-451daf94e07d
+      id: e18ba719-cea6-44f9-8bcc-c24858e31d7e
       version: -1
       name: Get Global Counters
       description: Gets global counter information from all the PAN-OS firewalls in
@@ -237,10 +237,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 7efa7313-9f98-4ce5-8bc1-b0189b402a1f
+    taskid: 1866e3b3-11b5-4dc1-858c-e311b89abdd8
     type: title
     task:
-      id: 7efa7313-9f98-4ce5-8bc1-b0189b402a1f
+      id: 1866e3b3-11b5-4dc1-858c-e311b89abdd8
       version: -1
       name: Finish Information Gathering
       type: title
@@ -267,10 +267,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: d06d510c-3720-4e06-80b5-e8ea2c640ac9
+    taskid: 41c4485a-07ff-4705-8643-98161029573e
     type: regular
     task:
-      id: d06d510c-3720-4e06-80b5-e8ea2c640ac9
+      id: 41c4485a-07ff-4705-8643-98161029573e
       version: -1
       name: Get All Routes
       description: Pulls all route summary information from the topology
@@ -314,10 +314,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 0220bb88-c62f-488c-8e0e-b70558a9a109
+    taskid: 4f08206a-fb0b-42fd-8cfa-5052f15f5f6d
     type: playbook
     task:
-      id: 0220bb88-c62f-488c-8e0e-b70558a9a109
+      id: 4f08206a-fb0b-42fd-8cfa-5052f15f5f6d
       version: -1
       name: PAN-OS Network Operations - Incident Callback
       playbookName: PAN-OS Network Operations - Incident Callback
@@ -350,10 +350,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 6426e193-ee9a-4fcf-895b-ffb7b112abec
+    taskid: 8070f986-94c0-4a37-8221-57ff553a1a41
     type: title
     task:
-      id: 6426e193-ee9a-4fcf-895b-ffb7b112abec
+      id: 8070f986-94c0-4a37-8221-57ff553a1a41
       version: -1
       name: Create Device Specific Incidents
       type: title
@@ -380,10 +380,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: 0eab2b6b-a639-4517-8365-22a763c38c5f
+    taskid: 96c0b81e-8141-45f8-8831-d7a78c77de6f
     type: regular
     task:
-      id: 0eab2b6b-a639-4517-8365-22a763c38c5f
+      id: 96c0b81e-8141-45f8-8831-d7a78c77de6f
       version: -1
       name: Set Incident Type HTML
       description: commands.local.cmd.set.incident
@@ -420,10 +420,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: e6a5d53e-d551-4b4b-8c1b-fe4eaa4fbae3
+    taskid: f5344752-ddc0-4893-8fdb-84f074c5751b
     type: regular
     task:
-      id: e6a5d53e-d551-4b4b-8c1b-fe4eaa4fbae3
+      id: f5344752-ddc0-4893-8fdb-84f074c5751b
       version: -1
       name: Get BGP Peers
       description: Retrieves all BGP peer information from the PAN-OS firewalls in
@@ -468,10 +468,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "13":
     id: "13"
-    taskid: aa624548-bbbb-4f4a-883e-07c0ad70f2d1
+    taskid: ba409d6c-3a8c-4d13-82a0-64f652f1be5b
     type: regular
     task:
-      id: aa624548-bbbb-4f4a-883e-07c0ad70f2d1
+      id: ba409d6c-3a8c-4d13-82a0-64f652f1be5b
       version: -1
       name: Sleep to ensure everything is caught up
       description: Sleep for X seconds
@@ -503,10 +503,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "14":
     id: "14"
-    taskid: 0556f73d-73a7-49f4-8a33-0e74e5b118bc
+    taskid: 54ab4e03-7440-42ff-88f9-83faba6a097e
     type: title
     task:
-      id: 0556f73d-73a7-49f4-8a33-0e74e5b118bc
+      id: 54ab4e03-7440-42ff-88f9-83faba6a097e
       version: -1
       name: Get More data...
       type: title
@@ -535,10 +535,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "15":
     id: "15"
-    taskid: 16586911-a79e-49f3-8ab8-73094271e14a
+    taskid: ea1078ec-3661-4710-8df4-45949a6ec9f9
     type: regular
     task:
-      id: 16586911-a79e-49f3-8ab8-73094271e14a
+      id: ea1078ec-3661-4710-8df4-45949a6ec9f9
       version: -1
       name: Create Or Update Incidents
       description: Creates, or updates existing device incidents.
@@ -570,10 +570,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "16":
     id: "16"
-    taskid: ac5ccdef-e824-46f7-8e11-d24ccbea66c9
+    taskid: 6dd76c0a-96ac-4ba3-8f25-99f84a674337
     type: title
     task:
-      id: ac5ccdef-e824-46f7-8e11-d24ccbea66c9
+      id: 6dd76c0a-96ac-4ba3-8f25-99f84a674337
       version: -1
       name: Finish
       type: title
@@ -597,10 +597,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "17":
     id: "17"
-    taskid: 12e4fed5-b070-4e32-836c-2d030454fda9
+    taskid: 17670f48-3e75-4b4a-8b39-fbb4cc7f4fbc
     type: playbook
     task:
-      id: 12e4fed5-b070-4e32-836c-2d030454fda9
+      id: 17670f48-3e75-4b4a-8b39-fbb4cc7f4fbc
       version: -1
       name: Update Occurred Time
       playbookId: Update Occurred Time

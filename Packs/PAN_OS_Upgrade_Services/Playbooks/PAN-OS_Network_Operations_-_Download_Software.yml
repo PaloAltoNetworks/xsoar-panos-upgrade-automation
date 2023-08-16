@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Download Software
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Download Software
 description: Download PAN-OS System software.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: ad09c3c6-638f-4eea-8273-87c0d4892e68
+    taskid: 1dfc9fd7-2a39-44c4-842a-393c7d1eeaab
     type: start
     task:
-      id: ad09c3c6-638f-4eea-8273-87c0d4892e68
+      id: 1dfc9fd7-2a39-44c4-842a-393c7d1eeaab
       version: -1
       name: ""
       iscommand: false
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: f5a1c2d1-684c-41c8-8f07-93e28058cca2
+    taskid: fbf8f2f4-52af-4756-8dc5-c86e885fcadc
     type: regular
     task:
-      id: f5a1c2d1-684c-41c8-8f07-93e28058cca2
+      id: fbf8f2f4-52af-4756-8dc5-c86e885fcadc
       version: -1
       name: Download the Software Version
       description: Download The provided software version onto the device.
@@ -77,10 +77,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 69e93e72-add1-42b3-8809-4be92a6c34c3
+    taskid: 663c02c1-97cc-4672-8b24-19e647edc63a
     type: regular
     task:
-      id: 69e93e72-add1-42b3-8809-4be92a6c34c3
+      id: 663c02c1-97cc-4672-8b24-19e647edc63a
       version: -1
       name: Get Jobs
       description: Get all the jobs from the devices in the environment.
@@ -118,10 +118,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: d156b92b-68bb-4453-89eb-a38b54fe8137
+    taskid: d572700f-6232-4bac-86f0-5e7c44964c38
     type: playbook
     task:
-      id: d156b92b-68bb-4453-89eb-a38b54fe8137
+      id: d572700f-6232-4bac-86f0-5e7c44964c38
       version: -1
       name: GenericPolling
       description: |-
@@ -200,10 +200,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 957f2d08-9f72-40a7-8bca-be0c4caa748c
+    taskid: 392df7c5-9e23-4d79-8d97-6d47fe00a90f
     type: regular
     task:
-      id: 957f2d08-9f72-40a7-8bca-be0c4caa748c
+      id: 392df7c5-9e23-4d79-8d97-6d47fe00a90f
       version: -1
       name: Get jobs again to check status
       description: Get all the jobs from the devices in the environment, or a single
@@ -242,10 +242,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 8cef80ab-041e-41bf-8637-c131fe05277a
+    taskid: 96c2e42b-b178-4fae-8e2b-03ccb22d2e29
     type: condition
     task:
-      id: 8cef80ab-041e-41bf-8637-c131fe05277a
+      id: 96c2e42b-b178-4fae-8e2b-03ccb22d2e29
       version: -1
       name: Did it complete?
       description: True if the software download was successful
@@ -294,10 +294,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: d8f79fd7-07cc-44a4-8dc4-d68ce6651ef4
+    taskid: e1df68ac-44dc-4864-8f70-9dbc5913c580
     type: title
     task:
-      id: d8f79fd7-07cc-44a4-8dc4-d68ce6651ef4
+      id: e1df68ac-44dc-4864-8f70-9dbc5913c580
       version: -1
       name: Finish
       type: title
@@ -321,10 +321,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: eaee8eac-cdb5-4fb7-8fdd-6d1720426ea4
+    taskid: 046550c2-051f-4e7c-833b-c33dd8e64738
     type: regular
     task:
-      id: eaee8eac-cdb5-4fb7-8fdd-6d1720426ea4
+      id: 046550c2-051f-4e7c-833b-c33dd8e64738
       version: -1
       name: Fail message
       description: Prints an error entry with a given message
@@ -353,10 +353,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 3cc87bcc-ebcb-4745-80d3-6cff9e7d3c16
+    taskid: 647541b5-204c-4c8f-8f56-793141f89be0
     type: regular
     task:
-      id: 3cc87bcc-ebcb-4745-80d3-6cff9e7d3c16
+      id: 647541b5-204c-4c8f-8f56-793141f89be0
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -388,10 +388,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 5841bc40-03e6-46d4-8250-506c53689dd6
+    taskid: 4997d532-34c2-4434-8f57-9a5182059d13
     type: regular
     task:
-      id: 5841bc40-03e6-46d4-8250-506c53689dd6
+      id: 4997d532-34c2-4434-8f57-9a5182059d13
       version: -1
       name: Wait for job to get processed
       description: Sleep for X seconds
@@ -423,10 +423,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: de8733e0-82ea-456a-8269-4ec786be894c
+    taskid: 9116bad2-5564-4993-8d25-ba63bf931c9a
     type: condition
     task:
-      id: de8733e0-82ea-456a-8269-4ec786be894c
+      id: 9116bad2-5564-4993-8d25-ba63bf931c9a
       version: -1
       name: Did we get a job?
       type: condition
@@ -463,10 +463,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: 801f2478-3110-425d-8cc8-397b09fe4d80
+    taskid: 0cf3fc4c-c616-4614-86ec-f657ba3eb6ba
     type: regular
     task:
-      id: 801f2478-3110-425d-8cc8-397b09fe4d80
+      id: 0cf3fc4c-c616-4614-86ec-f657ba3eb6ba
       version: -1
       name: Get Jobs
       description: Get all the jobs from the devices in the environment.

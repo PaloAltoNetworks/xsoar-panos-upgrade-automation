@@ -1,5 +1,5 @@
 id: bdf72993-9e2c-424d-855a-ab69079b1d3a
-version: 6
+version: 7
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Device Upgrade Loop
 description: Upgrades a single or HA pair of PAN-OS firewalls, supports running as
@@ -8,10 +8,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: d6d0f3b7-2eb4-40a7-84cb-18a6160c432e
+    taskid: 36ee7631-2f8d-48ad-8023-83f1e4c06130
     type: start
     task:
-      id: d6d0f3b7-2eb4-40a7-84cb-18a6160c432e
+      id: 36ee7631-2f8d-48ad-8023-83f1e4c06130
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +37,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 9d6b4234-4e7f-4f82-848e-b4bad1145af2
+    taskid: bfb4ccf2-a56d-4bd6-88df-21f509dddb5a
     type: condition
     task:
-      id: 9d6b4234-4e7f-4f82-848e-b4bad1145af2
+      id: bfb4ccf2-a56d-4bd6-88df-21f509dddb5a
       version: -1
       name: Is this a HA Pair?
       description: True if the device belongs to a HA Pair
@@ -92,10 +92,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 2eda831a-e8e5-45db-8ac6-4904440fe64f
+    taskid: fc4f185d-9c78-4a22-8433-0224275464fc
     type: title
     task:
-      id: 2eda831a-e8e5-45db-8ac6-4904440fe64f
+      id: fc4f185d-9c78-4a22-8433-0224275464fc
       version: -1
       name: HA Pair process
       type: title
@@ -125,10 +125,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: 5ac73d7b-7660-4179-8007-8aeb90dccc74
+    taskid: df45f6c5-505d-49d2-8e83-1ee22f3f496c
     type: playbook
     task:
-      id: 5ac73d7b-7660-4179-8007-8aeb90dccc74
+      id: df45f6c5-505d-49d2-8e83-1ee22f3f496c
       version: -1
       name: PAN-OS Network Operations - Single Device Upgrade
       description: Runs a complete upgrade process for a single device
@@ -167,10 +167,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "13":
     id: "13"
-    taskid: 0decdbc9-e66f-4f5d-884b-59b507ef8f2b
+    taskid: 07553845-7060-4d49-833e-19c4e35ab973
     type: regular
     task:
-      id: 0decdbc9-e66f-4f5d-884b-59b507ef8f2b
+      id: 07553845-7060-4d49-833e-19c4e35ab973
       version: -1
       name: Mark Complete When Ready For Upgrade
       description: |-
@@ -207,10 +207,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "15":
     id: "15"
-    taskid: c51dee05-763c-4c9b-8bf9-e79ec73d9381
+    taskid: 2f197b69-3f88-4d88-822a-a8ad35961112
     type: title
     task:
-      id: c51dee05-763c-4c9b-8bf9-e79ec73d9381
+      id: 2f197b69-3f88-4d88-822a-a8ad35961112
       version: -1
       name: Single Device Process
       type: title
@@ -239,10 +239,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "17":
     id: "17"
-    taskid: 78553159-2ef1-4543-8ced-8b24dc9f8f9e
+    taskid: 3173aefa-9b52-4ed1-847c-38aea55fbb6c
     type: playbook
     task:
-      id: 78553159-2ef1-4543-8ced-8b24dc9f8f9e
+      id: 3173aefa-9b52-4ed1-847c-38aea55fbb6c
       version: -1
       name: PAN-OS Network Operations - Single Device Upgrade
       description: Runs a complete upgrade process for a single device
@@ -281,10 +281,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "18":
     id: "18"
-    taskid: 9fbb64e6-470f-4563-89f8-1105c09c506f
+    taskid: 40f59a59-e822-499a-89d9-bd2e6fd64375
     type: regular
     task:
-      id: 9fbb64e6-470f-4563-89f8-1105c09c506f
+      id: 40f59a59-e822-499a-89d9-bd2e6fd64375
       version: -1
       name: Get HA State
       description: Get the HA state and assocaited details from the given device and
@@ -317,10 +317,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "19":
     id: "19"
-    taskid: 5549c6d3-38c7-4206-8ea5-a3940d284c1f
+    taskid: a200d618-b383-4508-866c-0475d3bed529
     type: condition
     task:
-      id: 5549c6d3-38c7-4206-8ea5-a3940d284c1f
+      id: a200d618-b383-4508-866c-0475d3bed529
       version: -1
       name: Is device passive after upgrade?
       description: True if the device is correctly Passive after the upgrade process
@@ -374,10 +374,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "20":
     id: "20"
-    taskid: 6ae30c6c-8d85-48d0-822f-bb01263d4aea
+    taskid: 3fbde04f-1a0d-42aa-80f6-dcd3ca187e83
     type: regular
     task:
-      id: 6ae30c6c-8d85-48d0-822f-bb01263d4aea
+      id: 3fbde04f-1a0d-42aa-80f6-dcd3ca187e83
       version: -1
       name: Suspend Active firewall
       description: "Suspends the active firewall, causing the pair to failover to
@@ -420,10 +420,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "21":
     id: "21"
-    taskid: e4bc385d-adb1-4b99-87c9-3839e45713f3
+    taskid: 6d032bd8-4ff4-48ea-86b1-e904a663a258
     type: regular
     task:
-      id: e4bc385d-adb1-4b99-87c9-3839e45713f3
+      id: 6d032bd8-4ff4-48ea-86b1-e904a663a258
       version: -1
       name: Error - Wrong HA mode.
       description: Prints an error entry with a given message
@@ -452,10 +452,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "22":
     id: "22"
-    taskid: 7c0636df-18f2-43a1-8847-4858440d5211
+    taskid: 9bceb032-9135-436c-8ac5-e1d81c924697
     type: playbook
     task:
-      id: 7c0636df-18f2-43a1-8847-4858440d5211
+      id: 9bceb032-9135-436c-8ac5-e1d81c924697
       version: -1
       name: PAN-OS Network Operations - Single Device Upgrade
       description: Runs a complete upgrade process for a single device
@@ -494,10 +494,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "23":
     id: "23"
-    taskid: 7372e80c-3dd9-4f8a-8b9b-0e4fa84c5091
+    taskid: e96a7ca4-afb4-4d86-868e-700e6d665336
     type: regular
     task:
-      id: 7372e80c-3dd9-4f8a-8b9b-0e4fa84c5091
+      id: e96a7ca4-afb4-4d86-868e-700e6d665336
       version: -1
       name: Sleep for failover process to complete safely
       description: Sleep for X seconds
@@ -529,10 +529,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "24":
     id: "24"
-    taskid: 93473791-e75d-436a-834a-ca62ea0dfcf2
+    taskid: ce7b6ff1-3c66-44b3-87e6-df4af6b355ad
     type: regular
     task:
-      id: 93473791-e75d-436a-834a-ca62ea0dfcf2
+      id: ce7b6ff1-3c66-44b3-87e6-df4af6b355ad
       version: -1
       name: Get HA State
       description: Get the HA state and assocaited details from the given device and
@@ -565,10 +565,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "25":
     id: "25"
-    taskid: ccb7a68c-cfcf-465d-830f-9d5e9d0397f0
+    taskid: 1800739a-737e-4b26-8c62-95c4e82bd879
     type: condition
     task:
-      id: ccb7a68c-cfcf-465d-830f-9d5e9d0397f0
+      id: 1800739a-737e-4b26-8c62-95c4e82bd879
       version: -1
       name: Is device passive after upgrade?
       description: True if the device is correctly Passive after the upgrade process
@@ -622,10 +622,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "26":
     id: "26"
-    taskid: 6b1b611b-dbd9-42db-8641-2475e43c1760
+    taskid: 19464f94-12c5-460c-8773-c3483a5190c4
     type: regular
     task:
-      id: 6b1b611b-dbd9-42db-8641-2475e43c1760
+      id: 19464f94-12c5-460c-8773-c3483a5190c4
       version: -1
       name: Suspend Passive firewall
       description: "Suspends the active firewall, causing the pair to failover to
@@ -667,10 +667,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "27":
     id: "27"
-    taskid: 2a8ff2db-b601-402a-8f14-1683b81488a2
+    taskid: c1a6f88f-9cae-4a54-815a-e8a195e0723f
     type: regular
     task:
-      id: 2a8ff2db-b601-402a-8f14-1683b81488a2
+      id: c1a6f88f-9cae-4a54-815a-e8a195e0723f
       version: -1
       name: Sleep for failover process to complete safely
       description: Sleep for X seconds
@@ -702,10 +702,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "28":
     id: "28"
-    taskid: b7501b8f-118a-445c-8eff-f938c1b68c00
+    taskid: 0e2d68dd-f3ea-48dd-8f5b-7f672bebb1c6
     type: regular
     task:
-      id: b7501b8f-118a-445c-8eff-f938c1b68c00
+      id: 0e2d68dd-f3ea-48dd-8f5b-7f672bebb1c6
       version: -1
       name: Set Original Active
       description: Set a value in context under the key you entered.
@@ -739,10 +739,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "29":
     id: "29"
-    taskid: 3d61e3f5-e3cf-4c1f-82bc-ea35b868610c
+    taskid: 0b3060af-6a4d-42af-8f39-8bfb8053dbf3
     type: regular
     task:
-      id: 3d61e3f5-e3cf-4c1f-82bc-ea35b868610c
+      id: 0b3060af-6a4d-42af-8f39-8bfb8053dbf3
       version: -1
       name: Set Original Passive
       description: Set a value in context under the key you entered.
@@ -776,10 +776,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "30":
     id: "30"
-    taskid: 38b1b7ae-4312-4a40-8996-9d012e43c2d1
+    taskid: d58e6607-5452-42cb-8210-98fe01a59606
     type: regular
     task:
-      id: 38b1b7ae-4312-4a40-8996-9d012e43c2d1
+      id: d58e6607-5452-42cb-8210-98fe01a59606
       version: -1
       name: Unsuspend Passive Firewall
       description: Checks the status of the given device, checking whether it's up
@@ -818,10 +818,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "31":
     id: "31"
-    taskid: 3b2ef6be-3e8a-4ead-8c1f-0d08b66c6c43
+    taskid: ec251e77-a8a7-493c-8046-b9aca5dca58e
     type: regular
     task:
-      id: 3b2ef6be-3e8a-4ead-8c1f-0d08b66c6c43
+      id: ec251e77-a8a7-493c-8046-b9aca5dca58e
       version: -1
       name: Close incident - Complete
       description: commands.local.cmd.close.inv
@@ -847,10 +847,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "32":
     id: "32"
-    taskid: 7d9bf180-6ffc-474d-83d6-35817a071813
+    taskid: 6cf9289a-0b8a-482b-8218-fc32a627f034
     type: regular
     task:
-      id: 7d9bf180-6ffc-474d-83d6-35817a071813
+      id: 6cf9289a-0b8a-482b-8218-fc32a627f034
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -893,10 +893,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "33":
     id: "33"
-    taskid: bd669acb-7c2c-49a9-82d1-e8b44e77aacb
+    taskid: 9c9f09c5-e836-4ed1-8408-069b912be670
     type: regular
     task:
-      id: bd669acb-7c2c-49a9-82d1-e8b44e77aacb
+      id: 9c9f09c5-e836-4ed1-8408-069b912be670
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -933,10 +933,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "34":
     id: "34"
-    taskid: 06c59a8f-f842-4fed-8221-f4cff1fa912a
+    taskid: 41f1c486-9f7e-4d6f-878a-6e58907eab70
     type: regular
     task:
-      id: 06c59a8f-f842-4fed-8221-f4cff1fa912a
+      id: 41f1c486-9f7e-4d6f-878a-6e58907eab70
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -973,10 +973,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "35":
     id: "35"
-    taskid: c4123c30-771d-4872-8a7a-590fddaab45a
+    taskid: b463de75-3503-467b-8f04-0ca0b4a55aa4
     type: regular
     task:
-      id: c4123c30-771d-4872-8a7a-590fddaab45a
+      id: b463de75-3503-467b-8f04-0ca0b4a55aa4
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -1016,10 +1016,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "39":
     id: "39"
-    taskid: 7cf30d0b-0009-4cb9-83f1-0fe431e378f0
+    taskid: 8d4caf98-7c61-4184-8b47-9ce217f51084
     type: regular
     task:
-      id: 7cf30d0b-0009-4cb9-83f1-0fe431e378f0
+      id: 8d4caf98-7c61-4184-8b47-9ce217f51084
       version: -1
       name: Sleep 1min to wait for all devices to connect
       description: Sleep for X seconds
@@ -1053,10 +1053,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "44":
     id: "44"
-    taskid: ba3a172e-53ea-438d-863c-d4ee8df4ff13
+    taskid: eee29d90-da4d-490e-89fb-ecf85bbfa311
     type: regular
     task:
-      id: ba3a172e-53ea-438d-863c-d4ee8df4ff13
+      id: eee29d90-da4d-490e-89fb-ecf85bbfa311
       version: -1
       name: 'Get System Status of HA Peer '
       description: Checks the status of the given device, checking whether it's up
@@ -1091,10 +1091,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "45":
     id: "45"
-    taskid: d9fe8c5b-7710-46ab-8158-5a8aadca5e67
+    taskid: 2cb24729-6744-4f3e-86b8-16ca74284d72
     type: condition
     task:
-      id: d9fe8c5b-7710-46ab-8158-5a8aadca5e67
+      id: 2cb24729-6744-4f3e-86b8-16ca74284d72
       version: -1
       name: Is the HA peer up/Reachable?
       description: Checks the HA peer is back up.
@@ -1132,10 +1132,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "46":
     id: "46"
-    taskid: e4370741-fa71-49f9-8b8e-fc678147d41d
+    taskid: 6c6b7a14-3a56-4806-8416-58223abea392
     type: condition
     task:
-      id: e4370741-fa71-49f9-8b8e-fc678147d41d
+      id: 6c6b7a14-3a56-4806-8416-58223abea392
       version: -1
       name: Confirm upgrade when no passive firewall is UP
       description: Confirm thatthe upgrade should continue if peer device down..
@@ -1184,10 +1184,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "47":
     id: "47"
-    taskid: fc7ebc20-e746-4a96-83e3-46a0513b5f79
+    taskid: 14aa6f04-4d0e-4f28-85ab-958e6649c542
     type: regular
     task:
-      id: fc7ebc20-e746-4a96-83e3-46a0513b5f79
+      id: 14aa6f04-4d0e-4f28-85ab-958e6649c542
       version: -1
       name: Close Incident - Will not upgrade
       description: commands.local.cmd.close.inv
@@ -1216,10 +1216,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "49":
     id: "49"
-    taskid: fb24163c-7279-4f54-8264-d21527fd409d
+    taskid: fe39177a-0353-47fa-8f4d-11ee24cf018b
     type: regular
     task:
-      id: fb24163c-7279-4f54-8264-d21527fd409d
+      id: fe39177a-0353-47fa-8f4d-11ee24cf018b
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -1255,10 +1255,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "50":
     id: "50"
-    taskid: b3a2b788-8c15-4970-8b69-9e9dc1e95bd4
+    taskid: 34663cd1-da40-4f5e-8990-362eb734e4c0
     type: regular
     task:
-      id: b3a2b788-8c15-4970-8b69-9e9dc1e95bd4
+      id: 34663cd1-da40-4f5e-8990-362eb734e4c0
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -1292,10 +1292,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "51":
     id: "51"
-    taskid: 5e89ff33-8e70-4701-8f8c-f4bb798c13c8
+    taskid: 212a665a-e5ae-4da3-82be-adab7fa7f5d1
     type: regular
     task:
-      id: 5e89ff33-8e70-4701-8f8c-f4bb798c13c8
+      id: 212a665a-e5ae-4da3-82be-adab7fa7f5d1
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -1329,10 +1329,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "52":
     id: "52"
-    taskid: 23876f28-a870-41b3-8611-35ea8ebca743
+    taskid: 1402ed31-b9bf-4433-8104-e027e4a89441
     type: regular
     task:
-      id: 23876f28-a870-41b3-8611-35ea8ebca743
+      id: 1402ed31-b9bf-4433-8104-e027e4a89441
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -1366,10 +1366,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "53":
     id: "53"
-    taskid: 1c9200d5-07d5-4464-8744-0ad2b40a0b49
+    taskid: 5815acbd-e56f-4391-8247-c90a91bb72a9
     type: regular
     task:
-      id: 1c9200d5-07d5-4464-8744-0ad2b40a0b49
+      id: 5815acbd-e56f-4391-8247-c90a91bb72a9
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -1403,10 +1403,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "60":
     id: "60"
-    taskid: 7152a28a-2d25-4020-8c31-f9d74ad17ee9
+    taskid: a0c2c2d9-876e-491b-8434-ce9a4d4c03c5
     type: condition
     task:
-      id: 7152a28a-2d25-4020-8c31-f9d74ad17ee9
+      id: a0c2c2d9-876e-491b-8434-ce9a4d4c03c5
       version: -1
       name: Have we reached the target version?
       type: condition
@@ -1447,10 +1447,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "62":
     id: "62"
-    taskid: 12b84b77-f61b-415d-83d0-6133b3786033
+    taskid: 0ad7e008-4d9d-4d88-8a63-31c81680b676
     type: condition
     task:
-      id: 12b84b77-f61b-415d-83d0-6133b3786033
+      id: 0ad7e008-4d9d-4d88-8a63-31c81680b676
       version: -1
       name: Have we already marked this upgrade ready to start?
       type: condition
@@ -1487,10 +1487,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "63":
     id: "63"
-    taskid: 46b56af2-36a1-4d3b-8cf1-f63c23c57889
+    taskid: d8eaa774-5a0b-4e33-86db-fb9d53116004
     type: regular
     task:
-      id: 46b56af2-36a1-4d3b-8cf1-f63c23c57889
+      id: d8eaa774-5a0b-4e33-86db-fb9d53116004
       version: -1
       name: Mark Upgrade as Confirmed
       description: commands.local.cmd.set.incident
@@ -1522,10 +1522,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "64":
     id: "64"
-    taskid: 3377728d-d8c2-4fd3-8303-2783d593dc70
+    taskid: d43e74ca-ecc8-4604-82ee-5243929d36b7
     type: title
     task:
-      id: 3377728d-d8c2-4fd3-8303-2783d593dc70
+      id: d43e74ca-ecc8-4604-82ee-5243929d36b7
       version: -1
       name: Continue Upgrade Process
       type: title
@@ -1549,10 +1549,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "66":
     id: "66"
-    taskid: ba22992a-04fb-4014-876a-56f2bead53ad
+    taskid: 3ff0bc38-56f7-48d9-868a-af76ae34e0aa
     type: playbook
     task:
-      id: ba22992a-04fb-4014-876a-56f2bead53ad
+      id: 3ff0bc38-56f7-48d9-868a-af76ae34e0aa
       version: -1
       name: PAN-OS Network Operations - Get HA Pair Status
       playbookName: PAN-OS Network Operations - Get HA Pair Status
@@ -1588,10 +1588,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "67":
     id: "67"
-    taskid: d0a1ba3a-e28f-4567-811b-ba50dc85fca3
+    taskid: c5a36cba-6043-4b6f-8524-8d19fe1ea09c
     type: regular
     task:
-      id: d0a1ba3a-e28f-4567-811b-ba50dc85fca3
+      id: c5a36cba-6043-4b6f-8524-8d19fe1ea09c
       version: -1
       name: Error - Active/active firewall pair unsupported.
       description: Prints an error entry with a given message
@@ -1620,10 +1620,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "70":
     id: "70"
-    taskid: 621845ee-abfd-4ce8-8016-72882fde71dc
+    taskid: f86a226f-10b1-4253-876c-b627977dfb3b
     type: condition
     task:
-      id: 621845ee-abfd-4ce8-8016-72882fde71dc
+      id: f86a226f-10b1-4253-876c-b627977dfb3b
       version: -1
       name: Should we reset the HA Topology?
       type: condition
@@ -1663,10 +1663,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "71":
     id: "71"
-    taskid: ea71a100-7e9d-4984-818c-126fd71c4add
+    taskid: 5a7e5bd4-cf9d-498f-85a3-80412b226563
     type: regular
     task:
-      id: ea71a100-7e9d-4984-818c-126fd71c4add
+      id: 5a7e5bd4-cf9d-498f-85a3-80412b226563
       version: -1
       name: Clear out old keys
       description: |-
@@ -1705,10 +1705,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "72":
     id: "72"
-    taskid: 50a8af99-75b7-43b1-8d01-7e63778b9e0a
+    taskid: 3ba7858f-17c9-4fc8-8803-f979a27317ca
     type: regular
     task:
-      id: 50a8af99-75b7-43b1-8d01-7e63778b9e0a
+      id: 3ba7858f-17c9-4fc8-8803-f979a27317ca
       version: -1
       name: Clear out old keys
       description: |-
@@ -1747,10 +1747,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "73":
     id: "73"
-    taskid: 6158e889-582f-4f80-8e2c-06d89bf8a97a
+    taskid: 22115141-3f26-4dd2-8bd0-f9b779e9670a
     type: playbook
     task:
-      id: 6158e889-582f-4f80-8e2c-06d89bf8a97a
+      id: 22115141-3f26-4dd2-8bd0-f9b779e9670a
       version: -1
       name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
       playbookName: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
@@ -1786,10 +1786,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "74":
     id: "74"
-    taskid: 7d6b9d34-35ff-4f14-8f9c-997c8908561e
+    taskid: 48b44133-6ecd-4748-87f1-44231927e6a0
     type: playbook
     task:
-      id: 7d6b9d34-35ff-4f14-8f9c-997c8908561e
+      id: 48b44133-6ecd-4748-87f1-44231927e6a0
       version: -1
       name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
       description: Take a second snapshot and finalize the comparison tests.

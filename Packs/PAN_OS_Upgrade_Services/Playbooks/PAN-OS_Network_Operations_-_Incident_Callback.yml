@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Incident Callback
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Incident Callback
 description: Checks to see if this incident has a parent incident and if so, links
@@ -8,10 +8,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 26ad930e-6c90-4de6-8d4e-6856484bb397
+    taskid: de5eacbb-9481-4507-8258-3acff97cabe5
     type: start
     task:
-      id: 26ad930e-6c90-4de6-8d4e-6856484bb397
+      id: de5eacbb-9481-4507-8258-3acff97cabe5
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +37,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 92d09a4e-23e9-494b-8631-096354ffb7e2
+    taskid: 230cc56a-1b12-4dcc-8373-b21b3a02cf56
     type: regular
     task:
-      id: 92d09a4e-23e9-494b-8631-096354ffb7e2
+      id: 230cc56a-1b12-4dcc-8373-b21b3a02cf56
       version: -1
       name: Mark Complete
       description: commands.local.cmd.task.complete
@@ -74,10 +74,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 26786f10-2cfa-47a6-8acb-6c696fe6be24
+    taskid: dc183a2b-a042-4d8b-8064-c20b35293609
     type: title
     task:
-      id: 26786f10-2cfa-47a6-8acb-6c696fe6be24
+      id: dc183a2b-a042-4d8b-8064-c20b35293609
       version: -1
       name: Done
       type: title
@@ -101,10 +101,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 634ef331-716f-4160-8133-f62421da3d46
+    taskid: 19f083a6-1a32-4f23-8efc-ad4989cbcb9f
     type: condition
     task:
-      id: 634ef331-716f-4160-8133-f62421da3d46
+      id: 19f083a6-1a32-4f23-8efc-ad4989cbcb9f
       version: -1
       name: Do we have a parent task to mark complete?
       description: Chefcks if the incident callback needs to run.

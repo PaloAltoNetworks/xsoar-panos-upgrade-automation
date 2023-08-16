@@ -1,5 +1,5 @@
 id: 1e9d1015-078f-4ac0-8bf7-6a471404561d
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Create CVE Relationships
 description: Given a PAN-OS version, searches the security advisories website for
@@ -8,10 +8,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: d1665574-1b57-42d8-8b61-8e471fc5ad0f
+    taskid: d668fac3-5127-4e49-8a27-1c9b8e77af4c
     type: start
     task:
-      id: d1665574-1b57-42d8-8b61-8e471fc5ad0f
+      id: d668fac3-5127-4e49-8a27-1c9b8e77af4c
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +37,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 46f533cb-2e91-47a1-8959-32d9e7c2aad0
+    taskid: 266a0a56-9fc0-486f-8b07-7f6b23ee40a7
     type: regular
     task:
-      id: 46f533cb-2e91-47a1-8959-32d9e7c2aad0
+      id: 266a0a56-9fc0-486f-8b07-7f6b23ee40a7
       version: -1
       name: Get the advisories for this Version
       description: Gets all the advisories for the given product.
@@ -74,10 +74,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 1a746530-923a-4d55-8af6-ac0f36a6b3ba
+    taskid: 1383e798-cf29-4fb4-8fc4-c61b1270f15c
     type: regular
     task:
-      id: 1a746530-923a-4d55-8af6-ac0f36a6b3ba
+      id: 1383e798-cf29-4fb4-8fc4-c61b1270f15c
       version: -1
       name: Check if this version is affected by any CVEs
       description: Checks if the given PAN-OS version number is affected by the given
@@ -112,10 +112,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 5757f299-49d4-4f58-86b4-3cdb26a3d136
+    taskid: d1591a3b-e4f4-4482-853d-6d0d8c1d6308
     type: regular
     task:
-      id: 5757f299-49d4-4f58-86b4-3cdb26a3d136
+      id: d1591a3b-e4f4-4482-853d-6d0d8c1d6308
       version: -1
       name: Find Existing Relationships
       description: This automation outputs the indicator relationships to context
@@ -151,10 +151,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 462d535d-efe1-45f2-8476-cf24f86e939e
+    taskid: 172f58d4-19e9-45ff-8bdc-5dc0218feb3b
     type: regular
     task:
-      id: 462d535d-efe1-45f2-8476-cf24f86e939e
+      id: 172f58d4-19e9-45ff-8bdc-5dc0218feb3b
       version: -1
       name: Delete any CVE Relationships no longer applicable to this version.
       description: This automation allows to delete a relationship between indicator
@@ -199,10 +199,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: b951ee8c-ea03-4834-8fd3-35d09f5b5afa
+    taskid: d02b6589-4432-4258-84db-304b43ef55a4
     type: regular
     task:
-      id: b951ee8c-ea03-4834-8fd3-35d09f5b5afa
+      id: d02b6589-4432-4258-84db-304b43ef55a4
       version: -1
       name: Create Indicator Relationships
       description: This automation creates a relationship between indicator objects.
@@ -242,10 +242,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: ad0bb19f-4249-4d9c-876b-fdb8699aa064
+    taskid: 964061d8-44c1-420f-811b-b26c4011e688
     type: condition
     task:
-      id: ad0bb19f-4249-4d9c-876b-fdb8699aa064
+      id: 964061d8-44c1-420f-811b-b26c4011e688
       version: -1
       name: Are there now redundant relationships?
       type: condition
@@ -294,10 +294,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: fae184ca-7f15-4dd1-8e0f-3dd2aa1b85d2
+    taskid: ec397dd2-546c-4531-86d8-393d7c4eabe2
     type: title
     task:
-      id: fae184ca-7f15-4dd1-8e0f-3dd2aa1b85d2
+      id: ec397dd2-546c-4531-86d8-393d7c4eabe2
       version: -1
       name: Finish
       type: title
@@ -321,10 +321,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: e183b896-92c5-493e-82c3-1469facc559d
+    taskid: 13109a6b-e8fb-4007-8624-707c1d8e0dac
     type: condition
     task:
-      id: e183b896-92c5-493e-82c3-1469facc559d
+      id: 13109a6b-e8fb-4007-8624-707c1d8e0dac
       version: -1
       name: Did we get any advisories?
       type: condition
@@ -361,10 +361,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 709a64cf-8bb2-4f6d-8b52-2d3a36f207cd
+    taskid: 5543cce1-717e-4499-8755-6ad29c723a51
     type: regular
     task:
-      id: 709a64cf-8bb2-4f6d-8b52-2d3a36f207cd
+      id: 5543cce1-717e-4499-8755-6ad29c723a51
       version: -1
       name: Delete all CVE Relationships.
       description: This automation allows to delete a relationship between indicator
@@ -397,10 +397,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 9ca317fe-9835-4ec6-8b0b-d0afde90a9f3
+    taskid: 9fe983af-5d3c-40bc-8b51-b96e6f2f827f
     type: condition
     task:
-      id: 9ca317fe-9835-4ec6-8b0b-d0afde90a9f3
+      id: 9fe983af-5d3c-40bc-8b51-b96e6f2f827f
       version: -1
       name: Did we get any advisories?
       type: condition
@@ -456,7 +456,7 @@ inputs:
   playbookInputQuery: null
 - key: panos_id
   value:
-    simple: serial_number_goes_here
+    simple: 6F5A32602DF9260
   required: false
   description: ""
   playbookInputQuery: null

@@ -1,5 +1,5 @@
 id: 82aae2be-6e47-4aa7-8eb8-47508990e6ae
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Onboard Firewall
 description: 'This playbook registers a firewall - based on a provided target IP -
@@ -9,10 +9,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 92554b7d-55f2-4ff8-873a-d35933aef6a6
+    taskid: ebdae0fa-ade8-410c-846e-5b019170b82a
     type: start
     task:
-      id: 92554b7d-55f2-4ff8-873a-d35933aef6a6
+      id: ebdae0fa-ade8-410c-846e-5b019170b82a
       version: -1
       name: ""
       iscommand: false
@@ -38,10 +38,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: dae2a350-44f5-4304-82be-c922545be285
+    taskid: 3533cd4f-a4c7-473f-86e2-a2c7cc8de2ca
     type: regular
     task:
-      id: dae2a350-44f5-4304-82be-c922545be285
+      id: 3533cd4f-a4c7-473f-86e2-a2c7cc8de2ca
       version: -1
       name: Setup the Firewall over SSH
       description: Performs the very first login to PAN-OS NGFW that is currently
@@ -76,10 +76,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 460b403e-8794-4002-8181-14c8ad5e2f1d
+    taskid: 7ec5e9dd-ae32-411d-8855-e499ac50e02e
     type: title
     task:
-      id: 460b403e-8794-4002-8181-14c8ad5e2f1d
+      id: 7ec5e9dd-ae32-411d-8855-e499ac50e02e
       version: -1
       name: Configure the Firewall
       type: title
@@ -106,10 +106,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 8f2c30fa-d2e2-4dfa-88ce-42489fa030c5
+    taskid: e2dd2ff3-ddb8-419d-8d79-b8ac2413825a
     type: regular
     task:
-      id: 8f2c30fa-d2e2-4dfa-88ce-42489fa030c5
+      id: e2dd2ff3-ddb8-419d-8d79-b8ac2413825a
       version: -1
       name: Configures the System Settings of the firewall
       description: Configures the firewall to point to Panorama and commits the configuraiton.
@@ -153,10 +153,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: ea23c9ae-e8e2-4c61-89a4-1118b194a13a
+    taskid: 3ebe1aa3-c2cf-4cef-833a-49afcfdb8281
     type: regular
     task:
-      id: ea23c9ae-e8e2-4c61-89a4-1118b194a13a
+      id: 3ebe1aa3-c2cf-4cef-833a-49afcfdb8281
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -188,10 +188,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 49011f50-1e67-4862-8783-24836c368f29
+    taskid: 0db407e0-02f1-409d-84d6-18d4e402d560
     type: regular
     task:
-      id: 49011f50-1e67-4862-8783-24836c368f29
+      id: 0db407e0-02f1-409d-84d6-18d4e402d560
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -223,10 +223,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 9aa93c10-bfeb-4284-82ab-c1b2065a8cc0
+    taskid: 5934599f-4058-4943-8f92-49e25cc1072f
     type: title
     task:
-      id: 9aa93c10-bfeb-4284-82ab-c1b2065a8cc0
+      id: 5934599f-4058-4943-8f92-49e25cc1072f
       version: -1
       name: Add Device to Panorama
       type: title
@@ -253,10 +253,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: a545f79a-9a02-463a-8d97-d1fd181ab7d8
+    taskid: 1a5aed68-03c1-4c8b-8e6d-8e8b83635c35
     type: regular
     task:
-      id: a545f79a-9a02-463a-8d97-d1fd181ab7d8
+      id: 1a5aed68-03c1-4c8b-8e6d-8e8b83635c35
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -290,10 +290,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: 75d61309-356e-45c5-8aaa-7975fd37c1d4
+    taskid: f7a53f52-84de-41c8-89b0-4fb41c0ee55d
     type: regular
     task:
-      id: 75d61309-356e-45c5-8aaa-7975fd37c1d4
+      id: f7a53f52-84de-41c8-89b0-4fb41c0ee55d
       version: -1
       name: Add the firewall serial number to the deployment key list of serials
       description: Adds the auth key to the firewall. Skipped if Running < 10.1.2
@@ -331,10 +331,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 14523870-98ae-4541-81e7-93c8a1b4fc90
+    taskid: cfed9417-6941-4f18-83a3-5bb41283eeca
     type: regular
     task:
-      id: 14523870-98ae-4541-81e7-93c8a1b4fc90
+      id: cfed9417-6941-4f18-83a3-5bb41283eeca
       version: -1
       name: Get the device deployment key
       description: 'Retrieves the device deployment key, if there is one. '
@@ -371,10 +371,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: e01ad59b-0e1b-4afd-87a0-2d624052cd8c
+    taskid: bf12ed73-7b73-4ea7-8257-b42a8a9484a0
     type: regular
     task:
-      id: e01ad59b-0e1b-4afd-87a0-2d624052cd8c
+      id: bf12ed73-7b73-4ea7-8257-b42a8a9484a0
       version: -1
       name: Add to the list of managed devices
       description: Runs any command supported in the API.
@@ -413,10 +413,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: cbe38ec2-9ee0-4431-8ac8-3741253c0ea1
+    taskid: 7eefee41-a51f-4a01-8ddc-18ac34caa54d
     type: regular
     task:
-      id: cbe38ec2-9ee0-4431-8ac8-3741253c0ea1
+      id: 7eefee41-a51f-4a01-8ddc-18ac34caa54d
       version: -1
       name: Add to the Template-Stack
       description: Runs any command supported in the API.
@@ -454,10 +454,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "13":
     id: "13"
-    taskid: 8b28d401-875a-44b8-8711-ba0b5443f071
+    taskid: ea616583-d80e-4aa0-8fc6-0bf635344f15
     type: regular
     task:
-      id: 8b28d401-875a-44b8-8711-ba0b5443f071
+      id: ea616583-d80e-4aa0-8fc6-0bf635344f15
       version: -1
       name: Add to the device-group
       description: Runs any command supported in the API.
@@ -495,10 +495,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "14":
     id: "14"
-    taskid: 0aa17585-b098-4f3c-8543-4ef1be114baf
+    taskid: 47fc948d-3bcd-4886-87e1-7c59103eff74
     type: regular
     task:
-      id: 0aa17585-b098-4f3c-8543-4ef1be114baf
+      id: 47fc948d-3bcd-4886-87e1-7c59103eff74
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -532,10 +532,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "15":
     id: "15"
-    taskid: 3c6656aa-3fb4-4f37-8ca3-92d6bde1f51c
+    taskid: 457c3162-626d-4110-8237-2afd127cabed
     type: regular
     task:
-      id: 3c6656aa-3fb4-4f37-8ca3-92d6bde1f51c
+      id: 457c3162-626d-4110-8237-2afd127cabed
       version: -1
       name: Commit to Panorama
       description: Commits a configuration to the Palo Alto firewall or Panorama,
@@ -571,10 +571,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "16":
     id: "16"
-    taskid: a4d40f8f-d728-427a-803a-270fb646999b
+    taskid: c862ccca-a348-4b5a-8f27-7517f946064e
     type: regular
     task:
-      id: a4d40f8f-d728-427a-803a-270fb646999b
+      id: c862ccca-a348-4b5a-8f27-7517f946064e
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -606,10 +606,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "17":
     id: "17"
-    taskid: da920128-5a59-4b49-8974-08324ecb34fc
+    taskid: 057e6071-6434-4406-8b43-1cc37de8a865
     type: title
     task:
-      id: da920128-5a59-4b49-8974-08324ecb34fc
+      id: 057e6071-6434-4406-8b43-1cc37de8a865
       version: -1
       name: Start the Onboarding Timer
       type: title
@@ -635,10 +635,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "18":
     id: "18"
-    taskid: 7187e1e5-3ec2-4907-85b1-b38a6569fff6
+    taskid: 21ffa3d4-2397-4914-899a-e77f239d32ec
     type: title
     task:
-      id: 7187e1e5-3ec2-4907-85b1-b38a6569fff6
+      id: 21ffa3d4-2397-4914-899a-e77f239d32ec
       version: -1
       name: Start Onboarding
       type: title

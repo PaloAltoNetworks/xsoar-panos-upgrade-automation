@@ -1,0 +1,510 @@
+id: c2bc1a10-79d8-4a4d-8525-037ddf0dcfa4
+version: 14
+vcShouldKeepItemLegacyProdMachine: false
+name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
+description: Take a second snapshot and finalize the comparison tests.
+starttaskid: "0"
+tasks:
+  "0":
+    id: "0"
+    taskid: d8d4736a-b230-405e-8f1f-aec707cd0cc1
+    type: start
+    task:
+      id: d8d4736a-b230-405e-8f1f-aec707cd0cc1
+      version: -1
+      name: ""
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "1"
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "1":
+    id: "1"
+    taskid: 3608daec-eba7-43ec-851b-c74e891923d1
+    type: regular
+    task:
+      id: 3608daec-eba7-43ec-851b-c74e891923d1
+      version: -1
+      name: Take the Second snapshot
+      description: Takes a snapshot of the operational state of the system.
+      script: '|||pan-os-assurance-run-snapshot'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "2"
+      - "3"
+    scriptarguments:
+      firewall_serial:
+        simple: ${inputs.target}
+      snapshot_name:
+        simple: second_snapshot
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 210
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "2":
+    id: "2"
+    taskid: 3d785b87-df4d-47ad-806c-0add31ae64c3
+    type: regular
+    task:
+      id: 3d785b87-df4d-47ad-806c-0add31ae64c3
+      version: -1
+      name: Run Comparsion
+      description: Takes a snapshot of the operational state of the system.
+      script: '|||pan-os-assurance-compare-snapshots'
+      type: regular
+      iscommand: true
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "4"
+    scriptarguments:
+      left_snapshot_id:
+        complex:
+          root: File
+          accessor: EntryID
+          transformers:
+          - operator: FirstArrayElement
+      right_snapshot_id:
+        complex:
+          root: File
+          accessor: EntryID
+          transformers:
+          - operator: LastArrayElement
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 390
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    fieldMapping:
+    - incidentfield: Snapshot Comparison Result
+      output:
+        simple: ${FirewallAssurance.SnapshotComparisonResult}
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "3":
+    id: "3"
+    taskid: 69b270a2-c433-421c-8e8d-b715d54fe1c4
+    type: regular
+    task:
+      id: 69b270a2-c433-421c-8e8d-b715d54fe1c4
+      version: -1
+      name: Save Second Snapshot
+      description: Copies a file from this incident to the specified incident. The
+        file is recorded as an entry in the specified incident’s War Room.
+      scriptName: UploadFile
+      type: regular
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "4"
+    scriptarguments:
+      body:
+        simple: '{"field": "secondsnapshot"}'
+      entryID:
+        complex:
+          root: File
+          accessor: EntryID
+          transformers:
+          - operator: LastArrayElement
+      incID:
+        simple: ${incident.id}
+      target:
+        simple: incident attachment
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 390
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "4":
+    id: "4"
+    taskid: 073bf225-8e62-400c-8ab4-b9514dbe6d12
+    type: regular
+    task:
+      id: 073bf225-8e62-400c-8ab4-b9514dbe6d12
+      version: -1
+      name: Update Incident
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    nexttasks:
+      '#none#':
+      - "5"
+      - "8"
+    scriptarguments:
+      comparisontestraw:
+        simple: |-
+          # Raw Comparison test result (JSON)
+
+          ```json
+          ${FirewallAssurance.SnapshotComparisonRawResult}
+          ```
+      upgradeassurancereport:
+        simple: |
+          ${incident.upgradeassurancereport}
+          ## Comparison checks FAILED
+
+          ${incident.snapshotcomparisonresult(val.passed=='false')=>x(val);
+              function x(v) {
+                  s = ""
+                  if (v.length == 0) {
+                      return "✅ All Tests Passing! ✅";
+                  }
+                  v.forEach(function(item){
+                      s = s + " *  ❌ " + item.test + "\n";
+                  })
+                  return s;
+              };
+          }
+
+          ## Comparison checks PASSED
+
+          ${incident.snapshotcomparisonresult(val.passed=='true')=>x(val);
+              function x(v) {
+                  s = ""
+                  if (v.length == 0) {
+                      return "❌ All tests failing! ❌";
+                  }
+                  v.forEach(function(item){
+                      s = s + " * " + item.test + "\n";
+                  })
+                  return s;
+              };
+          }
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 570
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "5":
+    id: "5"
+    taskid: 44664e04-a007-483c-8dc9-381f0eb33e42
+    type: condition
+    task:
+      id: 44664e04-a007-483c-8dc9-381f0eb33e42
+      version: -1
+      name: Overall Result
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "7"
+      FAILED:
+      - "6"
+    separatecontext: false
+    conditions:
+    - label: FAILED
+      condition:
+      - - operator: isExists
+          left:
+            value:
+              complex:
+                root: FirewallAssurance.SnapshotComparisonResult
+                filters:
+                - - operator: isEqualString
+                    left:
+                      value:
+                        simple: FirewallAssurance.SnapshotComparisonResult.passed
+                      iscontext: true
+                    right:
+                      value:
+                        simple: "false"
+            iscontext: true
+          right:
+            value: {}
+        - operator: isExists
+          left:
+            value:
+              complex:
+                root: incident.readinesscheckresult
+                filters:
+                - - operator: isEqualString
+                    left:
+                      value:
+                        simple: incident.readinesscheckresult.state
+                      iscontext: true
+                    right:
+                      value:
+                        simple: "false"
+            iscontext: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 750
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "6":
+    id: "6"
+    taskid: 0937285e-735f-40d3-8d87-7a48f4612729
+    type: regular
+    task:
+      id: 0937285e-735f-40d3-8d87-7a48f4612729
+      version: -1
+      name: Tests Failed
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    scriptarguments:
+      assurancetestresult:
+        simple: Failed ❌
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 940
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "7":
+    id: "7"
+    taskid: 85f128a9-62ed-4984-8777-2f9aea615d4e
+    type: regular
+    task:
+      id: 85f128a9-62ed-4984-8777-2f9aea615d4e
+      version: -1
+      name: Tests Passed
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    scriptarguments:
+      assurancetestresult:
+        simple: Passed ✅
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 840,
+          "y": 940
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "8":
+    id: "8"
+    taskid: badf997a-d2cf-40f6-8d23-3b307f75c647
+    type: condition
+    task:
+      id: badf997a-d2cf-40f6-8d23-3b307f75c647
+      version: -1
+      name: Comparison result
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "10"
+      FAILED:
+      - "9"
+    separatecontext: false
+    conditions:
+    - label: FAILED
+      condition:
+      - - operator: isExists
+          left:
+            value:
+              complex:
+                root: FirewallAssurance.SnapshotComparisonResult
+                filters:
+                - - operator: isEqualString
+                    left:
+                      value:
+                        simple: FirewallAssurance.SnapshotComparisonResult.passed
+                      iscontext: true
+                    right:
+                      value:
+                        simple: "false"
+            iscontext: true
+          right:
+            value: {}
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 750
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "9":
+    id: "9"
+    taskid: d13f375e-8a33-4330-884e-55c279fcc239
+    type: regular
+    task:
+      id: d13f375e-8a33-4330-884e-55c279fcc239
+      version: -1
+      name: Comparison Tests Failed
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    scriptarguments:
+      assurancetestresult:
+        simple: Failed ❌
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 940
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "10":
+    id: "10"
+    taskid: cf591376-d930-4170-804e-92a4dde36445
+    type: regular
+    task:
+      id: cf591376-d930-4170-804e-92a4dde36445
+      version: -1
+      name: Comparison Tests  Passed
+      description: commands.local.cmd.set.incident
+      script: Builtin|||setIncident
+      type: regular
+      iscommand: true
+      brand: Builtin
+    scriptarguments:
+      assurancetestresult:
+        simple: Passed ✅
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": -430,
+          "y": 940
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 985,
+        "width": 1650,
+        "x": -430,
+        "y": 50
+      }
+    }
+  }
+inputs:
+- key: target
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+  required: false
+  description: ""
+  playbookInputQuery: null
+outputs: []
+quiet: true
