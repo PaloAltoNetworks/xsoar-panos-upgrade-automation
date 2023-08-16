@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Onboarding
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Onboarding
 description: Onboards the NGFW and Panorama devices as XSOAR incidents.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: c86838c2-796b-4154-87fe-d0dc09754633
+    taskid: 38507585-4eea-4480-83bf-e3115c544879
     type: start
     task:
-      id: c86838c2-796b-4154-87fe-d0dc09754633
+      id: 38507585-4eea-4480-83bf-e3115c544879
       version: -1
       name: ""
       iscommand: false
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: a7a1f3af-e10f-410a-826d-7f78d886fa18
+    taskid: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
     type: regular
     task:
-      id: a7a1f3af-e10f-410a-826d-7f78d886fa18
+      id: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
       version: -1
       name: Update device incidents
       description: Given a target device, creates or updates an existing PAN-OS Network
@@ -72,10 +72,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 5f20743d-7d44-46d2-832e-b3cf5deb5392
+    taskid: e6660bae-a855-4c39-840a-5829e0763426
     type: regular
     task:
-      id: 5f20743d-7d44-46d2-832e-b3cf5deb5392
+      id: e6660bae-a855-4c39-840a-5829e0763426
       version: -1
       name: Get system information
       description: Gets information from all PAN-OS systems in the topology.
@@ -104,10 +104,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 145aa9a3-64dc-4556-89b2-1c4308a3ba8c
+    taskid: 706c2c07-d528-436a-857c-f956c45f84d9
     type: regular
     task:
-      id: 145aa9a3-64dc-4556-89b2-1c4308a3ba8c
+      id: 706c2c07-d528-436a-857c-f956c45f84d9
       version: -1
       name: Link Incidents
       description: commands.local.cmd.linkIncidents
@@ -139,10 +139,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 594e471c-b4fb-4341-8213-36af2b080d6b
+    taskid: 928e2b9a-e538-42cc-89a5-80cdf5970a9b
     type: title
     task:
-      id: 594e471c-b4fb-4341-8213-36af2b080d6b
+      id: 928e2b9a-e538-42cc-89a5-80cdf5970a9b
       version: -1
       name: Onboarding Finished
       type: title

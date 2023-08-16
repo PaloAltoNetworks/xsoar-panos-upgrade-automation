@@ -1,5 +1,5 @@
 id: 6abaaf4d-6a84-4f35-8e60-2038625a349a
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Run Bulk Change
 description: This playbook runs the fixes identified by GroupIssuesByFields as a looped
@@ -8,10 +8,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: f5a56610-94ca-4a62-86d4-605717bc0a90
+    taskid: 0aeb881a-a21a-4ab0-8c55-ff88e2c4df57
     type: start
     task:
-      id: f5a56610-94ca-4a62-86d4-605717bc0a90
+      id: 0aeb881a-a21a-4ab0-8c55-ff88e2c4df57
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +37,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 9cb1acc4-1272-4f3a-8856-cdf83688f7e8
+    taskid: 713eefad-0d03-49ef-88e4-c3326a5acbbc
     type: regular
     task:
-      id: 9cb1acc4-1272-4f3a-8856-cdf83688f7e8
+      id: 713eefad-0d03-49ef-88e4-c3326a5acbbc
       version: -1
       name: Execute The Change
       description: |
@@ -84,10 +84,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 0ab4e5e7-5437-49c3-8fe1-2e19cd3159fa
+    taskid: d05d359d-a807-4fac-8f5f-0571f74c59a5
     type: title
     task:
-      id: 0ab4e5e7-5437-49c3-8fe1-2e19cd3159fa
+      id: d05d359d-a807-4fac-8f5f-0571f74c59a5
       version: -1
       name: Done
       type: title

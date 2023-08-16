@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Start Device Upgrades
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Start Device Upgrades
 description: |-
@@ -10,10 +10,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 49ac7c43-0a58-4236-85e0-fef066ca2088
+    taskid: 85335dba-205e-443b-8c36-49e5433f28a9
     type: start
     task:
-      id: 49ac7c43-0a58-4236-85e0-fef066ca2088
+      id: 85335dba-205e-443b-8c36-49e5433f28a9
       version: -1
       name: ""
       iscommand: false
@@ -39,10 +39,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: d18856a7-fa54-410e-8a38-810cd4b2b5d2
+    taskid: b5960953-a4b2-4048-817d-a04f8bf569ed
     type: condition
     task:
-      id: d18856a7-fa54-410e-8a38-810cd4b2b5d2
+      id: b5960953-a4b2-4048-817d-a04f8bf569ed
       version: -1
       name: Is auto-upgrade enabled?
       description: Check for automatic upgrade switch
@@ -80,10 +80,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 598503f8-205c-48ba-857f-57a450ef6208
+    taskid: af376f5a-e763-477f-8966-c047fe5f23d8
     type: regular
     task:
-      id: 598503f8-205c-48ba-857f-57a450ef6208
+      id: af376f5a-e763-477f-8966-c047fe5f23d8
       version: -1
       name: Start device upgrades
       description: commands.local.cmd.task.complete
@@ -118,10 +118,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: c4836136-5b56-4be9-8eb6-93bd2fe0d992
+    taskid: 894a22ca-c6b6-41f9-85d8-fcfa22785ae4
     type: condition
     task:
-      id: c4836136-5b56-4be9-8eb6-93bd2fe0d992
+      id: 894a22ca-c6b6-41f9-85d8-fcfa22785ae4
       version: -1
       name: Begin Upgrades
       description: |-
@@ -179,10 +179,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 2dddd656-4044-4c0b-8479-9c537c411bf6
+    taskid: 43e22c47-1125-4ac4-810f-6a080b39d644
     type: title
     task:
-      id: 2dddd656-4044-4c0b-8479-9c537c411bf6
+      id: 43e22c47-1125-4ac4-810f-6a080b39d644
       version: -1
       name: Finish
       type: title

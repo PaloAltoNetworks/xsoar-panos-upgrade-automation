@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Check Version for CVEs
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Check Version for CVEs
 description: Checks a specific version of software for any open CVEs, and if they
@@ -8,10 +8,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 17ce2801-2459-47ba-8c79-7581f4757e80
+    taskid: 14c2278a-0944-4204-87c3-89f3e80969ec
     type: start
     task:
-      id: 17ce2801-2459-47ba-8c79-7581f4757e80
+      id: 14c2278a-0944-4204-87c3-89f3e80969ec
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +37,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: e1fff97a-aa69-40af-80bb-8e90acfa1aa7
+    taskid: 6ea752d3-172b-4186-8b09-ba5d03774c14
     type: regular
     task:
-      id: e1fff97a-aa69-40af-80bb-8e90acfa1aa7
+      id: 6ea752d3-172b-4186-8b09-ba5d03774c14
       version: -1
       name: Get the advisories for this Version
       description: Gets all the advisories for the given product.
@@ -74,10 +74,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: b8ea1cf8-bc73-49a2-8e08-1cc3a04b74cd
+    taskid: c4305c0d-acbc-46b8-89c7-b32388a6f97f
     type: regular
     task:
-      id: b8ea1cf8-bc73-49a2-8e08-1cc3a04b74cd
+      id: c4305c0d-acbc-46b8-89c7-b32388a6f97f
       version: -1
       name: Check if this version is affected by any CVEs
       description: 'Checks if the given PAN-OS version number is affected by the given
@@ -112,10 +112,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: e2d959ff-4573-4de2-84cb-2a8b690c0ed5
+    taskid: a3c79b5f-f6db-4f8c-8b46-963eb2513078
     type: condition
     task:
-      id: e2d959ff-4573-4de2-84cb-2a8b690c0ed5
+      id: a3c79b5f-f6db-4f8c-8b46-963eb2513078
       version: -1
       name: Any matches?
       type: condition
@@ -166,10 +166,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 74d70798-6142-404e-86a6-ab50784a6fc3
+    taskid: a412370e-d042-499a-8c5b-22ff086c6301
     type: title
     task:
-      id: 74d70798-6142-404e-86a6-ab50784a6fc3
+      id: a412370e-d042-499a-8c5b-22ff086c6301
       version: -1
       name: Finish
       type: title
@@ -193,10 +193,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: c2438446-af2e-4d58-81cd-6216388b0b6c
+    taskid: 04bd01f0-567a-46fb-86e0-f5abd4f0b129
     type: regular
     task:
-      id: c2438446-af2e-4d58-81cd-6216388b0b6c
+      id: 04bd01f0-567a-46fb-86e0-f5abd4f0b129
       version: -1
       name: Create Platform Upgrade Incident
       description: commands.local.cmd.create.inc

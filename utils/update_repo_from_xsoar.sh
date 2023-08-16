@@ -52,7 +52,7 @@ function download() {
 function copy_to_pack_directory() {
   echo -e "${YELLOW}Copying files to Pack directory: ${PACK_DIRECTORY}${ENDCOLOR}"
   cd $DOWNLOAD_DIRECTORY
-  for line in `egrep -r "Network Operations" */* | awk -F: '{print $1}' | sort | uniq | grep -v Integrations | grep -v Scripts` ; do cp $line ../PAN_OS_Upgrade_Services/$line ; done
+  for line in `egrep -r "Network Operations|Assurance" */* | awk -F: '{print $1}' | sort | uniq | grep -v Integrations | grep -v Scripts` ; do cp $line ../PAN_OS_Upgrade_Services/$line ; done
   return 0
 }
 

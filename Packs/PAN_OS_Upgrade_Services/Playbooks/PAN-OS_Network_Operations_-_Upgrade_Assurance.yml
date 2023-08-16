@@ -1,5 +1,5 @@
 id: f36e3d36-e5d7-480c-80ce-2db848e1eebd
-version: 26
+version: 27
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Upgrade Assurance
 description: Runs a series of tests based on the upgrade assurance commands and prompts
@@ -9,10 +9,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 573f431c-fe28-499d-8fd5-10abd16e6985
+    taskid: b8463b92-38b1-46ae-821e-e6c895b59a1b
     type: start
     task:
-      id: 573f431c-fe28-499d-8fd5-10abd16e6985
+      id: b8463b92-38b1-46ae-821e-e6c895b59a1b
       version: -1
       name: ""
       iscommand: false
@@ -38,10 +38,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: e0ee1d48-5482-4daf-8bd3-e572267a421e
+    taskid: 3789ab9c-f5d1-49e3-884f-a1a67a495cc2
     type: regular
     task:
-      id: e0ee1d48-5482-4daf-8bd3-e572267a421e
+      id: 3789ab9c-f5d1-49e3-884f-a1a67a495cc2
       version: -1
       name: Aborted process.
       description: commands.local.cmd.set.incident
@@ -70,10 +70,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 8c678297-72fa-4c1a-856a-2abf7c377f50
+    taskid: b862ab81-e717-466d-8d23-033ca4ad32c7
     type: collection
     task:
-      id: 8c678297-72fa-4c1a-856a-2abf7c377f50
+      id: b862ab81-e717-466d-8d23-033ca4ad32c7
       version: -1
       name: Second Snapshot Trigger
       type: collection
@@ -155,10 +155,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: 57290cc6-c08e-4bc6-8a8f-2600ecb7897d
+    taskid: e34dd71d-28ff-4067-89a0-dbef5dbad4bf
     type: condition
     task:
-      id: 57290cc6-c08e-4bc6-8a8f-2600ecb7897d
+      id: e34dd71d-28ff-4067-89a0-dbef5dbad4bf
       version: -1
       name: Continue?
       type: condition
@@ -198,10 +198,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: cb7e29c7-8068-4902-8aff-e8870bc9ddff
+    taskid: 280cd7cd-a56d-424f-8aad-dbf2b88c7476
     type: playbook
     task:
-      id: cb7e29c7-8068-4902-8aff-e8870bc9ddff
+      id: 280cd7cd-a56d-424f-8aad-dbf2b88c7476
       version: -1
       name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
       playbookName: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
@@ -229,10 +229,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 561ad79e-e162-468e-8126-2480fb2914bc
+    taskid: 5bd44314-3cc0-4a9c-8da5-a237fde0d080
     type: playbook
     task:
-      id: 561ad79e-e162-468e-8126-2480fb2914bc
+      id: 5bd44314-3cc0-4a9c-8da5-a237fde0d080
       version: -1
       name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
       playbookName: PAN-OS Network Operations - Upgrade Assurance - Assurance Test

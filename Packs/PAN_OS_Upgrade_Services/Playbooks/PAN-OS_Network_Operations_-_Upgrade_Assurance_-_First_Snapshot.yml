@@ -1,15 +1,15 @@
 id: 281f55fa-ba0c-4a98-8a36-3bc0c35c8472
-version: 14
+version: 15
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
 starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 6a4717c1-4522-4f22-874f-56273f0afe7a
+    taskid: b5f9b4a7-2c71-402c-81f5-fe82c791f092
     type: start
     task:
-      id: 6a4717c1-4522-4f22-874f-56273f0afe7a
+      id: b5f9b4a7-2c71-402c-81f5-fe82c791f092
       version: -1
       name: ""
       iscommand: false
@@ -35,10 +35,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 71a084cd-362f-456b-8635-11cad56d7c51
+    taskid: 7a51aff9-eb1e-447a-8ae6-217a46451624
     type: regular
     task:
-      id: 71a084cd-362f-456b-8635-11cad56d7c51
+      id: 7a51aff9-eb1e-447a-8ae6-217a46451624
       version: -1
       name: Run Readiness Tests
       description: Runs checks to confirm a PAN-OS firewall is ready to be upgraded.
@@ -85,10 +85,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: e5bf8912-9f63-4db4-8da6-7e659ed2b495
+    taskid: b6f607b6-1491-421a-840d-6899e4b8a1ef
     type: condition
     task:
-      id: e5bf8912-9f63-4db4-8da6-7e659ed2b495
+      id: b6f607b6-1491-421a-840d-6899e4b8a1ef
       version: -1
       name: Did we get failed tests?
       type: condition
@@ -135,10 +135,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 49edb18e-7a20-4d9f-8fd6-3a547a84bbe0
+    taskid: dbe6028c-a182-48b4-885b-78adb12380a5
     type: collection
     task:
-      id: 49edb18e-7a20-4d9f-8fd6-3a547a84bbe0
+      id: dbe6028c-a182-48b4-885b-78adb12380a5
       version: -1
       name: Failed Readiness Test Confirmation
       type: collection
@@ -222,10 +222,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 35d72677-6055-4e03-8324-9106feb203a8
+    taskid: b370c5bd-e767-4707-8c0a-c71e494b6ed2
     type: condition
     task:
-      id: 35d72677-6055-4e03-8324-9106feb203a8
+      id: b370c5bd-e767-4707-8c0a-c71e494b6ed2
       version: -1
       name: Continue?
       type: condition
@@ -265,10 +265,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: f00bc965-44b7-47f1-848a-4a1b7b827d52
+    taskid: 32476526-6d69-48d3-83ab-4d0b5d22d58f
     type: regular
     task:
-      id: f00bc965-44b7-47f1-848a-4a1b7b827d52
+      id: 32476526-6d69-48d3-83ab-4d0b5d22d58f
       version: -1
       name: Take the first device snapshot
       description: Takes a snapshot of the operational state of the system.
@@ -302,10 +302,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 0802dd9a-97e5-4173-8601-a37e39286a7b
+    taskid: c3f8eff5-99e9-4226-87f5-a7af67d97870
     type: regular
     task:
-      id: 0802dd9a-97e5-4173-8601-a37e39286a7b
+      id: c3f8eff5-99e9-4226-87f5-a7af67d97870
       version: -1
       name: Save First Snapshot
       description: Copies a file from this incident to the specified incident. The
@@ -345,10 +345,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: de22e934-8801-4a52-88f7-5d43581d874f
+    taskid: 1e00e1f8-3b98-4fa8-8d28-8b85bef4ea9e
     type: regular
     task:
-      id: de22e934-8801-4a52-88f7-5d43581d874f
+      id: 1e00e1f8-3b98-4fa8-8d28-8b85bef4ea9e
       version: -1
       name: Aborted process.
       description: commands.local.cmd.set.incident
@@ -377,10 +377,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 8d2d6a2c-eb7f-4339-8db9-5df999fd8aa5
+    taskid: 0cc1e535-5d2a-4b13-845b-abf1bc722205
     type: regular
     task:
-      id: 8d2d6a2c-eb7f-4339-8db9-5df999fd8aa5
+      id: 0cc1e535-5d2a-4b13-845b-abf1bc722205
       version: -1
       name: Update Report
       description: commands.local.cmd.set.incident
@@ -440,10 +440,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 43e0c372-31e2-437c-89a7-b6b5a1666bfd
+    taskid: 27b9ce61-cf1c-4f1d-8135-b95ecb1c025a
     type: title
     task:
-      id: 43e0c372-31e2-437c-89a7-b6b5a1666bfd
+      id: 27b9ce61-cf1c-4f1d-8135-b95ecb1c025a
       version: -1
       name: "YES"
       type: title
@@ -471,10 +471,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: 53c5f2a6-1e86-40a8-8b43-c408c8df17c5
+    taskid: 02837b8b-c2b5-4d60-84ac-9f555ca29bc4
     type: regular
     task:
-      id: 53c5f2a6-1e86-40a8-8b43-c408c8df17c5
+      id: 02837b8b-c2b5-4d60-84ac-9f555ca29bc4
       version: -1
       name: Set Failed State
       description: commands.local.cmd.set.incident
@@ -506,10 +506,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: 228d4d4e-ef79-4ccb-8cf6-d78bf50208e0
+    taskid: 0b69af8d-2fe8-4ff8-89ce-2ef84b6f8619
     type: title
     task:
-      id: 228d4d4e-ef79-4ccb-8cf6-d78bf50208e0
+      id: 0b69af8d-2fe8-4ff8-89ce-2ef84b6f8619
       version: -1
       name: "No"
       type: title
@@ -536,10 +536,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "13":
     id: "13"
-    taskid: e5eb2b5d-b0fe-4362-87ab-8abdfedf4be4
+    taskid: f67890de-cee4-4281-8e65-6601f503875b
     type: regular
     task:
-      id: e5eb2b5d-b0fe-4362-87ab-8abdfedf4be4
+      id: f67890de-cee4-4281-8e65-6601f503875b
       version: -1
       name: Set Passed State
       description: commands.local.cmd.set.incident

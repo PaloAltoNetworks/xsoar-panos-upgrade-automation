@@ -1,2 +1,2 @@
 Fixes: 
- * Cleaned up some playbook inputs.
+ * Added missing playbooks.

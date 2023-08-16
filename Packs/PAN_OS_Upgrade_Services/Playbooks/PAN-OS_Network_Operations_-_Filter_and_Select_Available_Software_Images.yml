@@ -1,5 +1,5 @@
 id: e68255ec-01a8-40a5-82d4-93b104eeb851
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Filter and Select Available Software Images
 description: Requests the available software images from a firewall, filters them,
@@ -8,10 +8,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 648f4e35-86d3-4e18-864f-e2eff10611f0
+    taskid: 39fc1575-5d9f-429c-8f23-18e6958c3a64
     type: start
     task:
-      id: 648f4e35-86d3-4e18-864f-e2eff10611f0
+      id: 39fc1575-5d9f-429c-8f23-18e6958c3a64
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +37,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: bf77e034-bc6b-4490-8737-79a982f91bcc
+    taskid: 4ccc63cc-b021-4560-8cdf-3532a815dd0a
     type: collection
     task:
-      id: bf77e034-bc6b-4490-8737-79a982f91bcc
+      id: 4ccc63cc-b021-4560-8cdf-3532a815dd0a
       version: -1
       name: Collect Target Version
       description: If a target version wasn't given, ask the user for the version
@@ -109,10 +109,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 6b46334e-6185-45f5-8949-c15ef73c0230
+    taskid: cb47496e-d5dd-4d5f-8af3-1ce9e2d7749f
     type: regular
     task:
-      id: 6b46334e-6185-45f5-8949-c15ef73c0230
+      id: cb47496e-d5dd-4d5f-8af3-1ce9e2d7749f
       version: -1
       name: Get Available software Images
       description: Checks the devices for software that is available to be installed.
@@ -144,10 +144,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 24e1a72d-a3f2-4c1a-856f-70c1ec206ba2
+    taskid: b5383eb4-e4ad-4d18-8cbc-d86919ed022a
     type: regular
     task:
-      id: 24e1a72d-a3f2-4c1a-856f-70c1ec206ba2
+      id: b5383eb4-e4ad-4d18-8cbc-d86919ed022a
       version: -1
       name: Filter the available software images
       description: Given a table containing installed ("current") PAN-OS Software
@@ -192,10 +192,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 376683d7-57d8-47ee-88c5-9cdf352e2efb
+    taskid: 68b73d64-098c-426a-89f0-69ce2b388657
     type: regular
     task:
-      id: 376683d7-57d8-47ee-88c5-9cdf352e2efb
+      id: 68b73d64-098c-426a-89f0-69ce2b388657
       version: -1
       name: Set the relevant incident fields
       description: commands.local.cmd.set.incident
@@ -256,10 +256,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 0dfb1be3-f002-4c7b-8c40-89ebac225b7c
+    taskid: 31f60022-e46d-4f5e-8c67-210315033cb7
     type: condition
     task:
-      id: 0dfb1be3-f002-4c7b-8c40-89ebac225b7c
+      id: 31f60022-e46d-4f5e-8c67-210315033cb7
       version: -1
       name: Do we have a Final target version already?
       type: condition
@@ -296,10 +296,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 6c883ad1-7937-44cd-874b-b9bf8fa7b6db
+    taskid: 76d8886d-6ffb-4edf-8aae-569667234187
     type: regular
     task:
-      id: 6c883ad1-7937-44cd-874b-b9bf8fa7b6db
+      id: 76d8886d-6ffb-4edf-8aae-569667234187
       version: -1
       name: Set Target Version
       description: commands.local.cmd.set.incident

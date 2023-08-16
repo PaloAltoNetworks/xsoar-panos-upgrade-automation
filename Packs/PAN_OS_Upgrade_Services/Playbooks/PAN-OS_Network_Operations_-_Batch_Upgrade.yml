@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Domain Upgrade
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Batch Upgrade
 description: Similar to the Platform Upgrade playbook, this playbook uses an alternate
@@ -10,10 +10,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: af98fd31-15cb-43bf-859b-8cbc4325d9c5
+    taskid: 54ecdb20-1a2d-4ad7-89a2-21fe479ff0a3
     type: start
     task:
-      id: af98fd31-15cb-43bf-859b-8cbc4325d9c5
+      id: 54ecdb20-1a2d-4ad7-89a2-21fe479ff0a3
       version: -1
       name: ""
       iscommand: false
@@ -39,10 +39,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: f5937303-b60d-4189-8433-dd2820f71718
+    taskid: 7fe43156-8be6-4266-8ba4-f4a1de6019a1
     type: condition
     task:
-      id: f5937303-b60d-4189-8433-dd2820f71718
+      id: 7fe43156-8be6-4266-8ba4-f4a1de6019a1
       version: -1
       name: Did we get tags specified?
       description: Check for Domain to upgrade
@@ -82,10 +82,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: e87b1f80-e2fb-49d0-82b7-bf4db88a5ce3
+    taskid: 0c4f2d28-4a0f-4f8d-87fc-c9c5d220c5eb
     type: regular
     task:
-      id: e87b1f80-e2fb-49d0-82b7-bf4db88a5ce3
+      id: 0c4f2d28-4a0f-4f8d-87fc-c9c5d220c5eb
       version: -1
       name: Get Active Devices by query
       description: 'Searches the active PAN-OS devices in the topology - the device
@@ -121,10 +121,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: ecba878e-530d-45cd-89ae-2ae1b4ff867a
+    taskid: 71ca0281-936d-401e-8e26-2c7676095c47
     type: regular
     task:
-      id: ecba878e-530d-45cd-89ae-2ae1b4ff867a
+      id: 71ca0281-936d-401e-8e26-2c7676095c47
       version: -1
       name: Get All Active Devices
       description: 'Searches the active PAN-OS devices in the topology - the device
@@ -157,10 +157,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: cb25859b-a783-4bb5-88ce-38b2542395f3
+    taskid: e96f54e9-42ba-439d-8c97-cfe4727e89af
     type: title
     task:
-      id: cb25859b-a783-4bb5-88ce-38b2542395f3
+      id: e96f54e9-42ba-439d-8c97-cfe4727e89af
       version: -1
       name: Get Available Software Images
       type: title
@@ -187,10 +187,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: eed600bc-6185-4ce6-880d-56d7c598ef35
+    taskid: d11d0a2e-e94b-4d63-862e-140e21feb3a4
     type: regular
     task:
-      id: eed600bc-6185-4ce6-880d-56d7c598ef35
+      id: d11d0a2e-e94b-4d63-862e-140e21feb3a4
       version: -1
       name: Get Software Images
       description: Check the devices for software that is available to be installed.
@@ -222,10 +222,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 9aade8fa-8360-4597-8448-6b575e854ea0
+    taskid: d593384e-cee6-49cc-8382-b6eb4163835a
     type: condition
     task:
-      id: 9aade8fa-8360-4597-8448-6b575e854ea0
+      id: d593384e-cee6-49cc-8382-b6eb4163835a
       version: -1
       name: Did we get at least one device?
       description: Check for device.
@@ -263,10 +263,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 5c0772b7-48c2-44e1-8f7c-c5cb385caa48
+    taskid: ff039c29-1cc9-459e-8d53-0e61352a00a6
     type: regular
     task:
-      id: 5c0772b7-48c2-44e1-8f7c-c5cb385caa48
+      id: ff039c29-1cc9-459e-8d53-0e61352a00a6
       version: -1
       name: Error on no devices returned.
       description: Prints an error entry with a given message
@@ -296,10 +296,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "8":
     id: "8"
-    taskid: 24e50287-68ec-4f25-895d-cdf60af1da83
+    taskid: b770dc8e-f86b-453f-8bd5-824ecd575b96
     type: regular
     task:
-      id: 24e50287-68ec-4f25-895d-cdf60af1da83
+      id: b770dc8e-f86b-453f-8bd5-824ecd575b96
       version: -1
       name: Filter available Panorama Images
       description: Given a table containing installed ("current") PAN-OS Software
@@ -376,10 +376,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "9":
     id: "9"
-    taskid: 46e9a766-ed9d-4512-8958-b52e3a6af320
+    taskid: 43391b72-0770-4cd0-8e70-e860cdb7339e
     type: condition
     task:
-      id: 46e9a766-ed9d-4512-8958-b52e3a6af320
+      id: 43391b72-0770-4cd0-8e70-e860cdb7339e
       version: -1
       name: Did we return Panorama devices?
       description: Check for Panorama devices.
@@ -428,10 +428,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "10":
     id: "10"
-    taskid: 5b9287e6-4bd7-44ed-8589-d1251bdb62b5
+    taskid: 40410efc-1342-4b0b-847f-493c2949196a
     type: collection
     task:
-      id: 5b9287e6-4bd7-44ed-8589-d1251bdb62b5
+      id: 40410efc-1342-4b0b-847f-493c2949196a
       version: -1
       name: Panorama Target Version and Upgrade information Questionairre
       description: Collects the upgrade details from the user.
@@ -549,10 +549,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "11":
     id: "11"
-    taskid: 8e7ac6a9-2940-4133-8c67-3bc80aa4e780
+    taskid: c67f354a-14f5-4734-8b9f-4c3efdf61fdb
     type: regular
     task:
-      id: 8e7ac6a9-2940-4133-8c67-3bc80aa4e780
+      id: c67f354a-14f5-4734-8b9f-4c3efdf61fdb
       version: -1
       name: Set Target Panorama Version Field
       description: commands.local.cmd.set.incident
@@ -584,10 +584,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "12":
     id: "12"
-    taskid: 2ffffacc-29ab-4930-8c8c-00463258d19b
+    taskid: 723ec1df-b115-408d-8701-674214ecd3bb
     type: regular
     task:
-      id: 2ffffacc-29ab-4930-8c8c-00463258d19b
+      id: 723ec1df-b115-408d-8701-674214ecd3bb
       version: -1
       name: Create Panorama Incidents
       description: commands.local.cmd.create.inc
@@ -629,10 +629,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "13":
     id: "13"
-    taskid: a0fa2f43-8590-4f13-87db-05f4a7000b7e
+    taskid: 6e732779-3337-41c7-8342-339af9b94857
     type: condition
     task:
-      id: a0fa2f43-8590-4f13-87db-05f4a7000b7e
+      id: 6e732779-3337-41c7-8342-339af9b94857
       version: -1
       name: Did we get Firewall devices?
       description: Check for Firewall devices.
@@ -680,10 +680,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "14":
     id: "14"
-    taskid: 98cd8629-35fe-4831-8a0a-6cafe08c62d8
+    taskid: 94f9a2bc-cae9-427c-8295-dee84ab4914e
     type: regular
     task:
-      id: 98cd8629-35fe-4831-8a0a-6cafe08c62d8
+      id: 94f9a2bc-cae9-427c-8295-dee84ab4914e
       version: -1
       name: Filter available Firewall Images
       description: Given a table containing installed ("current") PAN-OS Software
@@ -748,10 +748,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "15":
     id: "15"
-    taskid: 3705a1a9-1f9b-4f99-8745-fd72967c5fa3
+    taskid: f1cb0729-a19c-4283-8121-be2a7c8925a8
     type: collection
     task:
-      id: 3705a1a9-1f9b-4f99-8745-fd72967c5fa3
+      id: f1cb0729-a19c-4283-8121-be2a7c8925a8
       version: -1
       name: Firewall Target Version and Upgrade information Questionairre
       description: Collectst the firewall version and further upgrade information
@@ -873,10 +873,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "16":
     id: "16"
-    taskid: f2b9ecb7-9f11-4202-8450-bbfa6f6b138b
+    taskid: 342c9528-c0eb-40d1-8341-c08570abc0ea
     type: regular
     task:
-      id: f2b9ecb7-9f11-4202-8450-bbfa6f6b138b
+      id: 342c9528-c0eb-40d1-8341-c08570abc0ea
       version: -1
       name: Set Answered target version
       description: commands.local.cmd.set.incident
@@ -908,10 +908,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "17":
     id: "17"
-    taskid: 6f3e7c9f-3e72-4ad8-862e-8cba4c6bf238
+    taskid: 2fa2d77d-b8b9-4692-8775-8c0f3f69372a
     type: regular
     task:
-      id: 6f3e7c9f-3e72-4ad8-862e-8cba4c6bf238
+      id: 2fa2d77d-b8b9-4692-8775-8c0f3f69372a
       version: -1
       name: Create Firewall Incidents
       description: commands.local.cmd.create.inc
@@ -955,10 +955,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "18":
     id: "18"
-    taskid: 0f424e42-283d-450d-853f-075a9cabfce8
+    taskid: 12c506a8-12ca-4509-8c3b-55815ca6f096
     type: regular
     task:
-      id: 0f424e42-283d-450d-853f-075a9cabfce8
+      id: 12c506a8-12ca-4509-8c3b-55815ca6f096
       version: -1
       name: Set Panorama Systems
       description: Set a value in context under the key you entered.
@@ -1014,10 +1014,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "19":
     id: "19"
-    taskid: 0bc54130-ca25-4c83-8c6b-ff63e174d043
+    taskid: d239bab1-e444-4572-853b-c1b2de56e8ce
     type: regular
     task:
-      id: 0bc54130-ca25-4c83-8c6b-ff63e174d043
+      id: d239bab1-e444-4572-853b-c1b2de56e8ce
       version: -1
       name: Set Firewall Systems
       description: Set a value in context under the key you entered.
@@ -1072,10 +1072,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "20":
     id: "20"
-    taskid: 98929224-a392-4a2f-8f28-4225c8e1c0e5
+    taskid: 95a11188-81fa-4f41-80b0-e9aab22bfa3e
     type: regular
     task:
-      id: 98929224-a392-4a2f-8f28-4225c8e1c0e5
+      id: 95a11188-81fa-4f41-80b0-e9aab22bfa3e
       version: -1
       name: Delete context
       description: |-
@@ -1112,10 +1112,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "22":
     id: "22"
-    taskid: 2c594ff1-ef06-4599-8e95-c5e803a4922a
+    taskid: 4175c085-aabe-4b05-87a3-add54e577aa3
     type: condition
     task:
-      id: 2c594ff1-ef06-4599-8e95-c5e803a4922a
+      id: 4175c085-aabe-4b05-87a3-add54e577aa3
       version: -1
       name: Do we have a target version already?
       description: Check for target version.
@@ -1171,10 +1171,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "23":
     id: "23"
-    taskid: 7f8083d8-98bf-4e57-824c-92f1e0d7f7dc
+    taskid: 2751ceac-6ee6-464c-877e-fdb6af7bb97e
     type: regular
     task:
-      id: 7f8083d8-98bf-4e57-824c-92f1e0d7f7dc
+      id: 2751ceac-6ee6-464c-877e-fdb6af7bb97e
       version: -1
       name: Set Description
       description: commands.local.cmd.set.incident
@@ -1210,10 +1210,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "24":
     id: "24"
-    taskid: c2aa8cf2-4acb-4178-88b7-ea55dab48fe9
+    taskid: 79f60a12-04e5-44e9-873e-b734429421b0
     type: regular
     task:
-      id: c2aa8cf2-4acb-4178-88b7-ea55dab48fe9
+      id: 79f60a12-04e5-44e9-873e-b734429421b0
       version: -1
       name: Get system info for returned devices
       description: Gets information from all PAN-OS systems in the topology.
@@ -1245,10 +1245,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "25":
     id: "25"
-    taskid: b9b9ff5d-ba35-427c-894b-a285be0a208b
+    taskid: 649fd7a5-9744-4ee3-897d-5b9202be3728
     type: title
     task:
-      id: b9b9ff5d-ba35-427c-894b-a285be0a208b
+      id: 649fd7a5-9744-4ee3-897d-5b9202be3728
       version: -1
       name: Start Upgrade Process Per Incident
       type: title
@@ -1275,10 +1275,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "26":
     id: "26"
-    taskid: 619d88db-7337-49a0-8156-815207d18823
+    taskid: 74c34084-4974-4617-8dcf-12238528f59b
     type: regular
     task:
-      id: 619d88db-7337-49a0-8156-815207d18823
+      id: 74c34084-4974-4617-8dcf-12238528f59b
       version: -1
       name: Set Target List
       description: commands.local.cmd.set.incident
@@ -1322,10 +1322,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "27":
     id: "27"
-    taskid: c3951621-d160-413c-8e1f-c75692761728
+    taskid: 714d13f4-aaec-4881-8bdc-378db0962592
     type: condition
     task:
-      id: c3951621-d160-413c-8e1f-c75692761728
+      id: 714d13f4-aaec-4881-8bdc-378db0962592
       version: -1
       name: Do we have a target version already?
       description: Check for existing target version
@@ -1381,10 +1381,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "28":
     id: "28"
-    taskid: 77bf9fc3-dabf-40d4-80db-82ae069f01dd
+    taskid: 3b749585-deb7-40b6-8135-2494b550d201
     type: regular
     task:
-      id: 77bf9fc3-dabf-40d4-80db-82ae069f01dd
+      id: 3b749585-deb7-40b6-8135-2494b550d201
       version: -1
       name: Set target list
       description: commands.local.cmd.set.incident
@@ -1428,10 +1428,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "29":
     id: "29"
-    taskid: e24715e0-0a5e-482c-8f14-40be3385949a
+    taskid: f4e95e44-8992-44fe-8c33-e7380342cbe5
     type: regular
     task:
-      id: e24715e0-0a5e-482c-8f14-40be3385949a
+      id: f4e95e44-8992-44fe-8c33-e7380342cbe5
       version: -1
       name: Set Description
       description: commands.local.cmd.set.incident
@@ -1467,10 +1467,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "30":
     id: "30"
-    taskid: 363ce935-c60c-4828-8547-fd2f36ecc554
+    taskid: a82ce6a1-5119-48aa-825a-8111b09c5020
     type: playbook
     task:
-      id: 363ce935-c60c-4828-8547-fd2f36ecc554
+      id: a82ce6a1-5119-48aa-825a-8111b09c5020
       version: -1
       name: PAN-OS Network Operations - Start Device Upgrades
       description: |-
@@ -1502,10 +1502,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "31":
     id: "31"
-    taskid: 77902093-127b-4bca-8f79-c0669549b965
+    taskid: 80bf2cbd-921c-4c9a-812e-9b6e8ff051dc
     type: regular
     task:
-      id: 77902093-127b-4bca-8f79-c0669549b965
+      id: 80bf2cbd-921c-4c9a-812e-9b6e8ff051dc
       version: -1
       name: Close Incident
       description: commands.local.cmd.close.inv
@@ -1539,10 +1539,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "32":
     id: "32"
-    taskid: eed17e1c-3e9f-45a1-86c3-62b49dc0a7f2
+    taskid: 10d850d0-470a-45d9-8c1b-f6aad8afcbc5
     type: title
     task:
-      id: eed17e1c-3e9f-45a1-86c3-62b49dc0a7f2
+      id: 10d850d0-470a-45d9-8c1b-f6aad8afcbc5
       version: -1
       name: Finish
       type: title
@@ -1566,10 +1566,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "33":
     id: "33"
-    taskid: d05ad149-bd28-4789-887c-394aaef4481f
+    taskid: 5d035f71-5412-48ad-8391-eb28b7bceaf3
     type: condition
     task:
-      id: d05ad149-bd28-4789-887c-394aaef4481f
+      id: 5d035f71-5412-48ad-8391-eb28b7bceaf3
       version: -1
       name: Do we have a parent incident?
       description: Checks if this incident has been created by another incident type.
@@ -1607,10 +1607,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "34":
     id: "34"
-    taskid: df30bfed-0cdf-42e5-806f-8f7cd1034b6f
+    taskid: 2ff181e0-ed87-4c48-8e6c-41255d72b97c
     type: regular
     task:
-      id: df30bfed-0cdf-42e5-806f-8f7cd1034b6f
+      id: 2ff181e0-ed87-4c48-8e6c-41255d72b97c
       version: -1
       name: Link to parent
       description: commands.local.cmd.linkIncidents
@@ -1642,10 +1642,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "35":
     id: "35"
-    taskid: 6d5a91be-8635-4bea-813b-5f5aa2e77e8b
+    taskid: 5d0a6620-61e5-49ac-8b82-ff07e55d407d
     type: regular
     task:
-      id: 6d5a91be-8635-4bea-813b-5f5aa2e77e8b
+      id: 5d0a6620-61e5-49ac-8b82-ff07e55d407d
       version: -1
       name: Relate Incident to device
       description: commands.local.cmd.associate.indicator

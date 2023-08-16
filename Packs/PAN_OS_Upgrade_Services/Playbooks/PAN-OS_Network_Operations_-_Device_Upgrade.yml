@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Device Upgrade
-version: 5
+version: 6
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Device Upgrade
 description: Upgrades a single or HA pair of PAN-OS firewalls.
@@ -7,10 +7,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 77ffc18d-1d27-4a6d-85bb-0162c80ecb6a
+    taskid: e25a516b-e99b-4178-8501-07cc2c986ed7
     type: start
     task:
-      id: 77ffc18d-1d27-4a6d-85bb-0162c80ecb6a
+      id: e25a516b-e99b-4178-8501-07cc2c986ed7
       version: -1
       name: ""
       iscommand: false
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "40":
     id: "40"
-    taskid: 2ce0749d-01f9-46b4-819d-81c5541c3e44
+    taskid: c8424cbe-555c-49c4-8ad0-8107267122de
     type: condition
     task:
-      id: 2ce0749d-01f9-46b4-819d-81c5541c3e44
+      id: c8424cbe-555c-49c4-8ad0-8107267122de
       version: -1
       name: Do we have a parent incident?
       description: True if this incident was created by another incident.
@@ -77,10 +77,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "41":
     id: "41"
-    taskid: 62d0636d-b43b-4574-8eb0-5f62f9a2f790
+    taskid: eb7eaf31-9a3c-4677-84a1-48539b2480e5
     type: regular
     task:
-      id: 62d0636d-b43b-4574-8eb0-5f62f9a2f790
+      id: eb7eaf31-9a3c-4677-84a1-48539b2480e5
       version: -1
       name: Link to parent
       description: commands.local.cmd.linkIncidents
@@ -112,10 +112,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "48":
     id: "48"
-    taskid: 7766b614-0a2b-4f5c-8ee3-27983ee8397a
+    taskid: 96adcd0d-353a-4ad0-8338-0a762a71ca31
     type: regular
     task:
-      id: 7766b614-0a2b-4f5c-8ee3-27983ee8397a
+      id: 96adcd0d-353a-4ad0-8338-0a762a71ca31
       version: -1
       name: Set Status
       description: commands.local.cmd.set.incident
@@ -151,10 +151,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "58":
     id: "58"
-    taskid: 991f798b-99a4-4e8f-85f6-c8cc67285f45
+    taskid: 80a21366-7493-46ca-8458-697222d7cbb9
     type: regular
     task:
-      id: 991f798b-99a4-4e8f-85f6-c8cc67285f45
+      id: 80a21366-7493-46ca-8458-697222d7cbb9
       version: -1
       name: Associate Device Indicator to this Incident
       description: Associates the device indicator to this incident; required when
@@ -189,10 +189,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "59":
     id: "59"
-    taskid: 57f88177-d5ea-44ad-866c-2916646c3d31
+    taskid: a8f05f7f-04a2-4bd9-83e7-dfe58d21b2a6
     type: playbook
     task:
-      id: 57f88177-d5ea-44ad-866c-2916646c3d31
+      id: a8f05f7f-04a2-4bd9-83e7-dfe58d21b2a6
       version: -1
       name: PAN-OS Network Operations - Filter and Select Available Software Images
       description: Requests the available software images from a firewall, filters
@@ -231,10 +231,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "61":
     id: "61"
-    taskid: dabff13e-3e4e-4a6e-8e07-43434f88a751
+    taskid: 187166ba-179f-439a-88c5-65b08ee0624a
     type: title
     task:
-      id: dabff13e-3e4e-4a6e-8e07-43434f88a751
+      id: 187166ba-179f-439a-88c5-65b08ee0624a
       version: -1
       name: Complete!
       type: title
@@ -258,10 +258,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "62":
     id: "62"
-    taskid: c594f5e1-5287-4fcf-87b0-55a61b8937ec
+    taskid: e0c5f1f3-dfea-4556-8ce3-11740cbda7de
     type: playbook
     task:
-      id: c594f5e1-5287-4fcf-87b0-55a61b8937ec
+      id: e0c5f1f3-dfea-4556-8ce3-11740cbda7de
       version: -1
       name: PAN-OS Network Operations - Device Upgrade Loop
       playbookName: PAN-OS Network Operations - Device Upgrade Loop

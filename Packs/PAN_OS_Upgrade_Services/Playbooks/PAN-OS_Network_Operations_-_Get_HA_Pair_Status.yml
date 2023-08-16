@@ -1,5 +1,5 @@
 id: 7409a83d-eab4-4acd-8b93-a4abc6a038e4
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Get HA Pair Status
 description: Determines which device in a HA pair is active or passive, and if the
@@ -8,10 +8,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: f26cbc58-60a2-4730-80f2-e205fa840672
+    taskid: 30f9e301-5fb1-475f-88d0-faf1fd118b70
     type: start
     task:
-      id: f26cbc58-60a2-4730-80f2-e205fa840672
+      id: 30f9e301-5fb1-475f-88d0-faf1fd118b70
       version: -1
       name: ""
       iscommand: false
@@ -37,10 +37,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 3027c8f3-621a-483f-8598-a8e2b1975c1a
+    taskid: e1fb5109-93a1-4824-8ce8-1c7606a57b1f
     type: regular
     task:
-      id: 3027c8f3-621a-483f-8598-a8e2b1975c1a
+      id: e1fb5109-93a1-4824-8ce8-1c7606a57b1f
       version: -1
       name: Get HA state
       description: Gets the HA state and associated details from the given device
@@ -73,10 +73,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 784f87f3-d556-426d-846e-3d3b128cad61
+    taskid: c2216111-7989-4997-8f67-9088fa0a5ca4
     type: condition
     task:
-      id: 784f87f3-d556-426d-846e-3d3b128cad61
+      id: c2216111-7989-4997-8f67-9088fa0a5ca4
       version: -1
       name: Is there a peer?
       type: condition
@@ -113,10 +113,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 1d913ab2-1a77-4664-84df-19f2a3ea35aa
+    taskid: 794c5042-f3dc-4974-8001-af1d0037ad31
     type: regular
     task:
-      id: 1d913ab2-1a77-4664-84df-19f2a3ea35aa
+      id: 794c5042-f3dc-4974-8001-af1d0037ad31
       version: -1
       name: Get Peer HA State
       description: Gets the HA state and associated details from the given device
@@ -150,10 +150,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: c0251ee7-8d3b-4d99-8414-319b3c9993bc
+    taskid: 846e695c-be25-45ae-83ca-b9ad489918e0
     type: title
     task:
-      id: c0251ee7-8d3b-4d99-8414-319b3c9993bc
+      id: 846e695c-be25-45ae-83ca-b9ad489918e0
       version: -1
       name: Finish - No HA
       type: title
@@ -177,10 +177,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: e8cf049d-d51b-4713-8213-12108479d60c
+    taskid: 4a29f2ac-3ca4-48ab-89b9-eb92d3a747a4
     type: regular
     task:
-      id: e8cf049d-d51b-4713-8213-12108479d60c
+      id: 4a29f2ac-3ca4-48ab-89b9-eb92d3a747a4
       version: -1
       name: Set Active Peer
       description: Set a value in context under the key you entered.
@@ -224,10 +224,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "6":
     id: "6"
-    taskid: 92f4a105-7b90-4eac-899a-7b717fc621bf
+    taskid: c8f7108a-c337-4900-8a50-b1b92412d1fa
     type: regular
     task:
-      id: 92f4a105-7b90-4eac-899a-7b717fc621bf
+      id: c8f7108a-c337-4900-8a50-b1b92412d1fa
       version: -1
       name: Set Passive Peer
       description: |-
@@ -284,10 +284,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: b8b3a487-e17a-42ef-8678-1d754343bcc7
+    taskid: 1d40842a-4e32-4e68-855f-3b19e1af491f
     type: title
     task:
-      id: b8b3a487-e17a-42ef-8678-1d754343bcc7
+      id: 1d40842a-4e32-4e68-855f-3b19e1af491f
       version: -1
       name: Finish HA Discovery
       type: title

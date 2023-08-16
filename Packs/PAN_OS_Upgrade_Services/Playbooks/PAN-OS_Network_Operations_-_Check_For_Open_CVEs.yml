@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Check For Open CVEs
-version: 4
+version: 5
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Check For Open CVEs
 description: This playbook uses the Palo Alto Networks Security Advisories integration,
@@ -10,10 +10,10 @@ starttaskid: "0"
 tasks:
   "0":
     id: "0"
-    taskid: 323ce83e-6f08-4774-8a6b-68b1d1e860df
+    taskid: 9aac3d99-ffc2-4e3a-8ef5-7cfc5eda45eb
     type: start
     task:
-      id: 323ce83e-6f08-4774-8a6b-68b1d1e860df
+      id: 9aac3d99-ffc2-4e3a-8ef5-7cfc5eda45eb
       version: -1
       name: ""
       iscommand: false
@@ -39,10 +39,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 979d8ae0-1ac2-459d-850b-ad5e910aba19
+    taskid: 975c45f2-c0be-48db-8c36-c9b42b1162d4
     type: condition
     task:
-      id: 979d8ae0-1ac2-459d-850b-ad5e910aba19
+      id: 975c45f2-c0be-48db-8c36-c9b42b1162d4
       version: -1
       name: Is the Advisories integration enabled?
       type: condition
@@ -97,10 +97,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "3":
     id: "3"
-    taskid: 71914914-d6d3-4b17-8752-a4b4fe1f2013
+    taskid: 259d3b45-d97d-43b2-82da-ae947cb4ef6d
     type: playbook
     task:
-      id: 71914914-d6d3-4b17-8752-a4b4fe1f2013
+      id: 259d3b45-d97d-43b2-82da-ae947cb4ef6d
       version: -1
       name: PAN-OS Network Operations - Check Version for CVEs
       description: Checks a specific version of software for any open CVEs, and if
@@ -145,10 +145,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "4":
     id: "4"
-    taskid: 70ec6bba-eacd-4de5-82f1-31815131c7ea
+    taskid: 7d2764bf-7abf-4341-823b-be8561565990
     type: title
     task:
-      id: 70ec6bba-eacd-4de5-82f1-31815131c7ea
+      id: 7d2764bf-7abf-4341-823b-be8561565990
       version: -1
       name: Finish
       type: title
@@ -172,10 +172,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 6485c0b2-ab72-43c8-8c0d-d0a56ec026de
+    taskid: b9edc50c-dd66-4516-8d16-17cb2ea46673
     type: regular
     task:
-      id: 6485c0b2-ab72-43c8-8c0d-d0a56ec026de
+      id: b9edc50c-dd66-4516-8d16-17cb2ea46673
       version: -1
       name: Get System Info
       description: Gets information from all PAN-OS systems in the topology.
