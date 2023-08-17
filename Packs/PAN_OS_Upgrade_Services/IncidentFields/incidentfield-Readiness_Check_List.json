@@ -34,7 +34,7 @@
 	"ownerOnly": false,
 	"packID": "",
 	"packName": "",
-	"placeholder": "arp, panorama, ntp_sync, ha, candidate_config, expired_licenses",
+	"placeholder": "panorama, ntp_sync, ha, candidate_config, expired_licenses",
 	"required": false,
 	"runScriptAfterUpdate": false,
 	"script": "",

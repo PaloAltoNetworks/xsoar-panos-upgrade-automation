@@ -53,7 +53,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -67,7 +66,6 @@
 						"displayType": "ROW",
 						"h": 2,
 						"i": "caseinfoid-6aabad20-98b1-11e9-97d7-ed26ef9e46c8",
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -111,7 +109,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -144,9 +141,26 @@
 								"index": 1,
 								"sectionItemType": "field",
 								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "checksessionexists",
+								"height": 53,
+								"id": "694a9300-3c96-11ee-a0fd-e5af4a0a9390",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "checkarpentryexists",
+								"height": 22,
+								"id": "6b700b10-3c96-11ee-a0fd-e5af4a0a9390",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -173,7 +187,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -207,7 +220,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -418,6 +430,14 @@
 					},
 					{
 						"fieldId": "incident_minimumcontentversion",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_checkarpentryexists",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_checksessionexists",
 						"isVisible": true
 					}
 				],

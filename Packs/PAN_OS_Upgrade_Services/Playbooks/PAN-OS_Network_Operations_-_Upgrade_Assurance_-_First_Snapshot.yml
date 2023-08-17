@@ -1,5 +1,5 @@
 id: 281f55fa-ba0c-4a98-8a36-3bc0c35c8472
-version: 15
+version: 16
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
 starttaskid: "0"
@@ -35,10 +35,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 7a51aff9-eb1e-447a-8ae6-217a46451624
+    taskid: 759ad744-d5e3-4bb3-83ee-20ccd3627814
     type: regular
     task:
-      id: 7a51aff9-eb1e-447a-8ae6-217a46451624
+      id: 759ad744-d5e3-4bb3-83ee-20ccd3627814
       version: -1
       name: Run Readiness Tests
       description: Runs checks to confirm a PAN-OS firewall is ready to be upgraded.
@@ -51,10 +51,14 @@ tasks:
       - "2"
       - "9"
     scriptarguments:
+      arp_entry_exists:
+        simple: ${incident.checkarpentryexists}
       candidate_version:
         simple: ${incident.panosnetworkoperationsupgradetargetfirewallversion}
       check_list:
         simple: ${incident.readinesschecklist}
+      check_session_exists:
+        simple: ${incident.checksessionexists}
       firewall_serial:
         simple: ${inputs.target}
       min_content_version:

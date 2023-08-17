@@ -73,6 +73,12 @@ script:
       required: false
       secret: false
       default: false
+    - name: arp_entry_exists
+      isArray: false
+      description: Check for the existence of a specific IP in the ARP Table.
+      required: false
+      secret: false
+      default: false
     - name: check_session_exists
       isArray: false
       description: |
