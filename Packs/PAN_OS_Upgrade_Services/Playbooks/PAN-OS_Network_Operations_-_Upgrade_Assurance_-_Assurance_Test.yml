@@ -1,5 +1,5 @@
 id: c2bc1a10-79d8-4a4d-8525-037ddf0dcfa4
-version: 14
+version: 19
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
 description: Take a second snapshot and finalize the comparison tests.
@@ -36,10 +36,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "1":
     id: "1"
-    taskid: 3608daec-eba7-43ec-851b-c74e891923d1
+    taskid: 7da774dc-6b8b-452c-8c5d-06d2555f44be
     type: regular
     task:
-      id: 3608daec-eba7-43ec-851b-c74e891923d1
+      id: 7da774dc-6b8b-452c-8c5d-06d2555f44be
       version: -1
       name: Take the Second snapshot
       description: Takes a snapshot of the operational state of the system.
@@ -49,7 +49,6 @@ tasks:
       brand: ""
     nexttasks:
       '#none#':
-      - "2"
       - "3"
     scriptarguments:
       firewall_serial:
@@ -68,16 +67,20 @@ tasks:
     note: false
     timertriggers: []
     ignoreworker: false
+    fieldMapping:
+    - incidentfield: Second Snapshot ID
+      output:
+        simple: ${File.EntryID}
     skipunavailable: false
     quietmode: 0
     isoversize: false
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 3d785b87-df4d-47ad-806c-0add31ae64c3
+    taskid: 79a534d6-b247-4c52-8a6d-a81acd274e0d
     type: regular
     task:
-      id: 3d785b87-df4d-47ad-806c-0add31ae64c3
+      id: 79a534d6-b247-4c52-8a6d-a81acd274e0d
       version: -1
       name: Run Comparsion
       description: Takes a snapshot of the operational state of the system.
@@ -90,24 +93,16 @@ tasks:
       - "4"
     scriptarguments:
       left_snapshot_id:
-        complex:
-          root: File
-          accessor: EntryID
-          transformers:
-          - operator: FirstArrayElement
+        simple: ${incident.firstsnapshotid}
       right_snapshot_id:
-        complex:
-          root: File
-          accessor: EntryID
-          transformers:
-          - operator: LastArrayElement
+        simple: ${incident.secondsnapshotid}
     separatecontext: false
     continueonerrortype: ""
     view: |-
       {
         "position": {
           "x": 450,
-          "y": 390
+          "y": 550
         }
       }
     note: false
@@ -137,7 +132,7 @@ tasks:
       brand: ""
     nexttasks:
       '#none#':
-      - "4"
+      - "2"
     scriptarguments:
       body:
         simple: '{"field": "secondsnapshot"}'
@@ -156,8 +151,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 50,
-          "y": 390
+          "x": 450,
+          "y": 380
         }
       }
     note: false
@@ -230,7 +225,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 570
+          "y": 720
         }
       }
     note: false
@@ -297,7 +292,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 750
+          "y": 900
         }
       }
     note: false
@@ -329,7 +324,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 940
+          "y": 1090
         }
       }
     note: false
@@ -361,7 +356,7 @@ tasks:
       {
         "position": {
           "x": 840,
-          "y": 940
+          "y": 1090
         }
       }
     note: false
@@ -413,7 +408,7 @@ tasks:
       {
         "position": {
           "x": -20,
-          "y": 750
+          "y": 900
         }
       }
     note: false
@@ -445,7 +440,7 @@ tasks:
       {
         "position": {
           "x": -20,
-          "y": 940
+          "y": 1090
         }
       }
     note: false
@@ -477,7 +472,7 @@ tasks:
       {
         "position": {
           "x": -430,
-          "y": 940
+          "y": 1090
         }
       }
     note: false
@@ -492,7 +487,7 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 985,
+        "height": 1135,
         "width": 1650,
         "x": -430,
         "y": 50
@@ -507,4 +502,3 @@ inputs:
   description: ""
   playbookInputQuery: null
 outputs: []
-quiet: true
