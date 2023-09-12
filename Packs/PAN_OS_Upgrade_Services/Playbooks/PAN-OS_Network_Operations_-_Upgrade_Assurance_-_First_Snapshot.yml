@@ -1,5 +1,5 @@
 id: 281f55fa-ba0c-4a98-8a36-3bc0c35c8472
-version: 16
+version: 17
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
 starttaskid: "0"
@@ -269,10 +269,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "5":
     id: "5"
-    taskid: 32476526-6d69-48d3-83ab-4d0b5d22d58f
+    taskid: 48ec72b9-8b79-412e-8933-883fbf477c19
     type: regular
     task:
-      id: 32476526-6d69-48d3-83ab-4d0b5d22d58f
+      id: 48ec72b9-8b79-412e-8933-883fbf477c19
       version: -1
       name: Take the first device snapshot
       description: Takes a snapshot of the operational state of the system.
@@ -300,6 +300,10 @@ tasks:
     note: false
     timertriggers: []
     ignoreworker: false
+    fieldMapping:
+    - incidentfield: First Snapshot ID
+      output:
+        simple: ${File.EntryID}
     skipunavailable: false
     quietmode: 0
     isoversize: false

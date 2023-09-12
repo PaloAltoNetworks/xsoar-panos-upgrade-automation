@@ -255,9 +255,8 @@
 							}
 						],
 						"maxH": null,
-						"maxW": 1,
+						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Readiness Check Result",
 						"static": false,
@@ -283,9 +282,8 @@
 							}
 						],
 						"maxH": null,
-						"maxW": 1,
+						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Snapshot Check Result",
 						"static": false,
@@ -318,12 +316,29 @@
 								"listId": "caseinfoid-af0c2a50-ea40-11ed-939f-4f8b882605d4",
 								"sectionItemType": "field",
 								"startCol": 2
+							},
+							{
+								"endCol": 6,
+								"fieldId": "firstsnapshotid",
+								"height": 22,
+								"id": "b86b9900-415c-11ee-9b29-71cdc0867b81",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 4
+							},
+							{
+								"endCol": 6,
+								"fieldId": "secondsnapshotid",
+								"height": 22,
+								"id": "baa05350-415c-11ee-9b29-71cdc0867b81",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 4
 							}
 						],
 						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
-						"minW": 3,
 						"moved": false,
 						"name": "Files",
 						"static": false,
@@ -349,9 +364,8 @@
 							}
 						],
 						"maxH": null,
-						"maxW": 1,
+						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Raw Results",
 						"static": false,
