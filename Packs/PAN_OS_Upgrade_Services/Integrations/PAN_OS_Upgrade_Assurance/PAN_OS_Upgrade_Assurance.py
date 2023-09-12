@@ -82,6 +82,7 @@ def run_readiness_checks(
         dp_mp_clock_diff: Optional[int] = None,
         ipsec_tunnel_status: Optional[str] = None,
         check_session_exists: Optional[str] = None,
+        arp_entry_exists: Optional[str] = None
 ):
     """
     Run all the readiness checks and return an xsoar-compatible result.
@@ -95,6 +96,8 @@ def run_readiness_checks(
     :arg check_session_exists: Check for the presence of a specific connection.
         Session check format is <source>/destination/destination-port
         example: 10.10.10.10/8.8.8.8/443
+    :arg arp_entry_exists: Check for the prescence of a specific ARP entry.
+        example: 10.0.0.6
     """
 
     if not check_list:
@@ -142,6 +145,13 @@ def run_readiness_checks(
             )
         custom_checks.append({
             "session_exist": check_value
+        })
+
+    if arp_entry_exists:
+        custom_checks.append({
+            'arp_entry_exist': {
+                'ip': arp_entry_exists
+            }
         })
 
     check_config = check_list + custom_checks
