@@ -92,11 +92,9 @@ def system_to_indicator(data: dict) -> dict:
     indicator_type = "Network Device"
     family = data.get("family", "unknown").lower()
     model = data.get("model", "unknown").lower()
-    if family == "pc" or model == "panorama":
+    system_mode = data.get("system_mode", "unknown").lower()
+    if family == "pc" or model == "panorama" or system_mode == "panorama":
         indicator_type = "Panorama Device"
-
-    if family == "m" or model in ["m-500", "m-600"]:
-        return "ok"
 
     field_data = {}
     # Sub out the underscores and map if required
@@ -503,6 +501,7 @@ def main():
     port = params.get("port", "443")
     hostname = parsed_url.hostname
 
+    handle_proxy()
     panorama = Panorama.create_from_device(
         hostname=hostname,
         api_key=api_key,

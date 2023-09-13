@@ -273,6 +273,8 @@ def main():
     panorama_password = demisto.params().get("panorama_password")
     panorama = get_panorama(panorama_ip, panorama_user, panorama_password)
 
+    handle_proxy()
+
     command = demisto.command()
     try:
         if command == "pan-os-assurance-run-readiness-checks":
