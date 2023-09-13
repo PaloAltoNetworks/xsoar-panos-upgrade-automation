@@ -124,3 +124,14 @@ def test_flatten_xml_to_dict(xml_file, expected_data_file):
     result_dict = {}
     result_dict = flatten_xml_to_dict(xml_element, result_dict)
     assert result_dict == expected_dict
+
+
+@pytest.mark.parametrize("data_file,expected_type", [
+    ("test_data/show_system_info_expected.json", "Network Device"),
+    ("test_data/show_system_info_expected_panorama.json", "Panorama Device"),
+])
+def test_system_to_indicator(data_file, expected_type):
+    from PAN_OS_Device_Management import system_to_indicator
+    expected_dict = load_json_from_test_file(data_file).get("result").get("system")
+    result = system_to_indicator(expected_dict)
+    assert result.get("type") == expected_type
