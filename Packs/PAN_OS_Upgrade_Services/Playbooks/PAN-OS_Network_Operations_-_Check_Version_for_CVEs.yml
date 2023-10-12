@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Check Version for CVEs
-version: 5
+version: 6
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Check Version for CVEs
 description: Checks a specific version of software for any open CVEs, and if they
@@ -82,7 +82,7 @@ tasks:
       name: Check if this version is affected by any CVEs
       description: 'Checks if the given PAN-OS version number is affected by the given
         list of vulnerabilties. '
-      script: CheckPanosVersionAffected
+      scriptName: CheckPanosVersionAffected
       type: regular
       iscommand: false
       brand: ""
@@ -193,10 +193,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "7":
     id: "7"
-    taskid: 04bd01f0-567a-46fb-86e0-f5abd4f0b129
+    taskid: c8694d2b-ed6c-43ac-87a9-457af67b24bf
     type: regular
     task:
-      id: 04bd01f0-567a-46fb-86e0-f5abd4f0b129
+      id: c8694d2b-ed6c-43ac-87a9-457af67b24bf
       version: -1
       name: Create Platform Upgrade Incident
       description: commands.local.cmd.create.inc
@@ -244,7 +244,7 @@ tasks:
       name:
         simple: Automatic CVE Remedation Upgrade - ${inputs.panos_version}
       panosnetworkoperationsdeviceupgradequery:
-        simple: panosnetworkoperationsrunningsoftwareversion:${inputs.panos_version}
+        simple: softwareversion:${inputs.panos_version}
       panosnetworkoperationsparentincidentid:
         simple: ${incident.id}
       type:
