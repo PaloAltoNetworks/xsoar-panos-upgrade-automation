@@ -1,3 +1,3 @@
 Fixes:
- * Fix incorrect handling of M- series appliances running in Panorama Mode
- * Add handle_proxy() to support XSOAR proxy sessions in both new integrations
+ * Fix bad input for CVE Check playbooks
+ * Fix bad indicator field spec in CVE Check playbook

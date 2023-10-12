@@ -1,5 +1,5 @@
 id: PAN-OS Network Operations - Check For Open CVEs
-version: 5
+version: 7
 vcShouldKeepItemLegacyProdMachine: false
 name: PAN-OS Network Operations - Check For Open CVEs
 description: This playbook uses the Palo Alto Networks Security Advisories integration,
@@ -39,10 +39,10 @@ tasks:
     isautoswitchedtoquietmode: false
   "2":
     id: "2"
-    taskid: 975c45f2-c0be-48db-8c36-c9b42b1162d4
+    taskid: 2f8528b7-89b6-46c7-8fea-c9c68198ba37
     type: condition
     task:
-      id: 975c45f2-c0be-48db-8c36-c9b42b1162d4
+      id: 2f8528b7-89b6-46c7-8fea-c9c68198ba37
       version: -1
       name: Is the Advisories integration enabled?
       type: condition
@@ -66,20 +66,22 @@ tasks:
                 - - operator: isEqualString
                     left:
                       value:
-                        simple: modules.brand
-                      iscontext: true
-                    right:
-                      value:
-                        simple: Palo_Alto_Networks_Security_Advisories
-                - - operator: isEqualString
-                    left:
-                      value:
                         simple: modules.state
                       iscontext: true
                     right:
                       value:
                         simple: active
+                - - operator: isEqualString
+                    left:
+                      value:
+                        simple: modules.brand
+                      iscontext: true
+                    right:
+                      value:
+                        simple: Palo Alto Networks Security Advisories
             iscontext: true
+          right:
+            value: {}
     continueonerrortype: ""
     view: |-
       {
@@ -154,6 +156,9 @@ tasks:
       type: title
       iscommand: false
       brand: ""
+    nexttasks:
+      '#none#':
+      - "6"
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -202,6 +207,35 @@ tasks:
     quietmode: 0
     isoversize: false
     isautoswitchedtoquietmode: false
+  "6":
+    id: "6"
+    taskid: dce2b9bb-22fa-45c4-8824-c2e61d84ae7c
+    type: regular
+    task:
+      id: dce2b9bb-22fa-45c4-8824-c2e61d84ae7c
+      version: -1
+      name: Close
+      description: commands.local.cmd.close.inv
+      script: Builtin|||closeInvestigation
+      type: regular
+      iscommand: true
+      brand: Builtin
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 880
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
 view: |-
   {
     "linkLabelsPosition": {
@@ -209,7 +243,7 @@ view: |-
     },
     "paper": {
       "dimensions": {
-        "height": 755,
+        "height": 925,
         "width": 380,
         "x": 450,
         "y": 50

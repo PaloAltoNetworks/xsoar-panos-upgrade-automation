@@ -22,5 +22,9 @@
 3. Configure the PAN-OS Device Management integration.
 4. Configure the PAN-OS Assurance Testing integration.
 
+Optionally:
+
+5. Configure the Palo Alto Networks Security Advisories Integration
+
 Now you should be done. You'll see your connected firewalls appear under Threat Intel, and be able to launch upgrades
 and assurance testing from there.

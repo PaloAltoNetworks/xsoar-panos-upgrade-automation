@@ -252,9 +252,19 @@
 								"index": 0,
 								"sectionItemType": "field",
 								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "postupgradereadinesscheckresult",
+								"height": 106,
+								"id": "457c96f0-47c0-11ee-b192-01822b22e90f",
+								"index": 1,
+								"listId": "caseinfoid-8cac1dd0-ea40-11ed-939f-4f8b882605d4",
+								"sectionItemType": "field",
+								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -281,7 +291,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -336,7 +345,6 @@
 								"startCol": 4
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -363,7 +371,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
