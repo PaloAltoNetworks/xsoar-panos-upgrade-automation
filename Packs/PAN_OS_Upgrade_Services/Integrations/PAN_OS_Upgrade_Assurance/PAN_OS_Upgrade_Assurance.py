@@ -1,4 +1,3 @@
-import demistomock as demisto
 from CommonServerPython import *
 
 from typing import Optional, List
@@ -31,7 +30,7 @@ def read_file_by_id(input_entry_id):
 def get_firewall_object(panorama: Panorama, serial_number):
     """Create a FirewallProxy object and attach it to Panorama, so we can access it."""
     firewall = FirewallProxy(serial=serial_number)
-    panorama.add(firewall)
+    panorama.add(firewall._fw)
     return firewall
 
 

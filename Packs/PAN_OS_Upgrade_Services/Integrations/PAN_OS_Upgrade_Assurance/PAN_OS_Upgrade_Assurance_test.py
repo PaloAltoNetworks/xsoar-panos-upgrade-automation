@@ -1,8 +1,8 @@
 import json
 import os
 import demistomock as demisto
-
 import pytest
+from dotenv import load_dotenv
 
 """
 Upgrade Assurance Python Tests
@@ -18,6 +18,8 @@ To run integration tests, you need to specifiy the following environment variabl
 
 @pytest.fixture
 def panorama_object():
+    load_dotenv()
+
     ip = os.getenv("PANORAMA_IP")
     user = os.getenv("PANORAMA_USERNAME")
     password = os.getenv("PANORAMA_PASSWORD")
