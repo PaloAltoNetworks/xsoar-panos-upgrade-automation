@@ -1,25 +1,32 @@
-id: PAN-OS Network Operations - Onboarding
-version: 5
-vcShouldKeepItemLegacyProdMachine: false
-name: PAN-OS Network Operations - Onboarding
 description: Onboards the NGFW and Panorama devices as XSOAR incidents.
+id: PAN-OS Network Operations - Onboarding
+inputs: []
+name: PAN-OS Network Operations - Onboarding
+outputs: []
 starttaskid: "0"
 tasks:
   "0":
-    id: "0"
-    taskid: 38507585-4eea-4480-83bf-e3115c544879
-    type: start
-    task:
-      id: 38507585-4eea-4480-83bf-e3115c544879
-      version: -1
-      name: ""
-      iscommand: false
-      brand: ""
-    nexttasks:
-      '#none#':
-      - "2"
-    separatecontext: false
     continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "#none#":
+        - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 38507585-4eea-4480-83bf-e3115c544879
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 38507585-4eea-4480-83bf-e3115c544879
+    timertriggers: []
+    type: start
     view: |-
       {
         "position": {
@@ -27,35 +34,35 @@ tasks:
           "y": 50
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "1":
+    continueonerrortype: ""
     id: "1"
-    taskid: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
-    type: regular
-    task:
-      id: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
-      version: -1
-      name: Update device incidents
-      description: Given a target device, creates or updates an existing PAN-OS Network
-        Operations - Device incident.
-      scriptName: CreateOrUpdateDeviceIncident
-      type: regular
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
-      '#none#':
-      - "3"
+      "#none#":
+        - "3"
+    note: false
+    quietmode: 0
     scriptarguments:
       target:
         simple: ${PANOS.ShowSystemInfo.Summary.hostid}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Given a target device, creates or updates an existing PAN-OS
+        Network Operations - Device incident.
+      id: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
+      iscommand: false
+      name: Update device incidents
+      scriptName: CreateOrUpdateDeviceIncident
+      type: regular
+      version: -1
+    taskid: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -63,31 +70,31 @@ tasks:
           "y": 360
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "2":
-    id: "2"
-    taskid: e6660bae-a855-4c39-840a-5829e0763426
-    type: regular
-    task:
-      id: e6660bae-a855-4c39-840a-5829e0763426
-      version: -1
-      name: Get system information
-      description: Gets information from all PAN-OS systems in the topology.
-      script: '|||pan-os-platform-get-system-info'
-      type: regular
-      iscommand: true
-      brand: ""
-    nexttasks:
-      '#none#':
-      - "1"
-    separatecontext: false
     continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "#none#":
+        - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets information from all PAN-OS systems in the topology.
+      id: e6660bae-a855-4c39-840a-5829e0763426
+      iscommand: true
+      name: Get system information
+      script: "|||pan-os-platform-get-system-info"
+      type: regular
+      version: -1
+    taskid: e6660bae-a855-4c39-840a-5829e0763426
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -95,34 +102,34 @@ tasks:
           "y": 200
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "3":
+    continueonerrortype: ""
     id: "3"
-    taskid: 706c2c07-d528-436a-857c-f956c45f84d9
-    type: regular
-    task:
-      id: 706c2c07-d528-436a-857c-f956c45f84d9
-      version: -1
-      name: Link Incidents
-      description: commands.local.cmd.linkIncidents
-      script: Builtin|||linkIncidents
-      type: regular
-      iscommand: true
-      brand: Builtin
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
-      '#none#':
-      - "4"
+      "#none#":
+        - "4"
+    note: false
+    quietmode: 0
     scriptarguments:
       linkedIncidentIDs:
         simple: ${DeviceIncidents.device_incident_id}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.linkIncidents
+      id: 706c2c07-d528-436a-857c-f956c45f84d9
+      iscommand: true
+      name: Link Incidents
+      script: Builtin|||linkIncidents
+      type: regular
+      version: -1
+    taskid: 706c2c07-d528-436a-857c-f956c45f84d9
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -130,26 +137,26 @@ tasks:
           "y": 530
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "4":
+    continueonerrortype: ""
     id: "4"
-    taskid: 928e2b9a-e538-42cc-89a5-80cdf5970a9b
-    type: title
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
+      brand: ""
       id: 928e2b9a-e538-42cc-89a5-80cdf5970a9b
-      version: -1
+      iscommand: false
       name: Onboarding Finished
       type: title
-      iscommand: false
-      brand: ""
-    separatecontext: false
-    continueonerrortype: ""
+      version: -1
+    taskid: 928e2b9a-e538-42cc-89a5-80cdf5970a9b
+    timertriggers: []
+    type: title
     view: |-
       {
         "position": {
@@ -157,13 +164,8 @@ tasks:
           "y": 710
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
+vcShouldKeepItemLegacyProdMachine: false
+version: 5
 view: |-
   {
     "linkLabelsPosition": {},
@@ -176,5 +178,3 @@ view: |-
       }
     }
   }
-inputs: []
-outputs: []

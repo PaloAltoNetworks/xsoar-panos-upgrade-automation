@@ -1,25 +1,42 @@
-id: be9dfaa4-a371-4b46-8088-67679944a38b
-version: 5
-vcShouldKeepItemLegacyProdMachine: false
-name: PAN-OS Network Operations - Take Snapshot
 description: Takes a JSON snapshot of the current operational state of the device.
+id: be9dfaa4-a371-4b46-8088-67679944a38b
+inputs:
+- description: The target to take the snapshot of
+  key: target
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+name: PAN-OS Network Operations - Take Snapshot
+outputs:
+- contextPath: File.EntryID
+  description: The file entry ID.
+  type: string
+quiet: true
 starttaskid: "0"
 tasks:
   "0":
+    continueonerrortype: ""
     id: "0"
-    taskid: cbdef3f2-f531-4a35-8f05-1e3c184ff55e
-    type: start
-    task:
-      id: cbdef3f2-f531-4a35-8f05-1e3c184ff55e
-      version: -1
-      name: ""
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "3"
+    note: false
+    quietmode: 0
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cbdef3f2-f531-4a35-8f05-1e3c184ff55e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: cbdef3f2-f531-4a35-8f05-1e3c184ff55e
+    timertriggers: []
+    type: start
     view: |-
       {
         "position": {
@@ -27,38 +44,38 @@ tasks:
           "y": 50
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "1":
+    continueonerror: true
+    continueonerrortype: ""
     id: "1"
-    taskid: edbb18e0-483b-496a-8c2c-f7b2e34985cf
-    type: regular
-    task:
-      id: edbb18e0-483b-496a-8c2c-f7b2e34985cf
-      version: -1
-      name: Take Snapshot
-      description: Takes a JSON Snapshot of the current operational state of the target
-        device
-      tags:
-      - snapshot-file
-      scriptName: TakeOperationalSnapshot
-      type: regular
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "2"
+    note: true
+    quietmode: 0
     scriptarguments:
       target:
         simple: ${inputs.target}
     separatecontext: false
-    continueonerror: true
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Takes a JSON Snapshot of the current operational state of the target
+        device
+      id: edbb18e0-483b-496a-8c2c-f7b2e34985cf
+      iscommand: false
+      name: Take Snapshot
+      scriptName: TakeOperationalSnapshot
+      tags:
+      - snapshot-file
+      type: regular
+      version: -1
+    taskid: edbb18e0-483b-496a-8c2c-f7b2e34985cf
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -66,26 +83,26 @@ tasks:
           "y": 380
         }
       }
-    note: true
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "2":
+    continueonerrortype: ""
     id: "2"
-    taskid: 65eccdae-3d4a-4cc7-8fe5-b120327647dd
-    type: title
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
+      brand: ""
       id: 65eccdae-3d4a-4cc7-8fe5-b120327647dd
-      version: -1
+      iscommand: false
       name: Finish
       type: title
-      iscommand: false
-      brand: ""
-    separatecontext: false
-    continueonerrortype: ""
+      version: -1
+    taskid: 65eccdae-3d4a-4cc7-8fe5-b120327647dd
+    timertriggers: []
+    type: title
     view: |-
       {
         "position": {
@@ -93,34 +110,34 @@ tasks:
           "y": 570
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "3":
+    continueonerrortype: ""
     id: "3"
-    taskid: 69232190-02bd-40c0-84c9-0b50eb30485d
-    type: regular
-    task:
-      id: 69232190-02bd-40c0-84c9-0b50eb30485d
-      version: -1
-      name: Set Status
-      description: commands.local.cmd.set.incident
-      script: Builtin|||setIncident
-      type: regular
-      iscommand: true
-      brand: Builtin
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "1"
+    note: false
+    quietmode: 0
     scriptarguments:
       description:
         simple: Taking System Snapshot
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 69232190-02bd-40c0-84c9-0b50eb30485d
+      iscommand: true
+      name: Set Status
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 69232190-02bd-40c0-84c9-0b50eb30485d
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -128,13 +145,8 @@ tasks:
           "y": 180
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
+vcShouldKeepItemLegacyProdMachine: false
+version: 5
 view: |-
   {
     "linkLabelsPosition": {},
@@ -147,15 +159,3 @@ view: |-
       }
     }
   }
-inputs:
-- key: target
-  value:
-    simple: ${incident.panosnetworkoperationstarget}
-  required: true
-  description: The target to take the snapshot of
-  playbookInputQuery: null
-outputs:
-- contextPath: File.EntryID
-  description: The file entry ID.
-  type: string
-quiet: true

@@ -1,24 +1,39 @@
 id: f431c2ef-b626-4304-827c-c4ef8aeedecc
-version: 4
-vcShouldKeepItemLegacyProdMachine: false
+inputs:
+  - description: The maximum number of operational differences between snapshots
+      before an error is raised.
+    key: max_snapshot_changes
+    playbookInputQuery: null
+    required: true
+    value:
+      simple: "10"
 name: PAN-OS Network Operations - Post Upgrade Validation
+outputs: []
+quiet: true
 starttaskid: "0"
 tasks:
   "0":
-    id: "0"
-    taskid: c34e8f2a-e562-49a4-8af6-f79187d06831
-    type: start
-    task:
-      id: c34e8f2a-e562-49a4-8af6-f79187d06831
-      version: -1
-      name: ""
-      iscommand: false
-      brand: ""
-    nexttasks:
-      '#none#':
-      - "2"
-    separatecontext: false
     continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "#none#":
+        - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c34e8f2a-e562-49a4-8af6-f79187d06831
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: c34e8f2a-e562-49a4-8af6-f79187d06831
+    timertriggers: []
+    type: start
     view: |-
       {
         "position": {
@@ -26,36 +41,47 @@ tasks:
           "y": 40
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "1":
+    continueonerrortype: ""
+    fieldMapping:
+      - incidentfield: Total Snapshot Difference Count
+        output:
+          simple: ${CompareSnapshotFiles.TotalDifferences}
+      - incidentfield: Snapshot Differences
+        output:
+          complex:
+            accessor: Differences
+            root: CompareSnapshotFiles
+            transformers:
+              - operator: ConvertKeysToTableFieldFormat
     id: "1"
-    taskid: 8a784ba6-1d0c-40c6-8211-edd486141c69
-    type: regular
-    task:
-      id: 8a784ba6-1d0c-40c6-8211-edd486141c69
-      version: -1
-      name: Compare pre and post upgrade Snapshots
-      description: Given two snapshot files, compares and returns the resultant differences.
-      scriptName: CompareSnapshotFiles
-      type: regular
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
-      '#none#':
-      - "3"
+      "#none#":
+        - "3"
+    note: false
+    quietmode: 0
     scriptarguments:
       left_entry_id:
         simple: ${incident.preupgradesnapshot}
       right_entry_id:
         simple: ${incident.postupgradesnapshot}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Given two snapshot files, compares and returns the resultant differences.
+      id: 8a784ba6-1d0c-40c6-8211-edd486141c69
+      iscommand: false
+      name: Compare pre and post upgrade Snapshots
+      scriptName: CompareSnapshotFiles
+      type: regular
+      version: -1
+    taskid: 8a784ba6-1d0c-40c6-8211-edd486141c69
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -63,74 +89,63 @@ tasks:
           "y": 400
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    fieldMapping:
-    - incidentfield: Total Snapshot Difference Count
-      output:
-        simple: ${CompareSnapshotFiles.TotalDifferences}
-    - incidentfield: Snapshot Differences
-      output:
-        complex:
-          root: CompareSnapshotFiles
-          accessor: Differences
-          transformers:
-          - operator: ConvertKeysToTableFieldFormat
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "2":
+    conditions:
+      - condition:
+          - - left:
+                iscontext: true
+                value:
+                  simple: incident.preupgradesnapshot
+              operator: isNotEmpty
+              right:
+                value: {}
+          - - left:
+                iscontext: true
+                value:
+                  simple: incident.postupgradesnapshot
+              operator: isNotEmpty
+          - - left:
+                iscontext: true
+                value:
+                  simple: incident.postupgradesnapshot
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: None
+          - - left:
+                iscontext: true
+                value:
+                  simple: |
+                    incident.preupgradesnapshot
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: None
+        label: "yes"
+    continueonerrortype: ""
     id: "2"
-    taskid: e124d19a-90ec-413a-8185-a5589f626bbc
-    type: condition
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "#default#":
+        - "5"
+      "yes":
+        - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
+      brand: ""
       id: e124d19a-90ec-413a-8185-a5589f626bbc
-      version: -1
+      iscommand: false
       name: Did we get both pre and post snapshots?
       type: condition
-      iscommand: false
-      brand: ""
-    nexttasks:
-      '#default#':
-      - "5"
-      "yes":
-      - "1"
-    separatecontext: false
-    conditions:
-    - label: "yes"
-      condition:
-      - - operator: isNotEmpty
-          left:
-            value:
-              simple: incident.preupgradesnapshot
-            iscontext: true
-          right:
-            value: {}
-      - - operator: isNotEmpty
-          left:
-            value:
-              simple: incident.postupgradesnapshot
-            iscontext: true
-      - - operator: isNotEqualString
-          left:
-            value:
-              simple: incident.postupgradesnapshot
-            iscontext: true
-          right:
-            value:
-              simple: None
-      - - operator: isNotEqualString
-          left:
-            value:
-              simple: |
-                incident.preupgradesnapshot
-            iscontext: true
-          right:
-            value:
-              simple: None
-    continueonerrortype: ""
+      version: -1
+    taskid: e124d19a-90ec-413a-8185-a5589f626bbc
+    timertriggers: []
+    type: condition
     view: |-
       {
         "position": {
@@ -138,43 +153,43 @@ tasks:
           "y": 200
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "3":
+    conditions:
+      - condition:
+          - - left:
+                iscontext: true
+                value:
+                  simple: CompareSnapshotFiles.TotalDifferences
+              operator: greaterThanOrEqual
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.max_snapshot_changes
+        label: "yes"
+    continueonerrortype: ""
     id: "3"
-    taskid: 89130035-a32d-4a26-81f5-dd4854d9bbb6
-    type: condition
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "#default#":
+        - "5"
+      "yes":
+        - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
+      brand: ""
       id: 89130035-a32d-4a26-81f5-dd4854d9bbb6
-      version: -1
+      iscommand: false
       name: Did we have a large number of snapshot differences?
       type: condition
-      iscommand: false
-      brand: ""
-    nexttasks:
-      '#default#':
-      - "5"
-      "yes":
-      - "4"
-    separatecontext: false
-    conditions:
-    - label: "yes"
-      condition:
-      - - operator: greaterThanOrEqual
-          left:
-            value:
-              simple: CompareSnapshotFiles.TotalDifferences
-            iscontext: true
-          right:
-            value:
-              simple: inputs.max_snapshot_changes
-            iscontext: true
-    continueonerrortype: ""
+      version: -1
+    taskid: 89130035-a32d-4a26-81f5-dd4854d9bbb6
+    timertriggers: []
+    type: condition
     view: |-
       {
         "position": {
@@ -182,29 +197,108 @@ tasks:
           "y": 590
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "4":
+    continueonerrortype: ""
+    form:
+      description: "The upgrade process has resulted in a considerable amount of
+        changes between the operational state on the device. This indicates an
+        issue with one of the following components;
+
+
+        \ * Layer 1/2 Network Connectivity (ARP Table differences)
+
+        \ * IGP Routing Protocols (Route Table Differences)
+
+        \ * BGP (BGP Neighbor table differences)\
+
+
+        Review the differences then answer the below questions to
+        continue or mark the upgrade process as failed."
+      expired: false
+      questions:
+        - defaultrows: []
+          fieldassociated: ""
+          gridcolumns: []
+          id: "0"
+          label: ""
+          labelarg:
+            simple: Was the upgrade successful, despite the differences between upgrades?
+          options: []
+          optionsarg:
+            - simple: "Yes"
+            - simple: "No"
+          placeholder: ""
+          readonly: false
+          required: true
+          tooltip: ""
+          type: singleSelect
+        - defaultrows: []
+          fieldassociated: ""
+          gridcolumns: []
+          id: "1"
+          label: ""
+          labelarg:
+            simple: If the upgrade has caused an issue, describe it in more detail below
+          options: []
+          optionsarg: []
+          placeholder:
+            Describe the reason for the underlying change - such as a broken a
+            routing protocol, or an interface has gone down.
+          readonly: false
+          required: false
+          tooltip: ""
+          type: longText
+      sender: Your SOC team
+      title: Issue Confirmation
+      totalanswers: 0
+    formDisplay:
+      bodybackgroundcolor: ""
+      bodyfontcolor: ""
+      headerbackgroundcolor: "#ff0000"
+      headerfontcolor: ""
+      isexternalrtl: false
+      sender: ""
+      submitbuttonbackgroundcolor: ""
+      submitbuttonfontcolor: ""
+      submittext: ""
     id: "4"
-    taskid: 08aeec93-2aaa-48c7-8cf7-aa4248b2cb31
-    type: collection
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple:
+          "The upgrade process has resulted in a significant change in operational
+          state. This almost certainly gurantees an issue "
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      "#none#":
+        - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
+      brand: ""
       id: 08aeec93-2aaa-48c7-8cf7-aa4248b2cb31
-      version: -1
+      iscommand: false
       name: Snapshot Warning Raised
       type: collection
-      iscommand: false
-      brand: ""
-    nexttasks:
-      '#none#':
-      - "6"
-    separatecontext: false
-    continueonerrortype: ""
+      version: -1
+    taskid: 08aeec93-2aaa-48c7-8cf7-aa4248b2cb31
+    timertriggers: []
+    type: collection
     view: |-
       {
         "position": {
@@ -212,95 +306,26 @@ tasks:
           "y": 800
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    message:
-      to: null
-      subject: null
-      body:
-        simple: 'The upgrade process has resulted in a significant change in operational
-          state. This almost certainly gurantees an issue '
-      methods: []
-      format: ""
-      bcc: null
-      cc: null
-      timings:
-        retriescount: 2
-        retriesinterval: 360
-        completeafterreplies: 1
-        completeafterv2: true
-        completeaftersla: false
-    form:
-      questions:
-      - id: "0"
-        label: ""
-        labelarg:
-          simple: Was the upgrade successful, despite the differences between upgrades?
-        required: true
-        gridcolumns: []
-        defaultrows: []
-        type: singleSelect
-        options: []
-        optionsarg:
-        - simple: "Yes"
-        - simple: "No"
-        fieldassociated: ""
-        placeholder: ""
-        tooltip: ""
-        readonly: false
-      - id: "1"
-        label: ""
-        labelarg:
-          simple: If the upgrade has caused an issue, describe it in more detail below
-        required: false
-        gridcolumns: []
-        defaultrows: []
-        type: longText
-        options: []
-        optionsarg: []
-        fieldassociated: ""
-        placeholder: Describe the reason for the underlying change - such as a broken
-          a routing protocol, or an interface has gone down.
-        tooltip: ""
-        readonly: false
-      title: Issue Confirmation
-      description: "The upgrade process has resulted in a considerable amount of changes
-        between the operational state on the device. This indicates an issue with
-        one of the following components;\n\n * Layer 1/2 Network Connectivity (ARP
-        Table differences)\n * IGP Routing Protocols (Route Table Differences)\n *
-        BGP (BGP Neighbor table differences) \n\nReview the differences then answer
-        the below questions to continue or mark the upgrade process as failed."
-      sender: Your SOC team
-      expired: false
-      totalanswers: 0
-    formDisplay:
-      headerbackgroundcolor: '#ff0000'
-      headerfontcolor: ""
-      sender: ""
-      bodybackgroundcolor: ""
-      bodyfontcolor: ""
-      submitbuttonbackgroundcolor: ""
-      submitbuttonfontcolor: ""
-      submittext: ""
-      isexternalrtl: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "5":
+    continueonerrortype: ""
     id: "5"
-    taskid: 5fb10d79-a53f-4b1a-8f9e-2353f3849ce7
-    type: title
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
+      brand: ""
       id: 5fb10d79-a53f-4b1a-8f9e-2353f3849ce7
-      version: -1
+      iscommand: false
       name: Post-checks done
       type: title
-      iscommand: false
-      brand: ""
-    separatecontext: false
-    continueonerrortype: ""
+      version: -1
+    taskid: 5fb10d79-a53f-4b1a-8f9e-2353f3849ce7
+    timertriggers: []
+    type: title
     view: |-
       {
         "position": {
@@ -308,42 +333,42 @@ tasks:
           "y": 1550
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "6":
+    conditions:
+      - condition:
+          - - left:
+                iscontext: true
+                value:
+                  simple: Issue Confirmation.Answers.0
+              operator: isEqualString
+              right:
+                value:
+                  simple: "Yes"
+        label: "yes"
+    continueonerrortype: ""
     id: "6"
-    taskid: 6bec5f17-b3bc-4016-8a53-1410725d69c5
-    type: condition
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "#default#":
+        - "8"
+      "yes":
+        - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
+      brand: ""
       id: 6bec5f17-b3bc-4016-8a53-1410725d69c5
-      version: -1
+      iscommand: false
       name: Should we continue with the upgrade process?
       type: condition
-      iscommand: false
-      brand: ""
-    nexttasks:
-      '#default#':
-      - "8"
-      "yes":
-      - "5"
-    separatecontext: false
-    conditions:
-    - label: "yes"
-      condition:
-      - - operator: isEqualString
-          left:
-            value:
-              simple: Issue Confirmation.Answers.0
-            iscontext: true
-          right:
-            value:
-              simple: "Yes"
-    continueonerrortype: ""
+      version: -1
+    taskid: 6bec5f17-b3bc-4016-8a53-1410725d69c5
+    timertriggers: []
+    type: condition
     view: |-
       {
         "position": {
@@ -351,35 +376,36 @@ tasks:
           "y": 1000
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "7":
+    continueonerrortype: ""
     id: "7"
-    taskid: d9f13fd4-6279-4999-8988-0cd9ac3138ed
-    type: regular
-    task:
-      id: d9f13fd4-6279-4999-8988-0cd9ac3138ed
-      version: -1
-      name: State Change Error
-      description: Prints an error entry with a given message
-      scriptName: PrintErrorEntry
-      type: regular
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
-      '#none#':
-      - "5"
+      "#none#":
+        - "5"
+    note: false
+    quietmode: 0
     scriptarguments:
       message:
-        simple: 'The upgrade process introduced a large number of operational state
-          changes. Review and fix any issues before continuing. '
+        simple:
+          "The upgrade process introduced a large number of operational state
+          changes. Review and fix any issues before continuing. "
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: d9f13fd4-6279-4999-8988-0cd9ac3138ed
+      iscommand: false
+      name: State Change Error
+      scriptName: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: d9f13fd4-6279-4999-8988-0cd9ac3138ed
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -387,36 +413,36 @@ tasks:
           "y": 1350
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "8":
+    continueonerrortype: ""
     id: "8"
-    taskid: ecc0b757-2ddf-4867-8d72-c6b96853c576
-    type: regular
-    task:
-      id: ecc0b757-2ddf-4867-8d72-c6b96853c576
-      version: -1
-      name: Error Description
-      description: commands.local.cmd.set.incident
-      script: Builtin|||setIncident
-      type: regular
-      iscommand: true
-      brand: Builtin
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
-      '#none#':
-      - "7"
+      "#none#":
+        - "7"
+    note: false
+    quietmode: 0
     scriptarguments:
       description:
         simple: Failed - Operational Check Error
       details:
         simple: ${Issue Confirmation.Answers.1}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: ecc0b757-2ddf-4867-8d72-c6b96853c576
+      iscommand: true
+      name: Error Description
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: ecc0b757-2ddf-4867-8d72-c6b96853c576
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -424,13 +450,8 @@ tasks:
           "y": 1190
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
+vcShouldKeepItemLegacyProdMachine: false
+version: 4
 view: |-
   {
     "linkLabelsPosition": {},
@@ -443,13 +464,3 @@ view: |-
       }
     }
   }
-inputs:
-- key: max_snapshot_changes
-  value:
-    simple: "10"
-  required: true
-  description: The maximum number of operational differences between snapshots before
-    an error is raised.
-  playbookInputQuery: null
-outputs: []
-quiet: true
