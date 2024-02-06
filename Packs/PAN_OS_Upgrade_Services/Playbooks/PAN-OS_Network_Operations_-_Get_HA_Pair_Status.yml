@@ -1,20 +1,19 @@
-description: Determines which device in a HA pair is active or passive, and if
-  the pair is an active-passive or active-active mode.
-id: 7409a83d-eab4-4acd-8b93-a4abc6a038e4
+description: Determines which device in a HA pair is active or passive, and if the pair is an active-passive or active-active mode.
+id: PAN-OS Network Operations - Get HA Pair Status
 inputs:
-  - description: Target firewall
-    key: target
-    playbookInputQuery: null
-    required: false
-    value: {}
+- description: Target firewall
+  key: target
+  playbookInputQuery:
+  required: false
+  value: {}
 name: PAN-OS Network Operations - Get HA Pair Status
 outputs:
-  - contextPath: ActiveDevice
-    description: The active firewall
-    type: string
-  - contextPath: PassiveDevice
-    description: The passive firewall - may be empty.
-    type: string
+- contextPath: ActiveDevice
+  description: The active firewall.
+  type: string
+- contextPath: PassiveDevice
+  description: The passive firewall - may be empty.
+  type: string
 starttaskid: "0"
 tasks:
   "0":
@@ -24,8 +23,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -53,8 +52,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     scriptarguments:
@@ -64,9 +63,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Gets the HA state and associated details from the given device and
-        any other details.
+      description: Gets the HA state and associated details from the given device and any other details.
       id: e1fb5109-93a1-4824-8ce8-1c7606a57b1f
       iscommand: true
       name: Get HA state
@@ -85,23 +82,23 @@ tasks:
       }
   "2":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.HAState.peer
-              operator: isNotEmpty
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.HAState.peer
+          operator: isNotEmpty
+      label: "yes"
     continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "4"
+      '#default#':
+      - "4"
       "yes":
-        - "3"
+      - "3"
     note: false
     quietmode: 0
     separatecontext: false
@@ -130,9 +127,9 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "5"
-        - "6"
+      '#none#':
+      - "5"
+      - "6"
     note: false
     quietmode: 0
     scriptarguments:
@@ -142,9 +139,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Gets the HA state and associated details from the given device and
-        any other details.
+      description: Gets the HA state and associated details from the given device and any other details.
       id: 794c5042-f3dc-4974-8001-af1d0037ad31
       iscommand: true
       name: Get Peer HA State
@@ -195,8 +190,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "7"
+      '#none#':
+      - "7"
     note: false
     quietmode: 0
     scriptarguments:
@@ -208,11 +203,11 @@ tasks:
         complex:
           accessor: hostid
           filters:
-            - - left:
-                  iscontext: true
-                  value:
-                    simple: PANOS.HAState.active
-                operator: isTrue
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.HAState.active
+              operator: isTrue
           root: PANOS.HAState
     separatecontext: false
     skipunavailable: false
@@ -242,8 +237,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "7"
+      '#none#':
+      - "7"
     note: false
     quietmode: 0
     scriptarguments:
@@ -255,19 +250,19 @@ tasks:
         complex:
           accessor: hostid
           filters:
-            - - left:
-                  iscontext: true
-                  value:
-                    simple: PANOS.HAState.active
-                operator: isFalse
-            - - left:
-                  iscontext: true
-                  value:
-                    simple: PANOS.HAState.status
-                operator: isEqualString
-                right:
-                  value:
-                    simple: passive
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.HAState.active
+              operator: isFalse
+          - - left:
+                iscontext: true
+                value:
+                  simple: PANOS.HAState.status
+              operator: isEqualString
+              right:
+                value:
+                  simple: passive
           root: PANOS.HAState
     separatecontext: false
     skipunavailable: false
@@ -322,8 +317,7 @@ tasks:
           "y": 880
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

@@ -1,24 +1,24 @@
 description: Upgrades a single or HA pair of PAN-OS firewalls.
 id: PAN-OS Network Operations - Device Upgrade
 inputs:
-  - description: Target Firewall for upgrade
-    key: target_device
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationstarget}
-  - description: Peer firewall (if any)
-    key: peer_device
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
-  - description: Target version of upgrade
-    key: target_version
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationsupgradetargetversion}
+- description: Target Firewall for upgrade
+  key: target_device
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+- description: Peer firewall (if any)
+  key: peer_device
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
+- description: Target version of upgrade
+  key: target_version
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationsupgradetargetversion}
 name: PAN-OS Network Operations - Device Upgrade
 outputs: []
 starttaskid: "0"
@@ -30,8 +30,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "58"
+      '#none#':
+      - "58"
     note: false
     quietmode: 0
     separatecontext: false
@@ -54,23 +54,23 @@ tasks:
       }
   "40":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: incident.panosnetworkoperationsparentincidentid
-              operator: isNotEmpty
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsparentincidentid
+          operator: isNotEmpty
+      label: "yes"
     continueonerrortype: ""
     id: "40"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "59"
+      '#default#':
+      - "59"
       "yes":
-        - "41"
+      - "41"
     note: false
     quietmode: 0
     separatecontext: false
@@ -100,8 +100,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "59"
+      '#none#':
+      - "59"
     note: false
     quietmode: 0
     scriptarguments:
@@ -135,8 +135,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "40"
+      '#none#':
+      - "40"
     note: false
     quietmode: 0
     scriptarguments:
@@ -174,8 +174,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "48"
+      '#none#':
+      - "48"
     note: false
     quietmode: 0
     scriptarguments:
@@ -187,9 +187,7 @@ tasks:
     skipunavailable: false
     task:
       brand: Builtin
-      description:
-        Associates the device indicator to this incident; required when
-        this is run as part of a batch upgrade
+      description: Associates the device indicator to this incident; required when this is run as part of a batch upgrade
       id: 80a21366-7493-46ca-8458-697222d7cbb9
       iscommand: true
       name: Associate Device Indicator to this Incident
@@ -218,8 +216,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "62"
+      '#none#':
+      - "62"
     note: false
     quietmode: 0
     scriptarguments:
@@ -229,9 +227,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Requests the available software images from a firewall, filters
-        them, then prompts the user to select the version.
+      description: Requests the available software images from a firewall, filters them, then prompts the user to select the version.
       id: a8f05f7f-04a2-4bd9-83e7-dfe58d21b2a6
       iscommand: false
       name: PAN-OS Network Operations - Filter and Select Available Software Images
@@ -288,8 +284,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "61"
+      '#none#':
+      - "61"
     note: false
     quietmode: 0
     scriptarguments:
@@ -319,8 +315,7 @@ tasks:
           "y": -1970
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

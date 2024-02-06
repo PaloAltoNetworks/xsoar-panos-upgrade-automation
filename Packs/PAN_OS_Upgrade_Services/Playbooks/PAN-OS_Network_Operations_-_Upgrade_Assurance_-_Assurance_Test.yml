@@ -1,12 +1,12 @@
 description: Take a second snapshot and finalize the comparison tests.
-id: c2bc1a10-79d8-4a4d-8525-037ddf0dcfa4
+id: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
 inputs:
-  - description: ""
-    key: target
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationstarget}
+- description: ""
+  key: target
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
 name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
 outputs: []
 starttaskid: "0"
@@ -18,8 +18,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -43,16 +43,16 @@ tasks:
   "1":
     continueonerrortype: ""
     fieldMapping:
-      - incidentfield: Second Snapshot ID
-        output:
-          simple: ${File.EntryID}
+    - incidentfield: Second Snapshot ID
+      output:
+        simple: ${File.EntryID}
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "3"
+      '#none#':
+      - "3"
     note: false
     quietmode: 0
     scriptarguments:
@@ -81,51 +81,19 @@ tasks:
           "y": 210
         }
       }
-  "10":
-    continueonerrortype: ""
-    id: "10"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    note: false
-    quietmode: 0
-    scriptarguments:
-      assurancetestresult:
-        simple: Passed ✅
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Builtin
-      description: commands.local.cmd.set.incident
-      id: cf591376-d930-4170-804e-92a4dde36445
-      iscommand: true
-      name: Comparison Tests  Passed
-      script: Builtin|||setIncident
-      type: regular
-      version: -1
-    taskid: cf591376-d930-4170-804e-92a4dde36445
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": -430,
-          "y": 1090
-        }
-      }
   "2":
     continueonerrortype: ""
     fieldMapping:
-      - incidentfield: Snapshot Comparison Result
-        output:
-          simple: ${FirewallAssurance.SnapshotComparisonResult}
+    - incidentfield: Snapshot Comparison Result
+      output:
+        simple: ${FirewallAssurance.SnapshotComparisonResult}
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "4"
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     scriptarguments:
@@ -161,8 +129,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     scriptarguments:
@@ -173,7 +141,7 @@ tasks:
           accessor: EntryID
           root: File
           transformers:
-            - operator: LastArrayElement
+          - operator: LastArrayElement
       incID:
         simple: ${incident.id}
       target:
@@ -182,9 +150,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Copies a file from this incident to the specified incident. The
-        file is recorded as an entry in the specified incident’s War Room.
+      description: Copies a file from this incident to the specified incident. The file is recorded as an entry in the specified incident’s War Room.
       id: 69b270a2-c433-421c-8e8d-b715d54fe1c4
       iscommand: false
       name: Save Second Snapshot
@@ -208,9 +174,9 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "5"
-        - "8"
+      '#none#':
+      - "5"
+      - "8"
     note: false
     quietmode: 0
     scriptarguments:
@@ -276,50 +242,50 @@ tasks:
       }
   "5":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: FirewallAssurance.SnapshotComparisonResult.passed
-                          operator: isEqualString
-                          right:
-                            value:
-                              simple: "false"
-                    root: FirewallAssurance.SnapshotComparisonResult
-              operator: isExists
-              right:
-                value: {}
-            - left:
-                iscontext: true
-                value:
-                  complex:
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: incident.readinesscheckresult.state
-                          operator: isEqualString
-                          right:
-                            value:
-                              simple: "false"
-                    root: incident.readinesscheckresult
-              operator: isExists
-        label: FAILED
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: FirewallAssurance.SnapshotComparisonResult.passed
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "false"
+                root: FirewallAssurance.SnapshotComparisonResult
+          operator: isExists
+          right:
+            value: {}
+        - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: incident.readinesscheckresult.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "false"
+                root: incident.readinesscheckresult
+          operator: isExists
+      label: FAILED
     continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "7"
+      '#default#':
+      - "7"
       FAILED:
-        - "6"
+      - "6"
     note: false
     quietmode: 0
     separatecontext: false
@@ -407,35 +373,35 @@ tasks:
       }
   "8":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: FirewallAssurance.SnapshotComparisonResult.passed
-                          operator: isEqualString
-                          right:
-                            value:
-                              simple: "false"
-                    root: FirewallAssurance.SnapshotComparisonResult
-              operator: isExists
-              right:
-                value: {}
-        label: FAILED
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: FirewallAssurance.SnapshotComparisonResult.passed
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "false"
+                root: FirewallAssurance.SnapshotComparisonResult
+          operator: isExists
+          right:
+            value: {}
+      label: FAILED
     continueonerrortype: ""
     id: "8"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "10"
+      '#default#':
+      - "10"
       FAILED:
-        - "9"
+      - "9"
     note: false
     quietmode: 0
     separatecontext: false
@@ -489,8 +455,39 @@ tasks:
           "y": 1090
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 19
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      assurancetestresult:
+        simple: Passed ✅
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: cf591376-d930-4170-804e-92a4dde36445
+      iscommand: true
+      name: Comparison Tests  Passed
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: cf591376-d930-4170-804e-92a4dde36445
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -430,
+          "y": 1090
+        }
+      }
+version: 20
 view: |-
   {
     "linkLabelsPosition": {},

@@ -1,22 +1,22 @@
 description: Download PAN-OS System software.
 id: PAN-OS Network Operations - Download Software
 inputs:
-  - description: Target Firewall - Serial or IP address
-    key: target
-    playbookInputQuery: null
-    required: false
-    value: {}
-  - description: Target Software Version to Download
-    key: target_version
-    playbookInputQuery: null
-    required: false
-    value: {}
-  - description: Default max timeout value
-    key: timeout
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: "45"
+- description: Target Firewall - Serial or IP address
+  key: target
+  playbookInputQuery:
+  required: false
+  value: {}
+- description: Target Software Version to Download
+  key: target_version
+  playbookInputQuery:
+  required: false
+  value: {}
+- description: Default max timeout value
+  key: timeout
+  playbookInputQuery:
+  required: false
+  value:
+    simple: "45"
 name: PAN-OS Network Operations - Download Software
 outputs: []
 starttaskid: "0"
@@ -28,8 +28,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "9"
+      '#none#':
+      - "9"
     note: false
     quietmode: 0
     separatecontext: false
@@ -57,8 +57,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     scriptarguments:
@@ -91,122 +91,6 @@ tasks:
           "y": -225
         }
       }
-  "10":
-    continueonerrortype: ""
-    id: "10"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "12"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      seconds:
-        simple: "30"
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Sleep for X seconds
-      id: 4997d532-34c2-4434-8f57-9a5182059d13
-      iscommand: false
-      name: Wait for job to get processed
-      scriptName: Sleep
-      type: regular
-      version: -1
-    taskid: 4997d532-34c2-4434-8f57-9a5182059d13
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 910,
-          "y": 320
-        }
-      }
-  "11":
-    conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.JobStatus.id
-              operator: isNotEmpty
-        label: "yes"
-    continueonerrortype: ""
-    id: "11"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#default#":
-        - "10"
-      "yes":
-        - "3"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 9116bad2-5564-4993-8d25-ba63bf931c9a
-      iscommand: false
-      name: Did we get a job?
-      type: condition
-      version: -1
-    taskid: 9116bad2-5564-4993-8d25-ba63bf931c9a
-    timertriggers: []
-    type: condition
-    view: |-
-      {
-        "position": {
-          "x": 440,
-          "y": 130
-        }
-      }
-  "12":
-    continueonerrortype: ""
-    id: "12"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "3"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      device_filter_string:
-        simple: ${PANOS.DownloadStatus.Summary.hostid}
-      ignore-outputs:
-        simple: "false"
-      job_type:
-        simple: Downld
-      status:
-        simple: ACT
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Get all the jobs from the devices in the environment.
-      id: 0cf3fc4c-c616-4614-86ec-f657ba3eb6ba
-      iscommand: true
-      name: Get Jobs
-      script: "|||pan-os-platform-get-jobs"
-      type: regular
-      version: -1
-    taskid: 0cf3fc4c-c616-4614-86ec-f657ba3eb6ba
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 910,
-          "y": 490
-        }
-      }
   "2":
     continueonerrortype: ""
     id: "2"
@@ -214,8 +98,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "11"
+      '#none#':
+      - "11"
     note: false
     quietmode: 0
     scriptarguments:
@@ -259,14 +143,12 @@ tasks:
       iscommand: false
       max: 0
       scriptArguments:
-        dt:
-          simple: PANOS.JobStatus(val.status!=="FIN").id
         Ids:
           complex:
             accessor: id
             root: PANOS.JobStatus
             transformers:
-              - operator: LastArrayElement
+            - operator: LastArrayElement
         Interval:
           simple: "1"
         PollingCommandArgName:
@@ -275,10 +157,12 @@ tasks:
           simple: pan-os-platform-get-jobs
         Timeout:
           simple: "30"
+        dt:
+          simple: PANOS.JobStatus(val.status!=="FIN").id
       wait: 1
     nexttasks:
-      "#none#":
-        - "4"
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     scriptarguments:
@@ -286,14 +170,12 @@ tasks:
         simple: device_filter_string
       AdditionalPollingCommandArgValues:
         simple: ${inputs.target}
-      dt:
-        simple: PANOS.JobStatus(val.status!=="FIN").id
       Ids:
         complex:
           accessor: id
           root: PANOS.JobStatus
           transformers:
-            - operator: LastArrayElement
+          - operator: LastArrayElement
       Interval:
         simple: "1"
       PollingCommandArgName:
@@ -302,6 +184,8 @@ tasks:
         simple: pan-os-platform-get-jobs
       Timeout:
         simple: ${inputs.timeout}
+      dt:
+        simple: PANOS.JobStatus(val.status!=="FIN").id
     separatecontext: true
     skipunavailable: false
     task:
@@ -337,8 +221,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "5"
+      '#none#':
+      - "5"
     note: false
     quietmode: 0
     scriptarguments:
@@ -347,16 +231,14 @@ tasks:
           accessor: id
           root: PANOS.JobStatus
           transformers:
-            - operator: LastArrayElement
+          - operator: LastArrayElement
       target:
         simple: ${inputs.target}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Get all the jobs from the devices in the environment, or a single
-        job when ID is specified.
+      description: Get all the jobs from the devices in the environment, or a single job when ID is specified.
       id: 392df7c5-9e23-4d79-8d97-6d47fe00a90f
       iscommand: true
       name: Get jobs again to check status
@@ -375,34 +257,34 @@ tasks:
       }
   "5":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.JobStatus.status
-              operator: isEqualString
-              right:
-                value:
-                  simple: FIN
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.JobStatus.result
-              operator: isEqualString
-              right:
-                value:
-                  simple: OK
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.JobStatus.status
+          operator: isEqualString
+          right:
+            value:
+              simple: FIN
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.JobStatus.result
+          operator: isEqualString
+          right:
+            value:
+              simple: OK
+      label: "yes"
     continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "8"
+      '#default#':
+      - "8"
       "yes":
-        - "6"
+      - "6"
     note: false
     quietmode: 0
     separatecontext: false
@@ -491,8 +373,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     scriptarguments:
@@ -519,8 +401,123 @@ tasks:
           "y": -390
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "30"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: 4997d532-34c2-4434-8f57-9a5182059d13
+      iscommand: false
+      name: Wait for job to get processed
+      scriptName: Sleep
+      type: regular
+      version: -1
+    taskid: 4997d532-34c2-4434-8f57-9a5182059d13
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 320
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.JobStatus.id
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9116bad2-5564-4993-8d25-ba63bf931c9a
+      iscommand: false
+      name: Did we get a job?
+      type: condition
+      version: -1
+    taskid: 9116bad2-5564-4993-8d25-ba63bf931c9a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 130
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${PANOS.DownloadStatus.Summary.hostid}
+      ignore-outputs:
+        simple: "false"
+      job_type:
+        simple: Downld
+      status:
+        simple: ACT
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Get all the jobs from the devices in the environment.
+      id: 0cf3fc4c-c616-4614-86ec-f657ba3eb6ba
+      iscommand: true
+      name: Get Jobs
+      script: "|||pan-os-platform-get-jobs"
+      type: regular
+      version: -1
+    taskid: 0cf3fc4c-c616-4614-86ec-f657ba3eb6ba
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 490
+        }
+      }
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

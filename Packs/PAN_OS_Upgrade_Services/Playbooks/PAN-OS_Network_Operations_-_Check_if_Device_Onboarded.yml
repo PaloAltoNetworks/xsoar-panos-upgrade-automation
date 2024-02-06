@@ -1,12 +1,12 @@
 description: Checks for the given serial number to validate if it's connected to Panorama.
-id: 91798901-7d40-4e34-8ecf-1f0119c30b6d
+id: PAN-OS Network Operations - Check if Device Onboarded
 inputs:
-  - description: Serial number of FW to check.
-    key: serial
-    playbookInputQuery: null
-    required: true
-    value:
-      simple: ${incident.serialnumber}
+- description: Serial number of FW to check.
+  key: serial
+  playbookInputQuery:
+  required: true
+  value:
+    simple: ${incident.serialnumber}
 name: PAN-OS Network Operations - Check if Device Onboarded
 outputs: []
 starttaskid: "0"
@@ -18,8 +18,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -47,8 +47,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     scriptarguments:
@@ -77,23 +77,23 @@ tasks:
       }
   "2":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: GetIndicatorFieldsByQuery
-              operator: isNotEmpty
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: GetIndicatorFieldsByQuery
+          operator: isNotEmpty
+      label: "yes"
     continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "4"
+      '#default#':
+      - "4"
       "yes":
-        - "5"
+      - "5"
     note: false
     quietmode: 0
     separatecontext: false
@@ -151,8 +151,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "6"
+      '#none#':
+      - "6"
     note: false
     quietmode: 0
     scriptarguments:
@@ -186,8 +186,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "7"
+      '#none#':
+      - "7"
     note: false
     quietmode: 0
     scriptarguments:
@@ -235,8 +235,8 @@ tasks:
       version: -1
     taskid: 7330b73c-4556-455c-8a45-b4a5d7f2df8a
     timertriggers:
-      - action: start
-        fieldname: pauseforpanorama
+    - action: start
+      fieldname: pauseforpanorama
     type: title
     view: |-
       {
@@ -252,8 +252,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "3"
+      '#none#':
+      - "3"
     note: false
     quietmode: 0
     scriptarguments:
@@ -280,8 +280,7 @@ tasks:
           "y": 770
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

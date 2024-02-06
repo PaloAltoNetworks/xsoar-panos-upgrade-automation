@@ -1,5 +1,4 @@
-description: Checks to see if this incident has a parent incident and if so,
-  links the two incidents.
+description: Checks to see if this incident has a parent incident and if so, links the two incidents.
 id: PAN-OS Network Operations - Incident Callback
 inputs: []
 name: PAN-OS Network Operations - Incident Callback
@@ -13,8 +12,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "4"
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     separatecontext: false
@@ -42,8 +41,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "3"
+      '#none#':
+      - "3"
     note: false
     quietmode: 0
     scriptarguments:
@@ -101,23 +100,23 @@ tasks:
       }
   "4":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: incident.panosnetworkoperationsclosetaskid
-              operator: isNotEmpty
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsclosetaskid
+          operator: isNotEmpty
+      label: "yes"
     continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "3"
+      '#default#':
+      - "3"
       "yes":
-        - "2"
+      - "2"
     note: false
     quietmode: 0
     separatecontext: false
@@ -140,8 +139,7 @@ tasks:
           "y": 150
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

@@ -1,18 +1,17 @@
-description: Checks a specific version of software for any open CVEs, and if
-  they exist, starts a domain upgrade for that system to a fixed version.
+description: Checks a specific version of software for any open CVEs, and if they exist, starts a domain upgrade for that system to a fixed version.
 id: PAN-OS Network Operations - Check Version for CVEs
 inputs:
-  - description: Software version to check.
-    key: panos_version
-    playbookInputQuery: null
-    required: true
-    value: {}
-  - description: Minimum CVSS score to initiate the upgrade process.
-    key: minimum_cvss_score
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: "7.0"
+- description: Software version to check.
+  key: panos_version
+  playbookInputQuery:
+  required: true
+  value: {}
+- description: Minimum CVSS score to initiate the upgrade process.
+  key: minimum_cvss_score
+  playbookInputQuery:
+  required: false
+  value:
+    simple: "7.0"
 name: PAN-OS Network Operations - Check Version for CVEs
 outputs: []
 starttaskid: "0"
@@ -24,8 +23,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -53,8 +52,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     scriptarguments:
@@ -90,8 +89,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "3"
+      '#none#':
+      - "3"
     note: false
     quietmode: 0
     scriptarguments:
@@ -103,9 +102,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        "Checks if the given PAN-OS version number is affected by the given
-        list of vulnerabilties. "
+      description: "Checks if the given PAN-OS version number is affected by the given list of vulnerabilties. "
       id: c4305c0d-acbc-46b8-89c7-b32388a6f97f
       iscommand: false
       name: Check if this version is affected by any CVEs
@@ -124,37 +121,37 @@ tasks:
       }
   "3":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    accessor: cve_id
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: MatchingSecurityAdvisory.cvss_score
-                          operator: greaterThan
-                          right:
-                            iscontext: true
-                            value:
-                              simple: inputs.minimum_cvss_score
-                    root: MatchingSecurityAdvisory
-              operator: isExists
-              right:
-                value: {}
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: cve_id
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: MatchingSecurityAdvisory.cvss_score
+                    operator: greaterThan
+                    right:
+                      iscontext: true
+                      value:
+                        simple: inputs.minimum_cvss_score
+                root: MatchingSecurityAdvisory
+          operator: isExists
+          right:
+            value: {}
+      label: "yes"
     continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "6"
+      '#default#':
+      - "6"
       "yes":
-        - "7"
+      - "7"
     note: false
     quietmode: 0
     separatecontext: false
@@ -210,8 +207,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "6"
+      '#none#':
+      - "6"
     note: false
     quietmode: 0
     scriptarguments:
@@ -219,35 +216,35 @@ tasks:
         complex:
           accessor: cve_id
           filters:
-            - - left:
-                  iscontext: true
-                  value:
-                    simple: MatchingSecurityAdvisory.cvss_score
-                operator: greaterThanOrEqual
-                right:
-                  iscontext: true
-                  value:
-                    simple: inputs.minimum_cvss_score
+          - - left:
+                iscontext: true
+                value:
+                  simple: MatchingSecurityAdvisory.cvss_score
+              operator: greaterThanOrEqual
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.minimum_cvss_score
           root: MatchingSecurityAdvisory
           transformers:
-            - args:
-                separator:
-                  value:
-                    simple: ", "
-              operator: join
-            - args:
-                prefix:
-                  value:
-                    simple: |+
-                      This version is affected by the following CVEs:
+          - args:
+              separator:
+                value:
+                  simple: ", "
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: |+
+                    This version is affected by the following CVEs:
 
-                suffix:
-                  value:
-                    simple: |-
+              suffix:
+                value:
+                  simple: |2-
 
 
-                      This incident will upgrade all the devices on this version to a fixed release.
-              operator: concat
+                    This incident will upgrade all the devices on this version to a fixed release.
+            operator: concat
       name:
         simple: Automatic CVE Remedation Upgrade - ${inputs.panos_version}
       panosnetworkoperationsdeviceupgradequery:
@@ -277,8 +274,7 @@ tasks:
           "y": 910
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

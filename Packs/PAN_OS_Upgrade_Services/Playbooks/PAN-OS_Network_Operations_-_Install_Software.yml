@@ -1,16 +1,16 @@
 description: Installs PAN-OS system software.
 id: PAN-OS Network Operations - Install Software
 inputs:
-  - description: Target Version to INstall
-    key: target_version
-    playbookInputQuery: null
-    required: false
-    value: {}
-  - description: Target Device
-    key: target
-    playbookInputQuery: null
-    required: false
-    value: {}
+- description: Target Version to INstall
+  key: target_version
+  playbookInputQuery:
+  required: false
+  value: {}
+- description: Target Device
+  key: target
+  playbookInputQuery:
+  required: false
+  value: {}
 name: PAN-OS Network Operations - Install Software
 outputs: []
 starttaskid: "0"
@@ -22,8 +22,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "9"
+      '#none#':
+      - "9"
     note: false
     quietmode: 0
     separatecontext: false
@@ -51,8 +51,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     scriptarguments:
@@ -64,9 +64,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Install the given software version onto the device. Download the
-        software first with
+      description: Install the given software version onto the device. Download the software first with
       id: 25154c7f-0d20-4a04-842d-40caff7446ad
       iscommand: true
       name: Install the given software version
@@ -83,41 +81,6 @@ tasks:
           "y": 190
         }
       }
-  "10":
-    continueonerrortype: ""
-    id: "10"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "8"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      description:
-        simple: Software Install failed.
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Builtin
-      description: commands.local.cmd.set.incident
-      id: 82d4caa2-d0e3-46ab-813a-d7d38f5b461b
-      iscommand: true
-      name: Set Description
-      script: Builtin|||setIncident
-      type: regular
-      version: -1
-    taskid: 82d4caa2-d0e3-46ab-813a-d7d38f5b461b
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 890,
-          "y": 1160
-        }
-      }
   "2":
     continueonerrortype: ""
     id: "2"
@@ -125,8 +88,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "6"
+      '#none#':
+      - "6"
     note: false
     quietmode: 0
     scriptarguments:
@@ -168,14 +131,12 @@ tasks:
       iscommand: false
       max: 0
       scriptArguments:
-        dt:
-          simple: PANOS.JobStatus(val.status!=="FIN").id
         Ids:
           complex:
             accessor: id
             root: PANOS.JobStatus
             transformers:
-              - operator: LastArrayElement
+            - operator: LastArrayElement
         Interval:
           simple: "1"
         PollingCommandArgName:
@@ -184,10 +145,12 @@ tasks:
           simple: pan-os-platform-get-jobs
         Timeout:
           simple: "20"
+        dt:
+          simple: PANOS.JobStatus(val.status!=="FIN").id
       wait: 1
     nexttasks:
-      "#none#":
-        - "5"
+      '#none#':
+      - "5"
     note: false
     quietmode: 0
     scriptarguments:
@@ -195,14 +158,12 @@ tasks:
         simple: device_filter_string
       AdditionalPollingCommandArgValues:
         simple: ${inputs.target}
-      dt:
-        simple: PANOS.JobStatus(val.status!=="FIN").id
       Ids:
         complex:
           accessor: id
           root: PANOS.JobStatus
           transformers:
-            - operator: LastArrayElement
+          - operator: LastArrayElement
       Interval:
         simple: "1"
       PollingCommandArgName:
@@ -211,6 +172,8 @@ tasks:
         simple: pan-os-platform-get-jobs
       Timeout:
         simple: "20"
+      dt:
+        simple: PANOS.JobStatus(val.status!=="FIN").id
     separatecontext: true
     skipunavailable: false
     task:
@@ -241,56 +204,56 @@ tasks:
       }
   "4":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    accessor: status
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: PANOS.JobStatus.type
-                          operator: isEqualString
-                          right:
-                            value:
-                              simple: SWInstall
-                    root: PANOS.JobStatus
-              operator: isEqualString
-              right:
-                value:
-                  simple: FIN
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    accessor: result
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: PANOS.JobStatus.type
-                          operator: isEqualString
-                          right:
-                            value:
-                              simple: SWInstall
-                    root: PANOS.JobStatus
-              operator: isEqualString
-              right:
-                value:
-                  simple: OK
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: status
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.JobStatus.type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SWInstall
+                root: PANOS.JobStatus
+          operator: isEqualString
+          right:
+            value:
+              simple: FIN
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: result
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.JobStatus.type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SWInstall
+                root: PANOS.JobStatus
+          operator: isEqualString
+          right:
+            value:
+              simple: OK
+      label: "yes"
     continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "10"
+      '#default#':
+      - "10"
       "yes":
-        - "7"
+      - "7"
     note: false
     quietmode: 0
     separatecontext: false
@@ -320,8 +283,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "4"
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     scriptarguments:
@@ -332,14 +295,12 @@ tasks:
           accessor: id
           root: PANOS.JobStatus
           transformers:
-            - operator: LastArrayElement
+          - operator: LastArrayElement
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Get all the jobs from the devices in the environment, or a single
-        job when ID is specified.
+      description: Get all the jobs from the devices in the environment, or a single job when ID is specified.
       id: 1bc37e9e-0b88-4cad-85c8-38fe7910192c
       iscommand: true
       name: Get jobs again to check status
@@ -358,47 +319,45 @@ tasks:
       }
   "6":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.JobStatus.status
-              operator: isEqualString
-              right:
-                value:
-                  simple: ACT
-        label: ACT
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.JobStatus.status
-              operator: isEqualString
-              right:
-                value:
-                  simple: FIN
-        label: FIN
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.JobStatus.status
+          operator: isEqualString
+          right:
+            value:
+              simple: ACT
+      label: ACT
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.JobStatus.status
+          operator: isEqualString
+          right:
+            value:
+              simple: FIN
+      label: FIN
     continueonerrortype: ""
     id: "6"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "10"
+      '#default#':
+      - "10"
       ACT:
-        - "3"
+      - "3"
       FIN:
-        - "4"
+      - "4"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description:
-        It's possible that, if software has already been installed, then we
-        don't get an active job for it.
+      description: It's possible that, if software has already been installed, then we don't get an active job for it.
       id: 8e9ac62e-e4da-4503-80ab-df3e0517c733
       iscommand: false
       name: Is the job active?
@@ -480,8 +439,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     scriptarguments:
@@ -508,8 +467,42 @@ tasks:
           "y": 40
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: Software Install failed.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 82d4caa2-d0e3-46ab-813a-d7d38f5b461b
+      iscommand: true
+      name: Set Description
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 82d4caa2-d0e3-46ab-813a-d7d38f5b461b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 890,
+          "y": 1160
+        }
+      }
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

@@ -1,7 +1,4 @@
-description: This playbook uses the Palo Alto Networks Security Advisories
-  integration, if available, to compare all the running software versions in the
-  environment with the list of Open CVEs and either automatically begins the
-  upgrade process or initiates a case management process to do so.
+description: This playbook uses the Palo Alto Networks Security Advisories integration, if available, to compare all the running software versions in the environment with the list of Open CVEs and either automatically begins the upgrade process or initiates a case management process to do so.
 id: PAN-OS Network Operations - Check For Open CVEs
 inputs: []
 name: PAN-OS Network Operations - Check For Open CVEs
@@ -15,8 +12,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     separatecontext: false
@@ -39,43 +36,43 @@ tasks:
       }
   "2":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: modules.state
-                          operator: isEqualString
-                          right:
-                            value:
-                              simple: active
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: modules.brand
-                          operator: isEqualString
-                          right:
-                            value:
-                              simple: Palo Alto Networks Security Advisories
-                    root: modules
-              operator: isExists
-              right:
-                value: {}
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Palo Alto Networks Security Advisories
+                root: modules
+          operator: isExists
+          right:
+            value: {}
+      label: "yes"
     continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "4"
+      '#default#':
+      - "4"
       "yes":
-        - "5"
+      - "5"
     note: false
     quietmode: 0
     separatecontext: false
@@ -110,8 +107,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "4"
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     scriptarguments:
@@ -122,14 +119,12 @@ tasks:
           accessor: sw_version
           root: PANOS.ShowSystemInfo.Summary
           transformers:
-            - operator: uniq
+          - operator: uniq
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Checks a specific version of software for any open CVEs, and if
-        they exist, starts a domain upgrade for that system to a fixed version.
+      description: Checks a specific version of software for any open CVEs, and if they exist, starts a domain upgrade for that system to a fixed version.
       id: 259d3b45-d97d-43b2-82da-ae947cb4ef6d
       iscommand: false
       name: PAN-OS Network Operations - Check Version for CVEs
@@ -153,8 +148,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "6"
+      '#none#':
+      - "6"
     note: false
     quietmode: 0
     separatecontext: false
@@ -183,8 +178,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "3"
+      '#none#':
+      - "3"
     note: false
     quietmode: 0
     separatecontext: false
@@ -237,8 +232,7 @@ tasks:
           "y": 880
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 7
+version: 8
 view: |-
   {
     "linkLabelsPosition": {

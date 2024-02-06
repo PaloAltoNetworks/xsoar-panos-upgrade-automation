@@ -1,16 +1,16 @@
-description: Runs a complete upgrade process for a single device
+description: Runs a complete upgrade process for a single device.
 id: PAN-OS Network Operations - Single Device Upgrade
 inputs:
-  - description: Target firewall to upgrade
-    key: target
-    playbookInputQuery: null
-    required: true
-    value: {}
-  - description: Target version to upgrade to.
-    key: target_version
-    playbookInputQuery: null
-    required: true
-    value: {}
+- description: Target firewall to upgrade
+  key: target
+  playbookInputQuery:
+  required: true
+  value: {}
+- description: Target version to upgrade to.
+  key: target_version
+  playbookInputQuery:
+  required: true
+  value: {}
 name: PAN-OS Network Operations - Single Device Upgrade
 outputs: []
 starttaskid: "0"
@@ -22,8 +22,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "25"
+      '#none#':
+      - "25"
     note: false
     quietmode: 0
     separatecontext: false
@@ -52,8 +52,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "21"
+      '#none#':
+      - "21"
     note: false
     quietmode: 0
     scriptarguments:
@@ -100,15 +100,13 @@ tasks:
             accessor: id
             root: PANOS.JobStatus.Summary
             transformers:
-              - operator: FirstArrayElement
-        dt:
-          simple: PANOS.JobStatus.Result(val.status!=="FIN").id
+            - operator: FirstArrayElement
         Ids:
           complex:
             accessor: id
             root: PANOS.JobStatus.Summary
             transformers:
-              - operator: FirstArrayElement
+            - operator: FirstArrayElement
         Interval:
           simple: "1"
         PollingCommandArgName:
@@ -117,15 +115,15 @@ tasks:
           simple: pan-os-platform-get-jobs
         Timeout:
           simple: "10"
+        dt:
+          simple: PANOS.JobStatus.Result(val.status!=="FIN").id
       wait: 1
     nexttasks:
-      "#none#":
-        - "18"
+      '#none#':
+      - "18"
     note: false
     quietmode: 0
     scriptarguments:
-      dt:
-        simple: PANOS.SystemStatus(!val.up).hostid
       Ids:
         simple: ${inputs.target}
       Interval:
@@ -136,6 +134,8 @@ tasks:
         simple: pan-os-platform-get-system-status
       Timeout:
         simple: "60"
+      dt:
+        simple: PANOS.SystemStatus(!val.up).hostid
     separatecontext: true
     skipunavailable: false
     task:
@@ -199,8 +199,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "19"
+      '#none#':
+      - "19"
     note: false
     quietmode: 0
     scriptarguments:
@@ -229,27 +229,27 @@ tasks:
       }
   "19":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.ShowSystemInfo.Result.sw_version
-              operator: isEqualString
-              right:
-                iscontext: true
-                value:
-                  simple: inputs.target_version
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.ShowSystemInfo.Result.sw_version
+          operator: isEqualString
+          right:
+            iscontext: true
+            value:
+              simple: inputs.target_version
+      label: "yes"
     continueonerrortype: ""
     id: "19"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "20"
+      '#default#':
+      - "20"
       "yes":
-        - "16"
+      - "16"
     note: false
     quietmode: 0
     separatecontext: false
@@ -282,9 +282,7 @@ tasks:
     quietmode: 0
     scriptarguments:
       message:
-        simple:
-          Installation completed, reboot completed, but device still on old
-          software version.
+        simple: Installation completed, reboot completed, but device still on old software version.
     separatecontext: false
     skipunavailable: false
     task:
@@ -313,8 +311,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "15"
+      '#none#':
+      - "15"
     note: false
     quietmode: 0
     scriptarguments:
@@ -348,8 +346,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "35"
+      '#none#':
+      - "35"
     note: false
     quietmode: 0
     scriptarguments:
@@ -378,44 +376,42 @@ tasks:
       }
   "23":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    accessor: version
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: PANOS.SoftwareVersions.Summary.downloaded
-                          operator: isTrue
-                    root: PANOS.SoftwareVersions.Summary
-              operator: containsGeneral
-              right:
-                iscontext: true
-                value:
-                  simple: inputs.target_version
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: version
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.SoftwareVersions.Summary.downloaded
+                    operator: isTrue
+                root: PANOS.SoftwareVersions.Summary
+          operator: containsGeneral
+          right:
+            iscontext: true
+            value:
+              simple: inputs.target_version
+      label: "yes"
     continueonerrortype: ""
     id: "23"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "38"
+      '#default#':
+      - "38"
       "yes":
-        - "39"
+      - "39"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Checks if the upgrade software version is already downloaded onto
-        the PAN-OS system.
+      description: Checks if the upgrade software version is already downloaded onto the PAN-OS system.
       id: a846ea9d-4cd6-40f1-8b8f-fb2b663ae69a
       iscommand: false
       name: Has the software already been downloaded?
@@ -439,8 +435,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "22"
+      '#none#':
+      - "22"
     note: false
     quietmode: 0
     scriptarguments:
@@ -474,8 +470,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "26"
+      '#none#':
+      - "26"
     note: false
     quietmode: 0
     scriptarguments:
@@ -504,26 +500,26 @@ tasks:
       }
   "26":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.ShowSystemInfo.Summary.family
-              operator: isEqualString
-              right:
-                value:
-                  simple: pc
-        label: Panorama
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.ShowSystemInfo.Summary.family
+          operator: isEqualString
+          right:
+            value:
+              simple: pc
+      label: Panorama
     continueonerrortype: ""
     id: "26"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "24"
+      '#default#':
+      - "24"
       Panorama:
-        - "22"
+      - "22"
     note: false
     quietmode: 0
     separatecontext: false
@@ -548,35 +544,35 @@ tasks:
       }
   "27":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: BaseImage
-              operator: in
-              right:
-                iscontext: true
-                value:
-                  complex:
-                    accessor: version
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: PANOS.SoftwareVersions.Summary.downloaded
-                          operator: isTrue
-                    root: PANOS.SoftwareVersions.Summary
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: BaseImage
+          operator: in
+          right:
+            iscontext: true
+            value:
+              complex:
+                accessor: version
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.SoftwareVersions.Summary.downloaded
+                    operator: isTrue
+                root: PANOS.SoftwareVersions.Summary
+      label: "yes"
     continueonerrortype: ""
     id: "27"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "37"
+      '#default#':
+      - "37"
       "yes":
-        - "23"
+      - "23"
     note: false
     quietmode: 0
     separatecontext: false
@@ -606,8 +602,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "27"
+      '#none#':
+      - "27"
     note: false
     quietmode: 0
     scriptarguments:
@@ -617,30 +613,30 @@ tasks:
         complex:
           root: inputs.target_version
           transformers:
-            - args:
-                delimiter:
-                  value:
-                    simple: .
-              operator: split
-            - args:
-                from:
-                  value:
-                    simple: "0"
-                to:
-                  value:
-                    simple: "2"
-              operator: slice
-            - args:
-                separator:
-                  value:
-                    simple: .
-              operator: join
-            - args:
-                prefix: {}
-                suffix:
-                  value:
-                    simple: ".0"
-              operator: concat
+          - args:
+              delimiter:
+                value:
+                  simple: .
+            operator: split
+          - args:
+              from:
+                value:
+                  simple: "0"
+              to:
+                value:
+                  simple: "2"
+            operator: slice
+          - args:
+              separator:
+                value:
+                  simple: .
+            operator: join
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ".0"
+            operator: concat
     separatecontext: false
     skipunavailable: false
     task:
@@ -674,8 +670,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "23"
+      '#none#':
+      - "23"
     note: false
     quietmode: 0
     scriptarguments:
@@ -716,8 +712,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "39"
+      '#none#':
+      - "39"
     note: false
     quietmode: 0
     scriptarguments:
@@ -758,8 +754,8 @@ tasks:
       max: 0
       wait: 1
     nexttasks:
-      "#none#":
-        - "40"
+      '#none#':
+      - "40"
     note: false
     quietmode: 0
     scriptarguments:
@@ -795,8 +791,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "14"
+      '#none#':
+      - "14"
     note: false
     quietmode: 0
     scriptarguments:
@@ -823,8 +819,7 @@ tasks:
           "y": -220
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {

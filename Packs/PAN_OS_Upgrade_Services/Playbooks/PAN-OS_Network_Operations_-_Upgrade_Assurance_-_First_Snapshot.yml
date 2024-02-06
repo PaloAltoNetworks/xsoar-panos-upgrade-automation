@@ -1,11 +1,11 @@
-id: 281f55fa-ba0c-4a98-8a36-3bc0c35c8472
+id: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
 inputs:
-  - description: ""
-    key: target
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationstarget}
+- description: ""
+  key: target
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
 name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
 outputs: []
 quiet: true
@@ -18,8 +18,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -43,21 +43,21 @@ tasks:
   "1":
     continueonerrortype: ""
     fieldMapping:
-      - incidentfield: Readiness Check Result
-        output:
-          complex:
-            accessor: ReadinessCheckResults
-            root: FirewallAssurance
-            transformers:
-              - operator: ConvertKeysToTableFieldFormat
+    - incidentfield: Readiness Check Result
+      output:
+        complex:
+          accessor: ReadinessCheckResults
+          root: FirewallAssurance
+          transformers:
+          - operator: ConvertKeysToTableFieldFormat
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
-        - "9"
+      '#none#':
+      - "2"
+      - "9"
     note: false
     quietmode: 0
     scriptarguments:
@@ -94,166 +94,35 @@ tasks:
           "y": 210
         }
       }
-  "10":
-    continueonerrortype: ""
-    id: "10"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "3"
-        - "11"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 27b9ce61-cf1c-4f1d-8135-b95ecb1c025a
-      iscommand: false
-      name: "YES"
-      type: title
-      version: -1
-    taskid: 27b9ce61-cf1c-4f1d-8135-b95ecb1c025a
-    timertriggers: []
-    type: title
-    view: |-
-      {
-        "position": {
-          "x": 860,
-          "y": 600
-        }
-      }
-  "11":
-    continueonerrortype: ""
-    id: "11"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "4"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      readinesstestresult:
-        simple: Failed ❌
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Builtin
-      description: commands.local.cmd.set.incident
-      id: 02837b8b-c2b5-4d60-84ac-9f555ca29bc4
-      iscommand: true
-      name: Set Failed State
-      script: Builtin|||setIncident
-      type: regular
-      version: -1
-    taskid: 02837b8b-c2b5-4d60-84ac-9f555ca29bc4
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 1270,
-          "y": 750
-        }
-      }
-  "12":
-    continueonerrortype: ""
-    id: "12"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "13"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 0b69af8d-2fe8-4ff8-89ce-2ef84b6f8619
-      iscommand: false
-      name: "No"
-      type: title
-      version: -1
-    taskid: 0b69af8d-2fe8-4ff8-89ce-2ef84b6f8619
-    timertriggers: []
-    type: title
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 600
-        }
-      }
-  "13":
-    continueonerrortype: ""
-    id: "13"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "5"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      readinesstestresult:
-        simple: Passed ✅
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Builtin
-      description: commands.local.cmd.set.incident
-      id: f67890de-cee4-4281-8e65-6601f503875b
-      iscommand: true
-      name: Set Passed State
-      script: Builtin|||setIncident
-      type: regular
-      version: -1
-    taskid: f67890de-cee4-4281-8e65-6601f503875b
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 750
-        }
-      }
   "2":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: incident.readinesscheckresult.state
-                          operator: isEqualString
-                          right:
-                            value:
-                              simple: "false"
-                    root: incident.readinesscheckresult.state
-              operator: isExists
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: incident.readinesscheckresult.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "false"
+                root: incident.readinesscheckresult.state
+          operator: isExists
+      label: "yes"
     continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "12"
+      '#default#':
+      - "12"
       "yes":
-        - "10"
+      - "10"
     note: false
     quietmode: 0
     separatecontext: false
@@ -278,63 +147,44 @@ tasks:
   "3":
     continueonerrortype: ""
     form:
-      description:
-        The assurance process identified issues that might prevent the
-        software upgrade from starting. Please confirm whether to proceed or
-        abort the assurance process.
+      description: The assurance process identified issues that might prevent the software upgrade from starting. Please confirm whether to proceed or abort the assurance process.
       expired: false
       questions:
-        - defaultrows: []
-          fieldassociated: ""
-          gridcolumns: []
-          id: "0"
-          label: ""
-          labelarg:
-            simple: |-
-              ### Do you want to continue?
-              *Choosing Yes will continue with the upgrade assurance process, and if no other issues are present, the upgrade process itself.*
-          options: []
-          optionsarg:
-            - simple: "Yes"
-            - simple: "No"
-          placeholder: ""
-          readonly: false
-          required: true
-          tooltip: ""
-          type: singleSelect
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: |-
+            ### Do you want to continue?
+            *Choosing Yes will continue with the upgrade assurance process, and if no other issues are present, the upgrade process itself.*
+        options: []
+        optionsarg:
+        - simple: "Yes"
+        - simple: "No"
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: singleSelect
       sender: Your SOC team
       title: Failed Readiness Test Confirmation
       totalanswers: 0
-    formDisplay:
-      bodybackgroundcolor: ""
-      bodyfontcolor: ""
-      headerbackgroundcolor: "#ff0000"
-      headerfontcolor: ""
-      isexternalrtl: false
-      sender: ""
-      submitbuttonbackgroundcolor: "#f50057"
-      submitbuttonfontcolor: ""
-      submittext: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc: null
+      bcc:
       body:
-        simple: "The assurance process failed on the device
-          ${incident.panosnetworkoperationsupgradetargetfirewall}.
-
-
-          Please validate the test result and choose whether to
-          proceed or abort the assurance process. "
-      cc: null
+        simple: "The assurance process failed on the device ${incident.panosnetworkoperationsupgradetargetfirewall}.\n\nPlease validate the test result and choose whether to proceed or abort the assurance process. "
+      cc:
       format: ""
       methods:
-        - email
+      - email
       subject:
-        simple: Upgrade Readiness Checks failed on
-          ${incident.panosnetworkoperationsupgradetargetfirewall}
+        simple: Upgrade Readiness Checks failed on ${incident.panosnetworkoperationsupgradetargetfirewall}
       timings:
         completeafterreplies: 1
         completeaftersla: false
@@ -344,8 +194,8 @@ tasks:
       to:
         simple: ${incident.owner}
     nexttasks:
-      "#none#":
-        - "4"
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     separatecontext: false
@@ -369,26 +219,26 @@ tasks:
       }
   "4":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: Failed Readiness Test Confirmation.Answers.0
-              operator: isEqualString
-              right:
-                value:
-                  simple: "Yes"
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Failed Readiness Test Confirmation.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: "Yes"
+      label: "yes"
     continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "8"
+      '#default#':
+      - "8"
       "yes":
-        - "5"
+      - "5"
     note: false
     quietmode: 0
     separatecontext: false
@@ -413,16 +263,16 @@ tasks:
   "5":
     continueonerrortype: ""
     fieldMapping:
-      - incidentfield: First Snapshot ID
-        output:
-          simple: ${File.EntryID}
+    - incidentfield: First Snapshot ID
+      output:
+        simple: ${File.EntryID}
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "7"
+      '#none#':
+      - "7"
     note: false
     quietmode: 0
     scriptarguments:
@@ -467,7 +317,7 @@ tasks:
           accessor: EntryID
           root: File
           transformers:
-            - operator: LastArrayElement
+          - operator: LastArrayElement
       incID:
         simple: ${incident.id}
       target:
@@ -476,9 +326,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Copies a file from this incident to the specified incident. The
-        file is recorded as an entry in the specified incident’s War Room.
+      description: Copies a file from this incident to the specified incident. The file is recorded as an entry in the specified incident’s War Room.
       id: c3f8eff5-99e9-4226-87f5-a7af67d97870
       iscommand: false
       name: Save First Snapshot
@@ -590,8 +438,138 @@ tasks:
           "y": 380
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 17
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 27b9ce61-cf1c-4f1d-8135-b95ecb1c025a
+      iscommand: false
+      name: "YES"
+      type: title
+      version: -1
+    taskid: 27b9ce61-cf1c-4f1d-8135-b95ecb1c025a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 600
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      readinesstestresult:
+        simple: Failed ❌
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 02837b8b-c2b5-4d60-84ac-9f555ca29bc4
+      iscommand: true
+      name: Set Failed State
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 02837b8b-c2b5-4d60-84ac-9f555ca29bc4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1270,
+          "y": 750
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0b69af8d-2fe8-4ff8-89ce-2ef84b6f8619
+      iscommand: false
+      name: "No"
+      type: title
+      version: -1
+    taskid: 0b69af8d-2fe8-4ff8-89ce-2ef84b6f8619
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 600
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      readinesstestresult:
+        simple: Passed ✅
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: f67890de-cee4-4281-8e65-6601f503875b
+      iscommand: true
+      name: Set Passed State
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: f67890de-cee4-4281-8e65-6601f503875b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 750
+        }
+      }
+version: 18
 view: |-
   {
     "linkLabelsPosition": {},

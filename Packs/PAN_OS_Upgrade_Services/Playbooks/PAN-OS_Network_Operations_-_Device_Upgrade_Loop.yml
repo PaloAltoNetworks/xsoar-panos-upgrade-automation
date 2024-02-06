@@ -1,36 +1,32 @@
-description: Upgrades a single or HA pair of PAN-OS firewalls, supports running
-  as a subplaybook and be looped over to complete an entire upgrade path.
-id: bdf72993-9e2c-424d-855a-ab69079b1d3a
+description: Upgrades a single or HA pair of PAN-OS firewalls, supports running as a subplaybook and be looped over to complete an entire upgrade path.
+id: PAN-OS Network Operations - Device Upgrade Loop
 inputs:
-  - description: Target Firewall for upgrade
-    key: target_device
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationstarget}
-  - description: Peer firewall (if any)
-    key: peer_device
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
-  - description: Target version of upgrade
-    key: target_version
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationsupgradetargetversion}
-  - description:
-      If "true", HA topology will be reverted to the original active and
-      passive devices after upgrade.
-    key: reset_ha_topology
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: "false"
+- description: Target Firewall for upgrade
+  key: target_device
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+- description: Peer firewall (if any)
+  key: peer_device
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
+- description: Target version of upgrade
+  key: target_version
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationsupgradetargetversion}
+- description: If "true", HA topology will be reverted to the original active and passive devices after upgrade.
+  key: reset_ha_topology
+  playbookInputQuery:
+  required: false
+  value:
+    simple: "false"
 name: PAN-OS Network Operations - Device Upgrade Loop
 outputs: []
-sourceplaybookid: PAN-OS Network Operations - Device Upgrade
 starttaskid: "0"
 tasks:
   "0":
@@ -40,8 +36,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "62"
+      '#none#':
+      - "62"
     note: false
     quietmode: 0
     separatecontext: false
@@ -64,37 +60,37 @@ tasks:
       }
   "1":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: ActiveDevice
-              operator: isExists
-          - - left:
-                iscontext: true
-                value:
-                  simple: PassiveDevice
-              operator: isExists
-        label: active-passive
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: ActiveDevice
-              operator: isExists
-        label: active-active
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ActiveDevice
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: PassiveDevice
+          operator: isExists
+      label: active-passive
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ActiveDevice
+          operator: isExists
+      label: active-active
     continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "15"
+      '#default#':
+      - "15"
       active-active:
-        - "67"
+      - "67"
       active-passive:
-        - "44"
+      - "44"
     note: false
     quietmode: 0
     separatecontext: false
@@ -117,6 +113,39 @@ tasks:
           "y": -540
         }
       }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+      - "29"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fc4f185d-9c78-4a22-8433-0224275464fc
+      iscommand: false
+      name: HA Pair process
+      type: title
+      version: -1
+    taskid: fc4f185d-9c78-4a22-8433-0224275464fc
+    timertriggers:
+    - action: start
+      fieldname: deviceupgradetimer
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 250,
+          "y": 160
+        }
+      }
   "12":
     continueonerrortype: ""
     id: "12"
@@ -129,8 +158,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "74"
+      '#none#':
+      - "74"
     note: false
     quietmode: 0
     scriptarguments:
@@ -166,8 +195,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "63"
+      '#none#':
+      - "63"
     note: false
     quietmode: 0
     separatecontext: false
@@ -186,7 +215,7 @@ tasks:
       iscommand: false
       name: Mark Complete When Ready For Upgrade
       tags:
-        - start-upgrade
+      - start-upgrade
       type: regular
       version: -1
     taskid: 07553845-7060-4d49-833e-19c4e35ab973
@@ -206,8 +235,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "53"
+      '#none#':
+      - "53"
     note: false
     quietmode: 0
     separatecontext: false
@@ -221,8 +250,8 @@ tasks:
       version: -1
     taskid: 2f197b69-3f88-4d88-822a-a8ad35961112
     timertriggers:
-      - action: start
-        fieldname: deviceupgradetimer
+    - action: start
+      fieldname: deviceupgradetimer
     type: title
     view: |-
       {
@@ -243,8 +272,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "18"
+      '#none#':
+      - "18"
     note: false
     quietmode: 0
     scriptarguments:
@@ -280,8 +309,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "19"
+      '#none#':
+      - "19"
     note: false
     quietmode: 0
     scriptarguments:
@@ -291,9 +320,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Get the HA state and assocaited details from the given device and
-        any other details.
+      description: Get the HA state and assocaited details from the given device and any other details.
       id: 40f59a59-e822-499a-89d9-bd2e6fd64375
       iscommand: true
       name: Get HA State
@@ -312,47 +339,45 @@ tasks:
       }
   "19":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    accessor: status
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: PANOS.HAState.hostid
-                          operator: isEqualString
-                          right:
-                            iscontext: true
-                            value:
-                              simple: OriginalPassive
-                    root: PANOS.HAState
-              operator: isEqualString
-              right:
-                value:
-                  simple: passive
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: status
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.HAState.hostid
+                    operator: isEqualString
+                    right:
+                      iscontext: true
+                      value:
+                        simple: OriginalPassive
+                root: PANOS.HAState
+          operator: isEqualString
+          right:
+            value:
+              simple: passive
+      label: "yes"
     continueonerrortype: ""
     id: "19"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "33"
+      '#default#':
+      - "33"
       "yes":
-        - "50"
+      - "50"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description:
-        True if the device is correctly Passive after the upgrade process
-        has concluded.
+      description: True if the device is correctly Passive after the upgrade process has concluded.
       id: a200d618-b383-4508-866c-0475d3bed529
       iscommand: false
       name: Is device passive after upgrade?
@@ -376,8 +401,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "23"
+      '#none#':
+      - "23"
     note: false
     quietmode: 0
     scriptarguments:
@@ -393,15 +418,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        "Suspends the active firewall, causing the pair to failover to the
-        secondary.\
-
-
-        This task can error in the event that the suspension breaks the
-        connectivity between XSOAR and the firewall - in this case, we continue,
-        as a subsequent task will error if the firewalls are truly unreachable
-        (which would, of course, be very bad)"
+      description: "Suspends the active firewall, causing the pair to failover to the secondary.\n\nThis task can error in the event that the suspension breaks the connectivity between XSOAR and the firewall - in this case, we continue, as a subsequent task will error if the firewalls are truly unreachable (which would, of course, be very bad)"
       id: 3fbde04f-1a0d-42aa-80f6-dcd3ca187e83
       iscommand: true
       name: Suspend Active firewall
@@ -462,8 +479,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "24"
+      '#none#':
+      - "24"
     note: false
     quietmode: 0
     scriptarguments:
@@ -499,8 +516,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "51"
+      '#none#':
+      - "51"
     note: false
     quietmode: 0
     scriptarguments:
@@ -534,8 +551,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "25"
+      '#none#':
+      - "25"
     note: false
     quietmode: 0
     scriptarguments:
@@ -545,9 +562,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Get the HA state and assocaited details from the given device and
-        any other details.
+      description: Get the HA state and assocaited details from the given device and any other details.
       id: ce7b6ff1-3c66-44b3-87e6-df4af6b355ad
       iscommand: true
       name: Get HA State
@@ -566,47 +581,45 @@ tasks:
       }
   "25":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  complex:
-                    accessor: status
-                    filters:
-                      - - left:
-                            iscontext: true
-                            value:
-                              simple: PANOS.HAState.hostid
-                          operator: isEqualString
-                          right:
-                            iscontext: true
-                            value:
-                              simple: OriginalActive
-                    root: PANOS.HAState
-              operator: isEqualString
-              right:
-                value:
-                  simple: passive
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: status
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.HAState.hostid
+                    operator: isEqualString
+                    right:
+                      iscontext: true
+                      value:
+                        simple: OriginalActive
+                root: PANOS.HAState
+          operator: isEqualString
+          right:
+            value:
+              simple: passive
+      label: "yes"
     continueonerrortype: ""
     id: "25"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "34"
+      '#default#':
+      - "34"
       "yes":
-        - "52"
+      - "52"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description:
-        True if the device is correctly Passive after the upgrade process
-        has concluded.
+      description: True if the device is correctly Passive after the upgrade process has concluded.
       id: 1800739a-737e-4b26-8c62-95c4e82bd879
       iscommand: false
       name: Is device passive after upgrade?
@@ -629,8 +642,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "27"
+      '#none#':
+      - "27"
     note: false
     quietmode: 0
     scriptarguments:
@@ -646,15 +659,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        "Suspends the active firewall, causing the pair to failover to the
-        passive.\
-
-
-        This task can error in the event that the suspension breaks the
-        connectivity between XSOAR and the firewall - in this case, we continue,
-        as a subsequent task will error if the firewalls are truly unreachable
-        (which would, of course, be very bad)"
+      description: "Suspends the active firewall, causing the pair to failover to the passive.\n\nThis task can error in the event that the suspension breaks the connectivity between XSOAR and the firewall - in this case, we continue, as a subsequent task will error if the firewalls are truly unreachable (which would, of course, be very bad)"
       id: 19464f94-12c5-460c-8773-c3483a5190c4
       iscommand: true
       name: Suspend Passive firewall
@@ -678,8 +683,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "30"
+      '#none#':
+      - "30"
     note: false
     quietmode: 0
     scriptarguments:
@@ -713,8 +718,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "49"
+      '#none#':
+      - "49"
     note: false
     quietmode: 0
     scriptarguments:
@@ -750,8 +755,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "49"
+      '#none#':
+      - "49"
     note: false
     quietmode: 0
     scriptarguments:
@@ -787,8 +792,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "74"
+      '#none#':
+      - "74"
     note: false
     quietmode: 0
     scriptarguments:
@@ -804,9 +809,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Checks the status of the given device, checking whether it's up or
-        down and the operational mode normal
+      description: Checks the status of the given device, checking whether it's up or down and the operational mode normal
       id: d58e6607-5452-42cb-8210-98fe01a59606
       iscommand: true
       name: Unsuspend Passive Firewall
@@ -859,9 +862,9 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "71"
-        - "72"
+      '#none#':
+      - "71"
+      - "72"
     note: false
     quietmode: 0
     scriptarguments:
@@ -874,7 +877,7 @@ tasks:
           accessor: EntryID
           root: File
           transformers:
-            - operator: LastArrayElement
+          - operator: LastArrayElement
       severity:
         simple: "2"
     separatecontext: false
@@ -905,17 +908,15 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "21"
+      '#none#':
+      - "21"
     note: false
     quietmode: 0
     scriptarguments:
       description:
         simple: Upgrade failed.
       details:
-        simple:
-          Upgrade for device pair failed - ${OriginalPassive} failed to return to
-          functional state after reboot.
+        simple: Upgrade for device pair failed - ${OriginalPassive} failed to return to functional state after reboot.
       severity:
         simple: "4"
     separatecontext: false
@@ -946,17 +947,15 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "21"
+      '#none#':
+      - "21"
     note: false
     quietmode: 0
     scriptarguments:
       description:
         simple: Upgrade failed.
       details:
-        simple:
-          Upgrade for device pair failed - ${OriginalActive} failed to return to
-          functional state after reboot.
+        simple: Upgrade for device pair failed - ${OriginalActive} failed to return to functional state after reboot.
       severity:
         simple: "4"
     separatecontext: false
@@ -987,8 +986,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "39"
+      '#none#':
+      - "39"
     note: false
     quietmode: 0
     scriptarguments:
@@ -999,7 +998,7 @@ tasks:
           accessor: EntryID
           root: File
           transformers:
-            - operator: LastArrayElement
+          - operator: LastArrayElement
       severity:
         simple: "0.5"
     separatecontext: false
@@ -1030,8 +1029,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "60"
+      '#none#':
+      - "60"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1067,8 +1066,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "45"
+      '#none#':
+      - "45"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1080,9 +1079,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Checks the status of the given device, checking whether it's up or
-        down and the operational mode normal
+      description: Checks the status of the given device, checking whether it's up or down and the operational mode normal
       id: eee29d90-da4d-490e-89fb-ecf85bbfa311
       iscommand: true
       name: "Get System Status of HA Peer "
@@ -1101,23 +1098,23 @@ tasks:
       }
   "45":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: PANOS.SystemStatus.up
-              operator: isTrue
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.SystemStatus.up
+          operator: isTrue
+      label: "yes"
     continueonerrortype: ""
     id: "45"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "46"
+      '#default#':
+      - "46"
       "yes":
-        - "7"
+      - "7"
     note: false
     quietmode: 0
     separatecontext: false
@@ -1147,30 +1144,28 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc: null
+      bcc:
       body:
-        simple:
-          HA Peer ${PANOS.SystemStatus.hostid} is not up. Do you want to proceed
-          with the upgrade anyway?
-      cc: null
+        simple: HA Peer ${PANOS.SystemStatus.hostid} is not up. Do you want to proceed with the upgrade anyway?
+      cc:
       format: ""
       methods: []
       replyOptions:
-        - "Yes"
-        - "No"
-      subject: null
+      - "Yes"
+      - "No"
+      subject:
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: false
         retriescount: 2
         retriesinterval: 360
-      to: null
+      to:
     nexttasks:
       "No":
-        - "47"
+      - "47"
       "Yes":
-        - "15"
+      - "15"
     note: false
     quietmode: 0
     separatecontext: false
@@ -1232,8 +1227,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "17"
+      '#none#':
+      - "17"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1271,8 +1266,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "20"
+      '#none#':
+      - "20"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1308,8 +1303,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "22"
+      '#none#':
+      - "22"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1345,8 +1340,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "70"
+      '#none#':
+      - "70"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1382,8 +1377,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "12"
+      '#none#':
+      - "12"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1414,27 +1409,27 @@ tasks:
       }
   "60":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: incident.nextupgradeversion
-              operator: isEqualString
-              right:
-                iscontext: true
-                value:
-                  simple: incident.panosnetworkoperationsupgradetargetversion
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.nextupgradeversion
+          operator: isEqualString
+          right:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationsupgradetargetversion
+      label: "yes"
     continueonerrortype: ""
     id: "60"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "64"
+      '#default#':
+      - "64"
       "yes":
-        - "31"
+      - "31"
     note: false
     quietmode: 0
     separatecontext: false
@@ -1458,23 +1453,23 @@ tasks:
       }
   "62":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: incident.upgradeconfirmed
-              operator: isTrue
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.upgradeconfirmed
+          operator: isTrue
+      label: "yes"
     continueonerrortype: ""
     id: "62"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "13"
+      '#default#':
+      - "13"
       "yes":
-        - "73"
+      - "73"
     note: false
     quietmode: 0
     separatecontext: false
@@ -1503,8 +1498,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "73"
+      '#none#':
+      - "73"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1570,8 +1565,8 @@ tasks:
       max: 0
       wait: 1
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1629,61 +1624,28 @@ tasks:
           "y": -360
         }
       }
-  "7":
-    continueonerrortype: ""
-    id: "7"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "28"
-        - "29"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: fc4f185d-9c78-4a22-8433-0224275464fc
-      iscommand: false
-      name: HA Pair process
-      type: title
-      version: -1
-    taskid: fc4f185d-9c78-4a22-8433-0224275464fc
-    timertriggers:
-      - action: start
-        fieldname: deviceupgradetimer
-    type: title
-    view: |-
-      {
-        "position": {
-          "x": 250,
-          "y": 160
-        }
-      }
   "70":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: inputs.reset_ha_topology
-              operator: isEqualString
-              right:
-                value:
-                  simple: "true"
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.reset_ha_topology
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
     continueonerrortype: ""
     id: "70"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "74"
+      '#default#':
+      - "74"
       "yes":
-        - "26"
+      - "26"
     note: false
     quietmode: 0
     separatecontext: false
@@ -1712,8 +1674,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "66"
+      '#none#':
+      - "66"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1754,8 +1716,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "66"
+      '#none#':
+      - "66"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1801,8 +1763,8 @@ tasks:
       max: 100
       wait: 1
     nexttasks:
-      "#none#":
-        - "32"
+      '#none#':
+      - "32"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1835,8 +1797,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "35"
+      '#none#':
+      - "35"
     note: false
     quietmode: 0
     separatecontext: true
@@ -1860,8 +1822,7 @@ tasks:
           "y": 3000
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 7
+version: 8
 view: |-
   {
     "linkLabelsPosition": {},

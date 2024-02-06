@@ -12,8 +12,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     separatecontext: false
@@ -41,8 +41,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "3"
+      '#none#':
+      - "3"
     note: false
     quietmode: 0
     scriptarguments:
@@ -52,8 +52,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Given a target device, creates or updates an existing PAN-OS
-        Network Operations - Device incident.
+      description: Given a target device, creates or updates an existing PAN-OS Network Operations - Device incident.
       id: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
       iscommand: false
       name: Update device incidents
@@ -77,8 +76,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -109,8 +108,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "4"
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     scriptarguments:
@@ -164,8 +163,7 @@ tasks:
           "y": 710
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

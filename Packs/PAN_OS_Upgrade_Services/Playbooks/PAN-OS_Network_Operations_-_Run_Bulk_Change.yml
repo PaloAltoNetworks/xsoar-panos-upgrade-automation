@@ -1,38 +1,37 @@
-description: This playbook runs the fixes identified by GroupIssuesByFields as a
-  looped playbook to ensure the correct objects are updated at all times.
-id: 6abaaf4d-6a84-4f35-8e60-2038625a349a
+description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+id: PAN-OS Network Operations - Run Bulk Change
 inputs:
-  - description: ""
-    key: issue_to_fix
-    playbookInputQuery: null
-    required: false
-    value: {}
-  - description: ""
-    key: new_value
-    playbookInputQuery: null
-    required: false
-    value: {}
-  - description: ""
-    key: object_type
-    playbookInputQuery: null
-    required: false
-    value: {}
-  - description: ""
-    key: attribute_to_update
-    playbookInputQuery: null
-    required: false
-    value: {}
-  - description: ""
-    key: device
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationstarget}
+- description: ""
+  key: issue_to_fix
+  playbookInputQuery:
+  required: false
+  value: {}
+- description: ""
+  key: new_value
+  playbookInputQuery:
+  required: false
+  value: {}
+- description: ""
+  key: object_type
+  playbookInputQuery:
+  required: false
+  value: {}
+- description: ""
+  key: attribute_to_update
+  playbookInputQuery:
+  required: false
+  value: {}
+- description: ""
+  key: device
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
 name: PAN-OS Network Operations - Run Bulk Change
 outputs:
-  - contextPath: PANOS.PanosUpdatedObject
-    description: Updated Objects.
-    type: unknown
+- contextPath: PANOS.PanosUpdatedObject
+  description: Updated Objects.
+  type: unknown
 quiet: true
 starttaskid: "0"
 tasks:
@@ -43,8 +42,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -72,8 +71,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "2"
+      '#none#':
+      - "2"
     note: false
     quietmode: 0
     scriptarguments:
@@ -139,8 +138,7 @@ tasks:
           "y": 380
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

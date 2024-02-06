@@ -1,53 +1,48 @@
-description: "This playbook registers a firewall - based on a provided target IP
-  - in Panorama. It adds the firewall to the support portal, ensures the
-  licenses are retrieved and finally configures it so it can talk to Panorama. "
-id: 82aae2be-6e47-4aa7-8eb8-47508990e6ae
+description: "This playbook registers a firewall - based on a provided target IP - in Panorama. It adds the firewall to the support portal, ensures the licenses are retrieved and finally configures it so it can talk to Panorama. "
+id: PAN-OS Network Operations - Onboard Firewall
 inputs:
-  - description: The IP address of the firewall to be onboarded.
-    key: target_ip
-    playbookInputQuery: null
-    required: true
-    value:
-      simple: ${incident.currentipaddress}
-  - description:
-      This is the admin password that will be set as the first changed
-      password. The admin password can - and should - be changed after
-      onboarding by pushing the actual password via a Panorama template.
-    key: new_admin_password
-    playbookInputQuery: null
-    required: true
-    value:
-      simple: TestPassword!
-  - description: ""
-    key: panorama_ip
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: 192.168.1.145
-  - description: ""
-    key: backup_panorama_ip
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.targetbackuppanoramaserver}
-  - description: ""
-    key: device_group
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.onboardtodevicegroup}
-  - description: ""
-    key: template_stack
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.onboardtotemplatestack}
-  - description: The name of the Deployment key to use for all onboarded devices (10.1+)
-    key: deployment_key_name
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: depoyment_key
+- description: The IP address of the firewall to be onboarded.
+  key: target_ip
+  playbookInputQuery:
+  required: true
+  value:
+    simple: ${incident.currentipaddress}
+- description: This is the admin password that will be set as the first changed password. The admin password can - and should - be changed after onboarding by pushing the actual password via a Panorama template.
+  key: new_admin_password
+  playbookInputQuery:
+  required: true
+  value:
+    simple: TestPassword!
+- description: ""
+  key: panorama_ip
+  playbookInputQuery:
+  required: false
+  value:
+    simple: 192.168.1.145
+- description: ""
+  key: backup_panorama_ip
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.targetbackuppanoramaserver}
+- description: ""
+  key: device_group
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.onboardtodevicegroup}
+- description: ""
+  key: template_stack
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.onboardtotemplatestack}
+- description: The name of the Deployment key to use for all onboarded devices (10.1+)
+  key: deployment_key_name
+  playbookInputQuery:
+  required: false
+  value:
+    simple: depoyment_key
 name: PAN-OS Network Operations - Onboard Firewall
 outputs: []
 starttaskid: "0"
@@ -59,8 +54,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "18"
+      '#none#':
+      - "18"
     note: false
     quietmode: 0
     separatecontext: false
@@ -88,8 +83,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "5"
+      '#none#':
+      - "5"
     note: false
     quietmode: 0
     scriptarguments:
@@ -101,9 +96,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Performs the very first login to PAN-OS NGFW that is currently
-        expecting the username and password to be changed.
+      description: Performs the very first login to PAN-OS NGFW that is currently expecting the username and password to be changed.
       id: 3533cd4f-a4c7-473f-86e2-a2c7cc8de2ca
       iscommand: false
       name: Setup the Firewall over SSH
@@ -120,6 +113,300 @@ tasks:
           "y": 500
         }
       }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7ec5e9dd-ae32-411d-8855-e499ac50e02e
+      iscommand: false
+      name: Configure the Firewall
+      type: title
+      version: -1
+    taskid: 7ec5e9dd-ae32-411d-8855-e499ac50e02e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      backup_panorama_ip:
+        simple: ${inputs.backup_panorama_ip}
+      device_auth_key:
+        simple: ${authkey.response.result.authkey.entry.key}
+      hostname:
+        simple: ${inputs.target_ip}
+      new_hostname:
+        simple: ${incident.newhostname}
+      panorama_ip:
+        simple: ${inputs.panorama_ip}
+      password:
+        simple: ${inputs.new_admin_password}
+      use_dhcp_for_management:
+        simple: "Yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Configures the firewall to point to Panorama and commits the configuraiton.
+      id: e2dd2ff3-ddb8-419d-8d79-b8ac2413825a
+      iscommand: false
+      name: Configures the System Settings of the firewall
+      scriptName: SetupFirewallForOnboarding
+      type: regular
+      version: -1
+    taskid: e2dd2ff3-ddb8-419d-8d79-b8ac2413825a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 820
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      onboardingstatus:
+        simple: Performing First Login
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 3ebe1aa3-c2cf-4cef-833a-49afcfdb8281
+      iscommand: true
+      name: Set Status
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 3ebe1aa3-c2cf-4cef-833a-49afcfdb8281
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 330
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      onboardingstatus:
+        simple: Configuring Panorama
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 0db407e0-02f1-409d-84d6-18d4e402d560
+      iscommand: true
+      name: Set Status
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 0db407e0-02f1-409d-84d6-18d4e402d560
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 660
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5934599f-4058-4943-8f92-49e25cc1072f
+      iscommand: false
+      name: Add Device to Panorama
+      type: title
+      version: -1
+    taskid: 5934599f-4058-4943-8f92-49e25cc1072f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 980
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      onboardingstatus:
+        simple: Adding Device to Panorama
+      serialnumber:
+        simple: ${SetupFirewallForOnboarding.serial}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 1a5aed68-03c1-4c8b-8e6d-8e8b83635c35
+      iscommand: true
+      name: Set Status
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 1a5aed68-03c1-4c8b-8e6d-8e8b83635c35
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1110
+        }
+      }
+  "8":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      cmd:
+        simple: <request><authkey><add><devtype>fw</devtype><serial><member>${SetupFirewallForOnboarding.serial}</member></serial><name>${inputs.deployment_key_name}</name><lifetime>6000</lifetime><count>10</count></add></authkey></request>
+      is_xml:
+        simple: "true"
+      type:
+        simple: op
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Adds the auth key to the firewall. Skipped if Running < 10.1.2 software.
+      id: f7a53f52-84de-41c8-89b0-4fb41c0ee55d
+      iscommand: true
+      name: Add the firewall serial number to the deployment key list of serials
+      script: "|||pan-os"
+      type: regular
+      version: -1
+    taskid: f7a53f52-84de-41c8-89b0-4fb41c0ee55d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1280
+        }
+      }
+  "9":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      cmd:
+        simple: <request><authkey><list>depoyment_key</list></authkey></request>
+      extend-context:
+        simple: authkey=.
+      type:
+        simple: op
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Retrieves the device deployment key, if there is one. "
+      id: cfed9417-6941-4f18-83a3-5bb41283eeca
+      iscommand: true
+      name: Get the device deployment key
+      script: "|||pan-os"
+      type: regular
+      version: -1
+    taskid: cfed9417-6941-4f18-83a3-5bb41283eeca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -20
+        }
+      }
   "11":
     continueonerrortype: ""
     id: "11"
@@ -127,9 +414,9 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "13"
-        - "12"
+      '#none#':
+      - "13"
+      - "12"
     note: false
     quietmode: 0
     scriptarguments:
@@ -169,8 +456,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "14"
+      '#none#':
+      - "14"
     note: false
     quietmode: 0
     scriptarguments:
@@ -210,8 +497,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "14"
+      '#none#':
+      - "14"
     note: false
     quietmode: 0
     scriptarguments:
@@ -251,8 +538,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "15"
+      '#none#':
+      - "15"
     note: false
     quietmode: 0
     scriptarguments:
@@ -288,8 +575,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "16"
+      '#none#':
+      - "16"
     note: false
     quietmode: 0
     scriptarguments:
@@ -299,12 +586,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description:
-        Commits a configuration to the Palo Alto firewall or Panorama,
-        validates if a commit was successful if using polling="true" otherwise
-        does not validate if the commit was successful. Committing to Panorama
-        does not push the configuration to the firewalls. To push the
-        configuration, run the panorama-push-to-device-group command.
+      description: Commits a configuration to the Palo Alto firewall or Panorama, validates if a commit was successful if using polling="true" otherwise does not validate if the commit was successful. Committing to Panorama does not push the configuration to the firewalls. To push the configuration, run the panorama-push-to-device-group command.
       id: 457c3162-626d-4110-8237-2afd127cabed
       iscommand: true
       name: Commit to Panorama
@@ -328,8 +610,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "17"
+      '#none#':
+      - "17"
     note: false
     quietmode: 0
     scriptarguments:
@@ -375,8 +657,8 @@ tasks:
       version: -1
     taskid: 057e6071-6434-4406-8b43-1cc37de8a865
     timertriggers:
-      - action: start
-        fieldname: pauseforpanorama
+    - action: start
+      fieldname: pauseforpanorama
     type: title
     view: |-
       {
@@ -392,8 +674,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "9"
+      '#none#':
+      - "9"
     note: false
     quietmode: 0
     separatecontext: false
@@ -407,8 +689,8 @@ tasks:
       version: -1
     taskid: 21ffa3d4-2397-4914-899a-e77f239d32ec
     timertriggers:
-      - action: start
-        fieldname: onboardingtime
+    - action: start
+      fieldname: onboardingtime
     type: title
     view: |-
       {
@@ -417,303 +699,7 @@ tasks:
           "y": -200
         }
       }
-  "2":
-    continueonerrortype: ""
-    id: "2"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "4"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 7ec5e9dd-ae32-411d-8855-e499ac50e02e
-      iscommand: false
-      name: Configure the Firewall
-      type: title
-      version: -1
-    taskid: 7ec5e9dd-ae32-411d-8855-e499ac50e02e
-    timertriggers: []
-    type: title
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 190
-        }
-      }
-  "3":
-    continueonerrortype: ""
-    id: "3"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "6"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      backup_panorama_ip:
-        simple: ${inputs.backup_panorama_ip}
-      device_auth_key:
-        simple: ${authkey.response.result.authkey.entry.key}
-      hostname:
-        simple: ${inputs.target_ip}
-      new_hostname:
-        simple: ${incident.newhostname}
-      panorama_ip:
-        simple: ${inputs.panorama_ip}
-      password:
-        simple: ${inputs.new_admin_password}
-      use_dhcp_for_management:
-        simple: "Yes"
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Configures the firewall to point to Panorama and commits the
-        configuraiton.
-      id: e2dd2ff3-ddb8-419d-8d79-b8ac2413825a
-      iscommand: false
-      name: Configures the System Settings of the firewall
-      scriptName: SetupFirewallForOnboarding
-      type: regular
-      version: -1
-    taskid: e2dd2ff3-ddb8-419d-8d79-b8ac2413825a
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 820
-        }
-      }
-  "4":
-    continueonerrortype: ""
-    id: "4"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "1"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      onboardingstatus:
-        simple: Performing First Login
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Builtin
-      description: commands.local.cmd.set.incident
-      id: 3ebe1aa3-c2cf-4cef-833a-49afcfdb8281
-      iscommand: true
-      name: Set Status
-      script: Builtin|||setIncident
-      type: regular
-      version: -1
-    taskid: 3ebe1aa3-c2cf-4cef-833a-49afcfdb8281
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 330
-        }
-      }
-  "5":
-    continueonerrortype: ""
-    id: "5"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "3"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      onboardingstatus:
-        simple: Configuring Panorama
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Builtin
-      description: commands.local.cmd.set.incident
-      id: 0db407e0-02f1-409d-84d6-18d4e402d560
-      iscommand: true
-      name: Set Status
-      script: Builtin|||setIncident
-      type: regular
-      version: -1
-    taskid: 0db407e0-02f1-409d-84d6-18d4e402d560
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 660
-        }
-      }
-  "6":
-    continueonerrortype: ""
-    id: "6"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "7"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 5934599f-4058-4943-8f92-49e25cc1072f
-      iscommand: false
-      name: Add Device to Panorama
-      type: title
-      version: -1
-    taskid: 5934599f-4058-4943-8f92-49e25cc1072f
-    timertriggers: []
-    type: title
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 980
-        }
-      }
-  "7":
-    continueonerrortype: ""
-    id: "7"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "8"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      onboardingstatus:
-        simple: Adding Device to Panorama
-      serialnumber:
-        simple: ${SetupFirewallForOnboarding.serial}
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Builtin
-      description: commands.local.cmd.set.incident
-      id: 1a5aed68-03c1-4c8b-8e6d-8e8b83635c35
-      iscommand: true
-      name: Set Status
-      script: Builtin|||setIncident
-      type: regular
-      version: -1
-    taskid: 1a5aed68-03c1-4c8b-8e6d-8e8b83635c35
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 1110
-        }
-      }
-  "8":
-    continueonerror: true
-    continueonerrortype: ""
-    id: "8"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "11"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      cmd:
-        simple: <request><authkey><add><devtype>fw</devtype><serial><member>${SetupFirewallForOnboarding.serial}</member></serial><name>${inputs.deployment_key_name}</name><lifetime>6000</lifetime><count>10</count></add></authkey></request>
-      is_xml:
-        simple: "true"
-      type:
-        simple: op
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Adds the auth key to the firewall. Skipped if Running < 10.1.2 software.
-      id: f7a53f52-84de-41c8-89b0-4fb41c0ee55d
-      iscommand: true
-      name: Add the firewall serial number to the deployment key list of serials
-      script: "|||pan-os"
-      type: regular
-      version: -1
-    taskid: f7a53f52-84de-41c8-89b0-4fb41c0ee55d
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": 1280
-        }
-      }
-  "9":
-    continueonerror: true
-    continueonerrortype: ""
-    id: "9"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      "#none#":
-        - "2"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      cmd:
-        simple: <request><authkey><list>depoyment_key</list></authkey></request>
-      extend-context:
-        simple: authkey=.
-      type:
-        simple: op
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: "Retrieves the device deployment key, if there is one. "
-      id: cfed9417-6941-4f18-83a3-5bb41283eeca
-      iscommand: true
-      name: Get the device deployment key
-      script: "|||pan-os"
-      type: regular
-      version: -1
-    taskid: cfed9417-6941-4f18-83a3-5bb41283eeca
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 450,
-          "y": -20
-        }
-      }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

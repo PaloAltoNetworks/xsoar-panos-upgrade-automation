@@ -4,18 +4,18 @@ description: |-
   It works by first retrieving the administrative domains/device-groups that have upgrades pending, then marking the pause tasks within them complete in batches.
 id: PAN-OS Network Operations - Start Device Upgrades
 inputs:
-  - description: If set to true, will automatically start all device ugprades.
-    key: Automatically Upgrade
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${incident.panosnetworkoperationsautomaticupgradeswitch}
-  - description: List of incident IDs corresponding to device upgrade incidents to start.
-    key: incident_ids
-    playbookInputQuery: null
-    required: false
-    value:
-      simple: ${CreatedIncidentID}
+- description: If set to true, will automatically start all device ugprades.
+  key: Automatically Upgrade
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationsautomaticupgradeswitch}
+- description: List of incident IDs corresponding to device upgrade incidents to start.
+  key: incident_ids
+  playbookInputQuery:
+  required: false
+  value:
+    simple: ${CreatedIncidentID}
 name: PAN-OS Network Operations - Start Device Upgrades
 outputs: []
 starttaskid: "0"
@@ -27,8 +27,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "1"
+      '#none#':
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -51,23 +51,23 @@ tasks:
       }
   "1":
     conditions:
-      - condition:
-          - - left:
-                iscontext: true
-                value:
-                  simple: inputs.Automatically Upgrade
-              operator: isTrue
-        label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Automatically Upgrade
+          operator: isTrue
+      label: "yes"
     continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#default#":
-        - "3"
+      '#default#':
+      - "3"
       "yes":
-        - "2"
+      - "2"
     note: false
     quietmode: 0
     separatecontext: false
@@ -97,8 +97,8 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      "#none#":
-        - "4"
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     scriptarguments:
@@ -135,7 +135,7 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc: null
+      bcc:
       body:
         simple: |-
           Do you want to start all device upgrades?
@@ -145,25 +145,25 @@ tasks:
           ${incident.panosnetworkoperationspanoramaupgradelist}
 
           ${incident.panosnetworkoperationsfirewallupgradelist}
-      cc: null
+      cc:
       format: ""
       methods: []
       replyOptions:
-        - "Yes"
-        - "No"
-      subject: null
+      - "Yes"
+      - "No"
+      subject:
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: true
         retriescount: 2
         retriesinterval: 360
-      to: null
+      to:
     nexttasks:
       "No":
-        - "4"
+      - "4"
       "Yes":
-        - "2"
+      - "2"
     note: false
     quietmode: 0
     separatecontext: false
@@ -216,8 +216,7 @@ tasks:
           "y": 740
         }
       }
-vcShouldKeepItemLegacyProdMachine: false
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},
