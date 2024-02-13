@@ -1,29 +1,30 @@
 description: Retrieves all the details of the PAN-OS Platform and topology.
 id: PAN-OS Network Operations - Platform Management
 inputs:
-- description: If set, completes the given task in the parent playbook. Used to ensure that the parent does not continue until this incident is finished processing.
+- description: If set, completes the given task in the parent playbook. Used to ensure
+    that the parent does not continue until this incident is finished processing.
   key: close_task_id
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value: {}
 - description: Incident that initiated this subplaybook, if any.
   key: parent_incident_id
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value: {}
 name: PAN-OS Network Operations - Platform Management
 outputs:
 - contextPath: PANOS.ShowSystemInfo.Result
-  description: PANOS System Information.
+  description: PANOS System Information
   type: unknown
 - contextPath: PANOS.ShowArp.Result
-  description: PANOS ARP Table Details.
+  description: PANOS ARP Table Details
   type: unknown
 - contextPath: PANOS.ShowRouteSummary.Summary
-  description: PANOS Route table summary.
+  description: PANOS Route table summary
   type: unknown
 - contextPath: PANOS.ShowCounters.Result
-  description: PANOS Global counters.
+  description: PANOS Global counters
   type: unknown
 starttaskid: "0"
 tasks:
@@ -82,6 +83,9 @@ tasks:
       - "14"
     note: false
     quietmode: 0
+    scriptarguments:
+      using: 
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -90,7 +94,7 @@ tasks:
       id: 7b82dc0e-fb2e-4b8a-8016-d59faa8fd845
       iscommand: true
       name: Get System Information
-      script: "|||pan-os-platform-get-system-info"
+      script: '|||pan-os-platform-get-system-info'
       type: regular
       version: -1
     taskid: 7b82dc0e-fb2e-4b8a-8016-d59faa8fd845
@@ -129,7 +133,7 @@ tasks:
       id: 3e089931-b790-4666-8c9b-3753c043f6c7
       iscommand: false
       name: Delete Context
-      scriptName: DeleteContext
+      script: DeleteContext
       type: regular
       version: -1
     taskid: 3e089931-b790-4666-8c9b-3753c043f6c7
@@ -160,6 +164,9 @@ tasks:
       - "14"
     note: false
     quietmode: 0
+    scriptarguments:
+      using: 
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -168,7 +175,7 @@ tasks:
       id: 33b076e6-493f-4fb7-82b1-933ec3e757dc
       iscommand: true
       name: Get ARP Summary
-      script: "|||pan-os-platform-get-arp-tables"
+      script: '|||pan-os-platform-get-arp-tables'
       type: regular
       version: -1
     taskid: 33b076e6-493f-4fb7-82b1-933ec3e757dc
@@ -196,6 +203,9 @@ tasks:
       - "6"
     note: false
     quietmode: 0
+    scriptarguments:
+      using: 
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -204,7 +214,7 @@ tasks:
       id: 3d6b3a59-7868-4112-83e4-9a483c653660
       iscommand: true
       name: Get Route Summary
-      script: "|||pan-os-platform-get-route-summary"
+      script: '|||pan-os-platform-get-route-summary'
       type: regular
       version: -1
     taskid: 3d6b3a59-7868-4112-83e4-9a483c653660
@@ -235,15 +245,19 @@ tasks:
       - "14"
     note: false
     quietmode: 0
+    scriptarguments:
+      using: 
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Gets global counter information from all the PAN-OS firewalls in the topology
+      description: Gets global counter information from all the PAN-OS firewalls in
+        the topology
       id: e18ba719-cea6-44f9-8bcc-c24858e31d7e
       iscommand: true
       name: Get Global Counters
-      script: "|||pan-os-platform-get-global-counters"
+      script: '|||pan-os-platform-get-global-counters'
       type: regular
       version: -1
     taskid: e18ba719-cea6-44f9-8bcc-c24858e31d7e
@@ -312,6 +326,9 @@ tasks:
       - "6"
     note: false
     quietmode: 0
+    scriptarguments:
+      using: 
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -320,7 +337,7 @@ tasks:
       id: 41c4485a-07ff-4705-8643-98161029573e
       iscommand: true
       name: Get All Routes
-      script: "|||pan-os-platform-get-routes"
+      script: '|||pan-os-platform-get-routes'
       type: regular
       version: -1
     taskid: 41c4485a-07ff-4705-8643-98161029573e
@@ -356,7 +373,7 @@ tasks:
       id: 4f08206a-fb0b-42fd-8cfa-5052f15f5f6d
       iscommand: false
       name: PAN-OS Network Operations - Incident Callback
-      playbookName: PAN-OS Network Operations - Incident Callback
+      playbookId: PAN-OS Network Operations - Incident Callback
       type: playbook
       version: -1
     taskid: 4f08206a-fb0b-42fd-8cfa-5052f15f5f6d
@@ -465,15 +482,19 @@ tasks:
       - "6"
     note: false
     quietmode: 0
+    scriptarguments:
+      using: 
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Retrieves all BGP peer information from the PAN-OS firewalls in the topology.
+      description: Retrieves all BGP peer information from the PAN-OS firewalls in
+        the topology.
       id: f5344752-ddc0-4893-8fdb-84f074c5751b
       iscommand: true
       name: Get BGP Peers
-      script: "|||pan-os-platform-get-bgp-peers"
+      script: '|||pan-os-platform-get-bgp-peers'
       type: regular
       version: -1
     taskid: f5344752-ddc0-4893-8fdb-84f074c5751b
@@ -508,7 +529,7 @@ tasks:
       id: ba409d6c-3a8c-4d13-82a0-64f652f1be5b
       iscommand: false
       name: Sleep to ensure everything is caught up
-      scriptName: Sleep
+      script: Sleep
       type: regular
       version: -1
     taskid: ba409d6c-3a8c-4d13-82a0-64f652f1be5b
@@ -575,7 +596,7 @@ tasks:
       id: ea1078ec-3661-4710-8df4-45949a6ec9f9
       iscommand: false
       name: Create Or Update Incidents
-      scriptName: CreateOrUpdateDeviceIncident
+      script: CreateOrUpdateDeviceIncident
       type: regular
       version: -1
     taskid: ea1078ec-3661-4710-8df4-45949a6ec9f9
@@ -646,7 +667,7 @@ tasks:
           "y": -120
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

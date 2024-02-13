@@ -3,19 +3,19 @@ id: PAN-OS Network Operations - Device Upgrade
 inputs:
 - description: Target Firewall for upgrade
   key: target_device
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationstarget}
 - description: Peer firewall (if any)
   key: peer_device
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
 - description: Target version of upgrade
   key: target_version
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationsupgradetargetversion}
@@ -68,7 +68,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#default#':
-      - "59"
+      - "63"
       "yes":
       - "41"
     note: false
@@ -101,7 +101,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "59"
+      - "63"
     note: false
     quietmode: 0
     scriptarguments:
@@ -187,7 +187,8 @@ tasks:
     skipunavailable: false
     task:
       brand: Builtin
-      description: Associates the device indicator to this incident; required when this is run as part of a batch upgrade
+      description: Associates the device indicator to this incident; required when
+        this is run as part of a batch upgrade
       id: 80a21366-7493-46ca-8458-697222d7cbb9
       iscommand: true
       name: Associate Device Indicator to this Incident
@@ -227,11 +228,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Requests the available software images from a firewall, filters them, then prompts the user to select the version.
+      description: Requests the available software images from a firewall, filters
+        them, then prompts the user to select the version.
       id: a8f05f7f-04a2-4bd9-83e7-dfe58d21b2a6
       iscommand: false
       name: PAN-OS Network Operations - Filter and Select Available Software Images
-      playbookName: PAN-OS Network Operations - Filter and Select Available Software Images
+      playbookId: PAN-OS Network Operations - Filter and Select Available Software Images
       type: playbook
       version: -1
     taskid: a8f05f7f-04a2-4bd9-83e7-dfe58d21b2a6
@@ -241,7 +243,7 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -2140
+          "y": -1720
         }
       }
   "61":
@@ -268,7 +270,7 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -1790
+          "y": -1370
         }
       }
   "62":
@@ -302,7 +304,7 @@ tasks:
       id: e0c5f1f3-dfea-4556-8ce3-11740cbda7de
       iscommand: false
       name: PAN-OS Network Operations - Device Upgrade Loop
-      playbookName: PAN-OS Network Operations - Device Upgrade Loop
+      playbookId: PAN-OS Network Operations - Device Upgrade Loop
       type: playbook
       version: -1
     taskid: e0c5f1f3-dfea-4556-8ce3-11740cbda7de
@@ -312,16 +314,91 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -1970
+          "y": -1550
         }
       }
-version: 7
+  "63":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationspanoramainstance
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "63"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "64"
+      "yes":
+      - "59"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 17c8bcef-9e0a-48dd-86e4-81fd700ae2e9
+      iscommand: false
+      name: Is Panorama Instance Set?
+      type: condition
+      version: -1
+    taskid: 17c8bcef-9e0a-48dd-86e4-81fd700ae2e9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": -2150
+        }
+      }
+  "64":
+    continueonerrortype: ""
+    id: "64"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "59"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This will set the Panorama instance field (panosnetworkoperationspanoramainstance)
+        if it isn''t already set.  '
+      id: d9814a7d-ab6a-4a7d-8a00-4835e6f58a06
+      iscommand: false
+      name: Set Panorama Instance
+      script: SetPanoramaInstance
+      type: regular
+      version: -1
+    taskid: d9814a7d-ab6a-4a7d-8a00-4835e6f58a06
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": -1930
+        }
+      }
+version: 8
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 1525,
+        "height": 1945,
         "width": 610,
         "x": 520,
         "y": -3250

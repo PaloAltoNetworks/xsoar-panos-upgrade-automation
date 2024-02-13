@@ -3,7 +3,7 @@ id: PAN-OS Network Operations - Check if Device Onboarded
 inputs:
 - description: Serial number of FW to check.
   key: serial
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value:
     simple: ${incident.serialnumber}
@@ -62,7 +62,7 @@ tasks:
       id: cbb8a93d-fc84-48fc-80ba-ec09d087def6
       iscommand: false
       name: Get Device By Serial
-      scriptName: GetIndicatorFieldsByQuery
+      script: GetIndicatorFieldsByQuery
       type: regular
       version: -1
     taskid: cbb8a93d-fc84-48fc-80ba-ec09d087def6
@@ -280,7 +280,7 @@ tasks:
           "y": 770
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

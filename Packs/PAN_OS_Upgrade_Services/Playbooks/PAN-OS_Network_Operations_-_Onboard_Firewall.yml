@@ -1,45 +1,49 @@
-description: "This playbook registers a firewall - based on a provided target IP - in Panorama. It adds the firewall to the support portal, ensures the licenses are retrieved and finally configures it so it can talk to Panorama. "
+description: 'This playbook registers a firewall - based on a provided target IP -
+  in Panorama. It adds the firewall to the support portal, ensures the licenses are
+  retrieved and finally configures it so it can talk to Panorama. '
 id: PAN-OS Network Operations - Onboard Firewall
 inputs:
 - description: The IP address of the firewall to be onboarded.
   key: target_ip
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value:
     simple: ${incident.currentipaddress}
-- description: This is the admin password that will be set as the first changed password. The admin password can - and should - be changed after onboarding by pushing the actual password via a Panorama template.
+- description: This is the admin password that will be set as the first changed password.
+    The admin password can - and should - be changed after onboarding by pushing the
+    actual password via a Panorama template.
   key: new_admin_password
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value:
     simple: TestPassword!
 - description: ""
   key: panorama_ip
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: 192.168.1.145
 - description: ""
   key: backup_panorama_ip
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.targetbackuppanoramaserver}
 - description: ""
   key: device_group
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.onboardtodevicegroup}
 - description: ""
   key: template_stack
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.onboardtotemplatestack}
 - description: The name of the Deployment key to use for all onboarded devices (10.1+)
   key: deployment_key_name
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: depoyment_key
@@ -55,7 +59,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "18"
+      - "19"
     note: false
     quietmode: 0
     separatecontext: false
@@ -73,7 +77,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": -370
+          "y": -690
         }
       }
   "1":
@@ -96,7 +100,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Performs the very first login to PAN-OS NGFW that is currently expecting the username and password to be changed.
+      description: Performs the very first login to PAN-OS NGFW that is currently
+        expecting the username and password to be changed.
       id: 3533cd4f-a4c7-473f-86e2-a2c7cc8de2ca
       iscommand: false
       name: Setup the Firewall over SSH
@@ -177,7 +182,7 @@ tasks:
       id: e2dd2ff3-ddb8-419d-8d79-b8ac2413825a
       iscommand: false
       name: Configures the System Settings of the firewall
-      scriptName: SetupFirewallForOnboarding
+      script: SetupFirewallForOnboarding
       type: regular
       version: -1
     taskid: e2dd2ff3-ddb8-419d-8d79-b8ac2413825a
@@ -346,15 +351,18 @@ tasks:
         simple: "true"
       type:
         simple: op
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Adds the auth key to the firewall. Skipped if Running < 10.1.2 software.
+      description: Adds the auth key to the firewall. Skipped if Running < 10.1.2
+        software.
       id: f7a53f52-84de-41c8-89b0-4fb41c0ee55d
       iscommand: true
       name: Add the firewall serial number to the deployment key list of serials
-      script: "|||pan-os"
+      script: '|||pan-os'
       type: regular
       version: -1
     taskid: f7a53f52-84de-41c8-89b0-4fb41c0ee55d
@@ -386,15 +394,17 @@ tasks:
         simple: authkey=.
       type:
         simple: op
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: "Retrieves the device deployment key, if there is one. "
+      description: 'Retrieves the device deployment key, if there is one. '
       id: cfed9417-6941-4f18-83a3-5bb41283eeca
       iscommand: true
       name: Get the device deployment key
-      script: "|||pan-os"
+      script: '|||pan-os'
       type: regular
       version: -1
     taskid: cfed9417-6941-4f18-83a3-5bb41283eeca
@@ -426,6 +436,8 @@ tasks:
         simple: <entry name='${SetupFirewallForOnboarding.serial}'/>
       type:
         simple: config
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
       xpath:
         simple: /config/mgt-config/devices
     separatecontext: false
@@ -436,7 +448,7 @@ tasks:
       id: bf12ed73-7b73-4ea7-8257-b42a8a9484a0
       iscommand: true
       name: Add to the list of managed devices
-      script: "|||pan-os"
+      script: '|||pan-os'
       type: regular
       version: -1
     taskid: bf12ed73-7b73-4ea7-8257-b42a8a9484a0
@@ -467,6 +479,8 @@ tasks:
         simple: <entry name='${SetupFirewallForOnboarding.serial}'/>
       type:
         simple: config
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
       xpath:
         simple: /config/devices/entry[@name='localhost.localdomain']/template-stack/entry[@name='${inputs.template_stack}']/devices
     separatecontext: false
@@ -477,7 +491,7 @@ tasks:
       id: 7eefee41-a51f-4a01-8ddc-18ac34caa54d
       iscommand: true
       name: Add to the Template-Stack
-      script: "|||pan-os"
+      script: '|||pan-os'
       type: regular
       version: -1
     taskid: 7eefee41-a51f-4a01-8ddc-18ac34caa54d
@@ -508,6 +522,8 @@ tasks:
         simple: <entry name='${SetupFirewallForOnboarding.serial}'/>
       type:
         simple: config
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
       xpath:
         simple: /config/devices/entry[@name='localhost.localdomain']/device-group/entry[@name='${inputs.device_group}']/devices
     separatecontext: false
@@ -518,7 +534,7 @@ tasks:
       id: ea616583-d80e-4aa0-8fc6-0bf635344f15
       iscommand: true
       name: Add to the device-group
-      script: "|||pan-os"
+      script: '|||pan-os'
       type: regular
       version: -1
     taskid: ea616583-d80e-4aa0-8fc6-0bf635344f15
@@ -582,15 +598,21 @@ tasks:
     scriptarguments:
       polling:
         simple: "true"
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Commits a configuration to the Palo Alto firewall or Panorama, validates if a commit was successful if using polling="true" otherwise does not validate if the commit was successful. Committing to Panorama does not push the configuration to the firewalls. To push the configuration, run the panorama-push-to-device-group command.
+      description: Commits a configuration to the Palo Alto firewall or Panorama,
+        validates if a commit was successful if using polling="true" otherwise does
+        not validate if the commit was successful. Committing to Panorama does not
+        push the configuration to the firewalls. To push the configuration, run the
+        panorama-push-to-device-group command.
       id: 457c3162-626d-4110-8237-2afd127cabed
       iscommand: true
       name: Commit to Panorama
-      script: "|||pan-os-commit"
+      script: '|||pan-os-commit'
       type: regular
       version: -1
     taskid: 457c3162-626d-4110-8237-2afd127cabed
@@ -696,19 +718,94 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": -200
+          "y": -180
         }
       }
-version: 6
+  "19":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationspanoramainstance
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "20"
+      "yes":
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 347f53a1-ff9d-4952-8a08-f38d47127ca8
+      iscommand: false
+      name: Is Panorama Instance Set?
+      type: condition
+      version: -1
+    taskid: 347f53a1-ff9d-4952-8a08-f38d47127ca8
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -550
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This will set the Panorama instance field (panosnetworkoperationspanoramainstance)
+        if it isn''t already set.  '
+      id: 7094958c-fcb2-4bc2-8d64-a6fc25c026fd
+      iscommand: false
+      name: Set Panorama Instance
+      script: SetPanoramaInstance
+      type: regular
+      version: -1
+    taskid: 7094958c-fcb2-4bc2-8d64-a6fc25c026fd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -370
+        }
+      }
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 2745,
+        "height": 3065,
         "width": 800,
         "x": 240,
-        "y": -370
+        "y": -690
       }
     }
   }

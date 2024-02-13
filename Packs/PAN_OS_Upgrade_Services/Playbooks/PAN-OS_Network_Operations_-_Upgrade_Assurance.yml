@@ -1,9 +1,11 @@
-description: Runs a series of tests based on the upgrade assurance commands and prompts if any fail - also generates reports and other information that is useful in the assurance process.
+description: Runs a series of tests based on the upgrade assurance commands and prompts
+  if any fail - also generates reports and other information that is useful in the
+  assurance process.
 id: PAN-OS Network Operations - Upgrade Assurance
 inputs:
 - description: Target firewall - helpful if running this playbook in a loop.
   key: target
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value:
     simple: ${incident.panosnetworkoperationstarget}
@@ -75,7 +77,8 @@ tasks:
   "7":
     continueonerrortype: ""
     form:
-      description: Mark complete when you're ready to take the second snapshot and run the comparsion between the two.
+      description: Mark complete when you're ready to take the second snapshot and
+        run the comparsion between the two.
       expired: false
       questions:
       - defaultrows: []
@@ -104,10 +107,11 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
+      bcc: null
       body:
-        simple: "The assurance process is paused, waiting for manual confirmation to take the second snapshot and run the comparsion on firewall ${incident.panosnetworkoperationsupgradetargetfirewall}. "
-      cc:
+        simple: 'The assurance process is paused, waiting for manual confirmation
+          to take the second snapshot and run the comparsion on firewall ${incident.panosnetworkoperationsupgradetargetfirewall}. '
+      cc: null
       format: ""
       methods:
       - email
@@ -206,7 +210,7 @@ tasks:
       id: 280cd7cd-a56d-424f-8aad-dbf2b88c7476
       iscommand: false
       name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
-      playbookName: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
+      playbookId: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
       type: playbook
       version: -1
     taskid: 280cd7cd-a56d-424f-8aad-dbf2b88c7476
@@ -234,7 +238,7 @@ tasks:
       id: 5bd44314-3cc0-4a9c-8da5-a237fde0d080
       iscommand: false
       name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
-      playbookName: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
+      playbookId: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
       type: playbook
       version: -1
     taskid: 5bd44314-3cc0-4a9c-8da5-a237fde0d080
@@ -247,7 +251,7 @@ tasks:
           "y": 880
         }
       }
-version: 28
+version: 29
 view: |-
   {
     "linkLabelsPosition": {},

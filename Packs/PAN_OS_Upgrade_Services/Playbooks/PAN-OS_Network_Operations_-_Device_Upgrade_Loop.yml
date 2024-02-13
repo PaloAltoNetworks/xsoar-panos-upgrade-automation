@@ -1,27 +1,29 @@
-description: Upgrades a single or HA pair of PAN-OS firewalls, supports running as a subplaybook and be looped over to complete an entire upgrade path.
+description: Upgrades a single or HA pair of PAN-OS firewalls, supports running as
+  a subplaybook and be looped over to complete an entire upgrade path.
 id: PAN-OS Network Operations - Device Upgrade Loop
 inputs:
 - description: Target Firewall for upgrade
   key: target_device
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationstarget}
 - description: Peer firewall (if any)
   key: peer_device
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
 - description: Target version of upgrade
   key: target_version
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationsupgradetargetversion}
-- description: If "true", HA topology will be reverted to the original active and passive devices after upgrade.
+- description: If "true", HA topology will be reverted to the original active and
+    passive devices after upgrade.
   key: reset_ha_topology
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: "false"
@@ -175,7 +177,7 @@ tasks:
       id: df45f6c5-505d-49d2-8e83-1ee22f3f496c
       iscommand: false
       name: PAN-OS Network Operations - Single Device Upgrade
-      playbookName: PAN-OS Network Operations - Single Device Upgrade
+      playbookId: PAN-OS Network Operations - Single Device Upgrade
       type: playbook
       version: -1
     taskid: df45f6c5-505d-49d2-8e83-1ee22f3f496c
@@ -289,7 +291,7 @@ tasks:
       id: 3173aefa-9b52-4ed1-847c-38aea55fbb6c
       iscommand: false
       name: PAN-OS Network Operations - Single Device Upgrade
-      playbookName: PAN-OS Network Operations - Single Device Upgrade
+      playbookId: PAN-OS Network Operations - Single Device Upgrade
       type: playbook
       version: -1
     taskid: 3173aefa-9b52-4ed1-847c-38aea55fbb6c
@@ -316,15 +318,18 @@ tasks:
     scriptarguments:
       device_filter_string:
         simple: ${OriginalPassive}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Get the HA state and assocaited details from the given device and any other details.
+      description: Gets the HA state and associated details from the given device
+        and any other details.
       id: 40f59a59-e822-499a-89d9-bd2e6fd64375
       iscommand: true
       name: Get HA State
-      script: "|||pan-os-platform-get-ha-state"
+      script: '|||pan-os-platform-get-ha-state'
       type: regular
       version: -1
     taskid: 40f59a59-e822-499a-89d9-bd2e6fd64375
@@ -377,7 +382,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: True if the device is correctly Passive after the upgrade process has concluded.
+      description: True if the device is correctly Passive after the upgrade process
+        has concluded.
       id: a200d618-b383-4508-866c-0475d3bed529
       iscommand: false
       name: Is device passive after upgrade?
@@ -414,15 +420,18 @@ tasks:
         simple: suspend
       target:
         simple: ${OriginalActive}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: "Suspends the active firewall, causing the pair to failover to the secondary.\n\nThis task can error in the event that the suspension breaks the connectivity between XSOAR and the firewall - in this case, we continue, as a subsequent task will error if the firewalls are truly unreachable (which would, of course, be very bad)"
+      description: Checks the status of the given device, checking whether it's up
+        or down and if the operational mode is normal.
       id: 3fbde04f-1a0d-42aa-80f6-dcd3ca187e83
       iscommand: true
       name: Suspend Active firewall
-      script: "|||pan-os-platform-update-ha-state"
+      script: '|||pan-os-platform-update-ha-state'
       type: regular
       version: -1
     taskid: 3fbde04f-1a0d-42aa-80f6-dcd3ca187e83
@@ -454,7 +463,7 @@ tasks:
       id: 6d032bd8-4ff4-48ea-86b1-e904a663a258
       iscommand: false
       name: Error - Wrong HA mode.
-      scriptName: PrintErrorEntry
+      script: PrintErrorEntry
       type: regular
       version: -1
     taskid: 6d032bd8-4ff4-48ea-86b1-e904a663a258
@@ -496,7 +505,7 @@ tasks:
       id: 9bceb032-9135-436c-8ac5-e1d81c924697
       iscommand: false
       name: PAN-OS Network Operations - Single Device Upgrade
-      playbookName: PAN-OS Network Operations - Single Device Upgrade
+      playbookId: PAN-OS Network Operations - Single Device Upgrade
       type: playbook
       version: -1
     taskid: 9bceb032-9135-436c-8ac5-e1d81c924697
@@ -531,7 +540,7 @@ tasks:
       id: e96a7ca4-afb4-4d86-868e-700e6d665336
       iscommand: false
       name: Sleep for failover process to complete safely
-      scriptName: Sleep
+      script: Sleep
       type: regular
       version: -1
     taskid: e96a7ca4-afb4-4d86-868e-700e6d665336
@@ -558,15 +567,18 @@ tasks:
     scriptarguments:
       device_filter_string:
         simple: ${OriginalActive}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Get the HA state and assocaited details from the given device and any other details.
+      description: Gets the HA state and associated details from the given device
+        and any other details.
       id: ce7b6ff1-3c66-44b3-87e6-df4af6b355ad
       iscommand: true
       name: Get HA State
-      script: "|||pan-os-platform-get-ha-state"
+      script: '|||pan-os-platform-get-ha-state'
       type: regular
       version: -1
     taskid: ce7b6ff1-3c66-44b3-87e6-df4af6b355ad
@@ -619,7 +631,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: True if the device is correctly Passive after the upgrade process has concluded.
+      description: True if the device is correctly Passive after the upgrade process
+        has concluded.
       id: 1800739a-737e-4b26-8c62-95c4e82bd879
       iscommand: false
       name: Is device passive after upgrade?
@@ -655,15 +668,18 @@ tasks:
         simple: suspend
       target:
         simple: ${OriginalPassive}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: "Suspends the active firewall, causing the pair to failover to the passive.\n\nThis task can error in the event that the suspension breaks the connectivity between XSOAR and the firewall - in this case, we continue, as a subsequent task will error if the firewalls are truly unreachable (which would, of course, be very bad)"
+      description: Checks the status of the given device, checking whether it's up
+        or down and if the operational mode is normal.
       id: 19464f94-12c5-460c-8773-c3483a5190c4
       iscommand: true
       name: Suspend Passive firewall
-      script: "|||pan-os-platform-update-ha-state"
+      script: '|||pan-os-platform-update-ha-state'
       type: regular
       version: -1
     taskid: 19464f94-12c5-460c-8773-c3483a5190c4
@@ -698,7 +714,7 @@ tasks:
       id: c1a6f88f-9cae-4a54-815a-e8a195e0723f
       iscommand: false
       name: Sleep for failover process to complete safely
-      scriptName: Sleep
+      script: Sleep
       type: regular
       version: -1
     taskid: c1a6f88f-9cae-4a54-815a-e8a195e0723f
@@ -735,7 +751,7 @@ tasks:
       id: 0e2d68dd-f3ea-48dd-8f5b-7f672bebb1c6
       iscommand: false
       name: Set Original Active
-      scriptName: Set
+      script: Set
       type: regular
       version: -1
     taskid: 0e2d68dd-f3ea-48dd-8f5b-7f672bebb1c6
@@ -772,7 +788,7 @@ tasks:
       id: 0b3060af-6a4d-42af-8f39-8bfb8053dbf3
       iscommand: false
       name: Set Original Passive
-      scriptName: Set
+      script: Set
       type: regular
       version: -1
     taskid: 0b3060af-6a4d-42af-8f39-8bfb8053dbf3
@@ -805,15 +821,18 @@ tasks:
         simple: functional
       target:
         simple: ${OriginalPassive}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Checks the status of the given device, checking whether it's up or down and the operational mode normal
+      description: Checks the status of the given device, checking whether it's up
+        or down and if the operational mode is normal.
       id: d58e6607-5452-42cb-8210-98fe01a59606
       iscommand: true
       name: Unsuspend Passive Firewall
-      script: "|||pan-os-platform-update-ha-state"
+      script: '|||pan-os-platform-update-ha-state'
       type: regular
       version: -1
     taskid: d58e6607-5452-42cb-8210-98fe01a59606
@@ -916,7 +935,8 @@ tasks:
       description:
         simple: Upgrade failed.
       details:
-        simple: Upgrade for device pair failed - ${OriginalPassive} failed to return to functional state after reboot.
+        simple: Upgrade for device pair failed - ${OriginalPassive} failed to return
+          to functional state after reboot.
       severity:
         simple: "4"
     separatecontext: false
@@ -955,7 +975,8 @@ tasks:
       description:
         simple: Upgrade failed.
       details:
-        simple: Upgrade for device pair failed - ${OriginalActive} failed to return to functional state after reboot.
+        simple: Upgrade for device pair failed - ${OriginalActive} failed to return
+          to functional state after reboot.
       severity:
         simple: "4"
     separatecontext: false
@@ -1046,7 +1067,7 @@ tasks:
       id: 8d4caf98-7c61-4184-8b47-9ce217f51084
       iscommand: false
       name: Sleep 1min to wait for all devices to connect
-      scriptName: Sleep
+      script: Sleep
       type: regular
       version: -1
     taskid: 8d4caf98-7c61-4184-8b47-9ce217f51084
@@ -1075,15 +1096,18 @@ tasks:
         simple: ${PANOS.HAState.peer}
       target:
         simple: ${PassiveDevice}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Checks the status of the given device, checking whether it's up or down and the operational mode normal
+      description: Checks the status of the given device, checking whether it's up
+        or down and if the operational mode is normal.
       id: eee29d90-da4d-490e-89fb-ecf85bbfa311
       iscommand: true
-      name: "Get System Status of HA Peer "
-      script: "|||pan-os-platform-get-system-status"
+      name: 'Get System Status of HA Peer '
+      script: '|||pan-os-platform-get-system-status'
       type: regular
       version: -1
     taskid: eee29d90-da4d-490e-89fb-ecf85bbfa311
@@ -1144,23 +1168,24 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
+      bcc: null
       body:
-        simple: HA Peer ${PANOS.SystemStatus.hostid} is not up. Do you want to proceed with the upgrade anyway?
-      cc:
+        simple: HA Peer ${PANOS.SystemStatus.hostid} is not up. Do you want to proceed
+          with the upgrade anyway?
+      cc: null
       format: ""
       methods: []
       replyOptions:
       - "Yes"
       - "No"
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: false
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       "No":
       - "47"
@@ -1579,7 +1604,7 @@ tasks:
       id: 3ff0bc38-56f7-48d9-868a-af76ae34e0aa
       iscommand: false
       name: PAN-OS Network Operations - Get HA Pair Status
-      playbookName: PAN-OS Network Operations - Get HA Pair Status
+      playbookId: PAN-OS Network Operations - Get HA Pair Status
       type: playbook
       version: -1
     taskid: 3ff0bc38-56f7-48d9-868a-af76ae34e0aa
@@ -1611,7 +1636,7 @@ tasks:
       id: c5a36cba-6043-4b6f-8524-8d19fe1ea09c
       iscommand: false
       name: Error - Active/active firewall pair unsupported.
-      scriptName: PrintErrorEntry
+      script: PrintErrorEntry
       type: regular
       version: -1
     taskid: c5a36cba-6043-4b6f-8524-8d19fe1ea09c
@@ -1696,7 +1721,7 @@ tasks:
       id: 5a7e5bd4-cf9d-498f-85a3-80412b226563
       iscommand: false
       name: Clear out old keys
-      scriptName: DeleteContext
+      script: DeleteContext
       type: regular
       version: -1
     taskid: 5a7e5bd4-cf9d-498f-85a3-80412b226563
@@ -1738,7 +1763,7 @@ tasks:
       id: 3ba7858f-17c9-4fc8-8803-f979a27317ca
       iscommand: false
       name: Clear out old keys
-      scriptName: DeleteContext
+      script: DeleteContext
       type: regular
       version: -1
     taskid: 3ba7858f-17c9-4fc8-8803-f979a27317ca
@@ -1777,7 +1802,7 @@ tasks:
       id: 22115141-3f26-4dd2-8bd0-f9b779e9670a
       iscommand: false
       name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
-      playbookName: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
+      playbookId: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
       type: playbook
       version: -1
     taskid: 22115141-3f26-4dd2-8bd0-f9b779e9670a
@@ -1809,7 +1834,7 @@ tasks:
       id: 48b44133-6ecd-4748-87f1-44231927e6a0
       iscommand: false
       name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
-      playbookName: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
+      playbookId: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
       type: playbook
       version: -1
     taskid: 48b44133-6ecd-4748-87f1-44231927e6a0
@@ -1822,7 +1847,7 @@ tasks:
           "y": 3000
         }
       }
-version: 8
+version: 9
 view: |-
   {
     "linkLabelsPosition": {},

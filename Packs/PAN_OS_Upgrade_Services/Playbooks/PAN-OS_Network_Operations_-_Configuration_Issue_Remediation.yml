@@ -3,19 +3,20 @@ id: PAN-OS Network Operations - Configuration Issue Remediation
 inputs:
 - description: The TIM query to filter for issues.
   key: issue_query
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value:
     simple: ${incident.issuequery}
 - description: If present, will be used whenever log forwarding needs to be enabled.
   key: default_log_forwarding_profile
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.defaultlogforwardingprofile}
-- description: If present, will be used whenever a security profile group needs to be set.
+- description: If present, will be used whenever a security profile group needs to
+    be set.
   key: default_security_profile_group
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.defaultsecurityprofilegroup}
@@ -31,7 +32,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "1"
+      - "41"
     note: false
     quietmode: 0
     separatecontext: false
@@ -49,7 +50,7 @@ tasks:
       {
         "position": {
           "x": 50,
-          "y": 20
+          "y": -380
         }
       }
   "1":
@@ -74,7 +75,7 @@ tasks:
       id: 48474924-d6b0-40a0-84a6-2e19e5a5dbb4
       iscommand: false
       name: Get Indicators By the query
-      scriptName: GetIndicatorFieldsByQuery
+      script: GetIndicatorFieldsByQuery
       type: regular
       version: -1
     taskid: 48474924-d6b0-40a0-84a6-2e19e5a5dbb4
@@ -260,11 +261,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
       id: a6d509bd-4744-4dea-899e-4653a05b78b1
       iscommand: false
       name: Group
-      scriptName: GroupIssuesByFields
+      script: GroupIssuesByFields
       type: regular
       version: -1
     taskid: a6d509bd-4744-4dea-899e-4653a05b78b1
@@ -307,11 +309,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
       id: a98a8437-27f0-48c8-8016-6b401e7353cf
       iscommand: false
       name: PAN-OS Network Operations - Run Bulk Change
-      playbookName: PAN-OS Network Operations - Run Bulk Change
+      playbookId: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       version: -1
     taskid: a98a8437-27f0-48c8-8016-6b401e7353cf
@@ -369,11 +372,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Commit the PAN-OS Panorama or Firewall configuration.\nIf specified as Panorama, it also pushes the Policies to the specified Device Group in the instance.
+      description: Commit the PAN-OS Panorama or Firewall configuration.\nIf specified
+        as Panorama, it also pushes the Policies to the specified Device Group in
+        the instance.
       id: ed0d2730-7443-44b7-88b6-b10e692f70fd
       iscommand: false
       name: PAN-OS Commit Configuration
-      playbookName: PAN-OS Commit Configuration
+      playbookId: PAN-OS Commit Configuration
       type: playbook
       version: -1
     taskid: ed0d2730-7443-44b7-88b6-b10e692f70fd
@@ -443,7 +448,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: "Mark this task complete to commit the changes made to Panorama and push them to the device groups. "
+      description: 'Mark this task complete to commit the changes made to Panorama
+        and push them to the device groups. '
       id: e0fd1b78-0aa1-438b-8e06-eba4403a03ef
       iscommand: false
       name: Mark Complete to Commit the changes
@@ -561,11 +567,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
       id: dba3dbd0-299f-412f-87d8-e7ab57b28509
       iscommand: false
       name: Group
-      scriptName: GroupIssuesByFields
+      script: GroupIssuesByFields
       type: regular
       version: -1
     taskid: dba3dbd0-299f-412f-87d8-e7ab57b28509
@@ -608,11 +615,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
       id: 8c8e6b27-385a-4f26-8f63-5f81566eca0f
       iscommand: false
       name: PAN-OS Network Operations - Run Bulk Change
-      playbookName: PAN-OS Network Operations - Run Bulk Change
+      playbookId: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       version: -1
     taskid: 8c8e6b27-385a-4f26-8f63-5f81566eca0f
@@ -678,15 +686,20 @@ tasks:
         simple: ${GetIndicatorFieldsByQuery.issueaffecteddevice}
       object_type:
         simple: LogForwardingProfile
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
       id: 79dce63e-b291-4b3a-8313-66c5d29821f5
       iscommand: true
       name: Get Log Forwarding Profiles
-      script: "|||pan-os-config-get-object"
+      script: '|||pan-os-config-get-object'
       type: regular
       version: -1
     taskid: 79dce63e-b291-4b3a-8313-66c5d29821f5
@@ -773,7 +786,7 @@ tasks:
             - args:
                 separator:
                   value:
-                    simple: ", "
+                    simple: ', '
               operator: join
         options: []
         optionsarg: []
@@ -790,19 +803,19 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
-      body:
-      cc:
+      bcc: null
+      body: null
+      cc: null
       format: ""
       methods: []
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: true
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       '#none#':
       - "17"
@@ -960,11 +973,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
       id: 39f88271-f908-4f19-818e-f241137f7675
       iscommand: false
       name: Group
-      scriptName: GroupIssuesByFields
+      script: GroupIssuesByFields
       type: regular
       version: -1
     taskid: 39f88271-f908-4f19-818e-f241137f7675
@@ -1007,11 +1021,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
       id: a85986f3-f380-41af-8cac-3b08658cd4e5
       iscommand: false
       name: PAN-OS Network Operations - Run Bulk Change
-      playbookName: PAN-OS Network Operations - Run Bulk Change
+      playbookId: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       version: -1
     taskid: a85986f3-f380-41af-8cac-3b08658cd4e5
@@ -1040,15 +1055,20 @@ tasks:
         simple: ${GetIndicatorFieldsByQuery.issueaffecteddevice}
       object_type:
         simple: SecurityProfileGroup
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
       id: 148ebc37-8216-4ecd-82fd-4cc30ed1255b
       iscommand: true
       name: Get Security Profile Groups
-      script: "|||pan-os-config-get-object"
+      script: '|||pan-os-config-get-object'
       type: regular
       version: -1
     taskid: 148ebc37-8216-4ecd-82fd-4cc30ed1255b
@@ -1133,7 +1153,7 @@ tasks:
             - args:
                 separator:
                   value:
-                    simple: ", "
+                    simple: ', '
               operator: join
         options: []
         optionsarg: []
@@ -1150,19 +1170,19 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
-      body:
-      cc:
+      bcc: null
+      body: null
+      cc: null
       format: ""
       methods: []
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: true
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       '#none#':
       - "26"
@@ -1320,11 +1340,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Groups configuration issues into actionable items so they can be passed into the `pan-os-config-bulk-update` command.
+      description: Groups configuration issues into actionable items so they can be
+        passed into the `pan-os-config-bulk-update` command.
       id: 589b2ee1-db03-403c-8f9c-e465e90c9006
       iscommand: false
       name: Group
-      scriptName: GroupIssuesByFields
+      script: GroupIssuesByFields
       type: regular
       version: -1
     taskid: 589b2ee1-db03-403c-8f9c-e465e90c9006
@@ -1353,15 +1374,20 @@ tasks:
         simple: ${GetIndicatorFieldsByQuery.issueaffecteddevice}
       object_type:
         simple: LogForwardingProfile
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.
+      description: Searches and returns a reference for the given object type and
+        name. If no name is provided, all objects of the given type will be returned.
+        Note this ONLY returns the object name and its location in the configuration
+        hierachy, not the entire object.
       id: 6c220b0b-54e3-47f3-84b8-acba3a912e9b
       iscommand: true
       name: Get Log Forwarding Profiles
-      script: "|||pan-os-config-get-object"
+      script: '|||pan-os-config-get-object'
       type: regular
       version: -1
     taskid: 6c220b0b-54e3-47f3-84b8-acba3a912e9b
@@ -1448,7 +1474,7 @@ tasks:
             - args:
                 separator:
                   value:
-                    simple: ", "
+                    simple: ', '
               operator: join
         options: []
         optionsarg: []
@@ -1465,19 +1491,19 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
-      body:
-      cc:
+      bcc: null
+      body: null
+      cc: null
       format: ""
       methods: []
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: true
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       '#none#':
       - "38"
@@ -1532,11 +1558,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+      description: This playbook runs the fixes identified by GroupIssuesByFields
+        as a looped playbook to ensure the correct objects are updated at all times.
       id: 83d44013-5a21-4354-87d9-6efa7a73e93b
       iscommand: false
       name: PAN-OS Network Operations - Run Bulk Change
-      playbookName: PAN-OS Network Operations - Run Bulk Change
+      playbookId: PAN-OS Network Operations - Run Bulk Change
       type: playbook
       version: -1
     taskid: 83d44013-5a21-4354-87d9-6efa7a73e93b
@@ -1576,16 +1603,91 @@ tasks:
           "y": 975
         }
       }
-version: 6
+  "40":
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This will set the Panorama instance field (panosnetworkoperationspanoramainstance)
+        if it isn''t already set.  '
+      id: c5058493-5bea-47e9-8ccd-25bf81bf133d
+      iscommand: false
+      name: Set Panorama Instance
+      script: SetPanoramaInstance
+      type: regular
+      version: -1
+    taskid: c5058493-5bea-47e9-8ccd-25bf81bf133d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": -40
+        }
+      }
+  "41":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationspanoramainstance
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "40"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e2df0a5c-a9d6-430d-88f5-28e572b00cbd
+      iscommand: false
+      name: Is Panorama Instance Set?
+      type: condition
+      version: -1
+    taskid: e2df0a5c-a9d6-430d-88f5-28e572b00cbd
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": -230
+        }
+      }
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 2805,
+        "height": 3205,
         "width": 2700,
         "x": -870,
-        "y": 20
+        "y": -380
       }
     }
   }

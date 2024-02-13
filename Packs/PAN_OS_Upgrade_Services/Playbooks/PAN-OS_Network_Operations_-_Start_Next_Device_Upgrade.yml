@@ -1,4 +1,6 @@
-description: This is a subplaybook that just restarts the device upgrade process if required. It needs to be dedicated to a subplaybook or it will fail to loop if there are multiple steps in the upgrade process.
+description: This is a subplaybook that just restarts the device upgrade process if
+  required. It needs to be dedicated to a subplaybook or it will fail to loop if there
+  are multiple steps in the upgrade process.
 id: PAN-OS Network Operations - Start Next Device Upgrade
 inputs: []
 name: PAN-OS Network Operations - Start Next Device Upgrade
@@ -69,7 +71,7 @@ tasks:
           "y": 210
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

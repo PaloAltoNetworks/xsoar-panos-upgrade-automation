@@ -1,21 +1,22 @@
-description: Given a PAN-OS version, searches the security advisories website for matching CVEs and relates them when seen.
+description: Given a PAN-OS version, searches the security advisories website for
+  matching CVEs and relates them when seen.
 id: PAN-OS Network Operations - Create CVE Relationships
 inputs:
 - description: ""
   key: panos_version
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: 9.0.5
 - description: ""
   key: panos_id
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: 6F5A32602DF9260
 - description: ""
   key: device_type
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: Network Device
@@ -23,19 +24,19 @@ inputs:
   key: ""
   playbookInputQuery:
     daterange:
-      fromdate: 0001-01-01T00:00:00Z
-      fromdatelicenseval: 0001-01-01T00:00:00Z
+      fromdate: "0001-01-01T00:00:00Z"
+      fromdatelicenseval: "0001-01-01T00:00:00Z"
       period:
         by: ""
         byfrom: ""
         byto: ""
         field: ""
-        fromvalue:
-        tovalue:
-      todate: 0001-01-01T00:00:00Z
+        fromvalue: null
+        tovalue: null
+      todate: "0001-01-01T00:00:00Z"
     query: type:"Panorama Device" or type:"Network Device"
     queryEntity: indicators
-    results:
+    results: null
     runFromLastJobTime: true
   required: false
   value: {}
@@ -96,7 +97,7 @@ tasks:
       id: 266a0a56-9fc0-486f-8b07-7f6b23ee40a7
       iscommand: true
       name: Get the advisories for this Version
-      script: "|||pan-advisories-get-advisories"
+      script: '|||pan-advisories-get-advisories'
       type: regular
       version: -1
     taskid: 266a0a56-9fc0-486f-8b07-7f6b23ee40a7
@@ -129,11 +130,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Checks if the given PAN-OS version number is affected by the given list of vulnerabilties from the pan-advisories-get-advisories command.
+      description: Checks if the given PAN-OS version number is affected by the given
+        list of vulnerabilties from the pan-advisories-get-advisories command.
       id: 1383e798-cf29-4fb4-8fc4-c61b1270f15c
       iscommand: false
       name: Check if this version is affected by any CVEs
-      scriptName: CheckPanosVersionAffected
+      script: CheckPanosVersionAffected
       type: regular
       version: -1
     taskid: 1383e798-cf29-4fb4-8fc4-c61b1270f15c
@@ -164,11 +166,15 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This automation outputs the indicator relationships to context according to the provided query, using the entities, entityTypes, and relationships arguments. All arguments will use the AND operator. For example, using the following arguments entities=8.8.8.8 entities_types=Domain will provide only relationships that the 8.8.8.8 indicator has with indicators of type domain.
+      description: This automation outputs the indicator relationships to context
+        according to the provided query, using the entities, entityTypes, and relationships
+        arguments. All arguments will use the AND operator. For example, using the
+        following arguments entities=8.8.8.8 entities_types=Domain will provide only
+        relationships that the 8.8.8.8 indicator has with indicators of type domain.
       id: d1591a3b-e4f4-4482-853d-6d0d8c1d6308
       iscommand: false
       name: Find Existing Relationships
-      scriptName: SearchIndicatorRelationships
+      script: SearchIndicatorRelationships
       type: regular
       version: -1
     taskid: d1591a3b-e4f4-4482-853d-6d0d8c1d6308
@@ -211,11 +217,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This automation allows to delete a relationship between indicator objects based on the relationship id.
+      description: This automation allows to delete a relationship between indicator
+        objects based on the relationship id.
       id: 172f58d4-19e9-45ff-8bdc-5dc0218feb3b
       iscommand: false
       name: Delete any CVE Relationships no longer applicable to this version.
-      scriptName: DeleteIndicatorRelationships
+      script: DeleteIndicatorRelationships
       type: regular
       version: -1
     taskid: 172f58d4-19e9-45ff-8bdc-5dc0218feb3b
@@ -258,7 +265,7 @@ tasks:
       id: d02b6589-4432-4258-84db-304b43ef55a4
       iscommand: false
       name: Create Indicator Relationships
-      scriptName: CreateIndicatorRelationship
+      script: CreateIndicatorRelationship
       type: regular
       version: -1
     taskid: d02b6589-4432-4258-84db-304b43ef55a4
@@ -408,11 +415,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This automation allows to delete a relationship between indicator objects based on the relationship id.
+      description: This automation allows to delete a relationship between indicator
+        objects based on the relationship id.
       id: 5543cce1-717e-4499-8755-6ad29c723a51
       iscommand: false
       name: Delete all CVE Relationships.
-      scriptName: DeleteIndicatorRelationships
+      script: DeleteIndicatorRelationships
       type: regular
       version: -1
     taskid: 5543cce1-717e-4499-8755-6ad29c723a51
@@ -465,7 +473,7 @@ tasks:
           "y": 220
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

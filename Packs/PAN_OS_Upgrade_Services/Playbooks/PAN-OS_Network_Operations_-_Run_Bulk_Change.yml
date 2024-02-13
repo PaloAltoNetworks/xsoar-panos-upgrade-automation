@@ -1,29 +1,30 @@
-description: This playbook runs the fixes identified by GroupIssuesByFields as a looped playbook to ensure the correct objects are updated at all times.
+description: This playbook runs the fixes identified by GroupIssuesByFields as a looped
+  playbook to ensure the correct objects are updated at all times.
 id: PAN-OS Network Operations - Run Bulk Change
 inputs:
 - description: ""
   key: issue_to_fix
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value: {}
 - description: ""
   key: new_value
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value: {}
 - description: ""
   key: object_type
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value: {}
 - description: ""
   key: attribute_to_update
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value: {}
 - description: ""
   key: device
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationstarget}
@@ -88,6 +89,8 @@ tasks:
         simple: ${inputs.object_type}
       parent:
         simple: ${inputs.issue_to_fix.location}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -98,7 +101,7 @@ tasks:
       id: 713eefad-0d03-49ef-88e4-c3326a5acbbc
       iscommand: true
       name: Execute The Change
-      script: "|||pan-os-config-bulk-update-objects"
+      script: '|||pan-os-config-bulk-update-objects'
       type: regular
       version: -1
     taskid: 713eefad-0d03-49ef-88e4-c3326a5acbbc
@@ -138,7 +141,7 @@ tasks:
           "y": 380
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

@@ -1,14 +1,14 @@
-description: Runs a complete upgrade process for a single device.
+description: Runs a complete upgrade process for a single device
 id: PAN-OS Network Operations - Single Device Upgrade
 inputs:
 - description: Target firewall to upgrade
   key: target
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value: {}
 - description: Target version to upgrade to.
   key: target_version
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value: {}
 name: PAN-OS Network Operations - Single Device Upgrade
@@ -61,15 +61,18 @@ tasks:
         simple: ${inputs.target}
       target:
         simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Reboot the given host.
+      description: |
+        Reboots the given device by host ID. Warning: This command has no confirmation and the device will immediately reboot. This command can be disruptive.
       id: 0db2708f-681f-4316-89be-ac62538313e5
       iscommand: true
       name: Reboot the system
-      script: "|||pan-os-platform-reboot"
+      script: '|||pan-os-platform-reboot'
       type: regular
       version: -1
     taskid: 0db2708f-681f-4316-89be-ac62538313e5
@@ -88,42 +91,16 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
-    loop:
-      exitCondition: ""
-      iscommand: false
-      max: 0
-      scriptArguments:
-        AdditionalPollingCommandArgNames:
-          simple: id
-        AdditionalPollingCommandArgValues:
-          complex:
-            accessor: id
-            root: PANOS.JobStatus.Summary
-            transformers:
-            - operator: FirstArrayElement
-        Ids:
-          complex:
-            accessor: id
-            root: PANOS.JobStatus.Summary
-            transformers:
-            - operator: FirstArrayElement
-        Interval:
-          simple: "1"
-        PollingCommandArgName:
-          simple: ids
-        PollingCommandName:
-          simple: pan-os-platform-get-jobs
-        Timeout:
-          simple: "10"
-        dt:
-          simple: PANOS.JobStatus.Result(val.status!=="FIN").id
-      wait: 1
     nexttasks:
       '#none#':
       - "18"
     note: false
     quietmode: 0
     scriptarguments:
+      AdditionalPollingCommandArgNames:
+        simple: using
+      AdditionalPollingCommandArgValues:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
       Ids:
         simple: ${inputs.target}
       Interval:
@@ -151,7 +128,7 @@ tasks:
       id: 2c3f9056-3964-47f0-84dd-868f12e294d9
       iscommand: false
       name: GenericPolling
-      playbookName: GenericPolling
+      playbookId: GenericPolling
       type: playbook
       version: -1
     taskid: 2c3f9056-3964-47f0-84dd-868f12e294d9
@@ -206,6 +183,8 @@ tasks:
     scriptarguments:
       device_filter_string:
         simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -214,7 +193,7 @@ tasks:
       id: daa9f32d-51c5-4a8b-866b-df82731115f5
       iscommand: true
       name: Get System Info
-      script: "|||pan-os-platform-get-system-info"
+      script: '|||pan-os-platform-get-system-info'
       type: regular
       version: -1
     taskid: daa9f32d-51c5-4a8b-866b-df82731115f5
@@ -282,7 +261,8 @@ tasks:
     quietmode: 0
     scriptarguments:
       message:
-        simple: Installation completed, reboot completed, but device still on old software version.
+        simple: Installation completed, reboot completed, but device still on old
+          software version.
     separatecontext: false
     skipunavailable: false
     task:
@@ -291,7 +271,7 @@ tasks:
       id: 9f37d112-b591-49a6-896c-6eebd982c6b2
       iscommand: false
       name: Fail message
-      scriptName: PrintErrorEntry
+      script: PrintErrorEntry
       type: regular
       version: -1
     taskid: 9f37d112-b591-49a6-896c-6eebd982c6b2
@@ -326,7 +306,7 @@ tasks:
       id: 4fae2bf8-e8cf-4074-81c0-83ce539865fd
       iscommand: false
       name: Sleep to let device shutdown gracefully
-      scriptName: Sleep
+      script: Sleep
       type: regular
       version: -1
     taskid: 4fae2bf8-e8cf-4074-81c0-83ce539865fd
@@ -353,15 +333,17 @@ tasks:
     scriptarguments:
       device_filter_string:
         simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Check the devices for software that is available to be installed.
+      description: Checks the devices for software that is available to be installed.
       id: b7231fc3-6762-422e-8af1-676bfae38c06
       iscommand: true
       name: Get Available Software
-      script: "|||pan-os-platform-get-available-software"
+      script: '|||pan-os-platform-get-available-software'
       type: regular
       version: -1
     taskid: b7231fc3-6762-422e-8af1-676bfae38c06
@@ -411,7 +393,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Checks if the upgrade software version is already downloaded onto the PAN-OS system.
+      description: Checks if the upgrade software version is already downloaded onto
+        the PAN-OS system.
       id: a846ea9d-4cd6-40f1-8b8f-fb2b663ae69a
       iscommand: false
       name: Has the software already been downloaded?
@@ -440,17 +423,20 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
-      hostid:
-        simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Get the device state from the provided device.
+      description: Get the device state from the provided device. Note; This will
+        attempt to connect directly to the provided target to get the device state.
+        If the IP address as reported in "show system info" is unreachable, this command
+        will fail.
       id: c8659392-64c4-496e-8d32-684166f7137d
       iscommand: true
       name: Save Device State
-      script: "|||pan-os-platform-get-device-state"
+      script: '|||pan-os-platform-get-device-state'
       type: regular
       version: -1
     taskid: c8659392-64c4-496e-8d32-684166f7137d
@@ -477,6 +463,8 @@ tasks:
     scriptarguments:
       device_filter_string:
         simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -485,7 +473,7 @@ tasks:
       id: c1a50873-1b07-486b-8a23-b0bf9dad9515
       iscommand: true
       name: Get System Info
-      script: "|||pan-os-platform-get-system-info"
+      script: '|||pan-os-platform-get-system-info'
       type: regular
       version: -1
     taskid: c1a50873-1b07-486b-8a23-b0bf9dad9515
@@ -645,7 +633,7 @@ tasks:
       id: aadc01bb-b203-45a6-86e0-dd226ffdfdf6
       iscommand: false
       name: Set BASE Software Version
-      scriptName: Set
+      script: Set
       type: regular
       version: -1
     taskid: aadc01bb-b203-45a6-86e0-dd226ffdfdf6
@@ -687,7 +675,7 @@ tasks:
       id: b63a7458-78a2-4c99-8290-542f5a55a065
       iscommand: false
       name: PAN-OS Network Operations - Download Software
-      playbookName: PAN-OS Network Operations - Download Software
+      playbookId: PAN-OS Network Operations - Download Software
       type: playbook
       version: -1
     taskid: b63a7458-78a2-4c99-8290-542f5a55a065
@@ -729,7 +717,7 @@ tasks:
       id: 671fdb2c-f704-4105-814a-81fb59c07de1
       iscommand: false
       name: PAN-OS Network Operations - Download Software
-      playbookName: PAN-OS Network Operations - Download Software
+      playbookId: PAN-OS Network Operations - Download Software
       type: playbook
       version: -1
     taskid: 671fdb2c-f704-4105-814a-81fb59c07de1
@@ -771,7 +759,7 @@ tasks:
       id: cb311a34-a34b-4623-870e-fb78275320f8
       iscommand: false
       name: PAN-OS Network Operations - Install Software
-      playbookName: PAN-OS Network Operations - Install Software
+      playbookId: PAN-OS Network Operations - Install Software
       type: playbook
       version: -1
     taskid: cb311a34-a34b-4623-870e-fb78275320f8
@@ -819,7 +807,7 @@ tasks:
           "y": -220
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {

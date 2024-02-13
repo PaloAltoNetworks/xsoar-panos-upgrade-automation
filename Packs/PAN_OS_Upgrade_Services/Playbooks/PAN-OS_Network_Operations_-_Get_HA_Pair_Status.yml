@@ -1,15 +1,16 @@
-description: Determines which device in a HA pair is active or passive, and if the pair is an active-passive or active-active mode.
+description: Determines which device in a HA pair is active or passive, and if the
+  pair is an active-passive or active-active mode.
 id: PAN-OS Network Operations - Get HA Pair Status
 inputs:
 - description: Target firewall
   key: target
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value: {}
 name: PAN-OS Network Operations - Get HA Pair Status
 outputs:
 - contextPath: ActiveDevice
-  description: The active firewall.
+  description: The active firewall
   type: string
 - contextPath: PassiveDevice
   description: The passive firewall - may be empty.
@@ -59,15 +60,18 @@ tasks:
     scriptarguments:
       target:
         simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Gets the HA state and associated details from the given device and any other details.
+      description: Gets the HA state and associated details from the given device
+        and any other details.
       id: e1fb5109-93a1-4824-8ce8-1c7606a57b1f
       iscommand: true
       name: Get HA state
-      script: "|||pan-os-platform-get-ha-state"
+      script: '|||pan-os-platform-get-ha-state'
       type: regular
       version: -1
     taskid: e1fb5109-93a1-4824-8ce8-1c7606a57b1f
@@ -135,15 +139,18 @@ tasks:
     scriptarguments:
       target:
         simple: ${PANOS.HAState.peer}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Gets the HA state and associated details from the given device and any other details.
+      description: Gets the HA state and associated details from the given device
+        and any other details.
       id: 794c5042-f3dc-4974-8001-af1d0037ad31
       iscommand: true
       name: Get Peer HA State
-      script: "|||pan-os-platform-get-ha-state"
+      script: '|||pan-os-platform-get-ha-state'
       type: regular
       version: -1
     taskid: 794c5042-f3dc-4974-8001-af1d0037ad31
@@ -217,7 +224,7 @@ tasks:
       id: 4a29f2ac-3ca4-48ab-89b9-eb92d3a747a4
       iscommand: false
       name: Set Active Peer
-      scriptName: Set
+      script: Set
       type: regular
       version: -1
     taskid: 4a29f2ac-3ca4-48ab-89b9-eb92d3a747a4
@@ -277,7 +284,7 @@ tasks:
       id: c8f7108a-c337-4900-8a50-b1b92412d1fa
       iscommand: false
       name: Set Passive Peer
-      scriptName: SetAndHandleEmpty
+      script: SetAndHandleEmpty
       type: regular
       version: -1
     taskid: c8f7108a-c337-4900-8a50-b1b92412d1fa
@@ -317,7 +324,7 @@ tasks:
           "y": 880
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

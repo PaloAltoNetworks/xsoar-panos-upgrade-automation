@@ -1,8 +1,9 @@
 id: PAN-OS Network Operations - Post Upgrade Validation
 inputs:
-- description: The maximum number of operational differences between snapshots before an error is raised.
+- description: The maximum number of operational differences between snapshots before
+    an error is raised.
   key: max_snapshot_changes
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value:
     simple: "10"
@@ -75,7 +76,7 @@ tasks:
       id: 8a784ba6-1d0c-40c6-8211-edd486141c69
       iscommand: false
       name: Compare pre and post upgrade Snapshots
-      scriptName: CompareSnapshotFiles
+      script: CompareSnapshotFiles
       type: regular
       version: -1
     taskid: 8a784ba6-1d0c-40c6-8211-edd486141c69
@@ -199,7 +200,12 @@ tasks:
   "4":
     continueonerrortype: ""
     form:
-      description: "The upgrade process has resulted in a considerable amount of changes between the operational state on the device. This indicates an issue with one of the following components;\n\n * Layer 1/2 Network Connectivity (ARP Table differences)\n * IGP Routing Protocols (Route Table Differences)\n * BGP (BGP Neighbor table differences)\n\nReview the differences then answer the below questions to continue or mark the upgrade process as failed."
+      description: "The upgrade process has resulted in a considerable amount of changes
+        between the operational state on the device. This indicates an issue with
+        one of the following components;\n\n * Layer 1/2 Network Connectivity (ARP
+        Table differences)\n * IGP Routing Protocols (Route Table Differences)\n *
+        BGP (BGP Neighbor table differences) \n\nReview the differences then answer
+        the below questions to continue or mark the upgrade process as failed."
       expired: false
       questions:
       - defaultrows: []
@@ -227,7 +233,8 @@ tasks:
           simple: If the upgrade has caused an issue, describe it in more detail below
         options: []
         optionsarg: []
-        placeholder: Describe the reason for the underlying change - such as a broken a routing protocol, or an interface has gone down.
+        placeholder: Describe the reason for the underlying change - such as a broken
+          a routing protocol, or an interface has gone down.
         readonly: false
         required: false
         tooltip: ""
@@ -240,20 +247,21 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
+      bcc: null
       body:
-        simple: "The upgrade process has resulted in a significant change in operational state. This almost certainly gurantees an issue "
-      cc:
+        simple: 'The upgrade process has resulted in a significant change in operational
+          state. This almost certainly gurantees an issue '
+      cc: null
       format: ""
       methods: []
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: true
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       '#none#':
       - "6"
@@ -361,7 +369,8 @@ tasks:
     quietmode: 0
     scriptarguments:
       message:
-        simple: "The upgrade process introduced a large number of operational state changes. Review and fix any issues before continuing. "
+        simple: 'The upgrade process introduced a large number of operational state
+          changes. Review and fix any issues before continuing. '
     separatecontext: false
     skipunavailable: false
     task:
@@ -370,7 +379,7 @@ tasks:
       id: d9f13fd4-6279-4999-8988-0cd9ac3138ed
       iscommand: false
       name: State Change Error
-      scriptName: PrintErrorEntry
+      script: PrintErrorEntry
       type: regular
       version: -1
     taskid: d9f13fd4-6279-4999-8988-0cd9ac3138ed
@@ -420,7 +429,7 @@ tasks:
           "y": 1190
         }
       }
-version: 5
+version: 6
 view: |-
   {
     "linkLabelsPosition": {},

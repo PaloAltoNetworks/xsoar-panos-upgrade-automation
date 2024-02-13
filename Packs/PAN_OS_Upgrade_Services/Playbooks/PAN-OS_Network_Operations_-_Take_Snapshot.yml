@@ -3,7 +3,7 @@ id: PAN-OS Network Operations - Take Snapshot
 inputs:
 - description: The target to take the snapshot of
   key: target
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value:
     simple: ${incident.panosnetworkoperationstarget}
@@ -59,15 +59,18 @@ tasks:
     scriptarguments:
       target:
         simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Takes a JSON Snapshot of the current operational state of the target device
+      description: Takes a JSON Snapshot of the current operational state of the target
+        device
       id: edbb18e0-483b-496a-8c2c-f7b2e34985cf
       iscommand: false
       name: Take Snapshot
-      scriptName: TakeOperationalSnapshot
+      script: TakeOperationalSnapshot
       tags:
       - snapshot-file
       type: regular
@@ -144,7 +147,7 @@ tasks:
           "y": 180
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

@@ -6,13 +6,13 @@ id: PAN-OS Network Operations - Start Device Upgrades
 inputs:
 - description: If set to true, will automatically start all device ugprades.
   key: Automatically Upgrade
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationsautomaticupgradeswitch}
 - description: List of incident IDs corresponding to device upgrade incidents to start.
   key: incident_ids
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${CreatedIncidentID}
@@ -135,7 +135,7 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
+      bcc: null
       body:
         simple: |-
           Do you want to start all device upgrades?
@@ -145,20 +145,20 @@ tasks:
           ${incident.panosnetworkoperationspanoramaupgradelist}
 
           ${incident.panosnetworkoperationsfirewallupgradelist}
-      cc:
+      cc: null
       format: ""
       methods: []
       replyOptions:
       - "Yes"
       - "No"
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: true
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       "No":
       - "4"
@@ -216,7 +216,7 @@ tasks:
           "y": 740
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

@@ -52,11 +52,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Given a target device, creates or updates an existing PAN-OS Network Operations - Device incident.
+      description: Given a target device, creates or updates an existing PAN-OS Network
+        Operations - Device incident.
       id: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
       iscommand: false
       name: Update device incidents
-      scriptName: CreateOrUpdateDeviceIncident
+      script: CreateOrUpdateDeviceIncident
       type: regular
       version: -1
     taskid: a4d0e4e7-90f2-48d6-8a49-76f30103a34f
@@ -80,6 +81,9 @@ tasks:
       - "1"
     note: false
     quietmode: 0
+    scriptarguments:
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -88,7 +92,7 @@ tasks:
       id: e6660bae-a855-4c39-840a-5829e0763426
       iscommand: true
       name: Get system information
-      script: "|||pan-os-platform-get-system-info"
+      script: '|||pan-os-platform-get-system-info'
       type: regular
       version: -1
     taskid: e6660bae-a855-4c39-840a-5829e0763426
@@ -163,7 +167,7 @@ tasks:
           "y": 710
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

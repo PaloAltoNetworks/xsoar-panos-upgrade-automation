@@ -2,7 +2,7 @@ id: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
 inputs:
 - description: ""
   key: target
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationstarget}
@@ -81,7 +81,7 @@ tasks:
       id: 759ad744-d5e3-4bb3-83ee-20ccd3627814
       iscommand: true
       name: Run Readiness Tests
-      script: "|||pan-os-assurance-run-readiness-checks"
+      script: '|||pan-os-assurance-run-readiness-checks'
       type: regular
       version: -1
     taskid: 759ad744-d5e3-4bb3-83ee-20ccd3627814
@@ -147,7 +147,9 @@ tasks:
   "3":
     continueonerrortype: ""
     form:
-      description: The assurance process identified issues that might prevent the software upgrade from starting. Please confirm whether to proceed or abort the assurance process.
+      description: The assurance process identified issues that might prevent the
+        software upgrade from starting. Please confirm whether to proceed or abort
+        the assurance process.
       expired: false
       questions:
       - defaultrows: []
@@ -176,10 +178,12 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
+      bcc: null
       body:
-        simple: "The assurance process failed on the device ${incident.panosnetworkoperationsupgradetargetfirewall}.\n\nPlease validate the test result and choose whether to proceed or abort the assurance process. "
-      cc:
+        simple: "The assurance process failed on the device ${incident.panosnetworkoperationsupgradetargetfirewall}.\n\nPlease
+          validate the test result and choose whether to proceed or abort the assurance
+          process. "
+      cc: null
       format: ""
       methods:
       - email
@@ -288,7 +292,7 @@ tasks:
       id: 48ec72b9-8b79-412e-8933-883fbf477c19
       iscommand: true
       name: Take the first device snapshot
-      script: "|||pan-os-assurance-run-snapshot"
+      script: '|||pan-os-assurance-run-snapshot'
       type: regular
       version: -1
     taskid: 48ec72b9-8b79-412e-8933-883fbf477c19
@@ -326,11 +330,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Copies a file from this incident to the specified incident. The file is recorded as an entry in the specified incident’s War Room.
+      description: Copies a file from this incident to the specified incident. The
+        file is recorded as an entry in the specified incident’s War Room.
       id: c3f8eff5-99e9-4226-87f5-a7af67d97870
       iscommand: false
       name: Save First Snapshot
-      scriptName: UploadFile
+      script: UploadFile
       type: regular
       version: -1
     taskid: c3f8eff5-99e9-4226-87f5-a7af67d97870
@@ -569,7 +574,7 @@ tasks:
           "y": 750
         }
       }
-version: 18
+version: 19
 view: |-
   {
     "linkLabelsPosition": {},

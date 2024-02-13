@@ -1,15 +1,19 @@
-description: Similar to the Platform Upgrade playbook, this playbook uses an alternate method of retrieving the devices to upgrade by instead querying the open device incidents for the information. This allows us to create upgrade incidents for only specific devices or groups of devices as opposed to all devices.
+description: Similar to the Platform Upgrade playbook, this playbook uses an alternate
+  method of retrieving the devices to upgrade by instead querying the open device
+  incidents for the information. This allows us to create upgrade incidents for only
+  specific devices or groups of devices as opposed to all devices.
 id: PAN-OS Network Operations - Domain Upgrade
 inputs:
 - description: Target upgrade batch by device tags.
   key: upgrade_tags
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.devicetags}
-- description: 'Any additional incident query parameters for the device query - for example, use "devicemodel:Panorama" to only upgrade Panorama devices. '
+- description: 'Any additional incident query parameters for the device query - for
+    example, use "devicemodel:Panorama" to only upgrade Panorama devices. '
   key: device_query
-  playbookInputQuery:
+  playbookInputQuery: null
   required: false
   value:
     simple: ${incident.panosnetworkoperationsdeviceupgradequery}
@@ -102,12 +106,17 @@ tasks:
     quietmode: 0
     scriptarguments:
       query:
-        simple: "(type:\"Network Device\" or type:\"Panorama Device\")  connected:yes hastatus:active ${inputs.upgrade_tags=>x(val);function x(l) {\n\tvar r = [];\n\tif (l) {\n  \tl.forEach(s => {\n    \tr.push(\"devicetags:\"+s);\n    })\n  } else {\n  \treturn '';\n  }\n  return r.join(' ');\n}} ${inputs.device_query}"
+        simple: "(type:\"Network Device\" or type:\"Panorama Device\")  connected:yes
+          hastatus:active ${inputs.upgrade_tags=>x(val);function x(l) {\n\tvar r =
+          [];\n\tif (l) {\n  \tl.forEach(s => {\n    \tr.push(\"devicetags:\"+s);\n
+          \   })\n  } else {\n  \treturn '';\n  }\n  return '(' + r.join(' OR ') +
+          ')';\n}} ${inputs.device_query}"
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: 'Searches the active PAN-OS devices in the topology - the device incidents - by the given incident query. '
+      description: 'Searches the active PAN-OS devices in the topology - the device
+        incidents - by the given incident query. '
       id: 0c4f2d28-4a0f-4f8d-87fc-c9c5d220c5eb
       iscommand: false
       name: Get Active Devices by query
@@ -142,7 +151,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: 'Searches the active PAN-OS devices in the topology - the device incidents - by the given incident query. '
+      description: 'Searches the active PAN-OS devices in the topology - the device
+        incidents - by the given incident query. '
       id: 71ca0281-936d-401e-8e26-2c7676095c47
       iscommand: false
       name: Get All Active Devices
@@ -167,7 +177,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "5"
+      - "36"
     note: false
     quietmode: 0
     separatecontext: false
@@ -203,6 +213,8 @@ tasks:
     scriptarguments:
       device_filter_string:
         simple: ${GetDevicesByQuery.hostid}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -221,7 +233,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 740
+          "y": 1110
         }
       }
   "6":
@@ -275,7 +287,8 @@ tasks:
     quietmode: 0
     scriptarguments:
       message:
-        simple: The device query for only Active devices with domain ${inputs.domain} returned no results. Have you run a System Information incident?
+        simple: The device query for only Active devices with domain ${inputs.domain}
+          returned no results. Have you run a System Information incident?
     separatecontext: false
     skipunavailable: false
     task:
@@ -359,7 +372,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
       id: b770dc8e-f86b-453f-8bd5-824ecd575b96
       iscommand: false
       name: Filter available Panorama Images
@@ -373,7 +387,7 @@ tasks:
       {
         "position": {
           "x": 190,
-          "y": 1260
+          "y": 1620
         }
       }
   "9":
@@ -425,7 +439,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 1070
+          "y": 1430
         }
       }
   "10":
@@ -509,20 +523,21 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
+      bcc: null
       body:
-        simple: Please complete the following survey to proceed with the platform upgrade process.
-      cc:
+        simple: Please complete the following survey to proceed with the platform
+          upgrade process.
+      cc: null
       format: ""
       methods: []
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: false
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       '#none#':
       - "11"
@@ -545,7 +560,7 @@ tasks:
       {
         "position": {
           "x": 190,
-          "y": 1660
+          "y": 2020
         }
       }
   "11":
@@ -580,7 +595,7 @@ tasks:
       {
         "position": {
           "x": 190,
-          "y": 1820
+          "y": 2180
         }
       }
   "12":
@@ -597,6 +612,8 @@ tasks:
     scriptarguments:
       name:
         simple: PAN-OS Panorama Upgrade - ${PanoramaDevices}
+      panosnetworkoperationspanoramainstance:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
       panosnetworkoperationsparentincidentid:
         simple: ${incident.id}
       panosnetworkoperationstarget:
@@ -625,7 +642,7 @@ tasks:
       {
         "position": {
           "x": 190,
-          "y": 2410
+          "y": 2770
         }
       }
   "13":
@@ -676,7 +693,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 2610
+          "y": 2970
         }
       }
   "14":
@@ -729,7 +746,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
       id: 94f9a2bc-cae9-427c-8295-dee84ab4914e
       iscommand: false
       name: Filter available Firewall Images
@@ -743,7 +761,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 2775
+          "y": 3135
         }
       }
   "15":
@@ -796,7 +814,8 @@ tasks:
             - args:
                 prefix:
                   value:
-                    simple: 'Select target firewall software version. Current versions are '
+                    simple: 'Select target firewall software version. Current versions
+                      are '
                 suffix: {}
               operator: concat
         options: []
@@ -830,20 +849,21 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
+      bcc: null
       body:
-        simple: Please complete the following survey to proceed with the platform upgrade process.
-      cc:
+        simple: Please complete the following survey to proceed with the platform
+          upgrade process.
+      cc: null
       format: ""
       methods: []
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: false
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       '#none#':
       - "16"
@@ -866,7 +886,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 3150
+          "y": 3510
         }
       }
   "16":
@@ -901,7 +921,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 3305
+          "y": 3665
         }
       }
   "17":
@@ -918,6 +938,8 @@ tasks:
     scriptarguments:
       name:
         simple: PAN-OS Firewall Upgrade
+      panosnetworkoperationspanoramainstance:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
       panosnetworkoperationsparentincidentid:
         simple: ${incident.id}
       panosnetworkoperationstarget:
@@ -948,7 +970,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 3760
+          "y": 4120
         }
       }
   "18":
@@ -1007,7 +1029,7 @@ tasks:
       {
         "position": {
           "x": 190,
-          "y": 2000
+          "y": 2360
         }
       }
   "19":
@@ -1065,7 +1087,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 3460
+          "y": 3820
         }
       }
   "20":
@@ -1164,7 +1186,7 @@ tasks:
       {
         "position": {
           "x": 190,
-          "y": 1410
+          "y": 1770
         }
       }
   "23":
@@ -1180,7 +1202,11 @@ tasks:
     quietmode: 0
     scriptarguments:
       description:
-        simple: "Panorama Upgrade cannot continue - the input panorama upgrade version ${incident.panosnetworkoperationsupgradetargetpanoramaversion} is not a valid target version. It may already be installed, too many releases ahead, or behind the currently installed version. \n\nFirewall upgrade process will continue."
+        simple: "Panorama Upgrade cannot continue - the input panorama upgrade version
+          ${incident.panosnetworkoperationsupgradetargetpanoramaversion} is not a
+          valid target version. It may already be installed, too many releases ahead,
+          or behind the currently installed version. \n\nFirewall upgrade process
+          will continue."
     separatecontext: false
     skipunavailable: false
     task:
@@ -1199,7 +1225,7 @@ tasks:
       {
         "position": {
           "x": -240,
-          "y": 2410
+          "y": 2770
         }
       }
   "24":
@@ -1216,6 +1242,8 @@ tasks:
     scriptarguments:
       device_filter_string:
         simple: ${GetDevicesByQuery.hostid}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -1234,7 +1262,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 910
+          "y": 1270
         }
       }
   "25":
@@ -1264,7 +1292,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 3930
+          "y": 4200
         }
       }
   "26":
@@ -1311,7 +1339,7 @@ tasks:
       {
         "position": {
           "x": 190,
-          "y": 2185
+          "y": 2545
         }
       }
   "27":
@@ -1370,7 +1398,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 2960
+          "y": 3320
         }
       }
   "28":
@@ -1417,7 +1445,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 3610
+          "y": 3970
         }
       }
   "29":
@@ -1433,7 +1461,11 @@ tasks:
     quietmode: 0
     scriptarguments:
       description:
-        simple: "Firewall Upgradse cannot continue - the input firewall upgrade version ${incident.panosnetworkoperationsupgradetargetfirewallversion} is not a valid target version. It may already be installed, too many releases ahead, or behind the currently installed version. \n\nPanorama Upgrade process may continue."
+        simple: "Firewall Upgradse cannot continue - the input firewall upgrade version
+          ${incident.panosnetworkoperationsupgradetargetfirewallversion} is not a
+          valid target version. It may already be installed, too many releases ahead,
+          or behind the currently installed version. \n\nPanorama Upgrade process
+          may continue."
     separatecontext: false
     skipunavailable: false
     task:
@@ -1452,7 +1484,7 @@ tasks:
       {
         "position": {
           "x": 20,
-          "y": 3760
+          "y": 4120
         }
       }
   "30":
@@ -1487,7 +1519,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 4070
+          "y": 4430
         }
       }
   "31":
@@ -1503,7 +1535,9 @@ tasks:
     quietmode: 0
     scriptarguments:
       closeNotes:
-        simple: This upgrade incident has been closed - all devices are now upgrading, and can be monitored by looking either at the PAN-OS Network Operations dashboard or the indiviudal incidents directly.
+        simple: This upgrade incident has been closed - all devices are now upgrading,
+          and can be monitored by looking either at the PAN-OS Network Operations
+          dashboard or the indiviudal incidents directly.
     separatecontext: false
     skipunavailable: false
     task:
@@ -1522,7 +1556,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 4240
+          "y": 4600
         }
       }
   "32":
@@ -1549,7 +1583,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 4560
+          "y": 4920
         }
       }
   "33":
@@ -1665,13 +1699,88 @@ tasks:
           "y": 440
         }
       }
-version: 6
+  "36":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationspanoramainstance
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "37"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5f14ebab-fa6c-4f3e-8bb2-a23361830d74
+      iscommand: false
+      name: Is Panorama Instance Set?
+      type: condition
+      version: -1
+    taskid: 5f14ebab-fa6c-4f3e-8bb2-a23361830d74
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 760
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This will set the Panorama instance field (panosnetworkoperationspanoramainstance)
+        if it isn''t already set.  '
+      id: b490a42f-9530-4174-8b7f-adca0a14d829
+      iscommand: false
+      name: Set Panorama Instance
+      script: SetPanoramaInstance
+      type: regular
+      version: -1
+    taskid: b490a42f-9530-4174-8b7f-adca0a14d829
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 930
+        }
+      }
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 5385,
+        "height": 5745,
         "width": 1500,
         "x": -240,
         "y": -760

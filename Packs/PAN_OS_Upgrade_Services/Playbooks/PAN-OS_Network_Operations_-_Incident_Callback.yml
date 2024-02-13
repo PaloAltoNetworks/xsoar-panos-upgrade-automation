@@ -1,4 +1,5 @@
-description: Checks to see if this incident has a parent incident and if so, links the two incidents.
+description: Checks to see if this incident has a parent incident and if so, links
+  the two incidents.
 id: PAN-OS Network Operations - Incident Callback
 inputs: []
 name: PAN-OS Network Operations - Incident Callback
@@ -139,7 +140,7 @@ tasks:
           "y": 150
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},

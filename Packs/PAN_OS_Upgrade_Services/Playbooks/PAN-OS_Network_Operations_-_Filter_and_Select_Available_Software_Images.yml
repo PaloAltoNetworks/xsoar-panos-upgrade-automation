@@ -1,9 +1,10 @@
-description: Requests the available software images from a firewall, filters them, then prompts the user to select the version.
+description: Requests the available software images from a firewall, filters them,
+  then prompts the user to select the version.
 id: PAN-OS Network Operations - Filter and Select Available Software Images
 inputs:
 - description: The target firewall.
   key: target
-  playbookInputQuery:
+  playbookInputQuery: null
   required: true
   value: {}
 name: PAN-OS Network Operations - Filter and Select Available Software Images
@@ -71,20 +72,20 @@ tasks:
     isautoswitchedtoquietmode: false
     isoversize: false
     message:
-      bcc:
+      bcc: null
       body:
         simple: Specify the final target version of firewall software.
-      cc:
+      cc: null
       format: ""
       methods: []
-      subject:
+      subject: null
       timings:
         completeafterreplies: 1
         completeaftersla: false
         completeafterv2: true
         retriescount: 2
         retriesinterval: 360
-      to:
+      to: null
     nexttasks:
       '#none#':
       - "6"
@@ -94,7 +95,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: If a target version wasn't given, ask the user for the version to upgrade to.
+      description: If a target version wasn't given, ask the user for the version
+        to upgrade to.
       id: 4ccc63cc-b021-4560-8cdf-3532a815dd0a
       iscommand: false
       name: Collect Target Version
@@ -124,6 +126,8 @@ tasks:
     scriptarguments:
       target:
         simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -132,7 +136,7 @@ tasks:
       id: cb47496e-d5dd-4d5f-8af3-1ce9e2d7749f
       iscommand: true
       name: Get Available software Images
-      script: "|||pan-os-platform-get-available-software"
+      script: '|||pan-os-platform-get-available-software'
       type: regular
       version: -1
     taskid: cb47496e-d5dd-4d5f-8af3-1ce9e2d7749f
@@ -175,11 +179,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Given a table containing installed ("current") PAN-OS Software images, compare with available to determine
+      description: Given a table containing installed ("current") PAN-OS Software
+        images, compare with available to determine
       id: b5383eb4-e4ad-4d18-8cbc-d86919ed022a
       iscommand: false
       name: Filter the available software images
-      scriptName: FilterAvailableSoftwareImages
+      script: FilterAvailableSoftwareImages
       type: regular
       version: -1
     taskid: b5383eb4-e4ad-4d18-8cbc-d86919ed022a
@@ -233,7 +238,7 @@ tasks:
           - args:
               separator:
                 value:
-                  simple: ", "
+                  simple: ', '
             operator: join
     separatecontext: false
     skipunavailable: false
@@ -345,7 +350,7 @@ tasks:
           "y": 810
         }
       }
-version: 6
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},
