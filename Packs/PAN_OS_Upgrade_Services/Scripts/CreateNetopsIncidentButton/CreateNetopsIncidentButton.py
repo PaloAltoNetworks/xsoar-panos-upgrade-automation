@@ -17,10 +17,14 @@ def main():
 
     incident_type = demisto.args()["incident_type"]
 
+    # Get pan-os instance name 
+    panos = str(indicator.get("CustomFields").get('panoramainstance'))
+
     res = demisto.executeCommand("createNewIncident", {
         "name": f"{target} - {incident_type}",
         "type": incident_type,
-        "panosnetworkoperationstarget": target
+        "panosnetworkoperationstarget": target,
+        "panosnetworkoperationspanoramainstance": panos
     })
 
     created_incident = res[0]

@@ -38,11 +38,21 @@ for incident in incidents:
         }
 
 if not device_incident_found:
+    # Copy the pan-os instance and set to the defaults if not found
+    pan_os = incident.get('CustomFields', {}).get('panosnetworkoperationspanoramainstance', '')
+    if not pan_os:
+        instances = demisto.getModules()
+        i_names = []
+        for name, data in instances.items():
+            if data.get('brand', '') == 'Panorama' and data.get('state', '') == 'active':
+                i_names.append(name)
+        pan_os = ','.join(i_names)
     res = demisto.executeCommand("createNewIncident", {
         "name": new_target,
         "type": "PAN-OS Network Operations - Device",
         "panosnetworkoperationstarget": new_target,
-        "panosnetworkoperationsparentincidentid": current_incident_id
+        "panosnetworkoperationsparentincidentid": current_incident_id,
+        "panosnetworkoperationspanoramainstance": pan_os
     })
     created_incident = res[0]
     created_incident_id = created_incident.get("EntryContext", dict()).get("CreatedIncidentID")

@@ -433,6 +433,10 @@
 					{
 						"fieldId": "incident_panosnetworkoperationstarget",
 						"isVisible": true
+					},
+					{
+						"fieldId": "incident_panosnetworkoperationspanoramainstance",
+						"isVisible": true
 					}
 				],
 				"isVisible": true,
@@ -473,7 +477,7 @@
 	},
 	"fromServerVersion": "0.0.0",
 	"group": "incident",
-	"id": "69c1fd7d-5eb7-440e-86c3-001e9ace659a",
+	"id": "PAN-OS Network Operations - Upgrade Assurance Layout",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
 	"itemVersion": "",

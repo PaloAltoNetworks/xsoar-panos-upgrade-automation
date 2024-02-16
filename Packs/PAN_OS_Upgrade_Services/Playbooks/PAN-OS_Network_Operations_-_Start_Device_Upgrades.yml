@@ -1,28 +1,47 @@
-id: PAN-OS Network Operations - Start Device Upgrades
-version: 5
-vcShouldKeepItemLegacyProdMachine: false
-name: PAN-OS Network Operations - Start Device Upgrades
 description: |-
   This playbook is used by the Domain Upgrade playbook to start (either manually or automatically) groups of Device Upgrade incidents.
 
   It works by first retrieving the administrative domains/device-groups that have upgrades pending, then marking the pause tasks within them complete in batches.
+id: PAN-OS Network Operations - Start Device Upgrades
+inputs:
+- description: If set to true, will automatically start all device ugprades.
+  key: Automatically Upgrade
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationsautomaticupgradeswitch}
+- description: List of incident IDs corresponding to device upgrade incidents to start.
+  key: incident_ids
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${CreatedIncidentID}
+name: PAN-OS Network Operations - Start Device Upgrades
+outputs: []
 starttaskid: "0"
 tasks:
   "0":
+    continueonerrortype: ""
     id: "0"
-    taskid: 85335dba-205e-443b-8c36-49e5433f28a9
-    type: start
-    task:
-      id: 85335dba-205e-443b-8c36-49e5433f28a9
-      version: -1
-      name: ""
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "1"
+    note: false
+    quietmode: 0
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 85335dba-205e-443b-8c36-49e5433f28a9
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 85335dba-205e-443b-8c36-49e5433f28a9
+    timertriggers: []
+    type: start
     view: |-
       {
         "position": {
@@ -30,40 +49,40 @@ tasks:
           "y": 50
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Automatically Upgrade
+          operator: isTrue
+      label: "yes"
+    continueonerrortype: ""
     id: "1"
-    taskid: b5960953-a4b2-4048-817d-a04f8bf569ed
-    type: condition
-    task:
-      id: b5960953-a4b2-4048-817d-a04f8bf569ed
-      version: -1
-      name: Is auto-upgrade enabled?
-      description: Check for automatic upgrade switch
-      type: condition
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#default#':
       - "3"
       "yes":
       - "2"
+    note: false
+    quietmode: 0
     separatecontext: false
-    conditions:
-    - label: "yes"
-      condition:
-      - - operator: isTrue
-          left:
-            value:
-              simple: inputs.Automatically Upgrade
-            iscontext: true
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check for automatic upgrade switch
+      id: b5960953-a4b2-4048-817d-a04f8bf569ed
+      iscommand: false
+      name: Is auto-upgrade enabled?
+      type: condition
+      version: -1
+    taskid: b5960953-a4b2-4048-817d-a04f8bf569ed
+    timertriggers: []
+    type: condition
     view: |-
       {
         "position": {
@@ -71,29 +90,17 @@ tasks:
           "y": 190
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "2":
+    continueonerrortype: ""
     id: "2"
-    taskid: af376f5a-e763-477f-8966-c047fe5f23d8
-    type: regular
-    task:
-      id: af376f5a-e763-477f-8966-c047fe5f23d8
-      version: -1
-      name: Start device upgrades
-      description: commands.local.cmd.task.complete
-      script: Builtin|||taskComplete
-      type: regular
-      iscommand: true
-      brand: Builtin
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "4"
+    note: false
+    quietmode: 0
     scriptarguments:
       id:
         simple: start-upgrade
@@ -101,7 +108,19 @@ tasks:
         complex:
           root: inputs.incident_ids
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.task.complete
+      id: af376f5a-e763-477f-8966-c047fe5f23d8
+      iscommand: true
+      name: Start device upgrades
+      script: Builtin|||taskComplete
+      type: regular
+      version: -1
+    taskid: af376f5a-e763-477f-8966-c047fe5f23d8
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -109,48 +128,14 @@ tasks:
           "y": 580
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "3":
-    id: "3"
-    taskid: 894a22ca-c6b6-41f9-85d8-fcfa22785ae4
-    type: condition
-    task:
-      id: 894a22ca-c6b6-41f9-85d8-fcfa22785ae4
-      version: -1
-      name: Begin Upgrades
-      description: |-
-        #### Do you want to start upgrading all devices?
-
-        This will **start upgrades** on all of the devices, which may result in an **interruption to network traffic.**
-      type: condition
-      iscommand: false
-      brand: ""
-    nexttasks:
-      "No":
-      - "4"
-      "Yes":
-      - "2"
-    separatecontext: false
     continueonerrortype: ""
-    view: |-
-      {
-        "position": {
-          "x": 720,
-          "y": 400
-        }
-      }
-    note: false
-    timertriggers: []
+    id: "3"
     ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     message:
-      to: null
-      subject: null
+      bcc: null
       body:
         simple: |-
           Do you want to start all device upgrades?
@@ -160,36 +145,70 @@ tasks:
           ${incident.panosnetworkoperationspanoramaupgradelist}
 
           ${incident.panosnetworkoperationsfirewallupgradelist}
-      methods: []
-      format: ""
-      bcc: null
       cc: null
-      timings:
-        retriescount: 2
-        retriesinterval: 360
-        completeafterreplies: 1
-        completeafterv2: true
-        completeaftersla: false
+      format: ""
+      methods: []
       replyOptions:
       - "Yes"
       - "No"
-    skipunavailable: false
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      "No":
+      - "4"
+      "Yes":
+      - "2"
+    note: false
     quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
-  "4":
-    id: "4"
-    taskid: 43e22c47-1125-4ac4-810f-6a080b39d644
-    type: title
+    separatecontext: false
+    skipunavailable: false
     task:
-      id: 43e22c47-1125-4ac4-810f-6a080b39d644
+      brand: ""
+      description: |-
+        #### Do you want to start upgrading all devices?
+
+        This will **start upgrades** on all of the devices, which may result in an **interruption to network traffic.**
+      id: 894a22ca-c6b6-41f9-85d8-fcfa22785ae4
+      iscommand: false
+      name: Begin Upgrades
+      type: condition
       version: -1
+    taskid: 894a22ca-c6b6-41f9-85d8-fcfa22785ae4
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 720,
+          "y": 400
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 43e22c47-1125-4ac4-810f-6a080b39d644
+      iscommand: false
       name: Finish
       type: title
-      iscommand: false
-      brand: ""
-    separatecontext: false
-    continueonerrortype: ""
+      version: -1
+    taskid: 43e22c47-1125-4ac4-810f-6a080b39d644
+    timertriggers: []
+    type: title
     view: |-
       {
         "position": {
@@ -197,13 +216,7 @@ tasks:
           "y": 740
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},
@@ -216,17 +229,3 @@ view: |-
       }
     }
   }
-inputs:
-- key: Automatically Upgrade
-  value:
-    simple: ${incident.panosnetworkoperationsautomaticupgradeswitch}
-  required: false
-  description: If set to true, will automatically start all device ugprades.
-  playbookInputQuery: null
-- key: incident_ids
-  value:
-    simple: ${CreatedIncidentID}
-  required: false
-  description: List of incident IDs corresponding to device upgrade incidents to start.
-  playbookInputQuery: null
-outputs: []

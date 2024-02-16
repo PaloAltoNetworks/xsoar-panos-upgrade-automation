@@ -1,6 +1,8 @@
 args:
 - description: The target device (hostid)
   name: target
+- description: The Palo Alto Networks PAN-OS integration instance
+  name: panos_instance
 comment: Takes a JSON Snapshot of the current operational state of the target device
 commonfields:
   id: TakeOperationalSnapshot

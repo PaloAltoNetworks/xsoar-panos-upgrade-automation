@@ -18,6 +18,7 @@ def main():
     issue_id = indicator.get("CustomFields").get("issueid")
     object_name = indicator.get("CustomFields").get("issueobjectname")
     affected_rulebase = indicator.get("CustomFields").get("affected_rulebase")
+    panos_instance = indicator.get("CustomFields").get("panoramainstance")
 
     fix_type = args.get("fix_type")
     auto_fix = argToBoolean(args.get("auto_fix"))
@@ -45,7 +46,8 @@ def main():
         "name": incident_name,
         "type": INCIDENT_TYPE,
         "issuequery": query,
-        "autofix": auto_fix
+        "autofix": auto_fix,
+        "panosnetworkoperationspanoramainstance": panos_instance
     })
 
     created_incident = res[0]

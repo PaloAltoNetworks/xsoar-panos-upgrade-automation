@@ -155,7 +155,7 @@ def build_device_relationships(panorama_indicator: dict, device_indicators: List
     return relationship_list
 
 
-def fetch_devices_as_indicators(panorama: Panorama) -> List[dict]:
+def fetch_devices_as_indicators(panorama: Panorama, panos_instance: str) -> List[dict]:
     """
     Queries the Panorama system for managed devices and ingests them as indicators based on their type. Also queries Panorama
     itself for it's details and ingests it as an indicator as well.
@@ -170,6 +170,8 @@ def fetch_devices_as_indicators(panorama: Panorama) -> List[dict]:
     # Also set the Panorama IP; this is used as the target for many use cases and may differ from what Panorama says is it's own
     # IP.
     panorama_data["fields"]["panoramahostname"] = panorama.hostname
+    # Set the panos instance 
+    panorama_data["fields"]["panoramainstance"] = panos_instance
 
     devices = panorama.op(PANOSCommands.SHOW_DEVICES_ALL).findall("./result/devices/entry")
     device_groups = get_devicegroups(panorama)
@@ -184,6 +186,8 @@ def fetch_devices_as_indicators(panorama: Panorama) -> List[dict]:
             device_data["devicetags"] = [device_data.get("device_group_name")]
 
         device_data = system_to_indicator(device_data)
+        # Set the panos instance 
+        device_data["fields"]["panoramainstance"] = panos_instance
         indicators.append(
             device_data
         )
@@ -287,6 +291,7 @@ class ConfigurationHygieneIssue:
     best_practices_link: str = ""
     issue_subtype: str = ""
     affected_object_type: str = ""
+    panos_instance: str = ""
 
     def as_indicator(self):
         return {
@@ -304,7 +309,8 @@ class ConfigurationHygieneIssue:
                 "bestpracticelink": self.best_practices_link,
                 "affectedobjecttype": self.affected_object_type,
                 "issueid": self.issue_id,
-                "affectedrulebase": self.rulebase
+                "affectedrulebase": self.rulebase,
+                "panoramainstance": self.panos_instance
             }
         }
 
@@ -388,7 +394,7 @@ def resolve_parent_to_kwarg(parent):
     return map_dict.get(type(parent))
 
 
-def check_security_zones(device: Union[Panorama, Firewall], name_filter: Optional[str] = ""):
+def check_security_zones(device: Union[Panorama, Firewall], panos_instance: str, name_filter: Optional[str] = ""):
     """
     Check Palo Alto Security Zones for best practice issues
     """
@@ -403,6 +409,7 @@ def check_security_zones(device: Union[Panorama, Firewall], name_filter: Optiona
                         object_name=security_zone.name,
                         status="unresolved",
                         affected_object_type="SecurityZone",
+                        panos_instance=panos_instance,
                         **resolve_parent_to_kwarg(parent)
                     )
                 )
@@ -410,7 +417,7 @@ def check_security_zones(device: Union[Panorama, Firewall], name_filter: Optiona
     return [x.as_indicator() for x in issue_objects]
 
 
-def check_security_rules(device: Union[Panorama, Firewall], name_filter: Optional[str] = ""):
+def check_security_rules(device: Union[Panorama, Firewall], panos_instance: str, name_filter: Optional[str] = ""):
     """
     Check Palo Alto Security rules for best practice issues.
     """
@@ -425,6 +432,7 @@ def check_security_rules(device: Union[Panorama, Firewall], name_filter: Optiona
                         status="unresolved",
                         affected_object_type="SecurityRule",
                         rulebase=rulebase,
+                        panos_instance=panos_instance,
                         **resolve_parent_to_kwarg(parent)
                     )
                 )
@@ -437,6 +445,7 @@ def check_security_rules(device: Union[Panorama, Firewall], name_filter: Optiona
                         status="unresolved",
                         affected_object_type="SecurityRule",
                         rulebase=rulebase,
+                        panos_instance=panos_instance,
                         **resolve_parent_to_kwarg(parent)
                     )
                 )
@@ -459,6 +468,7 @@ def check_security_rules(device: Union[Panorama, Firewall], name_filter: Optiona
                         status="unresolved",
                         affected_object_type="SecurityRule",
                         rulebase=rulebase,
+                        panos_instance=panos_instance,
                         **resolve_parent_to_kwarg(parent)
                     )
                 )
@@ -466,13 +476,13 @@ def check_security_rules(device: Union[Panorama, Firewall], name_filter: Optiona
     return [x.as_indicator() for x in issue_objects]
 
 
-def fetch_configuration_hygiene_indicators(device: Union[Panorama, Firewall]):
+def fetch_configuration_hygiene_indicators(device: Union[Panorama, Firewall], panos_instance: str):
     """
     Runs through the series of configuration hygiene checks looking for best practice issues, and returns any that match.
     """
     indicators = []
-    indicators += check_security_rules(device)
-    indicators += check_security_zones(device)
+    indicators += check_security_rules(device, panos_instance)
+    indicators += check_security_zones(device, panos_instance)
 
     return indicators
 
@@ -500,6 +510,7 @@ def main():
     parsed_url = urlparse(params.get("url"))
     port = params.get("port", "443")
     hostname = parsed_url.hostname
+    panos_instance = str(params.get('panosIntegrationName', ''))
 
     handle_proxy()
     panorama = Panorama.create_from_device(
@@ -511,11 +522,11 @@ def main():
     if command_name == "test-module":
         return_results(test_module(panorama))
     elif command_name == "fetch-indicators":
-        for b in batch(fetch_devices_as_indicators(panorama)):
+        for b in batch(fetch_devices_as_indicators(panorama, panos_instance)):
             demisto.createIndicators(b)
 
         if argToBoolean(params.get("fetch_panorama_hygiene_issues", False)):
-            for b in batch(fetch_configuration_hygiene_indicators(panorama)):
+            for b in batch(fetch_configuration_hygiene_indicators(panorama, panos_instance)):
                 demisto.createIndicators(b)
 
 

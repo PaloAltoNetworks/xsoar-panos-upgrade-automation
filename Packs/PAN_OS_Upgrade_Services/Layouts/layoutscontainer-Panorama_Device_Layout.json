@@ -9,7 +9,7 @@
 	"edit": null,
 	"fromServerVersion": "0.0.0",
 	"group": "indicator",
-	"id": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7",
+	"id": "Panorama Device Layout",
 	"indicatorsDetails": {
 		"TypeName": "",
 		"tabs": [
@@ -20,7 +20,7 @@
 					{
 						"displayType": "ROW",
 						"h": 2,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
+						"i": "default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
 						"items": [
 							{
 								"endCol": 2,
@@ -75,9 +75,17 @@
 								"index": 5,
 								"sectionItemType": "field",
 								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "panoramainstance",
+								"height": 22,
+								"id": "5ac805c0-c69c-11ee-83a0-4d266dee6303",
+								"index": 6,
+								"sectionItemType": "field",
+								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -91,7 +99,7 @@
 						"displayType": "ROW",
 						"h": 2,
 						"hideName": false,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-actions",
+						"i": "default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-actions",
 						"items": [
 							{
 								"args": {
@@ -149,7 +157,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -164,7 +171,7 @@
 						"description": "",
 						"displayType": "ROW",
 						"h": 2,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
+						"i": "default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
 						"items": [
 							{
 								"endCol": 2,
@@ -221,7 +228,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -235,7 +241,7 @@
 						"description": "",
 						"displayType": "ROW",
 						"h": 2,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-a3ff2160-0c8a-11ed-a0b8-eb2ebd0d1561",
+						"i": "default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-a3ff2160-0c8a-11ed-a0b8-eb2ebd0d1561",
 						"items": [
 							{
 								"endCol": 2,
@@ -274,7 +280,6 @@
 								"startCol": 0
 							}
 						],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -286,9 +291,8 @@
 					},
 					{
 						"h": 2,
-						"i": "default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-default-main-42d9bc30-177d-11ed-8d72-0d6d26ea3938",
+						"i": "default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-Panorama Device Layout-default-main-42d9bc30-177d-11ed-8d72-0d6d26ea3938",
 						"items": [],
-						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
 						"moved": false,
@@ -312,7 +316,7 @@
 					{
 						"h": 8,
 						"hideName": true,
-						"i": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-dpsdqi3e10-c1793600-147c-11ed-894f-b3bcebf5403c",
+						"i": "Panorama Device Layout-dpsdqi3e10-c1793600-147c-11ed-894f-b3bcebf5403c",
 						"items": [],
 						"maxH": null,
 						"maxW": 3,
@@ -339,7 +343,7 @@
 					{
 						"h": 8,
 						"hideName": true,
-						"i": "6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-ufqsnlztkj-445b49d0-1461-11ed-a884-436cba2c2bd8",
+						"i": "Panorama Device Layout-ufqsnlztkj-445b49d0-1461-11ed-a884-436cba2c2bd8",
 						"items": [],
 						"maxH": null,
 						"maxW": 3,
@@ -367,7 +371,7 @@
 						"description": "",
 						"h": 8,
 						"hideName": true,
-						"i": "v5iuykqdid-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-v5iuykqdid-6e93b4c8-2d6b-4e53-8759-7e6403f40cf7-v5iuykqdid-f91792f0-1459-11ed-b365-d9c64d7a5ef8",
+						"i": "v5iuykqdid-Panorama Device Layout-v5iuykqdid-Panorama Device Layout-v5iuykqdid-f91792f0-1459-11ed-b365-d9c64d7a5ef8",
 						"items": [],
 						"maxH": null,
 						"maxW": 3,
@@ -507,6 +511,9 @@
 	"name": "Panorama Device Layout",
 	"packID": "",
 	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
 	"quickView": null,
 	"quickViewV2": null,
 	"system": false,

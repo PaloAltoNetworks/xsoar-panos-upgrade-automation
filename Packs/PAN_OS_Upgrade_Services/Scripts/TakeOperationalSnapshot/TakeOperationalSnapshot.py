@@ -18,13 +18,10 @@ def run_command(command_name: str, command_args: {}):
     return data
 
 
-def get_routing_details(target: Optional[str] = None):
+def get_routing_details(command_args: {}):
     """
     Gets the routing table from the given target
     """
-    command_args = {}
-    if target:
-        command_args["target"] = target
     result = run_command("pan-os-platform-get-routes", command_args)
     if result:
         return result.get("Result", [])
@@ -32,13 +29,10 @@ def get_routing_details(target: Optional[str] = None):
         return []
 
 
-def get_bgp_peers(target: Optional[str] = None):
+def get_bgp_peers(command_args: {}):
     """
     Gets the current BGP neighbor table from the target
     """
-    command_args = {}
-    if target:
-        command_args["target"] = target
     result = run_command("pan-os-platform-get-bgp-peers", command_args)
     if result:
         return result.get("Result", [])
@@ -47,13 +41,10 @@ def get_bgp_peers(target: Optional[str] = None):
 
 
 
-def get_arp_tables(target: Optional[str] = None):
+def get_arp_tables(command_args: {}):
     """
     Gets the current BGP neighbor table from the target
     """
-    command_args = {}
-    if target:
-        command_args["target"] = target
     result = run_command("pan-os-platform-get-arp-tables", command_args)
     if result:
         return result.get("Result", [])
@@ -62,14 +53,27 @@ def get_arp_tables(target: Optional[str] = None):
 
 
 
-def take_snapshot(target: Optional[str] = None) -> str:
+def take_snapshot(target: Optional[str] = None, panos_instance: Optional[str] = None) -> str:
     """
     Takes a snapshot of all the operational state of the PAN-OS target device and returns it as a json string.
     """
+    command_args = {}
+    if target:
+        command_args["target"] = target
+    if panos_instance:
+        command_args["using"] = panos_instance
+    else:
+        instances = demisto.getModules()
+        i_names = []
+        for name, data in instances.items():
+            if data.get('brand', '') == 'Panorama' and data.get('state', '') == 'active':
+                i_names.append(name)
+        command_args["using"] = ','.join(i_names)
+
     snapshot = {
-        "routes": get_routing_details(target),
-        "bgp_peers": get_bgp_peers(target),
-        "arp": get_arp_tables(target),
+        "routes": get_routing_details(command_args),
+        "bgp_peers": get_bgp_peers(command_args),
+        "arp": get_arp_tables(command_args),
     }
 
     snapshot_json = json.dumps(snapshot)
@@ -79,8 +83,9 @@ def take_snapshot(target: Optional[str] = None) -> str:
 def main():
     demisto_args = demisto.args()
     target = demisto_args.get("target")
+    panos_instance = demisto_args.get("panos_instance", "")
 
-    snapshot = take_snapshot(target)
+    snapshot = take_snapshot(target, panos_instance)
     # Timestamp the file name
     time_string = int(datetime.now().timestamp())
     return_results(

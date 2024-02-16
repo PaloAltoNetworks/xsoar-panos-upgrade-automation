@@ -1,25 +1,42 @@
-id: PAN-OS Network Operations - Install Software
-version: 5
-vcShouldKeepItemLegacyProdMachine: false
-name: PAN-OS Network Operations - Install Software
 description: Installs PAN-OS system software.
+id: PAN-OS Network Operations - Install Software
+inputs:
+- description: Target Version to INstall
+  key: target_version
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Target Device
+  key: target
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: PAN-OS Network Operations - Install Software
+outputs: []
 starttaskid: "0"
 tasks:
   "0":
+    continueonerrortype: ""
     id: "0"
-    taskid: 1114c20f-b7a4-4d52-8313-7c30d02cd7c8
-    type: start
-    task:
-      id: 1114c20f-b7a4-4d52-8313-7c30d02cd7c8
-      version: -1
-      name: ""
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "9"
+    note: false
+    quietmode: 0
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1114c20f-b7a4-4d52-8313-7c30d02cd7c8
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 1114c20f-b7a4-4d52-8313-7c30d02cd7c8
+    timertriggers: []
+    type: start
     view: |-
       {
         "position": {
@@ -27,37 +44,39 @@ tasks:
           "y": -80
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "1":
+    continueonerrortype: ""
     id: "1"
-    taskid: 25154c7f-0d20-4a04-842d-40caff7446ad
-    type: regular
-    task:
-      id: 25154c7f-0d20-4a04-842d-40caff7446ad
-      version: -1
-      name: Install the given software version
-      description: Install the given software version onto the device. Download the
-        software first with
-      script: '|||pan-os-platform-install-software'
-      type: regular
-      iscommand: true
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "2"
+    note: false
+    quietmode: 0
     scriptarguments:
       device_filter_string:
         simple: ${inputs.target}
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
       version:
         simple: ${inputs.target_version}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Installs the given software version onto the device. Downloads
+        the software first with panorama-download-panos-version.
+      id: 25154c7f-0d20-4a04-842d-40caff7446ad
+      iscommand: true
+      name: Install the given software version
+      script: '|||pan-os-platform-install-software'
+      type: regular
+      version: -1
+    taskid: 25154c7f-0d20-4a04-842d-40caff7446ad
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -65,29 +84,17 @@ tasks:
           "y": 190
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "2":
+    continueonerrortype: ""
     id: "2"
-    taskid: a7bca76c-0a39-439e-895d-96f19928534a
-    type: regular
-    task:
-      id: a7bca76c-0a39-439e-895d-96f19928534a
-      version: -1
-      name: Get Jobs
-      description: Get all the jobs from the devices in the environment.
-      script: '|||pan-os-platform-get-jobs'
-      type: regular
-      iscommand: true
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "6"
+    note: false
+    quietmode: 0
     scriptarguments:
       device_filter_string:
         simple: ${inputs.target}
@@ -95,8 +102,23 @@ tasks:
         simple: SWInstall
       status:
         simple: ACT
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets all the jobs from the devices in the environment, or a single
+        job when the ID is specified.
+      id: a7bca76c-0a39-439e-895d-96f19928534a
+      iscommand: true
+      name: Get Jobs
+      script: '|||pan-os-platform-get-jobs'
+      type: regular
+      version: -1
+    taskid: a7bca76c-0a39-439e-895d-96f19928534a
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -104,45 +126,26 @@ tasks:
           "y": 340
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "3":
+    continueonerrortype: ""
     id: "3"
-    taskid: 511c4b5c-dfd9-434f-884a-776bb89a810b
-    type: playbook
-    task:
-      id: 511c4b5c-dfd9-434f-884a-776bb89a810b
-      version: -1
-      name: GenericPolling
-      description: |-
-        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
-        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
-        The remote action should have the following structure:
-
-        1. Initiate the operation.
-        2. Poll to check if the operation completed.
-        3. (optional) Get the results of the operation.
-      playbookName: GenericPolling
-      type: playbook
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "5"
+    note: false
+    quietmode: 0
     scriptarguments:
       AdditionalPollingCommandArgNames:
-        simple: device_filter_string
+        simple: device_filter_string,using
       AdditionalPollingCommandArgValues:
-        simple: ${inputs.target}
+        simple: ${inputs.target},${incident.panosnetworkoperationspanoramainstance}
       Ids:
         complex:
-          root: PANOS.JobStatus
           accessor: id
+          root: PANOS.JobStatus
           transformers:
           - operator: LastArrayElement
       Interval:
@@ -156,29 +159,26 @@ tasks:
       dt:
         simple: PANOS.JobStatus(val.status!=="FIN").id
     separatecontext: true
-    continueonerrortype: ""
-    loop:
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
+        The remote action should have the following structure:
+
+        1. Initiate the operation.
+        2. Poll to check if the operation completed.
+        3. (optional) Get the results of the operation.
+      id: 511c4b5c-dfd9-434f-884a-776bb89a810b
       iscommand: false
-      scriptArguments:
-        Ids:
-          complex:
-            root: PANOS.JobStatus
-            accessor: id
-            transformers:
-            - operator: LastArrayElement
-        Interval:
-          simple: "1"
-        PollingCommandArgName:
-          simple: id
-        PollingCommandName:
-          simple: pan-os-platform-get-jobs
-        Timeout:
-          simple: "20"
-        dt:
-          simple: PANOS.JobStatus(val.status!=="FIN").id
-      exitCondition: ""
-      wait: 1
-      max: 0
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: 511c4b5c-dfd9-434f-884a-776bb89a810b
+    timertriggers: []
+    type: playbook
     view: |-
       {
         "position": {
@@ -186,73 +186,73 @@ tasks:
           "y": 650
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: status
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.JobStatus.type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SWInstall
+                root: PANOS.JobStatus
+          operator: isEqualString
+          right:
+            value:
+              simple: FIN
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: result
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.JobStatus.type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SWInstall
+                root: PANOS.JobStatus
+          operator: isEqualString
+          right:
+            value:
+              simple: OK
+      label: "yes"
+    continueonerrortype: ""
     id: "4"
-    taskid: 426f96a1-80ed-463f-8a3e-384ec12db7f7
-    type: condition
-    task:
-      id: 426f96a1-80ed-463f-8a3e-384ec12db7f7
-      version: -1
-      name: Did it complete?
-      description: Check if the software installation finished successfully.
-      type: condition
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#default#':
       - "10"
       "yes":
       - "7"
+    note: false
+    quietmode: 0
     separatecontext: false
-    conditions:
-    - label: "yes"
-      condition:
-      - - operator: isEqualString
-          left:
-            value:
-              complex:
-                root: PANOS.JobStatus
-                filters:
-                - - operator: isEqualString
-                    left:
-                      value:
-                        simple: PANOS.JobStatus.type
-                      iscontext: true
-                    right:
-                      value:
-                        simple: SWInstall
-                accessor: status
-            iscontext: true
-          right:
-            value:
-              simple: FIN
-      - - operator: isEqualString
-          left:
-            value:
-              complex:
-                root: PANOS.JobStatus
-                filters:
-                - - operator: isEqualString
-                    left:
-                      value:
-                        simple: PANOS.JobStatus.type
-                      iscontext: true
-                    right:
-                      value:
-                        simple: SWInstall
-                accessor: result
-            iscontext: true
-          right:
-            value:
-              simple: OK
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the software installation finished successfully.
+      id: 426f96a1-80ed-463f-8a3e-384ec12db7f7
+      iscommand: false
+      name: Did it complete?
+      type: condition
+      version: -1
+    taskid: 426f96a1-80ed-463f-8a3e-384ec12db7f7
+    timertriggers: []
+    type: condition
     view: |-
       {
         "position": {
@@ -260,41 +260,43 @@ tasks:
           "y": 970
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "5":
+    continueonerrortype: ""
     id: "5"
-    taskid: 1bc37e9e-0b88-4cad-85c8-38fe7910192c
-    type: regular
-    task:
-      id: 1bc37e9e-0b88-4cad-85c8-38fe7910192c
-      version: -1
-      name: Get jobs again to check status
-      description: Get all the jobs from the devices in the environment, or a single
-        job when ID is specified.
-      script: '|||pan-os-platform-get-jobs'
-      type: regular
-      iscommand: true
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "4"
+    note: false
+    quietmode: 0
     scriptarguments:
       device_filter_string:
         simple: ${inputs.target}
       id:
         complex:
-          root: PANOS.JobStatus
           accessor: id
+          root: PANOS.JobStatus
           transformers:
           - operator: LastArrayElement
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets all the jobs from the devices in the environment, or a single
+        job when the ID is specified.
+      id: 1bc37e9e-0b88-4cad-85c8-38fe7910192c
+      iscommand: true
+      name: Get jobs again to check status
+      script: '|||pan-os-platform-get-jobs'
+      type: regular
+      version: -1
+    taskid: 1bc37e9e-0b88-4cad-85c8-38fe7910192c
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -302,26 +304,33 @@ tasks:
           "y": 815
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.JobStatus.status
+          operator: isEqualString
+          right:
+            value:
+              simple: ACT
+      label: ACT
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.JobStatus.status
+          operator: isEqualString
+          right:
+            value:
+              simple: FIN
+      label: FIN
+    continueonerrortype: ""
     id: "6"
-    taskid: 8e9ac62e-e4da-4503-80ab-df3e0517c733
-    type: condition
-    task:
-      id: 8e9ac62e-e4da-4503-80ab-df3e0517c733
-      version: -1
-      name: Is the job active?
-      description: It's possible that, if software has already been installed, then
-        we don't get an active job for it.
-      type: condition
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#default#':
       - "10"
@@ -329,29 +338,22 @@ tasks:
       - "3"
       FIN:
       - "4"
+    note: false
+    quietmode: 0
     separatecontext: false
-    conditions:
-    - label: ACT
-      condition:
-      - - operator: isEqualString
-          left:
-            value:
-              simple: PANOS.JobStatus.status
-            iscontext: true
-          right:
-            value:
-              simple: ACT
-    - label: FIN
-      condition:
-      - - operator: isEqualString
-          left:
-            value:
-              simple: PANOS.JobStatus.status
-            iscontext: true
-          right:
-            value:
-              simple: FIN
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: It's possible that, if software has already been installed, then
+        we don't get an active job for it.
+      id: 8e9ac62e-e4da-4503-80ab-df3e0517c733
+      iscommand: false
+      name: Is the job active?
+      type: condition
+      version: -1
+    taskid: 8e9ac62e-e4da-4503-80ab-df3e0517c733
+    timertriggers: []
+    type: condition
     view: |-
       {
         "position": {
@@ -359,26 +361,26 @@ tasks:
           "y": 490
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "7":
+    continueonerrortype: ""
     id: "7"
-    taskid: fcf2d694-d215-4789-818c-247709722a63
-    type: title
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
+      brand: ""
       id: fcf2d694-d215-4789-818c-247709722a63
-      version: -1
+      iscommand: false
       name: Finish
       type: title
-      iscommand: false
-      brand: ""
-    separatecontext: false
-    continueonerrortype: ""
+      version: -1
+    taskid: fcf2d694-d215-4789-818c-247709722a63
+    timertriggers: []
+    type: title
     view: |-
       {
         "position": {
@@ -386,31 +388,31 @@ tasks:
           "y": 1160
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "8":
+    continueonerrortype: ""
     id: "8"
-    taskid: abb1275a-2d99-4c32-8319-5233aa2d542e
-    type: regular
-    task:
-      id: abb1275a-2d99-4c32-8319-5233aa2d542e
-      version: -1
-      name: Fail message
-      description: Prints an error entry with a given message
-      scriptName: PrintErrorEntry
-      type: regular
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
     scriptarguments:
       message:
         simple: Software install job failed.
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: abb1275a-2d99-4c32-8319-5233aa2d542e
+      iscommand: false
+      name: Fail message
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: abb1275a-2d99-4c32-8319-5233aa2d542e
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -418,34 +420,34 @@ tasks:
           "y": 1335
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "9":
+    continueonerrortype: ""
     id: "9"
-    taskid: 2fedbf9e-9f6f-4bab-825f-8311a243278e
-    type: regular
-    task:
-      id: 2fedbf9e-9f6f-4bab-825f-8311a243278e
-      version: -1
-      name: Set Status
-      description: commands.local.cmd.set.incident
-      script: Builtin|||setIncident
-      type: regular
-      iscommand: true
-      brand: Builtin
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "1"
+    note: false
+    quietmode: 0
     scriptarguments:
       description:
         simple: Installing Software Version ${inputs.target_version}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 2fedbf9e-9f6f-4bab-825f-8311a243278e
+      iscommand: true
+      name: Set Status
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 2fedbf9e-9f6f-4bab-825f-8311a243278e
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -453,34 +455,34 @@ tasks:
           "y": 40
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "10":
+    continueonerrortype: ""
     id: "10"
-    taskid: 82d4caa2-d0e3-46ab-813a-d7d38f5b461b
-    type: regular
-    task:
-      id: 82d4caa2-d0e3-46ab-813a-d7d38f5b461b
-      version: -1
-      name: Set Description
-      description: commands.local.cmd.set.incident
-      script: Builtin|||setIncident
-      type: regular
-      iscommand: true
-      brand: Builtin
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "8"
+    note: false
+    quietmode: 0
     scriptarguments:
       description:
         simple: Software Install failed.
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 82d4caa2-d0e3-46ab-813a-d7d38f5b461b
+      iscommand: true
+      name: Set Description
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 82d4caa2-d0e3-46ab-813a-d7d38f5b461b
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -488,34 +490,18 @@ tasks:
           "y": 1160
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
+version: 7
 view: |-
   {
-    "linkLabelsPosition": {},
+    "linkLabelsPosition": {
+      "6_3_ACT": 0.59
+    },
     "paper": {
       "dimensions": {
         "height": 1510,
-        "width": 820,
-        "x": 450,
+        "width": 890,
+        "x": 380,
         "y": -80
       }
     }
   }
-inputs:
-- key: target_version
-  value: {}
-  required: false
-  description: Target Version to INstall
-  playbookInputQuery: null
-- key: target
-  value: {}
-  required: false
-  description: Target Device
-  playbookInputQuery: null
-outputs: []

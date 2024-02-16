@@ -248,6 +248,10 @@
 					{
 						"fieldId": "incident_type",
 						"isVisible": true
+					},
+					{
+						"fieldId": "incident_panosnetworkoperationspanoramainstance",
+						"isVisible": true
 					}
 				],
 				"isVisible": true,
@@ -276,7 +280,7 @@
 	},
 	"fromServerVersion": "0.0.0",
 	"group": "incident",
-	"id": "5821f0f0-495e-4528-8bc6-ea9af2dd7cee",
+	"id": "PAN-OS Network Operations - Configuration Issue Remediation",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
 	"itemVersion": "",
