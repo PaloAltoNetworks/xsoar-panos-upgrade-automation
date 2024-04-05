@@ -10,9 +10,9 @@ This test suite only tests the XSOAR integration components and functions.
 
 To run integration tests, you need to specifiy the following environment variables;
 
-    * PANORAMA_IP
-    * PANORAMA_USERNAME
-    * PANORAMA_PASSWORD
+    * PANORAMA_HOSTNAME
+    * PANORAMA_API_KEY
+    * PANORAMA_PORT
 """
 
 
@@ -20,14 +20,18 @@ To run integration tests, you need to specifiy the following environment variabl
 def panorama_object():
     load_dotenv()
 
-    ip = os.getenv("PANORAMA_IP")
-    user = os.getenv("PANORAMA_USERNAME")
-    password = os.getenv("PANORAMA_PASSWORD")
-    if not ip or not user or not password:
+    hostname = os.getenv("PANORAMA_HOSTNAME")
+    api_key = os.getenv("PANORAMA_API_KEY")
+    port = os.getenv("PANORAMA_PORT")
+    if not hostname or not api_key or not port:
         pytest.skip("Missing required environment variables.")
 
-    from PAN_OS_Upgrade_Assurance import get_panorama
-    return get_panorama(ip, user, password)
+    from panos.panorama import Panorama
+    return Panorama.create_from_device(
+        hostname=hostname,
+        api_key=api_key,
+        port=port
+    )
 
 
 @pytest.fixture
