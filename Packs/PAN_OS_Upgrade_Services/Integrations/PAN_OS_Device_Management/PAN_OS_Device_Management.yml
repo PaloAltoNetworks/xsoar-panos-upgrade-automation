@@ -1,72 +1,72 @@
+category: Network Security
 commonfields:
   id: PAN-OS Device Management
   version: -1
-vcShouldKeepItemLegacyProdMachine: false
-name: PAN-OS Device Management
-display: PAN-OS Device Management
-category: Network Security
-description: Ingests PAN-OS NGFW's connected to Panorama as XSOAR objects, and continously montior for best practice issues.
 configuration:
-- display: Server URL (e.g. https://panorama.corp.local)
+- defaultvalue: https://panorama.corp.local
+  display: Server URL (e.g. https://panorama.corp.local)
   name: url
-  defaultvalue: https://panorama.corp.local
-  type: 0
   required: true
+  type: 0
 - display: API Key
   name: key
-  type: 4
   required: true
-- display: Server Port
+  type: 4
+- default: 443
+  display: Server Port
   name: port
-  type: 0
   required: false
-  default: 443
+  type: 0
 - display: Fetch Configuration  Issues from Panorama as Indicators
   name: fetch_panorama_hygiene_issues
-  type: 8
   required: false
+  type: 8
 - display: Trust any certificate (not secure)
   name: insecure
-  type: 8
   required: false
+  type: 8
 - display: Use system proxy settings
   name: proxy
-  type: 8
   required: false
+  type: 8
 - display: Fetch indicators
   name: feed
+  required: false
   type: 8
-  required: false
-- display: ""
+- defaultvalue: indicatorType
+  display: ""
   name: feedExpirationPolicy
-  defaultvalue: indicatorType
-  type: 17
-  required: false
   options:
   - never
   - interval
   - indicatorType
   - suddenDeath
-- display: ""
+  required: false
+  type: 17
+- defaultvalue: "20160"
+  display: ""
   name: feedExpirationInterval
-  defaultvalue: "20160"
+  required: false
   type: 1
-  required: false
-- display: Feed Fetch Interval
+- defaultvalue: "240"
+  display: Feed Fetch Interval
   name: feedFetchInterval
-  defaultvalue: "240"
+  required: false
   type: 19
-  required: false
-- display: Bypass exclusion list
-  name: feedBypassExclusionList
-  type: 8
-  required: false
-  additionalinfo: When selected, the exclusion list is ignored for indicators from
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
     this feed. This means that if an indicator from this feed is on the exclusion
     list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+description: Ingests PAN-OS NGFW's connected to Panorama as XSOAR objects, and continously montior for best practice issues.
+display: PAN-OS Device Management
+name: PAN-OS Device Management
 script:
-  type: python
   dockerimage: demisto/pan-os-python:1.0.0.30307
   feed: true
   runonce: false
   subtype: python3
+  type: python
+vcShouldKeepItemLegacyProdMachine: false

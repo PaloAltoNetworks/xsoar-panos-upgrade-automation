@@ -1,117 +1,118 @@
 category: Utilities
-description: Operational testing for PAN-OS for PAN-OS upgrades.
 commonfields:
   id: PAN_OS_Upgrade_Assurance
   version: -1
-name: PAN_OS_Upgrade_Assurance
-display: PAN-OS Assurance Testing
 configuration:
-- display: Panorama IP or Hostname
+- defaultvalue: 192.168.1.1
+  display: Panorama IP or Hostname
   name: url
-  defaultvalue: 192.168.1.1
-  type: 0
   required: true
+  type: 0
 - display: Panorama Username
   name: panorama_user
-  type: 0
   required: true
+  type: 0
 - display: Panorama Password
   name: panorama_password
-  type: 4
   required: true
+  type: 4
 - display: Server Port
   name: port
-  type: 4
   required: false
+  type: 4
 - display: Trust any certificate (not secure)
   name: insecure
-  type: 8
   required: false
+  type: 8
 - display: Use system proxy settings
   name: proxy
-  type: 8
   required: false
+  type: 8
+description: Operational testing for PAN-OS for PAN-OS upgrades.
+display: PAN-OS Assurance Testing
+fromversion: 6.0.0
+name: PAN_OS_Upgrade_Assurance
 script:
   commands:
-  - deprecated: false
-    description: "Runs checks to confirm a PAN-OS firewall is ready to be upgraded."
-    name: pan-os-assurance-run-readiness-checks
-    arguments:
-    - name: firewall_serial
-      isArray: false
+  - arguments:
+    - default: false
       description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
+      isArray: false
+      name: firewall_serial
       required: true
       secret: false
-      default: false
-    - name: check_list
-      isArray: true
+    - default: false
       description: List of tests to run. If not provided, a base set of tests will be run.
+      isArray: true
+      name: check_list
       required: false
       secret: false
-      default: false
-    - name: min_content_version
-      isArray: false
+    - default: false
       description: The minimum content version to check for, enables "content_version" check
+      isArray: false
+      name: min_content_version
       required: false
       secret: false
-      default: false
-    - name: candidate_version
-      isArray: false
+    - default: false
       description: The candidate version to runchecks against. Enables "free_disk_space" check
+      isArray: false
+      name: candidate_version
       required: false
       secret: false
-      default: false
-    - name: dp_mp_clock_diff
-      isArray: false
+    - default: false
       description: The drift allowed between DP clock and MP clock. Enabled "planes_clock_sync" check.
+      isArray: false
+      name: dp_mp_clock_diff
       required: false
       secret: false
-      default: false
-    - name: ipsec_tunnel_status
-      isArray: false
+    - default: false
       description: Check a specific IPsec - by tunnel name. Tunnel must be up for this check to pass.
+      isArray: false
+      name: ipsec_tunnel_status
       required: false
       secret: false
-      default: false
-    - name: arp_entry_exists
-      isArray: false
+    - default: false
       description: Check for the existence of a specific IP in the ARP Table.
+      isArray: false
+      name: arp_entry_exists
       required: false
       secret: false
-      default: false
-    - name: check_session_exists
-      isArray: false
+    - default: false
       description: |
         Check for the presence of a specific connection. Session check format is <source>/destination/destination-port. example: 10.10.10.10/8.8.8.8/443
+      isArray: false
+      name: check_session_exists
       required: false
       secret: false
-      default: false
+    deprecated: false
+    description: "Runs checks to confirm a PAN-OS firewall is ready to be upgraded."
+    name: pan-os-assurance-run-readiness-checks    
     outputs:
       - contextPath: FirewallAssurance.ReadinessCheckResults
         description: Readiness check results
         type: Unknown
-  - deprecated: false
-    description: "Takes a snapshot of the operational state of the system."
-    name: pan-os-assurance-run-snapshot
-    arguments:
-      - name: firewall_serial
-        isArray: false
+  - arguments:
+      - default: false
         description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
+        isArray: false
+        name: firewall_serial
         required: true
         secret: false
-        default: false
-      - name: snapshot_name
-        isArray: false
+      - default: true
         description: The name of the snapshot to take. Defaults to "fw_snapshot"
+        isArray: false
+        name: snapshot_name
         required: false
         secret: false
-        default: true
-      - name: check_list
-        isArray: true
+      - default: false
         description: List of tests to run. If not provided, a base set of tests will be run.
+        isArray: true
+        name: check_list
         required: false
         secret: false
-        default: false
+    deprecated: false
+    description: "Takes a snapshot of the operational state of the system."
+    name: pan-os-assurance-run-snapshot    
     outputs:
       - contextPath: File.EntryID
         description: The EntryID of the report file.
@@ -131,22 +132,22 @@ script:
       - contextPath: File.Type
         description: The type of the report file.
         type: String
-  - deprecated: false
-    description: "Takes a snapshot of the operational state of the system."
-    name: pan-os-assurance-compare-snapshots
-    arguments:
-      - name: left_snapshot_id
-        isArray: false
+  - arguments:
+      - default: false
         description: The Left (or "first") snapshot to compare.
-        required: true
-        secret: false
-        default: false
-      - name: right_snapshot_id
         isArray: false
-        description: The right (or "second") snapshot to compare.
+        name: left_snapshot_id
         required: true
         secret: false
-        default: false
+      - default: false
+        description: The right (or "second") snapshot to compare.
+        isArray: false
+        name: right_snapshot_id
+        required: true
+        secret: false
+    deprecated: false
+    description: "Takes a snapshot of the operational state of the system."
+    name: pan-os-assurance-compare-snapshots    
     outputs:
       - contextPath: FirewallAssurance.SnapshotComparisonResult
         description: Snapshot comparison results
@@ -154,15 +155,14 @@ script:
       - contextPath: FirewallAssurance.SnapshotComparisonRawResult
         description: The complete snapshot comparison results
         type: Unknown
-  script: '-'
-  type: python
-  subtype: python3
   dockerimage: ghcr.io/paloaltonetworks/panos_upgrade_assurance:latest
   feed: false
   isfetch: false
-  runonce: false
   longRunning: false
   longRunningPort: false
-fromversion: 6.0.0
+  runonce: false
+  script: '-'
+  subtype: python3
+  type: python
 tests:
 - No tests
