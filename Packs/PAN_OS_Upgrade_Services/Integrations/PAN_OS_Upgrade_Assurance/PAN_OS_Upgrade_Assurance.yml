@@ -8,14 +8,6 @@ configuration:
   name: url
   required: true
   type: 0
-- display: Panorama Username
-  name: panorama_user
-  required: true
-  type: 0
-- display: Panorama Password
-  name: panorama_password
-  required: true
-  type: 4
 - display: Server Port
   name: port
   required: false
@@ -28,141 +20,90 @@ configuration:
   name: proxy
   required: false
   type: 8
+- display: API Key
+  name: key
+  required: true
+  type: 4
 description: Operational testing for PAN-OS for PAN-OS upgrades.
 display: PAN-OS Assurance Testing
-fromversion: 6.0.0
 name: PAN_OS_Upgrade_Assurance
 script:
   commands:
   - arguments:
-    - default: false
-      description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
-      isArray: false
+    - description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
       name: firewall_serial
       required: true
-      secret: false
-    - default: false
-      description: List of tests to run. If not provided, a base set of tests will be run.
+    - description: List of tests to run. If not provided, a base set of tests will be run.
       isArray: true
       name: check_list
-      required: false
-      secret: false
-    - default: false
-      description: The minimum content version to check for, enables "content_version" check
-      isArray: false
+    - description: The minimum content version to check for, enables "content_version" check
       name: min_content_version
-      required: false
-      secret: false
-    - default: false
-      description: The candidate version to runchecks against. Enables "free_disk_space" check
-      isArray: false
+    - description: The candidate version to runchecks against. Enables "free_disk_space" check
       name: candidate_version
-      required: false
-      secret: false
-    - default: false
-      description: The drift allowed between DP clock and MP clock. Enabled "planes_clock_sync" check.
-      isArray: false
+    - description: The drift allowed between DP clock and MP clock. Enabled "planes_clock_sync" check.
       name: dp_mp_clock_diff
-      required: false
-      secret: false
-    - default: false
-      description: Check a specific IPsec - by tunnel name. Tunnel must be up for this check to pass.
-      isArray: false
+    - description: Check a specific IPsec - by tunnel name. Tunnel must be up for this check to pass.
       name: ipsec_tunnel_status
-      required: false
-      secret: false
-    - default: false
-      description: Check for the existence of a specific IP in the ARP Table.
-      isArray: false
+    - description: Check for the existence of a specific IP in the ARP Table.
       name: arp_entry_exists
-      required: false
-      secret: false
-    - default: false
-      description: |
+    - description: |
         Check for the presence of a specific connection. Session check format is <source>/destination/destination-port. example: 10.10.10.10/8.8.8.8/443
-      isArray: false
       name: check_session_exists
-      required: false
-      secret: false
-    deprecated: false
-    description: "Runs checks to confirm a PAN-OS firewall is ready to be upgraded."
-    name: pan-os-assurance-run-readiness-checks    
+    description: Runs checks to confirm a PAN-OS firewall is ready to be upgraded.
+    name: pan-os-assurance-run-readiness-checks
     outputs:
-      - contextPath: FirewallAssurance.ReadinessCheckResults
-        description: Readiness check results
-        type: Unknown
+    - contextPath: FirewallAssurance.ReadinessCheckResults
+      description: Readiness check results
+      type: Unknown
   - arguments:
-      - default: false
-        description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
-        isArray: false
-        name: firewall_serial
-        required: true
-        secret: false
-      - default: true
-        description: The name of the snapshot to take. Defaults to "fw_snapshot"
-        isArray: false
-        name: snapshot_name
-        required: false
-        secret: false
-      - default: false
-        description: List of tests to run. If not provided, a base set of tests will be run.
-        isArray: true
-        name: check_list
-        required: false
-        secret: false
-    deprecated: false
-    description: "Takes a snapshot of the operational state of the system."
-    name: pan-os-assurance-run-snapshot    
+    - description: The firewall serial number to run validations against. Use `pan-os-platform-get-system-info if not known`.
+      name: firewall_serial
+      required: true
+    - default: true
+      description: The name of the snapshot to take. Defaults to "fw_snapshot"
+      name: snapshot_name
+    - description: List of tests to run. If not provided, a base set of tests will be run.
+      isArray: true
+      name: check_list
+    description: Takes a snapshot of the operational state of the system.
+    name: pan-os-assurance-run-snapshot
     outputs:
-      - contextPath: File.EntryID
-        description: The EntryID of the report file.
-        type: Unknown
-      - contextPath: File.Extension
-        description: The extension of the report file.
-        type: String
-      - contextPath: File.Name
-        description: The name of the report file.
-        type: String
-      - contextPath: File.Info
-        description: The info of the report file.
-        type: String
-      - contextPath: File.Size
-        description: The size of the report file.
-        type: Number
-      - contextPath: File.Type
-        description: The type of the report file.
-        type: String
+    - contextPath: File.EntryID
+      description: The EntryID of the report file.
+      type: Unknown
+    - contextPath: File.Extension
+      description: The extension of the report file.
+      type: String
+    - contextPath: File.Name
+      description: The name of the report file.
+      type: String
+    - contextPath: File.Info
+      description: The info of the report file.
+      type: String
+    - contextPath: File.Size
+      description: The size of the report file.
+      type: Number
+    - contextPath: File.Type
+      description: The type of the report file.
+      type: String
   - arguments:
-      - default: false
-        description: The Left (or "first") snapshot to compare.
-        isArray: false
-        name: left_snapshot_id
-        required: true
-        secret: false
-      - default: false
-        description: The right (or "second") snapshot to compare.
-        isArray: false
-        name: right_snapshot_id
-        required: true
-        secret: false
-    deprecated: false
-    description: "Takes a snapshot of the operational state of the system."
-    name: pan-os-assurance-compare-snapshots    
+    - description: The Left (or "first") snapshot to compare.
+      name: left_snapshot_id
+      required: true
+    - description: The right (or "second") snapshot to compare.
+      name: right_snapshot_id
+      required: true
+    description: Takes a snapshot of the operational state of the system.
+    name: pan-os-assurance-compare-snapshots
     outputs:
-      - contextPath: FirewallAssurance.SnapshotComparisonResult
-        description: Snapshot comparison results
-        type: Unknown
-      - contextPath: FirewallAssurance.SnapshotComparisonRawResult
-        description: The complete snapshot comparison results
-        type: Unknown
-  dockerimage: ghcr.io/paloaltonetworks/panos_upgrade_assurance:latest
-  feed: false
-  isfetch: false
-  longRunning: false
-  longRunningPort: false
+    - contextPath: FirewallAssurance.SnapshotComparisonResult
+      description: Snapshot comparison results
+      type: Unknown
+    - contextPath: FirewallAssurance.SnapshotComparisonRawResult
+      description: The complete snapshot comparison results
+      type: Unknown
+  dockerimage: ghcr.io/paloaltonetworks/panos_upgrade_assurance:v0.3.0
   runonce: false
-  script: '-'
+  script: ''
   subtype: python3
   type: python
-tests:
-- No tests
