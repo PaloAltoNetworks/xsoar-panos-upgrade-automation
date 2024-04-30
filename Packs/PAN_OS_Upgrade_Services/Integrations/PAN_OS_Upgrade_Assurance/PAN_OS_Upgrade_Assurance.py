@@ -179,7 +179,7 @@ def compare_snapshots(left_snapshot, right_snapshot):
             'properties': ['!serial']
         }},
         {'routes': {
-            'properties': ['!flags'],
+            'properties': ['!flags', '!age'],
             'count_change_threshold': 10
         }},
         'content_version',
