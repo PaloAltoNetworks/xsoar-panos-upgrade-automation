@@ -105,7 +105,7 @@ def run_readiness_checks(
             'panorama',
             'ntp_sync',
             'candidate_config',
-            'expired_licenses',
+            'active_support',
             'ha'
         ]
     custom_checks = []
