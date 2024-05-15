@@ -1,4 +1,6 @@
-from CommonServerPython import *
+import demistomock as demisto  # noqa: F401
+from CommonServerPython import *  # noqa: F401
+
 
 from typing import Optional, List
 
@@ -53,12 +55,12 @@ def parse_session(session_str: str):
 
 
 def run_snapshot(
-        firewall: FirewallProxy, snapshot_list: Optional[List] = None):
+        firewall: FirewallProxy, check_list: Optional[List] = None):
     checks = CheckFirewall(firewall, **SETTINGS)
     """Runs a snapshot and saves it as a JSON file in the XSOAR system."""
 
-    if not snapshot_list:
-        snapshot_list = [
+    if not check_list:
+        check_list = [
             'nics',
             'routes',
             'license',
@@ -68,7 +70,7 @@ def run_snapshot(
             'ip_sec_tunnels',
         ]
 
-    snapshot = checks.run_snapshots(snapshot_list)
+    snapshot = checks.run_snapshots(check_list)
 
     return snapshot
 
@@ -220,6 +222,8 @@ def command_run_readiness_checks(panorama: Panorama):
     args = demisto.args()
     firewall = get_firewall_object(panorama, args.get("firewall_serial"))
     del args["firewall_serial"]
+    if args.get('check_list'):
+        args['check_list'] = argToList(args.get('check_list'))
     results = run_readiness_checks(firewall, **args)
 
     return CommandResults(
@@ -242,6 +246,8 @@ def command_run_snapshot(panorama: Panorama):
     del args["firewall_serial"]
     if args.get("snapshot_name"):
         del args["snapshot_name"]
+    if args.get('check_list'):
+        args['check_list'] = argToList(args.get('check_list'))
     snapshot = run_snapshot(firewall, **args)
     fr = fileResult(
         snapshot_name, json.dumps(snapshot, indent=4)
