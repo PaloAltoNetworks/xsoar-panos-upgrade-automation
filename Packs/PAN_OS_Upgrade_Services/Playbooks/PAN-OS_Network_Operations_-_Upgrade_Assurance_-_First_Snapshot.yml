@@ -284,6 +284,8 @@ tasks:
       '#none#':
       - "7"
     scriptarguments:
+      check_list:
+        simple: ${incident.snapshotchecklist}
       firewall_serial:
         simple: ${inputs.target}
       snapshot_name:

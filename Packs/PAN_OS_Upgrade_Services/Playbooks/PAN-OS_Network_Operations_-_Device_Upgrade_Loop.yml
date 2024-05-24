@@ -440,7 +440,7 @@ tasks:
       {
         "position": {
           "x": -370,
-          "y": 2340
+          "y": 2510
         }
       }
     note: false
@@ -482,7 +482,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1670
+          "y": 1840
         }
       }
     note: false
@@ -507,7 +507,7 @@ tasks:
       brand: ""
     nexttasks:
       '#none#':
-      - "51"
+      - "75"
     scriptarguments:
       seconds:
         simple: "30"
@@ -553,7 +553,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1820
+          "y": 1990
         }
       }
     note: false
@@ -610,7 +610,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1970
+          "y": 2140
         }
       }
     note: false
@@ -655,7 +655,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2490
+          "y": 2660
         }
       }
     note: false
@@ -690,7 +690,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2640
+          "y": 2810
         }
       }
     note: false
@@ -806,7 +806,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2820
+          "y": 2990
         }
       }
     note: false
@@ -921,7 +921,7 @@ tasks:
       {
         "position": {
           "x": -570,
-          "y": 2160
+          "y": 2330
         }
       }
     note: false
@@ -961,7 +961,7 @@ tasks:
       {
         "position": {
           "x": -170,
-          "y": 2160
+          "y": 2330
         }
       }
     note: false
@@ -1004,7 +1004,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3160
+          "y": 3330
         }
       }
     note: false
@@ -1317,7 +1317,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1530
+          "y": 1700
         }
       }
     note: false
@@ -1354,7 +1354,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2160
+          "y": 2330
         }
       }
     note: false
@@ -1651,7 +1651,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2310
+          "y": 2480
         }
       }
     note: false
@@ -1806,7 +1806,47 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3000
+          "y": 3170
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "75":
+    id: "75"
+    taskid: f7701264-679b-4e5f-8909-d4e33dcaf4ef
+    type: playbook
+    task:
+      id: f7701264-679b-4e5f-8909-d4e33dcaf4ef
+      version: -1
+      name: PAN-OS Network Operations - Upgrade Assurance - HA Test
+      description: Take a snapshot after HA and run comparison tests.
+      playbookName: PAN-OS Network Operations - Upgrade Assurance - HA Test
+      type: playbook
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#none#':
+      - "51"
+    scriptarguments:
+      target:
+        simple: ${OriginalPassive}
+    separatecontext: true
+    continueonerrortype: ""
+    loop:
+      iscommand: false
+      exitCondition: ""
+      wait: 1
+      max: 0
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 1540
         }
       }
     note: false
