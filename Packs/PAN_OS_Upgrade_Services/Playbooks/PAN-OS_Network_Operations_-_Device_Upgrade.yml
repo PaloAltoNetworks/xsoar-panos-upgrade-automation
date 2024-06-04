@@ -272,6 +272,8 @@ tasks:
       '#none#':
       - "61"
     scriptarguments:
+      autoclose_incident:
+        simple: ${inputs.autoclose_incident}
       peer_device:
         simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
       target_device:
@@ -330,5 +332,11 @@ inputs:
     simple: ${incident.panosnetworkoperationsupgradetargetversion}
   required: false
   description: Target version of upgrade
+  playbookInputQuery: null
+- key: autoclose_incident
+  value:
+    simple: "true"
+  required: false
+  description: Controls whether or not to autoclose the incident
   playbookInputQuery: null
 outputs: []

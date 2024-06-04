@@ -835,7 +835,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3860
+          "y": 4180
         }
       }
     note: false
@@ -1416,7 +1416,7 @@ tasks:
       '#default#':
       - "64"
       "yes":
-      - "31"
+      - "76"
     separatecontext: false
     conditions:
     - label: "yes"
@@ -1816,6 +1816,77 @@ tasks:
     quietmode: 0
     isoversize: false
     isautoswitchedtoquietmode: false
+  "76":
+    id: "76"
+    taskid: daf27cf5-ae65-4c3f-88b0-9a64342686e2
+    type: condition
+    task:
+      id: daf27cf5-ae65-4c3f-88b0-9a64342686e2
+      version: -1
+      name: Autoclose Incident?
+      type: condition
+      iscommand: false
+      brand: ""
+    nexttasks:
+      '#default#':
+      - "77"
+      "yes":
+      - "31"
+    separatecontext: false
+    conditions:
+    - label: "yes"
+      condition:
+      - - operator: isEqualString
+          left:
+            value:
+              simple: inputs.autoclose_incident
+            iscontext: true
+          right:
+            value:
+              simple: "true"
+          ignorecase: true
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 3930
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
+  "77":
+    id: "77"
+    taskid: 524c269a-19b9-4d71-876f-6ffa632a3801
+    type: title
+    task:
+      id: 524c269a-19b9-4d71-876f-6ffa632a3801
+      version: -1
+      name: Complete
+      type: title
+      iscommand: false
+      brand: ""
+    separatecontext: false
+    continueonerrortype: ""
+    view: |-
+      {
+        "position": {
+          "x": 680,
+          "y": 4170
+        }
+      }
+    note: false
+    timertriggers: []
+    ignoreworker: false
+    skipunavailable: false
+    quietmode: 0
+    isoversize: false
+    isautoswitchedtoquietmode: false
 view: |-
   {
     "linkLabelsPosition": {},
@@ -1853,6 +1924,12 @@ inputs:
   required: false
   description: If "true", HA topology will be reverted to the original active and
     passive devices after upgrade.
+  playbookInputQuery: null
+- key: autoclose_incident
+  value:
+    simple: "true"
+  required: false
+  description: Controls whether or not to autoclose the incident
   playbookInputQuery: null
 outputs: []
 sourceplaybookid: PAN-OS Network Operations - Device Upgrade
