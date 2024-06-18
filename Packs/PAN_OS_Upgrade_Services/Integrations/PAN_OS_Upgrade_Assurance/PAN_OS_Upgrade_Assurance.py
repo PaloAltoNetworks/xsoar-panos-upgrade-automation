@@ -120,6 +120,8 @@ def run_readiness_checks(
                 "image_version": candidate_version
             }
         })
+    else:
+        check_list.append('free_disk_space')
 
     if dp_mp_clock_diff:
         custom_checks.append({
