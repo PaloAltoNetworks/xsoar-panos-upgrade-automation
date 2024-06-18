@@ -510,7 +510,7 @@ tasks:
       - "51"
     scriptarguments:
       seconds:
-        simple: "30"
+        simple: "90"
     separatecontext: false
     continueonerrortype: ""
     view: |-
@@ -683,7 +683,7 @@ tasks:
       - "30"
     scriptarguments:
       seconds:
-        simple: "30"
+        simple: "90"
     separatecontext: false
     continueonerrortype: ""
     view: |-
