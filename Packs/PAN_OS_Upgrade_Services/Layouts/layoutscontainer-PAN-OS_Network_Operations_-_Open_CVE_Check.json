@@ -296,6 +296,10 @@
 					{
 						"fieldId": "incident_description",
 						"isVisible": true
+					},
+					{
+						"fieldId": "incident_panosnetworkoperationspanoramainstance",
+						"isVisible": true
 					}
 				],
 				"isVisible": true,
