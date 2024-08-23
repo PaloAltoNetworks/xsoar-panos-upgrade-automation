@@ -7,9 +7,9 @@
 	"details": null,
 	"detailsV2": null,
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "0.0.0",
 	"group": "indicator",
-	"id": "aa803354-9b51-4851-8be8-04acbae0efc2",
+	"id": "Network Configuration Issue Layout",
 	"indicatorsDetails": {
 		"TypeName": "",
 		"tabs": [
@@ -20,7 +20,7 @@
 					{
 						"displayType": "ROW",
 						"h": 2,
-						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
+						"i": "default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
 						"items": [
 							{
 								"endCol": 2,
@@ -56,7 +56,7 @@
 								"height": 22,
 								"id": "43552110-206d-11ed-a498-d5291fd61647",
 								"index": 3,
-								"listId": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
+								"listId": "default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -93,7 +93,7 @@
 						"displayType": "ROW",
 						"h": 2,
 						"hideName": false,
-						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-actions",
+						"i": "default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-actions",
 						"items": [
 							{
 								"args": {
@@ -149,7 +149,7 @@
 					{
 						"h": 1,
 						"hideName": true,
-						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-expirationStatus",
+						"i": "default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-expirationStatus",
 						"maxH": null,
 						"maxW": 3,
 						"minH": 1,
@@ -166,7 +166,7 @@
 						"displayType": "ROW",
 						"h": 3,
 						"hideName": false,
-						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-ca9d9d50-1f82-11ed-8eec-ffed1c5fbcfa",
+						"i": "default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-ca9d9d50-1f82-11ed-8eec-ffed1c5fbcfa",
 						"items": [
 							{
 								"endCol": 2,
@@ -237,7 +237,7 @@
 						"displayType": "CARD",
 						"h": 3,
 						"hideName": false,
-						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-0536bc80-1f88-11ed-8eec-ffed1c5fbcfa",
+						"i": "default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-0536bc80-1f88-11ed-8eec-ffed1c5fbcfa",
 						"items": [
 							{
 								"endCol": 2,
@@ -272,7 +272,7 @@
 						"displayType": "CARD",
 						"h": 2,
 						"hideName": false,
-						"i": "default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-aa803354-9b51-4851-8be8-04acbae0efc2-default-main-9fb67730-203e-11ed-bfb2-396ab4d4fea1",
+						"i": "default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-Network Configuration Issue Layout-default-main-9fb67730-203e-11ed-bfb2-396ab4d4fea1",
 						"items": [
 							{
 								"endCol": 2,
@@ -478,6 +478,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": false,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
