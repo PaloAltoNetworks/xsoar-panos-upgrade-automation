@@ -1,4 +1,3 @@
-args:
 comment: 'Searches the active PAN-OS devices in the topology - the device incidents - by the given incident query. '
 commonfields:
   id: CheckDeviceOnboardedSLA
