@@ -1,0 +1,1184 @@
+description: Meant to be executed after failover to validate the upgrade was successful
+  before continuing the upgrade process.  Will run a readiness test excluding HA (HA
+  state will be invalid), take a snapshot, and compare with the original snapshot.
+id: 'PAN-OS Network Operations - Upgrade Assurance - HA Test'
+inputs:
+- description: ""
+  key: target
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationstarget}
+name: PAN-OS Network Operations - Upgrade Assurance - HA Test
+outputs: []
+sourceplaybookid: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 33f9d4e7-6210-4425-86c3-f8647207895c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 33f9d4e7-6210-4425-86c3-f8647207895c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": -170
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: HA Snapshot ID
+      output:
+        simple: ${File.EntryID}
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      check_list:
+        simple: ${incident.snapshotchecklist}
+      firewall_serial:
+        simple: ${inputs.target}
+      snapshot_name:
+        simple: ha_snapshot
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Takes a snapshot of the operational state of the system.
+      id: 2117c703-d80f-4ec1-8011-8893ae8de72d
+      iscommand: true
+      name: Take the HA snapshot
+      script: '|||pan-os-assurance-run-snapshot'
+      type: regular
+      version: -1
+    taskid: 2117c703-d80f-4ec1-8011-8893ae8de72d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 1460
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: HA Snapshot Comparison Result
+      output:
+        simple: ${FirewallAssurance.SnapshotComparisonResult}
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      left_snapshot_id:
+        simple: ${incident.firstsnapshotid}
+      right_snapshot_id:
+        simple: ${incident.hasnapshotid}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Takes a snapshot of the operational state of the system.
+      id: e5e641f0-89e2-4b6a-870f-ede7354106f8
+      iscommand: true
+      name: Run Comparsion
+      script: '|||pan-os-assurance-compare-snapshots'
+      type: regular
+      version: -1
+    taskid: e5e641f0-89e2-4b6a-870f-ede7354106f8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 1795
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      body:
+        simple: '{"field": "hasnapshot"}'
+      entryID:
+        complex:
+          accessor: EntryID
+          root: File
+          transformers:
+          - operator: LastArrayElement
+      incID:
+        simple: ${incident.id}
+      target:
+        simple: incident attachment
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Copies a file from this incident to the specified incident. The
+        file is recorded as an entry in the specified incident’s War Room.
+      id: caea6ac3-275c-45f5-8541-fd1ac102ad4f
+      iscommand: false
+      name: Save HA Snapshot
+      script: UploadFile
+      type: regular
+      version: -1
+    taskid: caea6ac3-275c-45f5-8541-fd1ac102ad4f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 1620
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hacomparisontestraw:
+        simple: |-
+          # Raw Comparison test result (JSON)
+
+          ```json
+          ${FirewallAssurance.SnapshotComparisonRawResult}
+          ```
+      haupgradeassurancereport:
+        simple: |
+          ${incident.haupgradeassurancereport}
+          ## HA Comparison checks FAILED
+
+          ${incident.hasnapshotcomparisonresult(val.passed==false)=>x(val);
+              function x(v) {
+                  s = ""
+                  if (v.length == 0) {
+                      return "✅ All Tests Passing! ✅";
+                  }
+                  v.forEach(function(item){
+                      s = s + " *  ❌ " + item.test + "\n";
+                  })
+                  return s;
+              };
+          }
+
+          ## HA Comparison checks PASSED
+
+          ${incident.hasnapshotcomparisonresult(val.passed==true)=>x(val);
+              function x(v) {
+                  s = ""
+                  if (v.length == 0) {
+                      return "❌ All tests failing! ❌";
+                  }
+                  v.forEach(function(item){
+                      s = s + " * " + item.test + "\n";
+                  })
+                  return s;
+              };
+          }
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 042cb3ce-b836-4396-8111-ebd3db2e785c
+      iscommand: true
+      name: Update Incident
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 042cb3ce-b836-4396-8111-ebd3db2e785c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 1970
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: FirewallAssurance.SnapshotComparisonResult.passed
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "false"
+                root: FirewallAssurance.SnapshotComparisonResult
+          operator: isExists
+          right:
+            value: {}
+        - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: FirewallAssurance.ReadinessCheckResults.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "false"
+                root: FirewallAssurance.ReadinessCheckResults.state
+          operator: isExists
+      label: FAILED
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      FAILED:
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 95b4c1d9-6f5e-4f24-84c5-f3566058c711
+      iscommand: false
+      name: Overall Result
+      type: condition
+      version: -1
+    taskid: 95b4c1d9-6f5e-4f24-84c5-f3566058c711
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1260,
+          "y": 2145
+        }
+      }
+  "8":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: FirewallAssurance.SnapshotComparisonResult.passed
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "false"
+                root: FirewallAssurance.SnapshotComparisonResult
+          operator: isExists
+          right:
+            value: {}
+      label: FAILED
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      FAILED:
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 278e52d2-5ce3-489d-8059-a3c34eeda4d6
+      iscommand: false
+      name: Comparison result
+      type: condition
+      version: -1
+    taskid: 278e52d2-5ce3-489d-8059-a3c34eeda4d6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 830,
+          "y": 2145
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      haassurancetestresult:
+        simple: Failed ❌
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 082b3028-63a4-4a40-8770-20c5c71183f6
+      iscommand: true
+      name: Comparison Tests Failed
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 082b3028-63a4-4a40-8770-20c5c71183f6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 2530
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: Continuing upgrade
+      haassurancetestresult:
+        simple: Passed ✅
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 47d96de3-2622-4fa2-80a2-249de940c494
+      iscommand: true
+      name: Comparison Tests  Passed
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 47d96de3-2622-4fa2-80a2-249de940c494
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 2330
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      haupgradeassurancereport:
+        simple: |
+          # Upgrade Assurance Report (post failover)
+
+          ## HA Readiness checks FAILED
+
+          ${incident.hareadinesscheckresult(val.state=='false')=>x(val);
+              function x(v) {
+                  s = ""
+                  if (v.length == 0) {
+                      return "✅ All Tests Passing! ✅";
+                  }
+                  v.forEach(function(item){
+                      s = s + " * ❌ " + item.test + "\n";
+                  })
+                  return s;
+              };
+          }
+
+          ## HA Readiness checks PASSED
+
+          ${incident.hareadinesscheckresult(val.state=='true')=>x(val);
+              function x(v) {
+                  s = ""
+                  if (v.length == 0) {
+                      return "❌ All tests failing! ❌";
+                  }
+                  v.forEach(function(item){
+                      s = s + " * " + item.test + "\n";
+                  })
+                  return s;
+              };
+          }
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: afa32610-0790-41f9-8c1f-d66bf0b8df65
+      iscommand: true
+      name: Update HA Report
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: afa32610-0790-41f9-8c1f-d66bf0b8df65
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 710,
+          "y": 490
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: FirewallAssurance.ReadinessCheckResults.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "false"
+                root: FirewallAssurance.ReadinessCheckResults.state
+          operator: isExists
+      label: "YES"
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "13"
+      "YES":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a6de8bdc-e8fe-47da-80dc-ee115b2115ca
+      iscommand: false
+      name: Did we get failed tests?
+      type: condition
+      version: -1
+    taskid: a6de8bdc-e8fe-47da-80dc-ee115b2115ca
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1130,
+          "y": 490
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d6312e3c-0920-4ba7-84e1-78bd4523e9b8
+      iscommand: false
+      name: "No"
+      type: title
+      version: -1
+    taskid: d6312e3c-0920-4ba7-84e1-78bd4523e9b8
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1130,
+          "y": 710
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fafa0a00-5aa0-4862-8f19-600800639c56
+      iscommand: false
+      name: "YES"
+      type: title
+      version: -1
+    taskid: fafa0a00-5aa0-4862-8f19-600800639c56
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1540,
+          "y": 710
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hareadinesstestresult:
+        simple: Passed ✅
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: b1cbecd2-bbd8-4714-8e45-4a261af01029
+      iscommand: true
+      name: Set Passed State
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: b1cbecd2-bbd8-4714-8e45-4a261af01029
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1130,
+          "y": 860
+        }
+      }
+  "16":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Failed HA Readiness Test Confirmation.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: "Yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      "yes":
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 898c6ee0-fb43-4afc-8360-475ab875a27f
+      iscommand: false
+      name: Continue?
+      type: condition
+      version: -1
+    taskid: 898c6ee0-fb43-4afc-8360-475ab875a27f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1540,
+          "y": 1050
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    form:
+      description: The assurance process identified issues that might prevent the
+        software upgrade from starting. Please confirm whether to proceed or abort
+        the assurance process.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: |-
+            ### Do you want to continue?
+            *Choosing Yes will continue with the upgrade assurance process, and if no other issues are present, the upgrade process itself.*
+        options: []
+        optionsarg:
+        - simple: "Yes"
+        - simple: "No"
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: singleSelect
+      sender: Your SOC team
+      title: Failed HA Readiness Test Confirmation
+      totalanswers: 0
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: "The assurance process failed on the device ${inputs.target}.\n\nPlease
+          validate the test result and choose whether to proceed or abort the assurance
+          process. "
+      cc: null
+      format: ""
+      methods:
+      - email
+      subject:
+        simple: Upgrade HA Readiness Checks failed on ${inputs.target}
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: ${incident.owner}
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dd8ca078-a0ff-409d-841f-63f1e38de195
+      iscommand: false
+      name: Failed Readiness Test Confirmation
+      type: collection
+      version: -1
+    taskid: dd8ca078-a0ff-409d-841f-63f1e38de195
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 1540,
+          "y": 860
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hareadinesstestresult:
+        simple: Failed ❌
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: a9c4b37e-c34f-4a3d-8f29-6664f1f53a51
+      iscommand: true
+      name: Set Failed State
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: a9c4b37e-c34f-4a3d-8f29-6664f1f53a51
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1950,
+          "y": 860
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: Assurance testing aborted.  FWs on mis-matching versions
+      haupgradeassurancereport:
+        simple: |
+          # Upgrade process aborted after failover.  Firewalls on mis-matched versions.  Correct before restarting
+
+          ${incident.haupgradeassurancereport}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 8ef6b862-2433-41b9-8d74-c49c6dfdd0f6
+      iscommand: true
+      name: Aborted process.
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 8ef6b862-2433-41b9-8d74-c49c6dfdd0f6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 3230
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 34b9e105-5db8-45a1-8857-4ba11f24e227
+      iscommand: false
+      name: HA Readiness Check
+      type: title
+      version: -1
+    taskid: 34b9e105-5db8-45a1-8857-4ba11f24e227
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": -30
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: HA Readiness Check Result
+      output:
+        complex:
+          accessor: ReadinessCheckResults
+          root: FirewallAssurance
+          transformers:
+          - operator: ConvertKeysToTableFieldFormat
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      arp_entry_exists:
+        simple: ${incident.checkarpentryexists}
+      candidate_version:
+        simple: ${incident.panosnetworkoperationsupgradetargetfirewallversion}
+      check_list:
+        simple: panorama,ntp_sync,candidate_config,active_support
+      check_session_exists:
+        simple: ${incident.checksessionexists}
+      firewall_serial:
+        simple: ${inputs.target}
+      min_content_version:
+        simple: ${incident.minimumcontentversion}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Runs checks to confirm a PAN-OS firewall is ready to be upgraded.
+      id: 9df418e6-5dcc-4129-8c87-0fbd4ddd71ad
+      iscommand: true
+      name: Run HA Readiness Tests
+      script: '|||pan-os-assurance-run-readiness-checks'
+      type: regular
+      version: -1
+    taskid: 9df418e6-5dcc-4129-8c87-0fbd4ddd71ad
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 275
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 96c1374e-24b8-4825-8ad7-0fa465de850a
+      iscommand: false
+      name: HA Snapshot
+      type: title
+      version: -1
+    taskid: 96c1374e-24b8-4825-8ad7-0fa465de850a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 1255
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    form:
+      description: The assurance process identified issues that might prevent the
+        software upgrade from starting. Please confirm whether to proceed or abort
+        the assurance process.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: |-
+            ### Do you want to continue?
+            *Choosing Yes will continue with the upgrade assurance process, and if no other issues are present, the upgrade process itself.*
+        options: []
+        optionsarg:
+        - simple: "Yes"
+        - simple: "No"
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: singleSelect
+      sender: Your SOC team
+      title: Failed HA Snapshot Test Confirmation
+      totalanswers: 0
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: "The assurance process failed on the device ${inputs.target}.\n\nPlease
+          validate the test result and choose whether to proceed or abort the assurance
+          process. "
+      cc: null
+      format: ""
+      methods:
+      - email
+      subject:
+        simple: Upgrade HA Snapshot Checks failed on ${inputs.target}
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: ${incident.owner}
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7125bc79-e37e-4c22-875a-4706c2f2d6b3
+      iscommand: false
+      name: Failed HA Snapshot Test Confirmation
+      type: collection
+      version: -1
+    taskid: 7125bc79-e37e-4c22-875a-4706c2f2d6b3
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 2740
+        }
+      }
+  "24":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Failed HA Snapshot Test Confirmation.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: "Yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      "yes":
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8fbbb301-10c1-417a-838d-9c3845a0d8e1
+      iscommand: false
+      name: Continue?
+      type: condition
+      version: -1
+    taskid: 8fbbb301-10c1-417a-838d-9c3845a0d8e1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 2930
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3c93ed81-b456-4c5c-879e-ff939ef1fb51
+      iscommand: false
+      name: Manual Task to Abort
+      type: regular
+      version: -1
+    taskid: 3c93ed81-b456-4c5c-879e-ff939ef1fb51
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1045,
+          "y": 3420
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: Validating Post Failover
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 60b37986-8949-4f7a-8ee1-83172d97950a
+      iscommand: true
+      name: Set Status
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 60b37986-8949-4f7a-8ee1-83172d97950a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 125
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: Post failover checks validated
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: d9ba6abc-1cf0-48d2-8544-d169fc8e7d6d
+      iscommand: true
+      name: Set Status
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: d9ba6abc-1cf0-48d2-8544-d169fc8e7d6d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 600,
+          "y": 3230
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "5_10_#default#": 0.9,
+      "5_9_FAILED": 0.9
+    },
+    "paper": {
+      "dimensions": {
+        "height": 3685,
+        "width": 1730,
+        "x": 600,
+        "y": -170
+      }
+    }
+  }
