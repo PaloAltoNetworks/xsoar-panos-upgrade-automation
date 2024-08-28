@@ -1,4 +1,5 @@
-from CommonServerPython import *
+import demistomock as demisto  # noqa: F401
+from CommonServerPython import *  # noqa: F401
 
 from typing import Optional, List
 
@@ -54,7 +55,6 @@ def parse_session(session_str: str):
 
 def run_snapshot(
         firewall: FirewallProxy, snapshot_list: Optional[List] = None):
-    checks = CheckFirewall(firewall, **SETTINGS)
     """Runs a snapshot and saves it as a JSON file in the XSOAR system."""
 
     if not snapshot_list:
@@ -68,6 +68,7 @@ def run_snapshot(
             'ip_sec_tunnels',
         ]
 
+    checks = CheckFirewall(firewall, **SETTINGS)
     snapshot = checks.run_snapshots(snapshot_list)
 
     return snapshot
@@ -105,9 +106,11 @@ def run_readiness_checks(
             'panorama',
             'ntp_sync',
             'candidate_config',
-            'expired_licenses',
-            'ha'
+            'active_support',
         ]
+        # only include HA check if HA is enabled
+        if firewall.get_ha_configuration().get('enabled') == 'yes':
+            check_list.append('ha')
     custom_checks = []
 
     # Add the custom checks
@@ -120,8 +123,10 @@ def run_readiness_checks(
                 "image_version": candidate_version
             }
         })
+    else:
+        check_list.append('free_disk_space')
 
-    if dp_mp_clock_diff:
+    if isinstance(dp_mp_clock_diff, int) and dp_mp_clock_diff >= 0:
         custom_checks.append({
             "planes_clock_sync": {
                 'diff_threshold': dp_mp_clock_diff
@@ -179,7 +184,7 @@ def compare_snapshots(left_snapshot, right_snapshot):
             'properties': ['!serial', '!issued', '!authcode']
         }},
         {'routes': {
-            'properties': ['!flags'],
+            'properties': ['!flags', '!age'],
             'count_change_threshold': 10
         }},
         'content_version',
@@ -220,7 +225,19 @@ def command_run_readiness_checks(panorama: Panorama):
     args = demisto.args()
     firewall = get_firewall_object(panorama, args.get("firewall_serial"))
     del args["firewall_serial"]
-    results = run_readiness_checks(firewall, **args)
+
+    # this will set it to [] if emptry string or not provided - meaning check all
+    check_list = argToList(args.get('check_list'))
+    if args.get('check_list') is not None:
+        del args["check_list"]
+
+    # this will set it to None if emptry string or not provided
+    dp_mp_clock_diff = arg_to_number(args.get('dp_mp_clock_diff'), required=False)
+    if args.get('dp_mp_clock_diff') is not None:
+        del args["dp_mp_clock_diff"]
+
+    results = run_readiness_checks(firewall, check_list,
+                                   dp_mp_clock_diff=dp_mp_clock_diff, **args)
 
     return CommandResults(
         outputs={
@@ -242,7 +259,14 @@ def command_run_snapshot(panorama: Panorama):
     del args["firewall_serial"]
     if args.get("snapshot_name"):
         del args["snapshot_name"]
-    snapshot = run_snapshot(firewall, **args)
+
+    # this will set it to [] if emptry string or not provided - meaning all snapshots
+    snapshot_list = argToList(args.get('check_list'))
+    if args.get('check_list') is not None:
+        del args["check_list"]
+
+    snapshot = run_snapshot(firewall, snapshot_list, **args)
+
     fr = fileResult(
         snapshot_name, json.dumps(snapshot, indent=4)
     )
