@@ -64,7 +64,7 @@ tasks:
       arp_entry_exists:
         simple: ${incident.checkarpentryexists}
       candidate_version:
-        simple: ${incident.panosnetworkoperationsupgradetargetfirewallversion}
+        simple: ${incident.panosnetworkoperationsupgradetargetversion}
       check_list:
         simple: ${incident.readinesschecklist}
       check_session_exists:
