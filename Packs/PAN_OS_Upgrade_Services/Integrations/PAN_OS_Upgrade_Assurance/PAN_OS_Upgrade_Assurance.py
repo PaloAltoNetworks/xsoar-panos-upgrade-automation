@@ -107,9 +107,11 @@ def run_readiness_checks(
             'panorama',
             'ntp_sync',
             'candidate_config',
-            'expired_licenses',
-            'ha'
+            'active_support',
         ]
+        # only include HA check if HA is enabled
+        if firewall.get_ha_configuration().get('enabled') == 'yes':
+            check_list.append('ha')
     custom_checks = []
 
     # Add the custom checks
@@ -181,7 +183,7 @@ def compare_snapshots(left_snapshot, right_snapshot):
             'properties': ['!serial']
         }},
         {'routes': {
-            'properties': ['!flags'],
+            'properties': ['!flags', '!age'],
             'count_change_threshold': 10
         }},
         'content_version',
