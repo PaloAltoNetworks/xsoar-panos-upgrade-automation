@@ -1,27 +1,35 @@
-id: 6d1d456f-2edf-4cae-8c93-d38b87682c1d
-version: 5
-vcShouldKeepItemLegacyProdMachine: false
-name: PAN-OS Network Operations - Start Next Device Upgrade
 description: This is a subplaybook that just restarts the device upgrade process if
   required. It needs to be dedicated to a subplaybook or it will fail to loop if there
   are multiple steps in the upgrade process.
+id: PAN-OS Network Operations - Start Next Device Upgrade
+inputs: []
+name: PAN-OS Network Operations - Start Next Device Upgrade
+outputs: []
+quiet: true
 starttaskid: "0"
 tasks:
   "0":
+    continueonerrortype: ""
     id: "0"
-    taskid: e4d4dc48-4341-4af8-88ec-0c3106b75842
-    type: start
-    task:
-      id: e4d4dc48-4341-4af8-88ec-0c3106b75842
-      version: -1
-      name: ""
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "1"
+    note: false
+    quietmode: 0
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e4d4dc48-4341-4af8-88ec-0c3106b75842
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: e4d4dc48-4341-4af8-88ec-0c3106b75842
+    timertriggers: []
+    type: start
     view: |-
       {
         "position": {
@@ -29,33 +37,33 @@ tasks:
           "y": 50
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "1":
+    continueonerrortype: ""
     id: "1"
-    taskid: bef73343-8852-4d87-80d2-bc4258f3e8ca
-    type: regular
-    task:
-      id: bef73343-8852-4d87-80d2-bc4258f3e8ca
-      version: -1
-      name: Start Next Upgrade
-      description: commands.local.cmd.set.playbook
-      script: Builtin|||setPlaybook
-      type: regular
-      iscommand: true
-      brand: Builtin
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
     scriptarguments:
       incidentId:
         simple: ${incident.id}
       name:
         simple: PAN-OS Network Operations - Device Upgrade
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.playbook
+      id: bef73343-8852-4d87-80d2-bc4258f3e8ca
+      iscommand: true
+      name: Start Next Upgrade
+      script: Builtin|||setPlaybook
+      type: regular
+      version: -1
+    taskid: bef73343-8852-4d87-80d2-bc4258f3e8ca
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -63,13 +71,7 @@ tasks:
           "y": 210
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
+version: 7
 view: |-
   {
     "linkLabelsPosition": {},
@@ -82,6 +84,3 @@ view: |-
       }
     }
   }
-inputs: []
-outputs: []
-quiet: true

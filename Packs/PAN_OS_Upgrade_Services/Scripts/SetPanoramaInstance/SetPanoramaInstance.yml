@@ -1,0 +1,30 @@
+args:
+- defaultValue: Panorama
+  description: Can change the integration instance.
+  name: integration
+  required: true
+- default: true
+  defaultValue: panosnetworkoperationspanoramainstance
+  description: Can change the incident field to be set
+  name: field
+  required: true
+- defaultValue: "False"
+  description: Used to specify if the incident field will be overridden if already set
+  name: override
+comment: 'This will set the Panorama instance field (panosnetworkoperationspanoramainstance) if it isn''t already set.  '
+commonfields:
+  id: SetPanoramaInstance
+  version: -1
+dockerimage: demisto/python3:3.10.13.87159
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SetPanoramaInstance
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags: []
+type: python

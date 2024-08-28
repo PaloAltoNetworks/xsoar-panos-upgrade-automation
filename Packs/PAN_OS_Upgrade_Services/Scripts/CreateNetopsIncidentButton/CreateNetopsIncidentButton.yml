@@ -1,5 +1,6 @@
 args:
 - name: incident_type
+  description: Incident type
   required: true
 comment: Attaches to indicator layout buttons.
 commonfields:
