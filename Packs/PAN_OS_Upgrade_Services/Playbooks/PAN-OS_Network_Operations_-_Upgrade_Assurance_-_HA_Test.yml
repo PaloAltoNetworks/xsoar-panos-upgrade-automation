@@ -892,7 +892,7 @@ tasks:
       arp_entry_exists:
         simple: ${incident.checkarpentryexists}
       candidate_version:
-        simple: ${incident.panosnetworkoperationsupgradetargetfirewallversion}
+        simple: ${incident.panosnetworkoperationsupgradetargetversion}
       check_list:
         simple: panorama,ntp_sync,candidate_config,active_support
       check_session_exists:
