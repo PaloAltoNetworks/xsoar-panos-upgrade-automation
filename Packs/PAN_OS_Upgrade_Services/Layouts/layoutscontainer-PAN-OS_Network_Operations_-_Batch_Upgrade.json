@@ -282,6 +282,14 @@
 					{
 						"fieldId": "incident_name",
 						"isVisible": true
+					},
+					{
+						"fieldId": "incident_type",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_panosnetworkoperationspanoramainstance",
+						"isVisible": true
 					}
 				],
 				"isVisible": true,

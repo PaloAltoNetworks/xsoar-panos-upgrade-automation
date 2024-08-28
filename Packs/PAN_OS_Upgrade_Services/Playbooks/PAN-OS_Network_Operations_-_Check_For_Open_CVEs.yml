@@ -1,136 +1,143 @@
-id: PAN-OS Network Operations - Check For Open CVEs
-version: 7
-vcShouldKeepItemLegacyProdMachine: false
-name: PAN-OS Network Operations - Check For Open CVEs
 description: This playbook uses the Palo Alto Networks Security Advisories integration,
   if available, to compare all the running software versions in the environment with
   the list of Open CVEs and either automatically begins the upgrade process or initiates
   a case management process to do so.
+id: PAN-OS Network Operations - Check For Open CVEs
+inputs: []
+name: PAN-OS Network Operations - Check For Open CVEs
+outputs: []
 starttaskid: "0"
 tasks:
   "0":
+    continueonerrortype: ""
     id: "0"
-    taskid: 9aac3d99-ffc2-4e3a-8ef5-7cfc5eda45eb
-    type: start
-    task:
-      id: 9aac3d99-ffc2-4e3a-8ef5-7cfc5eda45eb
-      version: -1
-      name: ""
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "2"
+    note: false
+    quietmode: 0
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9aac3d99-ffc2-4e3a-8ef5-7cfc5eda45eb
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 9aac3d99-ffc2-4e3a-8ef5-7cfc5eda45eb
+    timertriggers: []
+    type: start
     view: |-
       {
         "position": {
           "x": 450,
-          "y": 50
+          "y": -290
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Palo Alto Networks Security Advisories
+                root: modules
+          operator: isExists
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
     id: "2"
-    taskid: 2f8528b7-89b6-46c7-8fea-c9c68198ba37
-    type: condition
-    task:
-      id: 2f8528b7-89b6-46c7-8fea-c9c68198ba37
-      version: -1
-      name: Is the Advisories integration enabled?
-      type: condition
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#default#':
       - "4"
       "yes":
-      - "5"
+      - "7"
+    note: false
+    quietmode: 0
     separatecontext: false
-    conditions:
-    - label: "yes"
-      condition:
-      - - operator: isExists
-          left:
-            value:
-              complex:
-                root: modules
-                filters:
-                - - operator: isEqualString
-                    left:
-                      value:
-                        simple: modules.state
-                      iscontext: true
-                    right:
-                      value:
-                        simple: active
-                - - operator: isEqualString
-                    left:
-                      value:
-                        simple: modules.brand
-                      iscontext: true
-                    right:
-                      value:
-                        simple: Palo Alto Networks Security Advisories
-            iscontext: true
-          right:
-            value: {}
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2f8528b7-89b6-46c7-8fea-c9c68198ba37
+      iscommand: false
+      name: Is the Advisories integration enabled?
+      type: condition
+      version: -1
+    taskid: 2f8528b7-89b6-46c7-8fea-c9c68198ba37
+    timertriggers: []
+    type: condition
     view: |-
       {
         "position": {
           "x": 450,
-          "y": 180
+          "y": -150
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "3":
+    continueonerrortype: ""
     id: "3"
-    taskid: 259d3b45-d97d-43b2-82da-ae947cb4ef6d
-    type: playbook
-    task:
-      id: 259d3b45-d97d-43b2-82da-ae947cb4ef6d
-      version: -1
-      name: PAN-OS Network Operations - Check Version for CVEs
-      description: Checks a specific version of software for any open CVEs, and if
-        they exist, starts a domain upgrade for that system to a fixed version.
-      playbookName: PAN-OS Network Operations - Check Version for CVEs
-      type: playbook
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
       iscommand: false
-      brand: ""
+      max: 100
+      wait: 1
     nexttasks:
       '#none#':
       - "4"
+    note: false
+    quietmode: 0
     scriptarguments:
       auto_upgrade:
         simple: "false"
       panos_version:
         complex:
-          root: PANOS.ShowSystemInfo.Summary
           accessor: sw_version
+          root: PANOS.ShowSystemInfo.Summary
           transformers:
           - operator: uniq
     separatecontext: true
-    continueonerrortype: ""
-    loop:
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks a specific version of software for any open CVEs, and if
+        they exist, starts a domain upgrade for that system to a fixed version.
+      id: 259d3b45-d97d-43b2-82da-ae947cb4ef6d
       iscommand: false
-      exitCondition: ""
-      wait: 1
-      max: 100
-      forEach: true
+      name: PAN-OS Network Operations - Check Version for CVEs
+      playbookId: PAN-OS Network Operations - Check Version for CVEs
+      type: playbook
+      version: -1
+    taskid: 259d3b45-d97d-43b2-82da-ae947cb4ef6d
+    timertriggers: []
+    type: playbook
     view: |-
       {
         "position": {
@@ -138,29 +145,29 @@ tasks:
           "y": 590
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "4":
+    continueonerrortype: ""
     id: "4"
-    taskid: 7d2764bf-7abf-4341-823b-be8561565990
-    type: title
-    task:
-      id: 7d2764bf-7abf-4341-823b-be8561565990
-      version: -1
-      name: Finish
-      type: title
-      iscommand: false
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "6"
+    note: false
+    quietmode: 0
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7d2764bf-7abf-4341-823b-be8561565990
+      iscommand: false
+      name: Finish
+      type: title
+      version: -1
+    taskid: 7d2764bf-7abf-4341-823b-be8561565990
+    timertriggers: []
+    type: title
     view: |-
       {
         "position": {
@@ -168,31 +175,34 @@ tasks:
           "y": 740
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "5":
+    continueonerrortype: ""
     id: "5"
-    taskid: b9edc50c-dd66-4516-8d16-17cb2ea46673
-    type: regular
-    task:
-      id: b9edc50c-dd66-4516-8d16-17cb2ea46673
-      version: -1
-      name: Get System Info
-      description: Gets information from all PAN-OS systems in the topology.
-      script: '|||pan-os-platform-get-system-info'
-      type: regular
-      iscommand: true
-      brand: ""
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
     nexttasks:
       '#none#':
       - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
     separatecontext: false
-    continueonerrortype: ""
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets information from all PAN-OS systems in the topology.
+      id: b9edc50c-dd66-4516-8d16-17cb2ea46673
+      iscommand: true
+      name: Get System Info
+      script: '|||pan-os-platform-get-system-info'
+      type: regular
+      version: -1
+    taskid: b9edc50c-dd66-4516-8d16-17cb2ea46673
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -200,28 +210,28 @@ tasks:
           "y": 400
         }
       }
-    note: false
-    timertriggers: []
-    ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
-    isautoswitchedtoquietmode: false
   "6":
+    continueonerrortype: ""
     id: "6"
-    taskid: dce2b9bb-22fa-45c4-8824-c2e61d84ae7c
-    type: regular
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
     task:
-      id: dce2b9bb-22fa-45c4-8824-c2e61d84ae7c
-      version: -1
-      name: Close
+      brand: Builtin
       description: commands.local.cmd.close.inv
+      id: dce2b9bb-22fa-45c4-8824-c2e61d84ae7c
+      iscommand: true
+      name: Close
       script: Builtin|||closeInvestigation
       type: regular
-      iscommand: true
-      brand: Builtin
-    separatecontext: false
-    continueonerrortype: ""
+      version: -1
+    taskid: dce2b9bb-22fa-45c4-8824-c2e61d84ae7c
+    timertriggers: []
+    type: regular
     view: |-
       {
         "position": {
@@ -229,13 +239,82 @@ tasks:
           "y": 880
         }
       }
-    note: false
-    timertriggers: []
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationspanoramainstance
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
     ignoreworker: false
-    skipunavailable: false
-    quietmode: 0
-    isoversize: false
     isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a95e5ef4-5e13-4eb5-8588-f0f42742ffd9
+      iscommand: false
+      name: Is Panorama Instance Set?
+      type: condition
+      version: -1
+    taskid: a95e5ef4-5e13-4eb5-8588-f0f42742ffd9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 40
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This will set the Panorama instance field (panosnetworkoperationspanoramainstance)
+        if it isn''t already set.  '
+      id: 6581177b-f04d-4085-8084-9021778d536f
+      iscommand: false
+      name: Set Panorama Instance
+      script: SetPanoramaInstance
+      type: regular
+      version: -1
+    taskid: 6581177b-f04d-4085-8084-9021778d536f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 220
+        }
+      }
+version: 9
 view: |-
   {
     "linkLabelsPosition": {
@@ -243,12 +322,10 @@ view: |-
     },
     "paper": {
       "dimensions": {
-        "height": 925,
+        "height": 1265,
         "width": 380,
         "x": 450,
-        "y": 50
+        "y": -290
       }
     }
   }
-inputs: []
-outputs: []

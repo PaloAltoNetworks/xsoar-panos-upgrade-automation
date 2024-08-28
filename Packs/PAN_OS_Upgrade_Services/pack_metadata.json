@@ -1,0 +1,15 @@
+{
+    "name": "PAN OS Upgrade Services",
+    "description": "An XSOAR content pack for managing PAN-OS Firewall upgrades at scale.",
+    "support": "xsoar",
+    "currentVersion": "1.1.0",
+    "author": "Cortex XSOAR",
+    "url": "https://www.paloaltonetworks.com/cortex",
+    "email": "",
+    "categories": [
+        "Network Security"
+    ],
+    "tags": [],
+    "useCases": [],
+    "keywords": []
+}
