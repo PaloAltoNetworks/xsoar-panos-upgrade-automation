@@ -66,6 +66,7 @@ def run_snapshot(
             'content_version',
             'session_stats',
             'ip_sec_tunnels',
+            'bgp_peers',
         ]
 
     checks = CheckFirewall(firewall, **SETTINGS)
