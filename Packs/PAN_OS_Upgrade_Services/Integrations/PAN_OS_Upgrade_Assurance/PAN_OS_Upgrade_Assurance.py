@@ -181,7 +181,7 @@ def compare_snapshots(left_snapshot, right_snapshot):
             'count_change_threshold': 10
         }},
         {'license': {
-            'properties': ['!serial']
+            'properties': ['!serial', '!issued', '!authcode']
         }},
         {'routes': {
             'properties': ['!flags', '!age'],
