@@ -280,6 +280,8 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
+      check_list:
+        simple: ${incident.snapshotchecklist}
       firewall_serial:
         simple: ${inputs.target}
       snapshot_name:
