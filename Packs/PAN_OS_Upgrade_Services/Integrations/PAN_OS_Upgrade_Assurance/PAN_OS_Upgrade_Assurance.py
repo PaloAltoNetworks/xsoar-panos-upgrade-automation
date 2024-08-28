@@ -106,8 +106,10 @@ def run_readiness_checks(
             'ntp_sync',
             'candidate_config',
             'expired_licenses',
-            'ha'
         ]
+        # only include HA check if HA is enabled
+        if firewall.get_ha_configuration().get('enabled') == 'yes':
+            check_list.append('ha')
     custom_checks = []
 
     # Add the custom checks
