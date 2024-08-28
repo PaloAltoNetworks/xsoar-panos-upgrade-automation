@@ -105,7 +105,7 @@ def run_readiness_checks(
             'panorama',
             'ntp_sync',
             'candidate_config',
-            'expired_licenses',
+            'active_support',
         ]
         # only include HA check if HA is enabled
         if firewall.get_ha_configuration().get('enabled') == 'yes':
