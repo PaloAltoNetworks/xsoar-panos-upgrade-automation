@@ -293,6 +293,8 @@ tasks:
     scriptarguments:
       peer_device:
         simple: ${incident.panosnetworkoperationsupgradepeerfirewall}
+      reset_ha_topology:
+        simple: "true"
       target_device:
         simple: ${incident.panosnetworkoperationstarget}
       target_version:
@@ -392,7 +394,7 @@ tasks:
           "y": -1930
         }
       }
-version: 8
+version: 9
 view: |-
   {
     "linkLabelsPosition": {},

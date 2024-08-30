@@ -48,7 +48,11 @@ tasks:
     fieldMapping:
     - incidentfield: HA Snapshot ID
       output:
-        simple: ${File.EntryID}
+        complex:
+          accessor: EntryID
+          root: File
+          transformers:
+          - operator: LastArrayElement
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -143,10 +147,8 @@ tasks:
         simple: '{"field": "hasnapshot"}'
       entryID:
         complex:
-          accessor: EntryID
-          root: File
-          transformers:
-          - operator: LastArrayElement
+          accessor: hasnapshotid
+          root: incident
       incID:
         simple: ${incident.id}
       target:
@@ -1166,7 +1168,7 @@ tasks:
           "y": 3230
         }
       }
-version: -1
+version: 1
 view: |-
   {
     "linkLabelsPosition": {

@@ -45,7 +45,11 @@ tasks:
     fieldMapping:
     - incidentfield: Second Snapshot ID
       output:
-        simple: ${File.EntryID}
+        complex:
+          accessor: EntryID
+          root: File
+          transformers:
+          - operator: LastArrayElement
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -140,10 +144,8 @@ tasks:
         simple: '{"field": "secondsnapshot"}'
       entryID:
         complex:
-          accessor: EntryID
-          root: File
-          transformers:
-          - operator: LastArrayElement
+          accessor: secondsnapshotid
+          root: incident
       incID:
         simple: ${incident.id}
       target:
@@ -152,11 +154,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Copies a file from this incident to the specified incident. The file is recorded as an entry in the specified incident’s War Room.
+      description: Copies a file from this incident to the specified incident. The
+        file is recorded as an entry in the specified incident’s War Room.
       id: 69b270a2-c433-421c-8e8d-b715d54fe1c4
       iscommand: false
       name: Save Second Snapshot
-      scriptName: UploadFile
+      script: UploadFile
       type: regular
       version: -1
     taskid: 69b270a2-c433-421c-8e8d-b715d54fe1c4
@@ -489,7 +492,7 @@ tasks:
           "y": 1090
         }
       }
-version: 20
+version: 21
 view: |-
   {
     "linkLabelsPosition": {},
