@@ -112,7 +112,7 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -540
+          "y": -710
         }
       }
   "7":
@@ -145,7 +145,7 @@ tasks:
       {
         "position": {
           "x": 250,
-          "y": 160
+          "y": -10
         }
       }
   "12":
@@ -161,7 +161,7 @@ tasks:
       wait: 1
     nexttasks:
       '#none#':
-      - "74"
+      - "77"
     note: false
     quietmode: 0
     scriptarguments:
@@ -238,7 +238,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "53"
+      - "76"
     note: false
     quietmode: 0
     separatecontext: false
@@ -259,7 +259,7 @@ tasks:
       {
         "position": {
           "x": 870,
-          "y": 295
+          "y": 125
         }
       }
   "17":
@@ -735,7 +735,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "49"
+      - "73"
     note: false
     quietmode: 0
     scriptarguments:
@@ -761,7 +761,7 @@ tasks:
       {
         "position": {
           "x": 10,
-          "y": 310
+          "y": 140
         }
       }
   "29":
@@ -772,7 +772,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "49"
+      - "73"
     note: false
     quietmode: 0
     scriptarguments:
@@ -798,7 +798,7 @@ tasks:
       {
         "position": {
           "x": 440,
-          "y": 310
+          "y": 140
         }
       }
   "30":
@@ -809,7 +809,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "74"
+      - "78"
     note: false
     quietmode: 0
     scriptarguments:
@@ -871,7 +871,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3860
+          "y": 4020
         }
       }
   "32":
@@ -917,7 +917,7 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -1080
+          "y": -1230
         }
       }
   "33":
@@ -1040,7 +1040,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3330
+          "y": 3490
         }
       }
   "39":
@@ -1077,7 +1077,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3510
+          "y": 3670
         }
       }
   "44":
@@ -1117,7 +1117,7 @@ tasks:
       {
         "position": {
           "x": 250,
-          "y": -360
+          "y": -530
         }
       }
   "45":
@@ -1158,7 +1158,7 @@ tasks:
       {
         "position": {
           "x": 250,
-          "y": -190
+          "y": -360
         }
       }
   "46":
@@ -1210,7 +1210,7 @@ tasks:
       {
         "position": {
           "x": 470,
-          "y": 30
+          "y": -140
         }
       }
   "47":
@@ -1242,7 +1242,7 @@ tasks:
       {
         "position": {
           "x": -420,
-          "y": 310
+          "y": 140
         }
       }
   "49":
@@ -1473,7 +1473,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3670
+          "y": 3830
         }
       }
   "62":
@@ -1494,7 +1494,7 @@ tasks:
       '#default#':
       - "13"
       "yes":
-      - "73"
+      - "32"
     note: false
     quietmode: 0
     separatecontext: false
@@ -1524,7 +1524,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "73"
+      - "32"
     note: false
     quietmode: 0
     scriptarguments:
@@ -1575,7 +1575,7 @@ tasks:
       {
         "position": {
           "x": 670,
-          "y": 3890
+          "y": 4050
         }
       }
   "66":
@@ -1614,7 +1614,7 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -730
+          "y": -880
         }
       }
   "67":
@@ -1646,7 +1646,7 @@ tasks:
       {
         "position": {
           "x": -170,
-          "y": -360
+          "y": -530
         }
       }
   "70":
@@ -1668,7 +1668,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#default#':
-      - "74"
+      - "78"
       "yes":
       - "26"
     note: false
@@ -1731,7 +1731,7 @@ tasks:
       {
         "position": {
           "x": 280,
-          "y": -910
+          "y": -1060
         }
       }
   "72":
@@ -1773,7 +1773,7 @@ tasks:
       {
         "position": {
           "x": 720,
-          "y": -910
+          "y": -1060
         }
       }
   "73":
@@ -1789,12 +1789,12 @@ tasks:
       wait: 1
     nexttasks:
       '#none#':
-      - "32"
+      - "49"
     note: false
     quietmode: 0
     scriptarguments:
       target:
-        simple: ${incident.panosnetworkoperationstarget}
+        simple: ${ActiveDevice}
     separatecontext: true
     skipunavailable: false
     task:
@@ -1811,8 +1811,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 520,
-          "y": -1270
+          "x": 230,
+          "y": 320
         }
       }
   "74":
@@ -1821,11 +1821,19 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
     nexttasks:
       '#none#':
       - "35"
     note: false
     quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${OriginalActive}
     separatecontext: true
     skipunavailable: false
     task:
@@ -1844,35 +1852,42 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3170
+          "y": 3320
         }
       }
   "75":
+    continueonerrortype: ""
     id: "75"
-    taskid: f7701264-679b-4e5f-8909-d4e33dcaf4ef
-    type: playbook
-    task:
-      id: f7701264-679b-4e5f-8909-d4e33dcaf4ef
-      version: -1
-      name: PAN-OS Network Operations - Upgrade Assurance - HA Test
-      description: Take a snapshot after HA and run comparison tests.
-      playbookName: PAN-OS Network Operations - Upgrade Assurance - HA Test
-      type: playbook
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
       iscommand: false
-      brand: ""
+      max: 0
+      wait: 1
     nexttasks:
       '#none#':
       - "51"
+    note: false
+    quietmode: 0
     scriptarguments:
       target:
         simple: ${OriginalPassive}
     separatecontext: true
-    continueonerrortype: ""
-    loop:
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Take a snapshot after HA and run comparison tests.
+      id: f7701264-679b-4e5f-8909-d4e33dcaf4ef
       iscommand: false
-      exitCondition: ""
-      wait: 1
-      max: 0
+      name: PAN-OS Network Operations - Upgrade Assurance - HA Test
+      playbookId: PAN-OS Network Operations - Upgrade Assurance - HA Test
+      type: playbook
+      version: -1
+    taskid: f7701264-679b-4e5f-8909-d4e33dcaf4ef
+    timertriggers: []
+    type: playbook
     view: |-
       {
         "position": {
@@ -1880,13 +1895,127 @@ tasks:
           "y": 1540
         }
       }
-version: 9
+  "76":
+    continueonerrortype: ""
+    id: "76"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "53"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${inputs.target_device}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4852a19d-eebb-4a4e-8419-6fe52f9b71bd
+      iscommand: false
+      name: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
+      playbookId: PAN-OS Network Operations - Upgrade Assurance - First Snapshot
+      type: playbook
+      version: -1
+    taskid: 4852a19d-eebb-4a4e-8419-6fe52f9b71bd
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 870,
+          "y": 320
+        }
+      }
+  "77":
+    continueonerrortype: ""
+    id: "77"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${inputs.target_device}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Take a second snapshot and finalize the comparison tests.
+      id: a0a819e9-bd01-460e-8270-9d483cc3e741
+      iscommand: false
+      name: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
+      playbookId: PAN-OS Network Operations - Upgrade Assurance - Assurance Test
+      type: playbook
+      version: -1
+    taskid: a0a819e9-bd01-460e-8270-9d483cc3e741
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 870,
+          "y": 950
+        }
+      }
+  "78":
+    continueonerrortype: ""
+    id: "78"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "74"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "60"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: 4bec1f4c-eb86-4fdd-8770-fbadaf32b5fe
+      iscommand: false
+      name: Sleep for routing to settle down
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 4bec1f4c-eb86-4fdd-8770-fbadaf32b5fe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 3160
+        }
+      }
+version: 10
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 6005,
+        "height": 6165,
         "width": 1820,
         "x": -570,
         "y": -2050
