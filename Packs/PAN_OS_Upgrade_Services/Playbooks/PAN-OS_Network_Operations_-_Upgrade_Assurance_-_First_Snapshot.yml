@@ -69,8 +69,14 @@ tasks:
         simple: ${incident.readinesschecklist}
       check_session_exists:
         simple: ${incident.checksessionexists}
+      dp_mp_clock_diff:
+        simple: ${incident=foo(val); function foo(incident) { const chkl = incident.readinesschecklist;
+          const dpmp = incident.dpmpclockdiff; if (chkl.indexOf("dp_mp_clock_diff")>=0)
+          { return dpmp; } else { return null; } } }
       firewall_serial:
         simple: ${inputs.target}
+      ipsec_tunnel_status:
+        simple: ${incident.ipsectunnel}
       min_content_version:
         simple: ${incident.minimumcontentversion}
     separatecontext: false
@@ -576,7 +582,7 @@ tasks:
           "y": 750
         }
       }
-version: 19
+version: 20
 view: |-
   {
     "linkLabelsPosition": {},
