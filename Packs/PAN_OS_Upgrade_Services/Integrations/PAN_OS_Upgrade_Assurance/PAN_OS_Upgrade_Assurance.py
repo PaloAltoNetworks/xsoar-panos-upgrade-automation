@@ -267,6 +267,12 @@ def command_run_readiness_checks(panorama: Panorama):
         check_list.remove('dp_mp_clock_diff')
         check_list.append('planes_clock_sync')  # to match with upgrade assurance check type
 
+    # 'content_version' already match upgrade assurance check type
+
+    if 'dp_mp_clock_diff' in check_list:
+        check_list.remove('dp_mp_clock_diff')
+        check_list.append('planes_clock_sync')  # to match with upgrade assurance check type
+
     # this will set it to None if emptry string or not provided
     dp_mp_clock_diff = arg_to_number(args.get('dp_mp_clock_diff'), required=False)
     if args.get('dp_mp_clock_diff') is not None:
@@ -275,6 +281,21 @@ def command_run_readiness_checks(panorama: Panorama):
     if 'ipsec_tunnel' in check_list:
         check_list.remove('ipsec_tunnel')
         check_list.append('ip_sec_tunnel_status')
+
+    if 'arp' in check_list:
+        check_list.remove('arp')
+        check_list.append('arp_entry_exists')
+
+    if (arp_entry := args.get('arp_entry_exists')) is not None and not is_ip_valid(arp_entry):
+        raise ValueError(
+            f"{arp_entry} is not a valid IPv4 address."
+        )
+
+    if 'ipsec_tunnel' in check_list:
+        check_list.remove('ipsec_tunnel')
+        check_list.append('ip_sec_tunnel_status')
+
+    # 'session_exist' already match upgrade assurance check type
 
     if 'arp' in check_list:
         check_list.remove('arp')
