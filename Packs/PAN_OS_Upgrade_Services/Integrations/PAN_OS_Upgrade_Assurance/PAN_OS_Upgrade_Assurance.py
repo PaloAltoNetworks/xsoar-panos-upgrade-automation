@@ -150,7 +150,6 @@ def run_readiness_checks(
             })
         check_list.remove('ip_sec_tunnel_status')
 
-
     if 'session_exist' in check_list:
         if check_session_exists:
             try:
