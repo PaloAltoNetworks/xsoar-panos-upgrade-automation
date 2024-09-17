@@ -39,12 +39,17 @@
 	"runScriptAfterUpdate": false,
 	"script": "",
 	"selectValues": [
-		"arp",
 		"panorama",
 		"ntp_sync",
 		"ha",
 		"candidate_config",
-		"expired_licenses"
+		"expired_licenses",
+		"active_support",
+		"content_version",
+		"session_exist",
+		"arp",
+		"ipsec_tunnel",
+		"dp_mp_clock_diff"
 	],
 	"sla": 0,
 	"system": false,
