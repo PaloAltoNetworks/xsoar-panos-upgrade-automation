@@ -52,6 +52,7 @@
                         "displayType": "ROW",
                         "h": 2,
                         "i": "caseinfoid-field-changed-caseinfoid-6aabad20-98b1-11e9-97d7-ed26ef9e46c8",
+                        "maxH": null,
                         "maxW": 3,
                         "minH": 1,
                         "moved": false,
@@ -90,6 +91,7 @@
                         "h": 2,
                         "i": "caseinfoid-field-changed-caseinfoid-0f880450-16b4-11ed-afe0-bdd7fdc69d28",
                         "items": [],
+                        "maxH": null,
                         "maxW": 3,
                         "minH": 1,
                         "moved": false,
@@ -148,6 +150,7 @@
                                 "startCol": 1
                             }
                         ],
+                        "maxH": null,
                         "maxW": 3,
                         "minH": 1,
                         "moved": false,
