@@ -296,20 +296,22 @@ tasks:
       reset_ha_topology:
         simple: "true"
       target_device:
-        simple: ${incident.panosnetworkoperationstarget}
+        simple: ${inputs.target_device}
       target_version:
         simple: ${incident.upgradepath}
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
-      id: e0c5f1f3-dfea-4556-8ce3-11740cbda7de
+      description: Upgrades a single or HA pair of PAN-OS firewalls, supports running
+        as a subplaybook and be looped over to complete an entire upgrade path.
+      id: 50dc3546-d006-401d-8d15-2784e25adb2e
       iscommand: false
       name: PAN-OS Network Operations - Device Upgrade Loop
       playbookId: PAN-OS Network Operations - Device Upgrade Loop
       type: playbook
       version: -1
-    taskid: e0c5f1f3-dfea-4556-8ce3-11740cbda7de
+    taskid: 50dc3546-d006-401d-8d15-2784e25adb2e
     timertriggers: []
     type: playbook
     view: |-

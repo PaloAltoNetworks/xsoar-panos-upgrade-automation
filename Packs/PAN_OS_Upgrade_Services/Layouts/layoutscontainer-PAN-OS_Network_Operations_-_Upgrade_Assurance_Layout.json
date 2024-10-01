@@ -45,10 +45,10 @@
 							},
 							{
 								"endCol": 2,
-								"fieldId": "panosnetworkoperationsupgradetargetfirewallversion",
+								"fieldId": "panosnetworkoperationsupgradetargetversion",
 								"height": 53,
-								"id": "cfd99ad0-ea3e-11ed-939f-4f8b882605d4",
-								"index": 1,
+								"id": "ab0ddd00-74e5-11ef-9a5f-8578e5a6051d",
+								"index": 2,
 								"sectionItemType": "field",
 								"startCol": 0
 							}
@@ -550,7 +550,7 @@
 						"isVisible": true
 					},
 					{
-						"fieldId": "incident_panosnetworkoperationsupgradetargetfirewallversion",
+						"fieldId": "incident_panosnetworkoperationsupgradetargetversion",
 						"isVisible": true
 					},
 					{

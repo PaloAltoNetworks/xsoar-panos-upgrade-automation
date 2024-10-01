@@ -896,11 +896,20 @@ tasks:
       candidate_version:
         simple: ${incident.panosnetworkoperationsupgradetargetversion}
       check_list:
-        simple: panorama,ntp_sync,candidate_config,active_support
+        simple: ${incident=foo(val); function foo(incident) { const chkl = incident.readinesschecklist;
+          if (Array.isArray(chkl)) { return chkl.filter(item => item !== 'ha'); }
+          else { return ['panorama','ntp_sync','candidate_config','active_support'];
+          } } }
       check_session_exists:
         simple: ${incident.checksessionexists}
+      dp_mp_clock_diff:
+        simple: ${incident=foo(val); function foo(incident) { const chkl = incident.readinesschecklist;
+          const dpmp = incident.dpmpclockdiff; if (chkl.indexOf("dp_mp_clock_diff")>=0)
+          { return dpmp; } else { return null; } } }
       firewall_serial:
         simple: ${inputs.target}
+      ipsec_tunnel_status:
+        simple: ${incident.ipsectunnel}
       min_content_version:
         simple: ${incident.minimumcontentversion}
     separatecontext: false
