@@ -9,7 +9,7 @@
 	"edit": null,
 	"fromServerVersion": "0.0.0",
 	"group": "indicator",
-	"id": "b47d6c61-6c2e-4c79-805a-8b59a4236f87",
+	"id": "Network Device Layout",
 	"indicatorsDetails": {
 		"TypeName": "",
 		"tabs": [
@@ -20,7 +20,7 @@
 					{
 						"displayType": "ROW",
 						"h": 2,
-						"i": "default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
+						"i": "default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-e2c8c970-a09d-11e9-8956-390f602b039a",
 						"items": [
 							{
 								"endCol": 2,
@@ -75,6 +75,15 @@
 								"index": 5,
 								"sectionItemType": "field",
 								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "panoramainstance",
+								"height": 22,
+								"id": "46282d20-c69c-11ee-83a0-4d266dee6303",
+								"index": 6,
+								"sectionItemType": "field",
+								"startCol": 0
 							}
 						],
 						"maxH": null,
@@ -91,7 +100,7 @@
 						"displayType": "ROW",
 						"h": 2,
 						"hideName": false,
-						"i": "default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-actions",
+						"i": "default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-actions",
 						"items": [
 							{
 								"args": {
@@ -143,7 +152,7 @@
 						"description": "",
 						"displayType": "ROW",
 						"h": 2,
-						"i": "default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
+						"i": "default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
 						"items": [
 							{
 								"dropEffect": "move",
@@ -152,7 +161,7 @@
 								"height": 22,
 								"id": "69a5cca0-25e7-11ed-8ab5-3b3a9b12d68d",
 								"index": 0,
-								"listId": "default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
+								"listId": "default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -163,7 +172,7 @@
 								"height": 22,
 								"id": "54418180-0c8b-11ed-a0b8-eb2ebd0d1561",
 								"index": 1,
-								"listId": "default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
+								"listId": "default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -174,7 +183,7 @@
 								"height": 22,
 								"id": "b8425e00-1480-11ed-9166-c505ff0c6032",
 								"index": 2,
-								"listId": "default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
+								"listId": "default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-9277ac54-0c8a-11ed-a0b8-eb2ebd0d1561",
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -229,7 +238,7 @@
 						"description": "",
 						"displayType": "ROW",
 						"h": 2,
-						"i": "default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-a3ff2160-0c8a-11ed-a0b8-eb2ebd0d1561",
+						"i": "default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-a3ff2160-0c8a-11ed-a0b8-eb2ebd0d1561",
 						"items": [
 							{
 								"endCol": 2,
@@ -282,7 +291,7 @@
 						"displayType": "ROW",
 						"h": 2,
 						"hideName": false,
-						"i": "default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-b47d6c61-6c2e-4c79-805a-8b59a4236f87-default-main-550e1980-1450-11ed-95e0-e5359ae51b32",
+						"i": "default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-Network Device Layout-default-main-550e1980-1450-11ed-95e0-e5359ae51b32",
 						"items": [
 							{
 								"endCol": 2,
@@ -325,7 +334,7 @@
 						"description": "",
 						"h": 8,
 						"hideName": true,
-						"i": "b47d6c61-6c2e-4c79-805a-8b59a4236f87-dpsdqi3e10-478a8760-147a-11ed-894f-b3bcebf5403c",
+						"i": "Network Device Layout-dpsdqi3e10-478a8760-147a-11ed-894f-b3bcebf5403c",
 						"items": [],
 						"maxH": null,
 						"maxW": 3,
@@ -353,7 +362,7 @@
 						"description": "",
 						"h": 8,
 						"hideName": true,
-						"i": "b47d6c61-6c2e-4c79-805a-8b59a4236f87-efeoksghwh-b47d6c61-6c2e-4c79-805a-8b59a4236f87-efeoksghwh-67ec78c0-1460-11ed-a884-436cba2c2bd8",
+						"i": "Network Device Layout-efeoksghwh-Network Device Layout-efeoksghwh-67ec78c0-1460-11ed-a884-436cba2c2bd8",
 						"items": [],
 						"maxH": null,
 						"maxW": 3,

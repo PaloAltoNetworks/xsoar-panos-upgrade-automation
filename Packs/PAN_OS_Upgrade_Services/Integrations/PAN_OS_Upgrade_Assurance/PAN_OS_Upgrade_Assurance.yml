@@ -103,7 +103,7 @@ script:
         default: true
       - name: check_list
         isArray: true
-        description: List of tests to run. If not provided, a base set of tests will be run.
+        description: List of snapshot types to take. If not provided, a base set of snapshots will be taken.
         required: false
         secret: false
         default: false

@@ -16,7 +16,7 @@
 	"content": false,
 	"defaultRows": null,
 	"definitionId": "",
-	"description": "The minimum content version to test against",
+	"description": "The minimum content version to test against. Checks for latest content version if not provided.",
 	"editForm": true,
 	"fieldCalcScript": "",
 	"fromServerVersion": "",
