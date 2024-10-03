@@ -23,7 +23,6 @@ configuration:
   type: 8
 - display: API Key
   name: key
-  required: true
   type: 4
   required: false
 script:
