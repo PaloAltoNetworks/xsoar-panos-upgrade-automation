@@ -37,7 +37,10 @@ def get_firewall_object(panorama: Panorama, serial_number):
 
 
 def get_panorama(ip, user, password):
-    """Create the Panorama Object"""
+    """Create the Panorama Object
+
+    NOTE: NOT IN USE.
+    """
     return Panorama(
         api_username=user,
         api_password=password,
@@ -341,11 +344,6 @@ def command_compare_snapshots():
 
 
 def main():
-    #GG panorama_ip = demisto.params().get("url")
-    #GG panorama_user = demisto.params().get("panorama_user")
-    #GG panorama_password = demisto.params().get("panorama_password")
-    #GG panorama = get_panorama(panorama_ip, panorama_user, panorama_password)
-
     # copied from device mgmt...
     params = demisto.params()
     api_key = str(params.get('key')) or str((params.get('credentials') or {}).get('password', ''))
@@ -353,13 +351,12 @@ def main():
     port = params.get("port", "443")
     hostname = parsed_url.hostname
 
+    handle_proxy()
     panorama = Panorama.create_from_device(
         hostname=hostname,
         api_key=api_key,
         port=port
     )
-
-    handle_proxy()
 
     command = demisto.command()
     try:
