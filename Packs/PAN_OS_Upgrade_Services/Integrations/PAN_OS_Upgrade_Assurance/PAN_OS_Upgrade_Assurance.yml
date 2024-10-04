@@ -6,14 +6,20 @@ commonfields:
 name: PAN_OS_Upgrade_Assurance
 display: PAN-OS Assurance Testing
 configuration:
-- display: Panorama IP or Hostname
+- display: Server URL (e.g. https://panorama.corp.local)
   name: url
-  defaultvalue: 192.168.1.1
+  defaultvalue: https://panorama.corp.local
   type: 0
+  required: true
+- display: API Key
+  name: key
+  type: 4
+  required: true
 - display: Server Port
   name: port
-  type: 4
+  type: 0
   required: false
+  default: 443
 - display: Trust any certificate (not secure)
   name: insecure
   type: 8
@@ -21,9 +27,6 @@ configuration:
 - display: Use system proxy settings
   name: proxy
   type: 8
-- display: API Key
-  name: key
-  type: 4
   required: false
 script:
   commands:
