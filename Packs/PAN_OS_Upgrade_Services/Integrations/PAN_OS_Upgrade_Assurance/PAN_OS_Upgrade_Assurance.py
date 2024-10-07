@@ -2,6 +2,7 @@ import demistomock as demisto  # noqa: F401
 from CommonServerPython import *  # noqa: F401
 
 from typing import Optional, List
+from urllib.parse import urlparse
 
 from panos_upgrade_assurance.firewall_proxy import FirewallProxy
 from panos_upgrade_assurance.check_firewall import CheckFirewall
@@ -36,7 +37,10 @@ def get_firewall_object(panorama: Panorama, serial_number):
 
 
 def get_panorama(ip, user, password):
-    """Create the Panorama Object"""
+    """Create the Panorama Object
+
+    NOTE: NOT IN USE.
+    """
     return Panorama(
         api_username=user,
         api_password=password,
@@ -340,12 +344,19 @@ def command_compare_snapshots():
 
 
 def main():
-    panorama_ip = demisto.params().get("url")
-    panorama_user = demisto.params().get("panorama_user")
-    panorama_password = demisto.params().get("panorama_password")
-    panorama = get_panorama(panorama_ip, panorama_user, panorama_password)
+    # copied from device mgmt...
+    params = demisto.params()
+    api_key = str(params.get('key')) or str((params.get('credentials') or {}).get('password', ''))
+    parsed_url = urlparse(params.get("url"))
+    port = params.get("port", "443")
+    hostname = parsed_url.hostname
 
     handle_proxy()
+    panorama = Panorama.create_from_device(
+        hostname=hostname,
+        api_key=api_key,
+        port=port
+    )
 
     command = demisto.command()
     try:
