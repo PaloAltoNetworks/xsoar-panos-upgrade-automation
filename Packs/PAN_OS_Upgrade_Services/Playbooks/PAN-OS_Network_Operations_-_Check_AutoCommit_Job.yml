@@ -1,0 +1,506 @@
+description: Check and wait for Auto Commit job to finish successfully.
+dirtyInputs: true
+id: 'PAN-OS Network Operations - Check AutoCommit Job'
+inputSections:
+- description: Generic group for inputs
+  inputs:
+  - target
+  - timeout
+  name: General (Inputs group)
+inputs:
+- description: Target Firewall - Serial or IP address
+  key: target
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: Default max timeout value
+  key: timeout
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "30"
+name: PAN-OS Network Operations - Check AutoCommit Job
+outputSections:
+- description: Generic group for outputs
+  name: General (Outputs group)
+  outputs: []
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d4254722-245d-45ac-8167-aad498950778
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: d4254722-245d-45ac-8167-aad498950778
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${inputs.target}
+      job_type:
+        simple: AutoCom
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets all the jobs from the devices in the environment, or a single
+        job when the ID is specified.
+      id: e4836b92-a59c-46f9-8fd9-d7237de79d1b
+      iscommand: true
+      name: Get AutoCom jobs
+      script: '|||pan-os-platform-get-jobs'
+      type: regular
+      version: -1
+    taskid: e4836b92-a59c-46f9-8fd9-d7237de79d1b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AdditionalPollingCommandArgNames:
+        simple: device_filter_string,using
+      AdditionalPollingCommandArgValues:
+        simple: ${inputs.target},${incident.panosnetworkoperationspanoramainstance}
+      Ids:
+        complex:
+          accessor: id
+          root: PANOS.JobStatus
+          transformers:
+          - operator: LastArrayElement
+      Interval:
+        simple: "1"
+      PollingCommandArgName:
+        simple: id
+      PollingCommandName:
+        simple: pan-os-platform-get-jobs
+      Timeout:
+        simple: ${inputs.timeout}
+      dt:
+        simple: PANOS.JobStatus(val.status!=="FIN").id
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
+        The remote action should have the following structure:
+
+        1. Initiate the operation.
+        2. Poll to check if the operation completed.
+        3. (optional) Get the results of the operation.
+      id: bbb75c96-c795-453d-8f28-9b2535692a6c
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: bbb75c96-c795-453d-8f28-9b2535692a6c
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 895
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${inputs.target}
+      id:
+        complex:
+          accessor: id
+          root: PANOS.JobStatus
+          transformers:
+          - operator: LastArrayElement
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets all the jobs from the devices in the environment, or a single
+        job when the ID is specified.
+      id: 9a08925c-d844-4bed-85f4-180d05511e59
+      iscommand: true
+      name: Get jobs again to check status
+      script: '|||pan-os-platform-get-jobs'
+      type: regular
+      version: -1
+    taskid: 9a08925c-d844-4bed-85f4-180d05511e59
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1070
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: status
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.JobStatus.type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: AutoCom
+                root: PANOS.JobStatus
+          operator: isEqualString
+          right:
+            value:
+              simple: FIN
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: result
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: PANOS.JobStatus.type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: AutoCom
+                root: PANOS.JobStatus
+          operator: isEqualString
+          right:
+            value:
+              simple: OK
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 906058bc-a979-4c44-8ece-ae795a245a52
+      iscommand: false
+      name: Did it complete?
+      type: condition
+      version: -1
+    taskid: 906058bc-a979-4c44-8ece-ae795a245a52
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1245
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: Autocommit job failed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message.
+      id: fe9f58dd-3ac9-436a-80c7-ebe98cbe412d
+      iscommand: false
+      name: Fail Message
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: fe9f58dd-3ac9-436a-80c7-ebe98cbe412d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1595
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: Upgrade failed - Autocommit job failed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 444c57b5-b05d-4f3f-8384-0972d88bff12
+      iscommand: true
+      name: Set description
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 444c57b5-b05d-4f3f-8384-0972d88bff12
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1420
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d971b5c7-e198-4a16-8c4d-0e483cd6cde9
+      iscommand: false
+      name: Finish
+      type: title
+      version: -1
+    taskid: d971b5c7-e198-4a16-8c4d-0e483cd6cde9
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1435
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.JobStatus.id
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "12"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4c8708bd-4c0e-46be-8b45-e58c5586dedc
+      iscommand: false
+      name: Did we get a job?
+      type: condition
+      version: -1
+    taskid: 4c8708bd-4c0e-46be-8b45-e58c5586dedc
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "120"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: 6705c63b-4244-494a-82a6-8982a44803ba
+      iscommand: false
+      name: Wait for jobs to get processed
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 6705c63b-4244-494a-82a6-8982a44803ba
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 545
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      device_filter_string:
+        simple: ${inputs.target}
+      job_type:
+        simple: AutoCom
+      using:
+        simple: ${incident.panosnetworkoperationspanoramainstance}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets all the jobs from the devices in the environment, or a single
+        job when the ID is specified.
+      id: e6ba3f1f-8a3c-4331-823a-777e51e94b62
+      iscommand: true
+      name: Get AutoCom jobs
+      script: '|||pan-os-platform-get-jobs'
+      type: regular
+      version: -1
+    taskid: e6ba3f1f-8a3c-4331-823a-777e51e94b62
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 720
+        }
+      }
+version: 1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1640,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }

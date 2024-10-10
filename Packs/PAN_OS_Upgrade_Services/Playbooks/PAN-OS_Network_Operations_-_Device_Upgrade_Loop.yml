@@ -161,7 +161,7 @@ tasks:
       wait: 1
     nexttasks:
       '#none#':
-      - "77"
+      - "81"
     note: false
     quietmode: 0
     scriptarguments:
@@ -187,7 +187,7 @@ tasks:
       {
         "position": {
           "x": 870,
-          "y": 790
+          "y": 650
         }
       }
   "13":
@@ -275,7 +275,7 @@ tasks:
       wait: 1
     nexttasks:
       '#none#':
-      - "18"
+      - "79"
     note: false
     quietmode: 0
     scriptarguments:
@@ -301,7 +301,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 630
+          "y": 650
         }
       }
   "18":
@@ -339,7 +339,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 790
+          "y": 1130
         }
       }
   "19":
@@ -396,7 +396,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 940
+          "y": 1290
         }
       }
   "20":
@@ -441,7 +441,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1240
+          "y": 1650
         }
       }
   "21":
@@ -473,7 +473,7 @@ tasks:
       {
         "position": {
           "x": -370,
-          "y": 2510
+          "y": 3300
         }
       }
   "22":
@@ -489,7 +489,7 @@ tasks:
       wait: 1
     nexttasks:
       '#none#':
-      - "24"
+      - "80"
     note: false
     quietmode: 0
     scriptarguments:
@@ -515,7 +515,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1840
+          "y": 2290
         }
       }
   "23":
@@ -550,7 +550,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1390
+          "y": 1810
         }
       }
   "24":
@@ -588,7 +588,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1990
+          "y": 2770
         }
       }
   "25":
@@ -645,7 +645,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2140
+          "y": 2930
         }
       }
   "26":
@@ -689,7 +689,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2660
+          "y": 3460
         }
       }
   "27":
@@ -724,7 +724,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2810
+          "y": 3620
         }
       }
   "28":
@@ -842,7 +842,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2990
+          "y": 3800
         }
       }
   "31":
@@ -871,7 +871,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 4020
+          "y": 4820
         }
       }
   "32":
@@ -957,7 +957,7 @@ tasks:
       {
         "position": {
           "x": -570,
-          "y": 2330
+          "y": 3120
         }
       }
   "34":
@@ -997,7 +997,7 @@ tasks:
       {
         "position": {
           "x": -170,
-          "y": 2330
+          "y": 3120
         }
       }
   "35":
@@ -1040,7 +1040,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3490
+          "y": 4300
         }
       }
   "39":
@@ -1077,7 +1077,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3670
+          "y": 4470
         }
       }
   "44":
@@ -1318,7 +1318,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1090
+          "y": 1490
         }
       }
   "51":
@@ -1355,7 +1355,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1700
+          "y": 2130
         }
       }
   "52":
@@ -1392,7 +1392,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2330
+          "y": 3120
         }
       }
   "53":
@@ -1473,7 +1473,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3830
+          "y": 4630
         }
       }
   "62":
@@ -1575,7 +1575,7 @@ tasks:
       {
         "position": {
           "x": 670,
-          "y": 4050
+          "y": 4850
         }
       }
   "66":
@@ -1689,7 +1689,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 2480
+          "y": 3280
         }
       }
   "71":
@@ -1852,7 +1852,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3320
+          "y": 4130
         }
       }
   "75":
@@ -1892,7 +1892,7 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 1540
+          "y": 1970
         }
       }
   "76":
@@ -1971,7 +1971,7 @@ tasks:
       {
         "position": {
           "x": 870,
-          "y": 950
+          "y": 1025
         }
       }
   "78":
@@ -2006,16 +2006,214 @@ tasks:
       {
         "position": {
           "x": 230,
-          "y": 3160
+          "y": 3970
         }
       }
-version: 10
+  "79":
+    continueonerrortype: ""
+    id: "79"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "82"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${OriginalPassive}
+      timeout:
+        simple: "30"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check and wait for Auto Commit job to finish successfully.
+      id: c7b345f1-b964-4709-8914-333cb5bbcace
+      iscommand: false
+      name: PAN-OS Network Operations - Check AutoCommit Job
+      playbookId: PAN-OS Network Operations - Check AutoCommit Job
+      type: playbook
+      version: -1
+    taskid: c7b345f1-b964-4709-8914-333cb5bbcace
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 810
+        }
+      }
+  "80":
+    continueonerrortype: ""
+    id: "80"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "83"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${OriginalActive}
+      timeout:
+        simple: "30"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check and wait for Auto Commit job to finish successfully.
+      id: fc89c14d-a2e7-4136-8be5-221c371ecc10
+      iscommand: false
+      name: PAN-OS Network Operations - Check AutoCommit Job
+      playbookId: PAN-OS Network Operations - Check AutoCommit Job
+      type: playbook
+      version: -1
+    taskid: fc89c14d-a2e7-4136-8be5-221c371ecc10
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 2450
+        }
+      }
+  "81":
+    continueonerrortype: ""
+    id: "81"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "77"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      target:
+        simple: ${inputs.target_device}
+      timeout:
+        simple: "30"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check and wait for Auto Commit job to finish successfully.
+      id: 750379c7-44ae-4680-8f25-91f98b6be6b8
+      iscommand: false
+      name: PAN-OS Network Operations - Check AutoCommit Job
+      playbookId: PAN-OS Network Operations - Check AutoCommit Job
+      type: playbook
+      version: -1
+    taskid: 750379c7-44ae-4680-8f25-91f98b6be6b8
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 870,
+          "y": 810
+        }
+      }
+  "82":
+    continueonerrortype: ""
+    id: "82"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "90"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: c113e313-00fe-4d98-86f3-b5051adcf687
+      iscommand: false
+      name: Sleep for HA to settle down
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: c113e313-00fe-4d98-86f3-b5051adcf687
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 970
+        }
+      }
+  "83":
+    continueonerrortype: ""
+    id: "83"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "90"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: ecb803af-7e94-425c-8e0b-55c2085213e9
+      iscommand: false
+      name: Sleep for HA to settle down
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: ecb803af-7e94-425c-8e0b-55c2085213e9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 2610
+        }
+      }
+version: 11
 view: |-
   {
-    "linkLabelsPosition": {},
+    "linkLabelsPosition": {
+      "70_78_#default#": 0.89
+    },
     "paper": {
       "dimensions": {
-        "height": 6165,
+        "height": 6965,
         "width": 1820,
         "x": -570,
         "y": -2050
