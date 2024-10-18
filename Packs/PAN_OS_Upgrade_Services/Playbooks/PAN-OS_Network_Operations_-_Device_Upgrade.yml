@@ -1,5 +1,14 @@
 description: Upgrades a single or HA pair of PAN-OS firewalls.
+dirtyInputs: true
 id: PAN-OS Network Operations - Device Upgrade
+inputSections:
+- description: Generic group for inputs
+  inputs:
+  - target_device
+  - peer_device
+  - target_version
+  - panorama_instance
+  name: General (Inputs group)
 inputs:
 - description: Target Firewall for upgrade
   key: target_device
@@ -19,7 +28,17 @@ inputs:
   required: false
   value:
     simple: ${incident.panosnetworkoperationsupgradetargetversion}
+- description: Instance name for Panorama Integration to use
+  key: panorama_instance
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationspanoramainstancename}
 name: PAN-OS Network Operations - Device Upgrade
+outputSections:
+- description: Generic group for outputs
+  name: General (Outputs group)
+  outputs: []
 outputs: []
 starttaskid: "0"
 tasks:
@@ -49,7 +68,7 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -3250
+          "y": -3070
         }
       }
   "40":
@@ -374,6 +393,9 @@ tasks:
       - "59"
     note: false
     quietmode: 0
+    scriptarguments:
+      instance:
+        simple: ${inputs.panorama_instance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -396,16 +418,16 @@ tasks:
           "y": -1930
         }
       }
-version: 9
+version: 10
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 1945,
+        "height": 1765,
         "width": 610,
         "x": 520,
-        "y": -3250
+        "y": -3070
       }
     }
   }
