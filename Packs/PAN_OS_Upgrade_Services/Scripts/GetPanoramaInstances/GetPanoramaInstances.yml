@@ -1,0 +1,18 @@
+comment: Gets all instances of Panorama integration, in the output format of a single select field.
+commonfields:
+  id: GetPanoramaInstances
+  version: -1
+dockerimage: demisto/python3:3.11.10.111526
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GetPanoramaInstances
+pswd: ''
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags:
+- field-display
+type: python

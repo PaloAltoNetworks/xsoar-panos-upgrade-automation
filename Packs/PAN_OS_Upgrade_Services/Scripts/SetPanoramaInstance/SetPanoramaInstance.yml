@@ -8,10 +8,12 @@ args:
   description: Can change the incident field to be set
   name: field
   required: true
+- description: Used to set a specific instance of the integration
+  name: instance
 - defaultValue: "False"
   description: Used to specify if the incident field will be overridden if already set
   name: override
-comment: 'This will set the Panorama instance field (panosnetworkoperationspanoramainstance) if it isn''t already set.  '
+comment: "This will set the Panorama instance field (panosnetworkoperationspanoramainstance) if it isn't already set.  "
 commonfields:
   id: SetPanoramaInstance
   version: -1
@@ -20,7 +22,7 @@ enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: SetPanoramaInstance
-pswd: ""
+pswd: ''
 runas: DBotWeakRole
 runonce: false
 script: ''

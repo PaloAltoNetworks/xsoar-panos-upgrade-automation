@@ -713,7 +713,7 @@
 						"isVisible": true
 					},
 					{
-						"fieldId": "incident_panosnetworkoperationspanoramainstance",
+						"fieldId": "incident_panosnetworkoperationspanoramainstancename",
 						"isVisible": true
 					}
 				],

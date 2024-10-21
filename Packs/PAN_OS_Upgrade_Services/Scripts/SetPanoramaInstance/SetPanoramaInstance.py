@@ -7,6 +7,7 @@ if __name__ in ('__main__', '__builtin__', 'builtins'):
     args = demisto.args()
     integration = args.get('integration')
     field_name = args.get('field')
+    instance_name = args.get('instance')
     override = argToBoolean(args.get('override'))
 
     # find the current field value
@@ -27,8 +28,12 @@ if __name__ in ('__main__', '__builtin__', 'builtins'):
         if data.get('brand', '') == integration and data.get('state', '') == 'active':
             instance_names.append(name)
 
-    # if multiple active instances, join to preserve the default 'using' behavior
-    instance_names = ','.join(instance_names)
+    # if a specific instance is requested expilicitly
+    if instance_name and instance_name in instance_names:
+        instance_names = instance_name
+    else:
+        # if multiple active instances, join to preserve the default 'using' behavior
+        instance_names = ','.join(instance_names)
 
     if not current_value or override:
         execute_command('setIncident', {field_name: instance_names})

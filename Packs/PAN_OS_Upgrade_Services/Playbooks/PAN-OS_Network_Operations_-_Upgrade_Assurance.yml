@@ -2,6 +2,12 @@ description: Runs a series of tests based on the upgrade assurance commands and 
   if any fail - also generates reports and other information that is useful in the
   assurance process.
 id: PAN-OS Network Operations - Upgrade Assurance
+inputSections:
+- description: Generic group for inputs
+  inputs:
+  - target
+  - panorama_instance
+  name: General (Inputs group)
 inputs:
 - description: Target firewall - helpful if running this playbook in a loop.
   key: target
@@ -9,7 +15,17 @@ inputs:
   required: true
   value:
     simple: ${incident.panosnetworkoperationstarget}
+- description: Instance name for Panorama Integration to use
+  key: panorama_instance
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.panosnetworkoperationspanoramainstancename}
 name: PAN-OS Network Operations - Upgrade Assurance
+outputSections:
+- description: Generic group for outputs
+  name: General (Outputs group)
+  outputs: []
 outputs: []
 starttaskid: "0"
 tasks:
@@ -21,7 +37,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "9"
+      - "11"
     note: false
     quietmode: 0
     separatecontext: false
@@ -39,7 +55,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 50
+          "y": -370
         }
       }
   "6":
@@ -251,16 +267,93 @@ tasks:
           "y": 880
         }
       }
-version: 29
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.panosnetworkoperationspanoramainstance
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: yes
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "12"
+      yes:
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7a614239-695e-4796-8ab7-377f82056013
+      iscommand: false
+      name: Is Panorama Instance Set?
+      type: condition
+      version: -1
+    taskid: 7a614239-695e-4796-8ab7-377f82056013
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -220
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      instance:
+        simple: ${inputs.panorama_instance}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "This will set the Panorama instance field (panosnetworkoperationspanoramainstance) if it isn't already set.  "
+      id: d191eeb8-f8e3-4299-8244-3c0ccf7c9470
+      iscommand: false
+      name: Set Panorama Instance
+      script: SetPanoramaInstance
+      type: regular
+      version: -1
+    taskid: d191eeb8-f8e3-4299-8244-3c0ccf7c9470
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 20
+        }
+      }
+version: 30
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 925,
+        "height": 1345,
         "width": 790,
         "x": 450,
-        "y": 50
+        "y": -370
       }
     }
   }
