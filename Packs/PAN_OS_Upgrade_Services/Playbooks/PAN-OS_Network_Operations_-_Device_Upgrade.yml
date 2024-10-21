@@ -237,7 +237,7 @@ tasks:
       wait: 1
     nexttasks:
       '#none#':
-      - "62"
+      - "68"
     note: false
     quietmode: 0
     scriptarguments:
@@ -289,7 +289,7 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -1370
+          "y": -1170
         }
       }
   "62":
@@ -337,7 +337,7 @@ tasks:
       {
         "position": {
           "x": 520,
-          "y": -1550
+          "y": -1330
         }
       }
   "63":
@@ -400,8 +400,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: 'This will set the Panorama instance field (panosnetworkoperationspanoramainstance)
-        if it isn''t already set.  '
+      description: "This will set the Panorama instance field (panosnetworkoperationspanoramainstance) if it isn't already set.  "
       id: d9814a7d-ab6a-4a7d-8a00-4835e6f58a06
       iscommand: false
       name: Set Panorama Instance
@@ -418,14 +417,86 @@ tasks:
           "y": -1930
         }
       }
-version: 10
+  "68":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.upgradepath
+          operator: isNotEmpty
+      label: yes
+    continueonerrortype: ""
+    id: "68"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "69"
+      yes:
+      - "62"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c85aeeab-1823-426f-8828-c8303f531d6b
+      iscommand: false
+      name: Is upgrade path set?
+      type: condition
+      version: -1
+    taskid: c85aeeab-1823-426f-8828-c8303f531d6b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": -1540
+        }
+      }
+  "69":
+    continueonerrortype: ""
+    id: "69"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: No upgradepath set, make sure to select an higher PAN-OS version than the target firewall; or if you are upgrading a partially upgraded HA pair, target firewall with the lower version.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 340aeda1-f805-49e6-80ef-dd86d0fbf796
+      iscommand: false
+      name: No Upgrade Path Found.
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 340aeda1-f805-49e6-80ef-dd86d0fbf796
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 980,
+          "y": -1330
+        }
+      }
+version: 11
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 1765,
-        "width": 610,
+        "height": 1965,
+        "width": 840,
         "x": 520,
         "y": -3070
       }
