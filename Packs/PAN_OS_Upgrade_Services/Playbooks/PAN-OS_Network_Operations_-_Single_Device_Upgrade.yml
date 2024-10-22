@@ -40,8 +40,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -2110
+          "x": 265,
+          "y": 50
         }
       }
   "14":
@@ -81,8 +81,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -65
+          "x": 152.5,
+          "y": 2295
         }
       }
   "15":
@@ -137,8 +137,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 300
+          "x": 152.5,
+          "y": 2645
         }
       }
   "16":
@@ -165,8 +165,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 825
+          "x": 480,
+          "y": 3185
         }
       }
   "18":
@@ -202,8 +202,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 450
+          "x": 152.5,
+          "y": 2820
         }
       }
   "19":
@@ -247,8 +247,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 630
+          "x": 152.5,
+          "y": 2995
         }
       }
   "20":
@@ -280,8 +280,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 910,
-          "y": 810
+          "x": 50,
+          "y": 3170
         }
       }
   "21":
@@ -315,8 +315,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 110
+          "x": 152.5,
+          "y": 2470
         }
       }
   "22":
@@ -352,8 +352,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -1460
+          "x": 152.5,
+          "y": 895
         }
       }
   "23":
@@ -406,8 +406,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -760
+          "x": 152.5,
+          "y": 1595
         }
       }
   "24":
@@ -445,8 +445,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -1640
+          "x": 265,
+          "y": 720
         }
       }
   "25":
@@ -457,7 +457,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "26"
+      - "41"
     note: false
     quietmode: 0
     scriptarguments:
@@ -482,8 +482,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -1980
+          "x": 265,
+          "y": 195
         }
       }
   "26":
@@ -526,8 +526,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -1830
+          "x": 152.5,
+          "y": 545
         }
       }
   "27":
@@ -579,8 +579,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -1110
+          "x": 152.5,
+          "y": 1245
         }
       }
   "35":
@@ -642,8 +642,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -1300
+          "x": 152.5,
+          "y": 1070
         }
       }
   "37":
@@ -684,8 +684,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 690,
-          "y": -930
+          "x": 265,
+          "y": 1420
         }
       }
   "38":
@@ -726,8 +726,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 690,
-          "y": -565
+          "x": 265,
+          "y": 1770
         }
       }
   "39":
@@ -768,8 +768,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -375
+          "x": 152.5,
+          "y": 1945
         }
       }
   "40":
@@ -803,11 +803,56 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": -220
+          "x": 152.5,
+          "y": 2120
         }
       }
-version: 7
+  "41":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PANOS.ShowSystemInfo.Result.sw_version
+          operator: isEqualString
+          right:
+            iscontext: true
+            value:
+              simple: inputs.target_version
+      label: yes
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "26"
+      yes:
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether the post-upgrade software version is correct.
+      id: f3a2da69-8f2f-4869-8210-6b027538e17d
+      iscommand: false
+      name: Check if System already running requested version
+      type: condition
+      version: -1
+    taskid: f3a2da69-8f2f-4869-8210-6b027538e17d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+version: 8
 view: |-
   {
     "linkLabelsPosition": {
@@ -815,10 +860,10 @@ view: |-
     },
     "paper": {
       "dimensions": {
-        "height": 3015,
-        "width": 840,
-        "x": 450,
-        "y": -2110
+        "height": 3215,
+        "width": 810,
+        "x": 50,
+        "y": 50
       }
     }
   }

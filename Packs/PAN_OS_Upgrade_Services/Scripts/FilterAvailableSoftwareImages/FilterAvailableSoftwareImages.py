@@ -1,4 +1,4 @@
-import demistomock as demisto
+import demistomock as demisto  # noqa: F401
 from CommonServerPython import *  # noqa: F401
 
 """
@@ -75,10 +75,14 @@ def check_if_feature_version_update(left_image_version: str, right_image_version
             return left_image_version
 
 
-def get_minor_version_as_float(minor_version_str: str):
-    minor_version_str = minor_version_str.replace("-h", ".")
-    minor_version_str = minor_version_str.replace("-b", ".")
-    return float(minor_version_str)
+def get_hotfix_version(minor_version_str: str):
+    if len(minor_version_str.split("-")) == 2:
+        minor_version_hotfix = minor_version_str.split("-")[-1]
+        minor_version_hotfix = minor_version_hotfix.replace("h", "")
+        minor_version_hotfix = minor_version_hotfix.replace("b", "")
+        return int(minor_version_hotfix)
+    else:
+        return 0
 
 
 def check_if_minor_version_update(left_image_version: str, right_image_version: str):
@@ -96,10 +100,16 @@ def check_if_minor_version_update(left_image_version: str, right_image_version: 
     left_minor_version = left_image_version.split(".")[-1]
     right_minor_version = right_image_version.split(".")[-1]
 
+    left_minor_version_wo_hotfix = int(left_minor_version.split("-")[0])
+    right_minor_version_wo_hotfix = int(right_minor_version.split("-")[0])
+
     if (left_major_version, left_feature_version) == (right_major_version, right_feature_version):
         # Any software images that share the major and feature releases are valid targets.
-        if get_minor_version_as_float(left_minor_version) < get_minor_version_as_float(right_minor_version):
+        if left_minor_version_wo_hotfix < right_minor_version_wo_hotfix:
             return left_image_version
+        elif left_minor_version_wo_hotfix == right_minor_version_wo_hotfix:
+            if get_hotfix_version(left_minor_version) < get_hotfix_version(right_minor_version):
+                return left_image_version
 
 
 def check_if_major_version_update(left_image_version: str, right_image_version: str, any_version_jump=False):
