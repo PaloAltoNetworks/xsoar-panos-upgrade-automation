@@ -1,0 +1,49 @@
+args:
+- description: incident type
+  isArray: true
+  name: incident_type
+  required: true
+- auto: PREDEFINED
+  description: The list of checks to run. Checks with inputs are skipped if relevant check is not selected in the checklist.
+  isArray: true
+  name: readiness_checklist
+  predefined:
+  - panorama
+  - ntp_sync
+  - ha
+  - candidate_config
+  - expired_licenses
+  - active_support
+  - content_version
+  - session_exist
+  - arp
+  - ipsec_tunnel
+  - dp_mp_clock_diff
+- description: The minimum content version to test against. Checks for latest content version if not provided.
+  name: min_content_version
+- description: Checks if the given IP is in the ARP table before starting upgrade.
+  name: arp_entry_exists
+- description: Check for the presence of a specific session in the session table before upgrade starts (source_ip/destination_ip/port).
+  name: session_exists
+- description: IPsec tunnel name to check if it's in active state.
+  name: ipsec_tunnel
+- description: Max. clock difference in seconds between data plane and management plane.
+  name: dp_mp_clock_diff
+comment: Indicator layout button to create customized panos netops incidents.
+commonfields:
+  id: 'CreateCustomizedNetopsIncidentButton'
+  version: -1
+dockerimage: demisto/python3:3.11.10.113941
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: CreateCustomizedNetopsIncidentButton
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: ''
+scripttarget: 0
+subtype: python3
+tags:
+- indicator-action-button
+type: python

@@ -104,8 +104,32 @@
 						"items": [
 							{
 								"args": {
+									"arp_entry_exists": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"dp_mp_clock_diff": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
 									"incident_type": {
 										"simple": "PAN-OS Network Operations - Device Upgrade"
+									},
+									"ipsec_tunnel": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"min_content_version": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"readiness_checklist": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"session_exists": {
+										"simple": "",
+										"userMarkedRequired": true
 									}
 								},
 								"buttonClass": "warning",
@@ -115,24 +139,48 @@
 								"id": "dc989cd0-0c8b-11ed-a0b8-eb2ebd0d1561",
 								"index": 0,
 								"name": "Upgrade Device Software",
-								"scriptId": "CreateNetopsIncidentButton",
+								"scriptId": "CreateCustomizedNetopsIncidentButton",
 								"sectionItemType": "button",
 								"startCol": 0
 							},
 							{
 								"args": {
+									"arp_entry_exists": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"dp_mp_clock_diff": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
 									"incident_type": {
 										"simple": "PAN-OS Network Operations - Upgrade Assurance"
+									},
+									"ipsec_tunnel": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"min_content_version": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"readiness_checklist": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"session_exists": {
+										"simple": "",
+										"userMarkedRequired": true
 									}
 								},
 								"buttonClass": "warning",
 								"endCol": 2,
 								"fieldId": "",
-								"height": 22,
+								"height": 44,
 								"id": "8ef6c680-eb03-11ed-bf79-1d5359b4825d",
 								"index": 1,
 								"name": "Run Upgrade Assurance Testing",
-								"scriptId": "CreateNetopsIncidentButton",
+								"scriptId": "CreateCustomizedNetopsIncidentButton",
 								"sectionItemType": "button",
 								"startCol": 0
 							}
