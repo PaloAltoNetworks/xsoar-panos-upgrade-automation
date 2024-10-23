@@ -264,7 +264,8 @@ def command_run_readiness_checks(panorama: Panorama):
 
     # this will set it to [] if emptry string or not provided - meaning check all
     check_list = argToList(args.get('check_list'))
-    if args.get('check_list') is not None:
+    # remove check_list from args to avoid duplicate arg pass to run_readiness_checks
+    if 'check_list' in args:
         del args['check_list']
 
     if 'dp_mp_clock_diff' in check_list:
@@ -273,7 +274,7 @@ def command_run_readiness_checks(panorama: Panorama):
 
     # this will set it to None if emptry string or not provided
     dp_mp_clock_diff = arg_to_number(args.get('dp_mp_clock_diff'), required=False)
-    if args.get('dp_mp_clock_diff') is not None:
+    if 'dp_mp_clock_diff' in args:
         del args['dp_mp_clock_diff']
 
     if 'ipsec_tunnel' in check_list:
@@ -284,7 +285,7 @@ def command_run_readiness_checks(panorama: Panorama):
         check_list.remove('arp')
         check_list.append('arp_entry_exists')
 
-    if (arp_entry := args.get('arp_entry_exists')) is not None and not is_ip_valid(arp_entry):
+    if (arp_entry := args.get('arp_entry_exists')) and not is_ip_valid(arp_entry):
         raise ValueError(
             f"{arp_entry} is not a valid IPv4 address."
         )
@@ -315,7 +316,7 @@ def command_run_snapshot(panorama: Panorama):
 
     # this will set it to [] if emptry string or not provided - meaning all snapshots
     snapshot_list = argToList(args.get('check_list'))
-    if args.get('check_list') is not None:
+    if 'check_list' in args:
         del args['check_list']
 
     snapshot = run_snapshot(firewall, snapshot_list, **args)
