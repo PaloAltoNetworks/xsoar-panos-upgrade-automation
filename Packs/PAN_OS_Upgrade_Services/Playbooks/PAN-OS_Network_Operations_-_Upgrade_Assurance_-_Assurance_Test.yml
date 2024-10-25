@@ -103,10 +103,14 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
+      check_list:
+        simple: ${incident.snapshotchecklist}
       left_snapshot_id:
         simple: ${incident.firstsnapshotid}
       right_snapshot_id:
         simple: ${incident.secondsnapshotid}
+      session_stats_threshold:
+        simple: ${incident.sessionstatschangethreshold}
     separatecontext: false
     skipunavailable: false
     task:
@@ -492,7 +496,7 @@ tasks:
           "y": 1090
         }
       }
-version: 21
+version: 22
 view: |-
   {
     "linkLabelsPosition": {},

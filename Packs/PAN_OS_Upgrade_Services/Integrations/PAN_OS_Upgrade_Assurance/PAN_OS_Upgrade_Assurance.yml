@@ -144,6 +144,18 @@ script:
         required: true
         secret: false
         default: false
+      - name: check_list
+        isArray: true
+        description: List of snapshot types to compare. If not provided, a default set of snapshots will be compared.
+        required: false
+        secret: false
+        default: false
+      - name: session_stats_threshold
+        isArray: false
+        description: Percentage of change in session stats that is allowed to pass the comparison.
+        required: false
+        secret: false
+        default: false
     outputs:
       - contextPath: FirewallAssurance.SnapshotComparisonResult
         description: Snapshot comparison results

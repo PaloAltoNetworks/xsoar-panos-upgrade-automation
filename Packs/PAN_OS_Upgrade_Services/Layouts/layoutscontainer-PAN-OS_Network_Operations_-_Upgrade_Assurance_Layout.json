@@ -291,11 +291,11 @@
 						"static": false,
 						"w": 1,
 						"x": 0,
-						"y": 4
+						"y": 2
 					},
 					{
 						"displayType": "ROW",
-						"h": 6,
+						"h": 5,
 						"hideItemTitleOnlyOne": true,
 						"hideName": false,
 						"i": "caseinfoid-740393c0-ea78-11ed-a2d2-8d604725a455",
@@ -315,13 +315,13 @@
 						"moved": false,
 						"name": "Report",
 						"static": false,
-						"w": 2,
+						"w": 1,
 						"x": 1,
 						"y": 2
 					},
 					{
 						"displayType": "ROW",
-						"h": 2,
+						"h": 1,
 						"hideName": false,
 						"i": "caseinfoid-a5b66750-eb02-11ed-bf8c-f9a66faf249a",
 						"items": [
@@ -349,8 +349,64 @@
 						"name": "Actions",
 						"static": false,
 						"w": 1,
-						"x": 0,
+						"x": 2,
 						"y": 2
+					},
+					{
+						"displayType": "CARD",
+						"h": 4,
+						"hideName": false,
+						"i": "caseinfoid-bbd7cc35-c0d2-45e9-bfcc-63ae4b4e65c5",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "snapshotchecklist",
+								"height": 53,
+								"id": "c78bdba1-b7f8-448c-a84a-afd947ce5e0f",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "sessionstatschangethreshold",
+								"filters": [
+									[
+										{
+											"id": 0,
+											"ignoreCase": false,
+											"left": {
+												"isContext": true,
+												"value": {
+													"simple": "snapshotchecklist"
+												}
+											},
+											"operator": "containsGeneral",
+											"right": {
+												"isContext": false,
+												"value": {
+													"simple": "session_stats"
+												}
+											},
+											"type": "multiSelect"
+										}
+									]
+								],
+								"height": 53,
+								"id": "0313fe26-dc39-47af-a61c-1379a442dde6",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Assurance Snapshot Configuration",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 6
 					}
 				],
 				"type": "custom"
@@ -683,6 +739,45 @@
 				],
 				"isVisible": true,
 				"name": "Advanced Test Configuration",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_snapshotchecklist",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_sessionstatschangethreshold",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "snapshotchecklist"
+										}
+									},
+									"operator": "containsGeneral",
+									"right": {
+										"isContext": false,
+										"value": {
+											"simple": "session_stats"
+										}
+									},
+									"type": "multiSelect"
+								}
+							]
+						],
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Advanced Snapshot Comparison",
 				"query": null,
 				"queryType": "",
 				"readOnly": false,

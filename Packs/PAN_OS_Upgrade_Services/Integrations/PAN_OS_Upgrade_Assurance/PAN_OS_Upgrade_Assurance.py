@@ -184,36 +184,96 @@ def run_readiness_checks(
     return results
 
 
-def compare_snapshots(left_snapshot, right_snapshot):
+def compare_snapshots(left_snapshot, right_snapshot,
+                      snapshot_list: Optional[List] = None,
+                      session_stats_threshold : Optional[int] = None):
+    """
+    Compare snapshot files taken by the `pan-os-assurance-run-snapshot` command.
+
+    :arg left_snapshot: Left ("first) snapshot to compare against.
+    :arg right_snapshot: Right ("second") snapshot to compare against "left" snapshot.
+    :arg snapshot_list: List of snapshot types to compare. If not provided, a default set of snapshots will be compared. Must match with Upgrade Assurance snapshot types.
+    :arg session_stats_threshold: Percentage of change in session stats that is allowed to pass the comparison.
+
+    """
     snapshot_compare = SnapshotCompare(left_snapshot, right_snapshot)
 
-    defaults = [
-        {'ip_sec_tunnels': {
-            'properties': ['state']
-        }},
-        {'arp_table': {
-            'properties': ['!ttl'],
-            'count_change_threshold': 10
-        }},
-        {'nics': {
-            'count_change_threshold': 10
-        }},
-        {'license': {
-            'properties': ['!serial', '!issued', '!authcode']
-        }},
-        {'routes': {
-            'properties': ['!flags', '!age'],
-            'count_change_threshold': 10
-        }},
-        'content_version',
-        {'session_stats': {
-            'thresholds': [
-                {'num-max': 10},
-                {'num-tcp': 10},
-            ]
-        }}
-    ]
-    return snapshot_compare.compare_snapshots(defaults)
+    if not snapshot_list:
+        # Setup the defaults
+        snapshot_list = [
+            'nics',
+            'routes',
+            'license',
+            'arp_table',
+            'content_version',
+            'session_stats',
+            'ip_sec_tunnels',
+        ]
+
+    snapshot_comparisons = []
+
+    if 'nics' in snapshot_list:
+        snapshot_comparisons.append({
+            'nics': {
+                'count_change_threshold': 10
+            }
+        })
+
+    if 'routes' in snapshot_list:
+        snapshot_comparisons.append({
+            'routes': {
+                'properties': ['!flags', '!age'],
+                'count_change_threshold': 10
+            }
+        })
+
+    if 'license' in snapshot_list:
+        snapshot_comparisons.append({
+            'license': {
+                'properties': ['!serial', '!issued', '!authcode']
+            }
+        })
+
+    if 'arp_table' in snapshot_list:
+        snapshot_comparisons.append({
+            'arp_table': {
+                'properties': ['!ttl'],
+                'count_change_threshold': 10
+            }
+        })
+
+    if 'content_version' in snapshot_list:
+        snapshot_comparisons.append('content_version')
+
+    if 'session_stats' in snapshot_list:
+        # if session_stats_threshold not None and bigger than 0(zero)
+        if isinstance(session_stats_threshold, int) and session_stats_threshold > 0:
+            snapshot_comparisons.append({
+                'session_stats': {
+                    'thresholds': [
+                        {'num-max': session_stats_threshold},
+                        {'num-tcp': session_stats_threshold},
+                    ]
+                }
+            })
+        else:                   # default session_stats thresholds
+            snapshot_comparisons.append({
+                'session_stats': {
+                    'thresholds': [
+                        {'num-max': 10},
+                        {'num-tcp': 10},
+                    ]
+                }
+            })
+
+    if 'ip_sec_tunnels' in snapshot_list:
+        snapshot_comparisons.append({
+            'ip_sec_tunnels': {
+                'properties': ['state']
+            }
+        })
+
+    return snapshot_compare.compare_snapshots(snapshot_comparisons)
 
 
 def convert_readiness_results_to_table(results: dict):
@@ -332,7 +392,17 @@ def command_compare_snapshots():
     args = demisto.args()
     left_snapshot = read_file_by_id(args.get('left_snapshot_id'))
     right_snapshot = read_file_by_id(args.get('right_snapshot_id'))
-    result = compare_snapshots(left_snapshot, right_snapshot)
+
+    # this will set it to [] if emptry string or not provided - meaning all snapshots
+    snapshot_list = argToList(args.get('check_list'))
+    if 'check_list' in args:
+        del args['check_list']
+
+    session_stats_threshold = arg_to_number(args.get('session_stats_threshold'), required=False)
+
+    result = compare_snapshots(left_snapshot, right_snapshot,
+                               snapshot_list=snapshot_list,
+                               session_stats_threshold=session_stats_threshold)
     return CommandResults(
         outputs={
             'SnapshotComparisonResult': convert_snapshot_result_to_table(result),
