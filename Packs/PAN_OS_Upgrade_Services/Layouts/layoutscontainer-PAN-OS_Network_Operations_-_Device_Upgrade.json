@@ -59,7 +59,7 @@
 						"static": false,
 						"type": "workplan",
 						"w": 1,
-						"x": 1,
+						"x": 2,
 						"y": 0
 					},
 					{
@@ -68,22 +68,22 @@
 								"displayed": true,
 								"isDefault": true,
 								"key": "value",
-								"width": 300
+								"width": 100
 							},
 							{
 								"displayed": true,
 								"key": "Hostname",
-								"width": 200
+								"width": 194
 							},
 							{
 								"displayed": true,
 								"key": "Software Version",
-								"width": 200
+								"width": 153
 							},
 							{
 								"displayed": true,
 								"key": "Device Tags",
-								"width": 200
+								"width": 133
 							}
 						],
 						"description": "",
@@ -98,9 +98,9 @@
 						"queryType": "input",
 						"static": false,
 						"type": "indicators",
-						"w": 2,
+						"w": 1,
 						"x": 1,
-						"y": 2
+						"y": 0
 					},
 					{
 						"description": "",
@@ -154,8 +154,8 @@
 						"name": "Assurance Tests",
 						"static": false,
 						"w": 1,
-						"x": 2,
-						"y": 0
+						"x": 1,
+						"y": 2
 					},
 					{
 						"displayType": "CARD",
@@ -301,7 +301,7 @@
 					},
 					{
 						"displayType": "ROW",
-						"h": 2,
+						"h": 1,
 						"hideName": false,
 						"i": "caseinfoid-field-changed-caseinfoid-2b196e40-2b48-11ed-9983-57e28e0b15d1",
 						"items": [
@@ -329,12 +329,12 @@
 						"name": "Actions",
 						"static": false,
 						"w": 1,
-						"x": 1,
-						"y": 6
+						"x": 2,
+						"y": 12
 					},
 					{
 						"displayType": "ROW",
-						"h": 2,
+						"h": 4,
 						"hideName": false,
 						"i": "caseinfoid-64ce22c0-eb2d-11ed-a48e-3b53abdb4307",
 						"items": [
@@ -359,7 +359,7 @@
 					},
 					{
 						"displayType": "ROW",
-						"h": 4,
+						"h": 2,
 						"hideName": false,
 						"i": "caseinfoid-ef0c0210-122b-11ef-aed6-958b0929b884",
 						"items": [
@@ -402,8 +402,8 @@
 						"static": false,
 						"w": 1,
 						"wrapLabels": true,
-						"x": 1,
-						"y": 8
+						"x": 2,
+						"y": 2
 					},
 					{
 						"displayType": "ROW",
@@ -427,7 +427,7 @@
 						"name": "HA Readiness Check (post failover)",
 						"static": false,
 						"w": 1,
-						"x": 0,
+						"x": 1,
 						"y": 8
 					},
 					{
@@ -657,6 +657,62 @@
 						"w": 1,
 						"x": 0,
 						"y": 4
+					},
+					{
+						"displayType": "CARD",
+						"h": 4,
+						"hideName": false,
+						"i": "caseinfoid-28f0fd86-65f4-4d5f-b44e-082e1975a66f",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "snapshotchecklist",
+								"height": 53,
+								"id": "e4badae3-a763-454c-abec-a5be6402d3fa",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "sessionstatschangethreshold",
+								"filters": [
+									[
+										{
+											"id": 0,
+											"ignoreCase": false,
+											"left": {
+												"isContext": true,
+												"value": {
+													"simple": "snapshotchecklist"
+												}
+											},
+											"operator": "containsGeneral",
+											"right": {
+												"isContext": false,
+												"value": {
+													"simple": "session_stats"
+												}
+											},
+											"type": "multiSelect"
+										}
+									]
+								],
+								"height": 53,
+								"id": "23238567-5068-44bc-b6ae-eb20ad261a5e",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Assurance Snapshot Configuration",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 8
 					}
 				],
 				"type": "custom"
@@ -849,6 +905,45 @@
 				],
 				"isVisible": true,
 				"name": "Advanced Test Configuration",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_snapshotchecklist",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_sessionstatschangethreshold",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "snapshotchecklist"
+										}
+									},
+									"operator": "containsGeneral",
+									"right": {
+										"isContext": false,
+										"value": {
+											"simple": "session_stats"
+										}
+									},
+									"type": "multiSelect"
+								}
+							]
+						],
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Advanced Snapshot Comparison",
 				"query": null,
 				"queryType": "",
 				"readOnly": false,
