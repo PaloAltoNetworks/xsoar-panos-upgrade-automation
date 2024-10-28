@@ -130,6 +130,14 @@
 									"session_exists": {
 										"simple": "",
 										"userMarkedRequired": true
+									},
+									"session_stats_threshold": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"snapshot_checklist": {
+										"simple": "",
+										"userMarkedRequired": true
 									}
 								},
 								"buttonClass": "warning",
@@ -169,6 +177,14 @@
 										"userMarkedRequired": true
 									},
 									"session_exists": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"session_stats_threshold": {
+										"simple": "",
+										"userMarkedRequired": true
+									},
+									"snapshot_checklist": {
 										"simple": "",
 										"userMarkedRequired": true
 									}

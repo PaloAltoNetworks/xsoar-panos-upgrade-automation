@@ -26,6 +26,9 @@ def main():
     ipsec_tunnel = args.get("ipsec_tunnel")
     dp_mp_clock_diff = args.get("dp_mp_clock_diff")
 
+    snapshot_checklist = args.get("snapshot_checklist")
+    session_stats_threshold = args.get("session_stats_threshold")
+
     # Get pan-os instance name
     panos = str(indicator.get("CustomFields").get('panoramainstance'))
 
@@ -39,7 +42,9 @@ def main():
         "checkarpentryexists": arp_entry_exists,
         "checksessionexists": session_exists,
         "ipsectunnel": ipsec_tunnel,
-        "dpmpclockdiff": dp_mp_clock_diff
+        "dpmpclockdiff": dp_mp_clock_diff,
+        "snapshotchecklist": snapshot_checklist,
+        "sessionstatschangethreshold": session_stats_threshold
     })
 
     created_incident = res[0]
