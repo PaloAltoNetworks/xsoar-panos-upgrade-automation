@@ -48,7 +48,8 @@
 		"arp_table",
 		"content_version",
 		"session_stats",
-		"ip_sec_tunnels"
+		"ip_sec_tunnels",
+		"bgp_peers"
 	],
 	"selectValuesMap": null,
 	"sla": 0,

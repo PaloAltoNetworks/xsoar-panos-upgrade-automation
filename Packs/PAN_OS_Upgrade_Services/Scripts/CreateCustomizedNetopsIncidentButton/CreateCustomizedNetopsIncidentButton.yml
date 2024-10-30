@@ -41,6 +41,7 @@ args:
   - content_version
   - session_stats
   - ip_sec_tunnels
+  - bgp_peers
 - description: Percentage of change in session stats that is allowed to pass the comparison.
   name: session_stats_threshold
 comment: Indicator layout button to create customized panos netops incidents.

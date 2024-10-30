@@ -62,6 +62,7 @@ def run_snapshot(
     """Runs a snapshot and saves it as a JSON file in the XSOAR system."""
 
     if not snapshot_list:
+        # this is the default list while other snapshot types can be passed in the argument
         snapshot_list = [
             'nics',
             'routes',
@@ -272,6 +273,9 @@ def compare_snapshots(left_snapshot, right_snapshot,
                 'properties': ['state']
             }
         })
+
+    if 'bgp_peers' in snapshot_list:
+        snapshot_comparisons.append('bgp_peers')
 
     return snapshot_compare.compare_snapshots(snapshot_comparisons)
 
