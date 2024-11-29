@@ -275,7 +275,11 @@ def compare_snapshots(left_snapshot, right_snapshot,
         })
 
     if 'bgp_peers' in snapshot_list:
-        snapshot_comparisons.append('bgp_peers')
+        snapshot_comparisons.append({
+            'bgp_peers': {
+                'properties': ['status']
+            }
+        })
 
     return snapshot_compare.compare_snapshots(snapshot_comparisons)
 
