@@ -26,7 +26,8 @@ def get_file_path(input_entry_id):
 
 def read_file_by_id(input_entry_id):
     fp = get_file_path(input_entry_id)
-    return json.load(open(fp))
+    with open(fp) as f:
+        return json.load(f)
 
 
 def get_firewall_object(panorama: Panorama, serial_number):

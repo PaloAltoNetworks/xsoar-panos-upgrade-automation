@@ -136,7 +136,11 @@ def test_main():
     pytest.skip(
         "Might contain sensitive data. To run this unit test, copy output from pan-os-available-software."
     )
-    available_images = json.load(open("test_data/all_available_software.json"))
-    installed_images = json.load(open("test_data/installed_images.json"))
+    with open("test_data/all_available_software.json") as f:
+        available_images = json.load(f)
+        
+    with open("test_data/installed_images.json") as f:
+        installed_images = json.load(f)
+
     from FilterAvailableSoftwareImages import main
     result = main(installed_images, available_images)

@@ -21,14 +21,14 @@ def load_xml_root_from_test_file(xml_file: str):
 def load_json_from_test_file(file_name):
     """Given a JSON file, returns the contents"""
     try:
-        data = json.load(open(file_name))
+        with open(file_name) as f:
+            data = json.load(f)
     except FileNotFoundError:
         # Handle test being run outside of test directory (i.e from content root dir)
-        data = json.load(
-            open(TEST_LOCATION_FROM_ROOT + file_name))
-
+        with open(TEST_LOCATION_FROM_ROOT + file_name) as f:
+            data = json.load(f)
+    
     return data
-
 
 @pytest.fixture
 def integration_test_fixture():
